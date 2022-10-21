@@ -1,0 +1,79 @@
+site_name: "LUMI EasyBuild-provided software"
+#site_url: https://klust.github.io/UAntwerpen-modules
+#repo_url: https://github.com/klust/UAntwerpen-modules
+site_description: >-
+  Documentation for the LUMI EasyBuild-provided packages
+
+docs_dir: docs
+site_dir: ../site
+
+theme:
+  name: material
+  # We'll customise the team (basically a simpler footer)
+  # custom_dir: overrides
+  features:
+    # navigation.instant lets the site work like a single page application, good for search etc.
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    #- navigation.top
+    #- navigation.sections
+    - navigation.indexes
+    - header.autohide
+    - toc.follow
+    - content.code.annotate
+    - search.suggest
+  palette:
+    - primary: black
+
+hide:
+#  - toc
+  - navigation
+
+plugins:
+  # show revision date at bottom of each page
+  #- git-revision-date-localized
+  - search
+#  - redirects:
+#      redirect_maps:
+#        'e/index.md': 'index.html#a'
+
+markdown_extensions:
+  - meta
+  # Nicer tables
+  - tables
+  # notes, warnings, hints, ...
+  - admonition
+  # code blocks with syntax highlighting, graphs
+  - pymdownx.superfences:
+        custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  # clickable details
+  - pymdownx.details
+  # tabbed contents
+  - pymdownx.tabbed
+  - toc:
+      permalink: false
+      toc_depth: 4
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  # add links in bottom right
+  social:
+      #- type: github
+      #icon: octicons/logo-github
+      #link: https://github.com/easybuilders
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/channel/UCb31KOJ6Wqu0sRpIRi_k8Mw
+      name: LUMI on YouTube
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/lumi-supercomputer
+      name: LUMI on LinkedIn
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/LUMIhpc
+      name: LUMI on Twitter

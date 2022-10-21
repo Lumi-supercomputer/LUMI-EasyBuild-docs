@@ -1,0 +1,11 @@
+/* Make the maximum width of the content wider to display EaxsyConfig files 
+   without scrolling. */
+.md-grid {
+    max-width: 2880px; 
+}
+/* Add some padding around the main box, looks nicer when the navigation and
+   table of content are disabled for a page. */
+.md-main {
+    padding-left: 5%;
+    padding-right: 5%;
+}
