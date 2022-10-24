@@ -1,69 +1,69 @@
-site_name: "LUMI EasyBuild-provided software"
+site_name: "LUMI Software Library"
 #site_url: https://klust.github.io/UAntwerpen-modules
 #repo_url: https://github.com/klust/UAntwerpen-modules
+site_url: ""
+repo_url: ""
+edit_uri: ""
 site_description: >-
-  Documentation for the LUMI EasyBuild-provided packages
+  Documentation for the LUMI software library
 
 docs_dir: docs
 site_dir: ../site
 
 theme:
   name: material
-  # We'll customise the team (basically a simpler footer)
-  # custom_dir: overrides
+  greetings: Welcome to the LUMI Software Library
+  custom_dir: mkdocs_lumi/
+  language: en
   features:
     # navigation.instant lets the site work like a single page application, good for search etc.
-    - navigation.instant
+    #- navigation.instant
+    # navigation.tracking: When enabled, the URL in the address bar is automatically updated
     - navigation.tracking
+    # navigation.tabs: When enabled, top level sections are rendered in a mnu layer on wider screens
     - navigation.tabs
+    # navigation.tabs.sticky: Lock navigation tabs below the header
     - navigation.tabs.sticky
     #- navigation.top
-    #- navigation.sections
+    # navigation.sections: Top-level sections are rendered as groups in the sidebar for wide viewports.
+    - navigation.sections
+    # navigation.indexes: Enable attaching documents to sections.
     - navigation.indexes
-    - header.autohide
+    #- header.autohide
+    # toc.follow: Scroll the sidebar automatically so that the active anchor is always visible.
     - toc.follow
-    - content.code.annotate
+    # search.suggest: Enable search suggestions while typing in the search box
     - search.suggest
+    # Enable code annotation globally
+    - content.code.annotate
+
   palette:
-    - primary: black
+    scheme: default
+    primary: lumi
+    accent: lumi
 
-plugins:
-  # show revision date at bottom of each page
-  #- git-revision-date-localized
-  - search
-#  - redirects:
-#      redirect_maps:
-#        'e/index.md': 'index.html#a'
+  font: false
 
-markdown_extensions:
-  - meta
-  # Nicer tables
-  - tables
-  # notes, warnings, hints, ...
-  - admonition
-  # code blocks with syntax highlighting, graphs
-  - pymdownx.superfences:
-        custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
-  # clickable details
-  - pymdownx.details
-  # tabbed contents
-  - pymdownx.tabbed
-  - toc:
-      permalink: false
-      toc_depth: 4
+  favicon: assets/favicon.png
 
-extra_css:
-  - stylesheets/extra.css
+  icon:
+    logo: logo
+  
+  home_primary:
+    title: Package list
+    page: index.md
+  home_secondary:
+    title: To LUMI documentation
+    page: https://docs.lumi-supercomputer.eu/
+  
+
+#extra_css:
+#  # Do we still need this? We can probably better solve this in mkdocs_lumi
+#  - stylesheets/extra.css
 
 extra:
   # add links in bottom right
   social:
-      #- type: github
-      #icon: octicons/logo-github
-      #link: https://github.com/easybuilders
     - icon: fontawesome/brands/youtube
       link: https://www.youtube.com/channel/UCb31KOJ6Wqu0sRpIRi_k8Mw
       name: LUMI on YouTube
@@ -73,3 +73,48 @@ extra:
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/LUMIhpc
       name: LUMI on Twitter
+
+markdown_extensions:
+arkdown_extensions:
+  - toc:
+      toc_depth: 3
+      permalink: false
+      permalink_title: Anchor link to this section for reference
+  # Nicer tables
+  - tables
+  # notes, warnings, hints, ...
+  - admonition
+  # Syntax to define attributes on the various HTML elements in markdown's output
+  - attr_list
+  # Add syntax for defining footnotes
+  - footnotes
+  # clickable details
+  - pymdownx.details
+  # tabbed contents
+  - pymdownx.tabbed
+  # code blocks with syntax highlighting, graphs
+  - pymdownx.superfences:
+        custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  # Add support for code highlighting
+  - pymdownx.highlight:
+      anchor_linenums: true
+  # Insert inline highlighted code
+  - pymdownx.inlinehilite
+  # Insert markdown or HTML snippets into another markdown file.
+  - pymdownx.snippets
+  # Extension to make entering and styling keyboard key presses easier
+  - pymdownx.keys
+  # Add support for inserint emoji via simple short names enclosed within colons.
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+
+plugins:
+  - search
+#  - redirects:
+#      redirect_maps:
+#        'e/index.md': 'index.html#a'
+
