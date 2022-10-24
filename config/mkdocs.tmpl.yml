@@ -27,10 +27,6 @@ theme:
   palette:
     - primary: black
 
-hide:
-#  - toc
-  - navigation
-
 plugins:
   # show revision date at bottom of each page
   #- git-revision-date-localized
