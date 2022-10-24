@@ -74,6 +74,8 @@ echo -e "\nnav:" >>$gendoc/mkdocs.yml
 
 mkdir -p $gendoc/docs
 
+[[ -h $gendoc/mkdocs_lumi ]]      || create_link $repodir/mkdocs_lumi      $repodir/$gendoc/mkdocs_lumi
+[[ -h $gendoc/docs/assets ]]      || create_link $repodir/docs/assets      $repodir/$gendoc/docs/assets
 [[ -h $gendoc/docs/stylesheets ]] || create_link $repodir/docs/stylesheets $repodir/$gendoc/docs/stylesheets
 
 #
