@@ -126,7 +126,7 @@ do
         (( $(find $prefix_stack/$package_dir -name "*.eb" | wc -l) ))    && is_stack_easyconfig=1
         (( $is_stack_readme || $is_stack_user || $is_stack_easyconfig )) && is_stack_package=1
     fi
-    >2& echo "$package: stack package:   $is_stack_package, README: $is_stack_readme, USER: $is_stack_user, EB: $is_stack_easyconfig."
+    >&2 echo "$package: stack package:   $is_stack_package, README: $is_stack_readme, USER: $is_stack_user, EB: $is_stack_easyconfig."
 
     is_contrib_package=0
     is_contrib_readme=0
@@ -170,6 +170,17 @@ do
             echo -e "## User documentation\n"                                     >>$package_file
         fi
         egrep -v "^# " "$prefix_stack/$package_dir/$userinfo" | sed -e 's|^#|##|' >>$package_file
+
+        # If there is a files subdirectory, copy the content to the files subdirectory in
+        # in the $gendoc tree.
+        if [ -d "$prefix_stack/$package_dir/files" ]
+        then
+            >&2 echo "Subdirectory $prefix_stack/$package_dir/files detected, copying data."
+            mkdir -p "$gendoc/docs/$package_dir/files" || die "Failed to create $gendoc/docs/$package_dir/files."
+            # Note that using quotes below with the * does not work as it turns globbing off
+            /bin/cp -r $prefix_stack/$package_dir/files/* "$gendoc/docs/$package_dir/files/" || 
+                die "Failed to copy files from $prefix_stack/$package_dir/files to $gendoc/docs/$package_dir/files."
+        fi
     fi
 
     #
@@ -184,6 +195,17 @@ do
             echo -e "## User documentation\n"                                       >>$package_file
         fi
         egrep -v "^# " "$prefix_contrib/$package_dir/$userinfo" | sed -e 's|^#|##|' >>$package_file
+
+        # If there is a files subdirectory, copy the content to the files subdirectory in
+        # in the $gendoc tree.
+        if [ -d "$prefix_contrib/$package_dir/files" ]
+        then
+            >&2 echo "Subdirectory $prefix_contrib/$package_dir/files detected, copying data."
+            mkdir -p "$gendoc/docs/$package_dir/files" || die "Failed to create $gendoc/docs/$package_dir/files."
+            # Note that using quotes below with the * does not work as it turns globbing off
+            /bin/cp -r $prefix_contrib/$package_dir/files/* "$gendoc/docs/$package_dir/files/" || 
+                die "Failed to copy files from $prefix_contrib/$package_dir/files to $gendoc/docs/$package_dir/files."
+        fi
     fi
 
     #
