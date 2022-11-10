@@ -8,8 +8,8 @@ build:
 deploy-origin:
 	mkdocs gh-deploy --force --remote-name origin --config-file $(gendoc)/mkdocs.yml
 
-#deploy-upstream:
-#	mkdocs gh-deploy --force --remote-name upstream --config-file $(gendoc)/mkdocs.yml
+deploy-upstream:
+	mkdocs gh-deploy --force --remote-name upstream --config-file $(gendoc)/mkdocs.yml
 
 check test:
 	mkdocs build --strict --config-file $(gendoc)/mkdocs.yml
