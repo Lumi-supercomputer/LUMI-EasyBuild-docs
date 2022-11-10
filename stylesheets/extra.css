@@ -1,70 +1,11 @@
-/* Make the maximum width of the content wider to display EasyConfig files 
+/* Make the maximum width of the content wider to display EaxsyConfig files 
    without scrolling. */
 .md-grid {
     max-width: 2880px; 
 }
 /* Add some padding around the main box, looks nicer when the navigation and
    table of content are disabled for a page. */
-:root {
-    --lumi-software-padding: 8%
-}
-/* .md-grid {
-    padding-left:  var(--lumi-software-padding);
-    padding-right: var(--lumi-software-padding);
-} */
 .md-main {
-    padding-left:  var(--lumi-software-padding);
-    padding-right: var(--lumi-software-padding);
-}
-.md-header {
-    padding-left:  var(--lumi-software-padding);
-    padding-right: var(--lumi-software-padding);
-}
-.md-footer-nav {
-    padding-left:  var(--lumi-software-padding);
-    padding-right: var(--lumi-software-padding);
-}
-.md-footer-meta {
-    padding-left:  var(--lumi-software-padding);
-    padding-right: var(--lumi-software-padding);
-}
-/* Replace the Table of Contents title. */
-.md-nav__title {
-    visibility: hidden;
-  }
-.md-nav__title:after {
-    visibility: visible;
-    content: 'Quick navigation';
-    display: block;
-  }
-/*
-  Blocks indicating if software is pre-installed or user-installable.
-*/
-.lumi-software-button-preinstalled {
-    margin: 3px;
-    /* border: 1px solid black; */
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 25px;
-    padding-right: 25px;
-    background-color: rgb(18, 77, 2);
-    color: white;
-    font-weight: 700;
-}
-.lumi-software-button-preinstalled:after {
-    content: 'pre-installed';
-}
-.lumi-software-button-userinstallable {
-    margin: 3px;
-    /* border: 1px solid black; */
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 25px;
-    padding-right: 25px;
-    background-color: hsla(207, 100%, 28%, 1);
-    color: white;
-    font-weight: 700;
-}
-.lumi-software-button-userinstallable:after {
-    content: 'user-installable';
+    padding-left: 5%;
+    padding-right: 5%;
 }
