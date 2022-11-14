@@ -11,12 +11,8 @@
 }
 /* Make the boxes for user-installable and pre-installed. */
 .lumi-software-button-preinstalled {
-    padding-left :    15pt;
-    padding-right:    15pt;
-    padding-top:      10pt;
-    padding-bottom:   10pt;
-    margin-left:      5pt;
-    margin-right:     5pt;
+    padding:          10pt 15pt;
+    margin:           0pt 5pt;
     background-color: green;
     color:            white;
     font-weight:      bold;
@@ -24,23 +20,30 @@
 .lumi-software-button-preinstalled::before {
     content: 'pre-installed';
 }
-.lumi-software-button-preinstalled:hover:before {
-    content: 'This software is already available in the appropriate version of the LUMI software stack, and sometimes in CrayEnv';
-    display: block;
-    background-color: lightgrey;
-    font-weight: normal;
-    color: black;
-    padding: 10pt;
-    position: absolute;
-    z-index: 1;
+.lumi-software-button-preinstalled-hover {
+    position: relative;
 }
+.lumi-software-button-preinstalled-hover::before {
+    content:          'This software is already available in the appropriate version of the LUMI software stack, and sometimes in CrayEnv';
+    visibility:       hidden;
+    width:            max-content;
+    padding:          10pt;
+    background-color: lightgrey;
+    color:            black;
+    font-weight:      normal;
+    position:         absolute;
+    z-index:          1;
+    left:             15pt;
+    top:              20pt;
+}
+.lumi-software-button-preinstalled-hover:hover:before {
+    visibility: visible;
+    opacity:    75%;
+}
+
 .lumi-software-button-userinstallable {
-    padding-left :    15pt;
-    padding-right:    15pt;
-    padding-top:      10pt;
-    padding-bottom:   10pt;
-    margin-left:      5pt;
-    margin-right:     5pt;
+    padding:          10pt 15pt;
+    margin:           0pt 5pt;
     background-color: hsla(207,100%,38%, 1);
     color:            white;
     font-weight:      bold;
@@ -48,14 +51,24 @@
 .lumi-software-button-userinstallable::before {
     content: 'user-installable';
 }
-.lumi-software-button-userinstallable:hover:before {
-    content: 'This software can be user-installed with EasyBuild in the appropriate LUMI stacks';
-    display: block;
+.lumi-software-button-userinstallable-hover {
+    position: relative;
+}
+.lumi-software-button-userinstallable-hover::before {
+    content:          'This software can be user-installed with EasyBuild in the appropriate LUMI stacks';
+    visibility:       hidden;
+    width:            max-content;
+    padding:          10pt;
     background-color: lightgrey;
-    font-weight: normal;
-    color: black;
-    padding: 10pt;
-    position: absolute;
-    z-index: 1;
+    color:            black;
+    font-weight:      normal;
+    position:         absolute;
+    z-index:          1;
+    left:             15pt;
+    top:              20pt;
+}
+.lumi-software-button-userinstallable-hover:hover:before {
+    visibility: visible;
+    opacity:    75%;
 }
 

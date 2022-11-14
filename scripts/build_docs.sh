@@ -103,8 +103,8 @@ last_group='.'
 #
 # Loop over all packages
 #
-for package_dir in $(/bin/ls -1 $prefix_stack/b/*/*.eb $prefix_stack/g/*/*.eb $prefix_contrib/b/*/*.eb $prefix_contrib/g/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sort -uf)
-#for package_dir in $(/bin/ls -1 $prefix_stack/*/*/*.eb $prefix_contrib/*/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sort -uf)
+#for package_dir in $(/bin/ls -1 $prefix_stack/b/*/*.eb $prefix_contrib/g/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sort -uf)
+for package_dir in $(/bin/ls -1 $prefix_stack/*/*/*.eb $prefix_contrib/*/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sort -uf)
 do
 
 	>&2 echo "Processing $package_dir..." 
@@ -157,8 +157,8 @@ do
     echo -e "[[package list]](../../index.md)\n"               >>$package_file
 	echo -e "# $package\n"                                     >>$package_file
     echostring=""
-    (( is_stack_package ))   && echostring="$echostring<span class='lumi-software-button-preinstalled'></span>"
-    (( is_contrib_package )) && echostring="$echostring<span class='lumi-software-button-userinstallable'></span>"
+    (( is_stack_package ))   && echostring="$echostring<span class='lumi-software-button-preinstalled-hover'><span class='lumi-software-button-preinstalled'></span></span>"
+    (( is_contrib_package )) && echostring="$echostring<span class='lumi-software-button-userinstallable-hover'><span class='lumi-software-button-userinstallable'></span></span>"
     echo -e "$echostring\n"                                    >>$package_file
 
     #
