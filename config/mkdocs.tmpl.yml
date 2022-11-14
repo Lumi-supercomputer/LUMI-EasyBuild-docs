@@ -75,7 +75,6 @@ extra:
       name: LUMI on Twitter
 
 markdown_extensions:
-arkdown_extensions:
   - toc:
       toc_depth: 3
       permalink: false

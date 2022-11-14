@@ -141,7 +141,7 @@ do
         (( $(find $prefix_contrib/$package_dir -name "*.eb" | wc -l) ))          && is_contrib_easyconfig=1
         (( $is_contrib_readme || $is_contrib_user || $is_contrib_easyconfig )) && is_contrib_package=1
     fi
-    >2& echo "$package: contrib package: $is_contrib_package, README: $is_contrib_readme, USER: $is_contrib_user, EB: $is_contrib_easyconfig."
+    >&2 echo "$package: contrib package: $is_contrib_package, README: $is_contrib_readme, USER: $is_contrib_user, EB: $is_contrib_easyconfig."
 
     #
     # Build the package file
