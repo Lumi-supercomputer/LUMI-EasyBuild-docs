@@ -9,3 +9,53 @@
     padding-left: 5%;
     padding-right: 5%;
 }
+/* Make the boxes for user-installable and pre-installed. */
+.lumi-software-button-preinstalled {
+    padding-left :    15pt;
+    padding-right:    15pt;
+    padding-top:      10pt;
+    padding-bottom:   10pt;
+    margin-left:      5pt;
+    margin-right:     5pt;
+    background-color: green;
+    color:            white;
+    font-weight:      bold;
+}
+.lumi-software-button-preinstalled::before {
+    content: 'pre-installed';
+}
+.lumi-software-button-preinstalled:hover:before {
+    content: 'This software is already available in the appropriate version of the LUMI software stack, and sometimes in CrayEnv';
+    display: block;
+    background-color: lightgrey;
+    font-weight: normal;
+    color: black;
+    padding: 10pt;
+    position: absolute;
+    z-index: 1;
+}
+.lumi-software-button-userinstallable {
+    padding-left :    15pt;
+    padding-right:    15pt;
+    padding-top:      10pt;
+    padding-bottom:   10pt;
+    margin-left:      5pt;
+    margin-right:     5pt;
+    background-color: hsla(207,100%,38%, 1);
+    color:            white;
+    font-weight:      bold;
+}
+.lumi-software-button-userinstallable::before {
+    content: 'user-installable';
+}
+.lumi-software-button-userinstallable:hover:before {
+    content: 'This software can be user-installed with EasyBuild in the appropriate LUMI stacks';
+    display: block;
+    background-color: lightgrey;
+    font-weight: normal;
+    color: black;
+    padding: 10pt;
+    position: absolute;
+    z-index: 1;
+}
+

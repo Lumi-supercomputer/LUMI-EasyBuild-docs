@@ -57,9 +57,8 @@ theme:
     page: https://docs.lumi-supercomputer.eu/
   
 
-#extra_css:
-#  # Do we still need this? We can probably better solve this in mkdocs_lumi
-#  - stylesheets/extra.css
+extra_css:
+  - stylesheets/extra.css
 
 extra:
   # add links in bottom right
