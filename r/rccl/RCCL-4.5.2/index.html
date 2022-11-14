@@ -1002,51 +1002,51 @@
 <p>To access module help and find out for which stacks and partitions the module is
 installed, use <code>module spider rccl/RCCL-4.5.2</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># Created for LUMI by Orian Louant
-
-easyblock = 'CMakeMake'
-
-name = 'RCCL'
-version = '4.5.2'
-
-import os
-local_stackversion = os.getenv('LUMI_STACK_VERSION')
-
-homepage = 'https://github.com/ROCmSoftwarePlatform/rccl/'
-
-whatis = [
-    'Description: RCCL is a stand-alone library of standard collective communication routines for GPUs'
-]
-
-description = &quot;&quot;&quot;
-RCCL (pronounced &quot;Rickle&quot;) is a stand-alone library of standard collective
-communication routines for GPUs, implementing all-reduce, all-gather, reduce,
-broadcast, and reduce-scatter.
-&quot;&quot;&quot;
-
-toolchain = SYSTEM
-
-source_urls = ['https://github.com/ROCmSoftwarePlatform/rccl/archive']
-sources = ['rocm-%(version)s.tar.gz']
-checksums = ['36de0d3f3ffad491758d89c208ef72c5be5e0db766053a9c766e9c5c6a33a487']
-
-builddependencies = [
-    ('buildtools', local_stackversion, '', True)
-]
-
-dependencies = [
-    ('rocm', '%(version)s'),
-]
-
-configopts  = ' -DCMAKE_CXX_COMPILER=&quot;$ROCM_PATH/hip/bin/hipcc&quot; '
-
-sanity_check_paths = {
-    'files': ['lib/librccl.%s' % SHLIB_EXT, 'include/rccl.h'],
-    'dirs': ['rccl'],
-}
-
-moduleclass = 'devel'
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Created for LUMI by Orian Louant</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;CMakeMake&#39;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;RCCL&#39;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;4.5.2&#39;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kn">import</span> <span class="nn">os</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">local_stackversion</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;LUMI_STACK_VERSION&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/ROCmSoftwarePlatform/rccl/&#39;</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="s1">&#39;Description: RCCL is a stand-alone library of standard collective communication routines for GPUs&#39;</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="p">]</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="s2">RCCL (pronounced &quot;Rickle&quot;) is a stand-alone library of standard collective</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="s2">communication routines for GPUs, implementing all-reduce, all-gather, reduce,</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="s2">broadcast, and reduce-scatter.</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="n">SYSTEM</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://github.com/ROCmSoftwarePlatform/rccl/archive&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;rocm-</span><span class="si">%(version)s</span><span class="s1">.tar.gz&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="n">checksums</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;36de0d3f3ffad491758d89c208ef72c5be5e0db766053a9c766e9c5c6a33a487&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="n">local_stackversion</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="p">]</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="p">(</span><span class="s1">&#39;rocm&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%(version)s</span><span class="s1">&#39;</span><span class="p">),</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="p">]</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="n">configopts</span>  <span class="o">=</span> <span class="s1">&#39; -DCMAKE_CXX_COMPILER=&quot;$ROCM_PATH/hip/bin/hipcc&quot; &#39;</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;lib/librccl.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">SHLIB_EXT</span><span class="p">,</span> <span class="s1">&#39;include/rccl.h&#39;</span><span class="p">],</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;rccl&#39;</span><span class="p">],</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="p">}</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;devel&#39;</span>
+</code></pre></div>
 <p><a href="../">[rccl]</a> <a href="../../..">[package list]</a></p>
 
               

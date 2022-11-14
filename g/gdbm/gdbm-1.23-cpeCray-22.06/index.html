@@ -1002,91 +1002,90 @@
 <p>To access module help and find out for which stacks and partitions the module is
 installed, use <code>module spider gdbm/1.23-cpeCray-22.06</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python">easyblock = 'ConfigureMake'
-
-local_ncurses_version =      '6.2'           # https://ftp.gnu.org/pub/gnu/ncurses/
-local_libreadline_version =  '8.1.2'         # https://ftp.gnu.org/pub/gnu/readline/
-local_libiconv_version =     '1.17'          # https://ftp.gnu.org/pub/gnu/libiconv/
-local_gettext_version =      '0.21'          # https://ftp.gnu.org/pub/gnu/gettext/
-local_gdbm_version =         '1.23'          # https://ftp.gnu.org/gnu/gdbm/
-
-name =    'gdbm'
-version = local_gdbm_version
-
-homepage = 'http://puszcza.gnu.org.ua/software/gdbm/'
-
-whatis = [
-    'Description: GNU dbm is a library of database functions that use extensible hashing and works similar to the standard UNIX dbm functions.',
-]
-
-description = &quot;&quot;&quot;
-GNU dbm (or GDBM, for short) is a library of database functions that use
-extensible hashing and work similar to the standard UNIX dbm. These routines
-are provided to a programmer needing to create and manipulate a hashed
-database.
-
-The basic use of GDBM is to store key/data pairs in a data file. Each key
-must be unique and each key is paired with only one data item.
-
-The library provides primitives for storing key/data pairs, searching and
-retrieving the data by its key and deleting a key along with its data. It
-also support sequential iteration over all key/data pairs in a database.
-
-For compatibility with programs using old UNIX dbm function, the package
-also provides traditional dbm and ndbm interfaces.
-
-This module provides static and shared liberaries.
-&quot;&quot;&quot;
-
-docurls = [
-    'Web-based documentation: http://puszcza.gnu.org.ua/software/gdbm/manual/gdbm.html',
-    'Support for the info command (info gdbm)',
-    'man pages for gdbmtool. gdbm_dump and gdbm_load in section 1 and for the API as gdbm in section 3',
-]
-
-toolchain = {'name': 'cpeCray', 'version': '22.06'}
-toolchainopts = {'pic': True}
-#toolchainopts = {'pic': True, 'precise': True}
-
-# ftp://ftp.gnu.org/gnu/gdbm/gdbm-1.18.1.tar.gz
-sources =     [SOURCELOWER_TAR_GZ]
-source_urls = [GNU_SOURCE]
-checksums =   ['74b1081d21fff13ae4bd7c16e5d6e504a4c26f7cde1dca0d963a484174bbcacd']
-
-builddependencies = [
-    ('buildtools', '%(toolchain_version)s', '', True),
-    ('libiconv',   local_libiconv_version),
-    ('gettext',    local_gettext_version), # Really a build dependency? It doesn't seem to link to it.
-]
-
-dependencies = [
-    ('ncurses',     local_ncurses_version),
-    ('libreadline', local_libreadline_version),
-]
-
-# Note there is also libintl but that is part of the GNU C library so we son\'t use our own.
-configopts = '--enable-libgdbm-compat --with-libiconv-prefix=$EBROOTLIBICONV'
-
-sanity_check_paths = {
-    'files': ['lib/libgdbm%s.%s' % (x, y)  for x in [ '', '_compat'] for y in ['a', 'la', SHLIB_EXT]] +
-             ['include/%s.h' % x for x in ['dbm', 'gdbm', 'ndbm']] +
-             ['bin/gdbmtool', 'bin/gdbm_dump', 'bin/gdbm_load'],
-    'dirs':  ['share/info', 'share/man', 'share/locale'],
-}
-
-sanity_check_commands = [
-    'gdbmtool -V',
-    'gdbm_dump -V',
-    'gdbm_load -V',
-]
-
-modextrapaths = {
-    'INFOPATH' : 'share/info',
-}
-
-moduleclass = 'devel'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;ConfigureMake&#39;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">local_ncurses_version</span> <span class="o">=</span>      <span class="s1">&#39;6.2&#39;</span>           <span class="c1"># https://ftp.gnu.org/pub/gnu/ncurses/</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">local_libreadline_version</span> <span class="o">=</span>  <span class="s1">&#39;8.1.2&#39;</span>         <span class="c1"># https://ftp.gnu.org/pub/gnu/readline/</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">local_libiconv_version</span> <span class="o">=</span>     <span class="s1">&#39;1.17&#39;</span>          <span class="c1"># https://ftp.gnu.org/pub/gnu/libiconv/</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">local_gettext_version</span> <span class="o">=</span>      <span class="s1">&#39;0.21&#39;</span>          <span class="c1"># https://ftp.gnu.org/pub/gnu/gettext/</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">local_gdbm_version</span> <span class="o">=</span>         <span class="s1">&#39;1.23&#39;</span>          <span class="c1"># https://ftp.gnu.org/gnu/gdbm/</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;gdbm&#39;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">version</span> <span class="o">=</span> <span class="n">local_gdbm_version</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;http://puszcza.gnu.org.ua/software/gdbm/&#39;</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="s1">&#39;Description: GNU dbm is a library of database functions that use extensible hashing and works similar to the standard UNIX dbm functions.&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="p">]</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="s2">GNU dbm (or GDBM, for short) is a library of database functions that use</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="s2">extensible hashing and work similar to the standard UNIX dbm. These routines</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="s2">are provided to a programmer needing to create and manipulate a hashed</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="s2">database.</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="s2">The basic use of GDBM is to store key/data pairs in a data file. Each key</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="s2">must be unique and each key is paired with only one data item.</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="s2">The library provides primitives for storing key/data pairs, searching and</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="s2">retrieving the data by its key and deleting a key along with its data. It</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="s2">also support sequential iteration over all key/data pairs in a database.</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="s2">For compatibility with programs using old UNIX dbm function, the package</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="s2">also provides traditional dbm and ndbm interfaces.</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="s2">This module provides static and shared liberaries.</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="n">docurls</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="s1">&#39;Web-based documentation: http://puszcza.gnu.org.ua/software/gdbm/manual/gdbm.html&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    <span class="s1">&#39;Support for the info command (info gdbm)&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="s1">&#39;man pages for gdbmtool. gdbm_dump and gdbm_load in section 1 and for the API as gdbm in section 3&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="p">]</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeCray&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;22.06&#39;</span><span class="p">}</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pic&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="c1">#toolchainopts = {&#39;pic&#39;: True, &#39;precise&#39;: True}</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="c1"># ftp://ftp.gnu.org/gnu/gdbm/gdbm-1.18.1.tar.gz</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="n">sources</span> <span class="o">=</span>     <span class="p">[</span><span class="n">SOURCELOWER_TAR_GZ</span><span class="p">]</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="n">GNU_SOURCE</span><span class="p">]</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="n">checksums</span> <span class="o">=</span>   <span class="p">[</span><span class="s1">&#39;74b1081d21fff13ae4bd7c16e5d6e504a4c26f7cde1dca0d963a484174bbcacd&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="p">(</span><span class="s1">&#39;libiconv&#39;</span><span class="p">,</span>   <span class="n">local_libiconv_version</span><span class="p">),</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="p">(</span><span class="s1">&#39;gettext&#39;</span><span class="p">,</span>    <span class="n">local_gettext_version</span><span class="p">),</span> <span class="c1"># Really a build dependency? It doesn&#39;t seem to link to it.</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="p">]</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    <span class="p">(</span><span class="s1">&#39;ncurses&#39;</span><span class="p">,</span>     <span class="n">local_ncurses_version</span><span class="p">),</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    <span class="p">(</span><span class="s1">&#39;libreadline&#39;</span><span class="p">,</span> <span class="n">local_libreadline_version</span><span class="p">),</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="p">]</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="c1"># Note there is also libintl but that is part of the GNU C library so we son\&#39;t use our own.</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="n">configopts</span> <span class="o">=</span> <span class="s1">&#39;--enable-libgdbm-compat --with-libiconv-prefix=$EBROOTLIBICONV&#39;</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;lib/libgdbm</span><span class="si">%s</span><span class="s1">.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>  <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;_compat&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;la&#39;</span><span class="p">,</span> <span class="n">SHLIB_EXT</span><span class="p">]]</span> <span class="o">+</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>             <span class="p">[</span><span class="s1">&#39;include/</span><span class="si">%s</span><span class="s1">.h&#39;</span> <span class="o">%</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;dbm&#39;</span><span class="p">,</span> <span class="s1">&#39;gdbm&#39;</span><span class="p">,</span> <span class="s1">&#39;ndbm&#39;</span><span class="p">]]</span> <span class="o">+</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>             <span class="p">[</span><span class="s1">&#39;bin/gdbmtool&#39;</span><span class="p">,</span> <span class="s1">&#39;bin/gdbm_dump&#39;</span><span class="p">,</span> <span class="s1">&#39;bin/gdbm_load&#39;</span><span class="p">],</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span>  <span class="p">[</span><span class="s1">&#39;share/info&#39;</span><span class="p">,</span> <span class="s1">&#39;share/man&#39;</span><span class="p">,</span> <span class="s1">&#39;share/locale&#39;</span><span class="p">],</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a><span class="p">}</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>
+<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a><span class="n">sanity_check_commands</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>    <span class="s1">&#39;gdbmtool -V&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>    <span class="s1">&#39;gdbm_dump -V&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>    <span class="s1">&#39;gdbm_load -V&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a><span class="p">]</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>
+<a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a><span class="n">modextrapaths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>    <span class="s1">&#39;INFOPATH&#39;</span> <span class="p">:</span> <span class="s1">&#39;share/info&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a><span class="p">}</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>
+<a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;devel&#39;</span>
+</code></pre></div>
 <p><a href="../">[gdbm]</a> <a href="../../..">[package list]</a></p>
 
               

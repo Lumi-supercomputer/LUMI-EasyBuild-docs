@@ -1018,19 +1018,6 @@
     Instructions for users
   </a>
   
-    <nav class="md-nav" aria-label="Instructions for users">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#if-the-module-is-not-already-on-the-system" class="md-nav__link">
-    If the module is not already on the system...
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -1045,59 +1032,12 @@
     Known issues
   </a>
   
-    <nav class="md-nav" aria-label="Known issues">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#container-cannot-follow-symbolic-links-to-a-different-file-system" class="md-nav__link">
-    Container cannot follow symbolic links to a different file system
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#missing-fonts" class="md-nav__link">
-    Missing fonts
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
   <a href="#easybuild" class="md-nav__link">
     EasyBuild
   </a>
-  
-    <nav class="md-nav" aria-label="EasyBuild">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#version-20220125" class="md-nav__link">
-    Version 20220125
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#version-20220715" class="md-nav__link">
-    Version 20220715
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#version-20221010" class="md-nav__link">
-    Version 20221010
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1164,19 +1104,19 @@ in <code>/appl/lumi/sources/easybuild/l/lumi-vnc</code> on uan04.</p>
 <p>The source files needed are provided on lumi-uan04 and will be found automatically
 by EasyBuild when installing from that node. To install and make the software available
 in the LUMI software stack (assuming software stack version 21.08):</p>
-<pre><code class="language-bash">ml LUMI/21.08 partition/common
-ml EasyBuild-user
-eb lumi-vnc/20220125
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ml LUMI/21.08 partition/common
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>ml EasyBuild-user
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>eb lumi-vnc/20220125
+</code></pre></div>
 <h3 id="if-the-module-is-already-installed">If the module is already installed...</h3>
-<p>You can check if a lumi-vnc module is already installed using</p>
-<pre><code class="language-bash">module spider lumi-vnc
-</code></pre>
+<p>You can check if a lumi-vnc module is already installed using
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>module spider lumi-vnc
+</code></pre></div></p>
 <p>To know how to start the VNC server, check the help information included in the most
 recent version of the module returned by the above <code>module spider</code> command. E.g., assuming
-that version is 20220125:</p>
-<pre><code class="language-bash">module spider lumi-vnc/20220125
-</code></pre>
+that version is 20220125:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module spider lumi-vnc/20220125
+</code></pre></div></p>
 <h3 id="known-issues">Known issues</h3>
 <h4 id="container-cannot-follow-symbolic-links-to-a-different-file-system">Container cannot follow symbolic links to a different file system</h4>
 <p>It is not possible to test a user install of the VNC container if the software directory

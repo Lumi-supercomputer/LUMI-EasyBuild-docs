@@ -999,74 +999,72 @@
 
 <p><a href="../">[libxc]</a> <a href="../../..">[package list]</a></p>
 <h1 id="libxc522-cpegnu-2208-libxc-522-cpegnu-2208eb">libxc/5.2.2-cpeGNU-22.08 (libxc-5.2.2-cpeGNU-22.08.eb)</h1>
-<p>Install with the EasyBuild-user module:</p>
-<pre><code>eb libxc-5.2.2-cpeGNU-22.08.eb -r
-
-</code></pre>
-<p>To access module help after installation and get reminded for which stacks and partitions the module is
+<p>Install with the EasyBuild-user module:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>eb libxc-5.2.2-cpeGNU-22.08.eb -r
+</code></pre></div>
+To access module help after installation and get reminded for which stacks and partitions the module is
 installed, use <code>module spider libxc/5.2.2-cpeGNU-22.08</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># contributed by Luca Marsella (CSCS)
-# adapated for LUMI by Orian Louant
-
-local_bzip2_version = '1.0.8'
-
-easyblock = 'CMakeMake'
-
-name = 'libxc'
-version = '5.2.2'
-
-homepage = 'https://www.tddft.org/programs/libxc/'
-
-whatis = [
-    &quot;Libxc is a library of exchange-correlation and kinetic energy functionals &quot; 
-    &quot;for density-functional theory.&quot;
-]
-
-description = &quot;&quot;&quot;
-Libxc is a library of exchange-correlation and kinetic energy functionals for 
-density-functional theory. The original aim was to provide a portable, well 
-tested and reliable set of LDA, GGA, and meta-GGA functionals.
-
-Libxc is written in C, but it also comes with Fortran binding. 
-
-It is released under the MPL license (v. 2.0). In all publications resulting 
-from your use of Libxc, please cite:
-
-[ref] Susi Lehtola, Conrad Steigemann, Micael J. T. Oliveira, and Miguel A. L. Marques, 
-      &quot;Recent developments in Libxc - A comprehensive  library of functionals for 
-      density functional theory&quot;, Software X 7, 1 (2018)
-&quot;&quot;&quot;
-
-docurls = [
-    'Manual: https://www.tddft.org/programs/libxc/manual/',
-    'Available functionals: https://www.tddft.org/programs/libxc/functionals/'
-]
-
-toolchain = {'name': 'cpeGNU', 'version': '22.08'}
-toolchainopts = {'opt': True}
-
-source_urls = ['https://gitlab.com/%(name)s/%(name)s/-/archive/%(version)s']
-sources = [SOURCE_TAR_BZ2]
-
-builddependencies = [
-    ('buildtools', '%(toolchain_version)s', '', True), # For CMake
-    ('bzip2',      local_bzip2_version),
-]
-
-configopts = [
-    &quot; -DENABLE_FORTRAN=ON -DCMAKE_INSTALL_LIBDIR=lib &quot;,
-    &quot; -DENABLE_FORTRAN=ON -DCMAKE_INSTALL_LIBDIR=lib  -DBUILD_SHARED_LIBS=ON &quot;,
-]
-
-sanity_check_paths = {
-    'files': ['lib/%(name)s.a', 'lib/%(name)s.so', 'lib/%(name)sf90.a', 'lib/%(name)sf90.so', 'lib/%(name)sf03.a', 'lib/%(name)sf03.so'],
-    'dirs': ['include'],
-}
-
-moduleclass = 'chem'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># contributed by Luca Marsella (CSCS)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># adapated for LUMI by Orian Louant</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">local_bzip2_version</span> <span class="o">=</span> <span class="s1">&#39;1.0.8&#39;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;CMakeMake&#39;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;libxc&#39;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;5.2.2&#39;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://www.tddft.org/programs/libxc/&#39;</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="s2">&quot;Libxc is a library of exchange-correlation and kinetic energy functionals &quot;</span> 
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="s2">&quot;for density-functional theory.&quot;</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="p">]</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="s2">Libxc is a library of exchange-correlation and kinetic energy functionals for </span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="s2">density-functional theory. The original aim was to provide a portable, well </span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="s2">tested and reliable set of LDA, GGA, and meta-GGA functionals.</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="s2">Libxc is written in C, but it also comes with Fortran binding. </span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="s2">It is released under the MPL license (v. 2.0). In all publications resulting </span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="s2">from your use of Libxc, please cite:</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="s2">[ref] Susi Lehtola, Conrad Steigemann, Micael J. T. Oliveira, and Miguel A. L. Marques, </span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="s2">      &quot;Recent developments in Libxc - A comprehensive  library of functionals for </span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="s2">      density functional theory&quot;, Software X 7, 1 (2018)</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="n">docurls</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>    <span class="s1">&#39;Manual: https://www.tddft.org/programs/libxc/manual/&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>    <span class="s1">&#39;Available functionals: https://www.tddft.org/programs/libxc/functionals/&#39;</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="p">]</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeGNU&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;22.08&#39;</span><span class="p">}</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;opt&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://gitlab.com/</span><span class="si">%(name)s</span><span class="s1">/</span><span class="si">%(name)s</span><span class="s1">/-/archive/</span><span class="si">%(version)s</span><span class="s1">&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="n">SOURCE_TAR_BZ2</span><span class="p">]</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span> <span class="c1"># For CMake</span>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>    <span class="p">(</span><span class="s1">&#39;bzip2&#39;</span><span class="p">,</span>      <span class="n">local_bzip2_version</span><span class="p">),</span>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="p">]</span>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a><span class="n">configopts</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>    <span class="s2">&quot; -DENABLE_FORTRAN=ON -DCMAKE_INSTALL_LIBDIR=lib &quot;</span><span class="p">,</span>
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>    <span class="s2">&quot; -DENABLE_FORTRAN=ON -DCMAKE_INSTALL_LIBDIR=lib  -DBUILD_SHARED_LIBS=ON &quot;</span><span class="p">,</span>
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a><span class="p">]</span>
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;lib/</span><span class="si">%(name)s</span><span class="s1">.a&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/</span><span class="si">%(name)s</span><span class="s1">.so&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/</span><span class="si">%(name)s</span><span class="s1">f90.a&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/</span><span class="si">%(name)s</span><span class="s1">f90.so&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/</span><span class="si">%(name)s</span><span class="s1">f03.a&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/</span><span class="si">%(name)s</span><span class="s1">f03.so&#39;</span><span class="p">],</span>
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;include&#39;</span><span class="p">],</span>
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a><span class="p">}</span>
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;chem&#39;</span>
+</code></pre></div>
 <p><a href="../">[libxc]</a> <a href="../../..">[package list]</a></p>
 
               

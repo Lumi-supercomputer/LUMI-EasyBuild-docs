@@ -999,72 +999,71 @@
 
 <p><a href="../">[SWIG]</a> <a href="../../..">[package list]</a></p>
 <h1 id="swig402-cpecray-2108-swig-402-cpecray-2108eb">SWIG/4.0.2-cpeCray-21.08 (SWIG-4.0.2-cpeCray-21.08.eb)</h1>
-<p>Install with the EasyBuild-user module:</p>
-<pre><code>eb SWIG-4.0.2-cpeCray-21.08.eb -r
-
-</code></pre>
-<p>To access module help after installation and get reminded for which stacks and partitions the module is
+<p>Install with the EasyBuild-user module:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>eb SWIG-4.0.2-cpeCray-21.08.eb -r
+</code></pre></div>
+To access module help after installation and get reminded for which stacks and partitions the module is
 installed, use <code>module spider SWIG/4.0.2-cpeCray-21.08</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># based on the Easybuilders Easyconfig
-# adapted for LUMI by Orian Louant
-
-local_zlib_version = '1.2.11'
-local_PCRE_version = '8.45'
-
-name = 'SWIG'
-version = '4.0.2'
-
-homepage = 'http://www.swig.org/'
-
-whatis = [
-    &quot;Description: SWIG is a software development tool that connects programs &quot;
-    &quot;written in C and C++ with a variety of high-level programming languages&quot;
-]
-
-description = &quot;&quot;&quot;
-SWIG is a software development tool that connects programs written in C and C++
-with a variety of high-level programming languages. SWIG is used with different
-types of target languages including common scripting languages such as
-Javascript, Perl, PHP, Python, Tcl and Ruby. The list of supported languages
-also includes non-scripting languages such as C#, D, Go language, Java including
-Android, Lua, OCaml, Octave, Scilab and R.
-
-Several interpreted and compiled Scheme implementations (Guile, MzScheme/Racket)
-are supported. SWIG is most commonly used to create high-level interpreted or
-compiled programming environments, user interfaces, and as a tool for testing
-and prototyping C/C++ software. SWIG is typically used to parse C/C++ interfaces
-and generate the 'glue code' required for the above target languages to call
-into the C/C++ code. SWIG can also export its parse tree in the form of XML.
-
-SWIG is free software and the code that SWIG generates is compatible with both
-commercial and non-commercial projects.
-&quot;&quot;&quot;
-
-docurls = [
-    'Documentation: http://www.swig.org/doc.html',
-]
-
-toolchain = {'name': 'cpeCray', 'version': '21.08'}
-toolchainopts = {'pic': True}
-
-source_urls = [SOURCEFORGE_SOURCE]
-sources = [SOURCELOWER_TAR_GZ]
-checksums = ['d53be9730d8d58a16bf0cbd1f8ac0c0c3e1090573168bfa151b01eb47fa906fc']
-
-builddependencies = [
-    ('buildtools', '%(toolchain_version)s', '', True),
-]
-
-dependencies = [
-    ('zlib', local_zlib_version),
-    ('PCRE', local_PCRE_version),
-]
-
-configopts = '--without-alllang --with-boost=no'
-
-moduleclass = 'devel'
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># based on the Easybuilders Easyconfig</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># adapted for LUMI by Orian Louant</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">local_zlib_version</span> <span class="o">=</span> <span class="s1">&#39;1.2.11&#39;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">local_PCRE_version</span> <span class="o">=</span> <span class="s1">&#39;8.45&#39;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;SWIG&#39;</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;4.0.2&#39;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;http://www.swig.org/&#39;</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="s2">&quot;Description: SWIG is a software development tool that connects programs &quot;</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="s2">&quot;written in C and C++ with a variety of high-level programming languages&quot;</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="p">]</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="s2">SWIG is a software development tool that connects programs written in C and C++</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="s2">with a variety of high-level programming languages. SWIG is used with different</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="s2">types of target languages including common scripting languages such as</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="s2">Javascript, Perl, PHP, Python, Tcl and Ruby. The list of supported languages</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="s2">also includes non-scripting languages such as C#, D, Go language, Java including</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="s2">Android, Lua, OCaml, Octave, Scilab and R.</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="s2">Several interpreted and compiled Scheme implementations (Guile, MzScheme/Racket)</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="s2">are supported. SWIG is most commonly used to create high-level interpreted or</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="s2">compiled programming environments, user interfaces, and as a tool for testing</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="s2">and prototyping C/C++ software. SWIG is typically used to parse C/C++ interfaces</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="s2">and generate the &#39;glue code&#39; required for the above target languages to call</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="s2">into the C/C++ code. SWIG can also export its parse tree in the form of XML.</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="s2">SWIG is free software and the code that SWIG generates is compatible with both</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="s2">commercial and non-commercial projects.</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="n">docurls</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>    <span class="s1">&#39;Documentation: http://www.swig.org/doc.html&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="p">]</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeCray&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;21.08&#39;</span><span class="p">}</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pic&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="n">SOURCEFORGE_SOURCE</span><span class="p">]</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="n">SOURCELOWER_TAR_GZ</span><span class="p">]</span>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="n">checksums</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;d53be9730d8d58a16bf0cbd1f8ac0c0c3e1090573168bfa151b01eb47fa906fc&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a><span class="p">]</span>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>    <span class="p">(</span><span class="s1">&#39;zlib&#39;</span><span class="p">,</span> <span class="n">local_zlib_version</span><span class="p">),</span>
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>    <span class="p">(</span><span class="s1">&#39;PCRE&#39;</span><span class="p">,</span> <span class="n">local_PCRE_version</span><span class="p">),</span>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a><span class="p">]</span>
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a><span class="n">configopts</span> <span class="o">=</span> <span class="s1">&#39;--without-alllang --with-boost=no&#39;</span>
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;devel&#39;</span>
+</code></pre></div>
 <p><a href="../">[SWIG]</a> <a href="../../..">[package list]</a></p>
 
               

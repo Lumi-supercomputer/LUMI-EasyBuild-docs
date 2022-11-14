@@ -1002,81 +1002,80 @@
 <p>To access module help and find out for which stacks and partitions the module is
 installed, use <code>module spider Vim/8.2.3582</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># Based on a CSCS EasyConfig file
-# Extended and adapted by Kurt Lust (kurt.lust@uantwerpen.be) for the LUMI consortium.
-easyblock = 'ConfigureMake'
-
-import os as local_os
-
-# The first line below is a dirty trick not very much loved by the EasyBuild developers but
-# it helps to make this EasyConfig indpendent of the LUMI software stack version as there is
-# no other reference to that version in the file that we can use since it relies on the
-# SYSTEM toolchain.
-local_LUMI_version = local_os.environ['LUMI_STACK_CPE_VERSION']
-
-name =    'Vim'
-version = '8.2.3582'
-
-homepage = 'http://www.vim.org'
-
-whatis = [
-    'Description: Vim is an advanced text editor that seeks to provide the power of the de-facto Unix editor \'Vi\', with a more complete feature set'
-    'The module provides a text-only version of vim, no GUI version.'
-]
-
-description = &quot;&quot;&quot;
-Vim is a highly configurable text editor built to make creating and changing
-any kind of text very efficient. It is included as &quot;vi&quot; with most UNIX systems
-and with Apple OS X.
-
-Vim is rock stable and is continuously being developed to become even better.
-Among its features are:
-  * persistent, multi-level undo tree
-  * extensive plugin system
-  * support for hundreds of programming languages and file formats
-  * powerful search and replace
-  * integrates with many tools
-
-The module only provides a console version of vim, not a GUI version.
-&quot;&quot;&quot;
-
-toolchain = SYSTEM
-
-# https://github.com/vim/vim/archive/refs/tags/v8.2.3582.tar.gz
-sources = {
-    'download_filename': 'v%(version)s.tar.gz',
-    'filename':          SOURCELOWER_TAR_GZ,
-    'source_urls':       ['https://github.com/vim/vim/archive/refs/tags']
-}
-checksums = ['363a90e45eb93c73340a711223c7ce5e564432f9eb34624e1a545f4fd57dd49d']
-
-builddependencies = [ # Create a reproducible build environment
-    ('buildtools', local_LUMI_version),
-    ('syslibs',    '15.1.1',           '-static'), # for ncurses.
-]
-preconfigopts  = 'CFLAGS=&quot;-I\$EBROOTSYSLIBS/include&quot; '
-preconfigopts += 'LIBS=&quot;-L\$EBROOTSYSLIBS/lib -lncurses&quot; '
-
-configopts  = '--with-features=huge '
-configopts += '--enable-cscope '
-configopts += '--disable-selinux '
-configopts += '--enable-multibyte '
-configopts += '--disable-gui --without-x '
-configopts += '--enable-pythoninterp=yes --with-python-command=python2 '
-configopts += '--enable-python3interp=yes --with-python3-command=python3 '
-
-sanity_check_paths = {
-    'files': ['bin/vim','bin/vimdiff'],
-    'dirs':  [],
-}
-
-sanity_check_commands = [
-    'vim --version'
-]
-
-moduleclass = 'tools'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Based on a CSCS EasyConfig file</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Extended and adapted by Kurt Lust (kurt.lust@uantwerpen.be) for the LUMI consortium.</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;ConfigureMake&#39;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">import</span> <span class="nn">os</span> <span class="k">as</span> <span class="nn">local_os</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># The first line below is a dirty trick not very much loved by the EasyBuild developers but</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># it helps to make this EasyConfig indpendent of the LUMI software stack version as there is</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1"># no other reference to that version in the file that we can use since it relies on the</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># SYSTEM toolchain.</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">local_LUMI_version</span> <span class="o">=</span> <span class="n">local_os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;LUMI_STACK_CPE_VERSION&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;Vim&#39;</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;8.2.3582&#39;</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;http://www.vim.org&#39;</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="s1">&#39;Description: Vim is an advanced text editor that seeks to provide the power of the de-facto Unix editor </span><span class="se">\&#39;</span><span class="s1">Vi</span><span class="se">\&#39;</span><span class="s1">, with a more complete feature set&#39;</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="s1">&#39;The module provides a text-only version of vim, no GUI version.&#39;</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="p">]</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="s2">Vim is a highly configurable text editor built to make creating and changing</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="s2">any kind of text very efficient. It is included as &quot;vi&quot; with most UNIX systems</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="s2">and with Apple OS X.</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="s2">Vim is rock stable and is continuously being developed to become even better.</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="s2">Among its features are:</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="s2">  * persistent, multi-level undo tree</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="s2">  * extensive plugin system</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="s2">  * support for hundreds of programming languages and file formats</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="s2">  * powerful search and replace</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="s2">  * integrates with many tools</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="s2">The module only provides a console version of vim, not a GUI version.</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="n">SYSTEM</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="c1"># https://github.com/vim/vim/archive/refs/tags/v8.2.3582.tar.gz</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="n">sources</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="s1">&#39;download_filename&#39;</span><span class="p">:</span> <span class="s1">&#39;v</span><span class="si">%(version)s</span><span class="s1">.tar.gz&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>    <span class="s1">&#39;filename&#39;</span><span class="p">:</span>          <span class="n">SOURCELOWER_TAR_GZ</span><span class="p">,</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>    <span class="s1">&#39;source_urls&#39;</span><span class="p">:</span>       <span class="p">[</span><span class="s1">&#39;https://github.com/vim/vim/archive/refs/tags&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="p">}</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="n">checksums</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;363a90e45eb93c73340a711223c7ce5e564432f9eb34624e1a545f4fd57dd49d&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span> <span class="c1"># Create a reproducible build environment</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="n">local_LUMI_version</span><span class="p">),</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>    <span class="p">(</span><span class="s1">&#39;syslibs&#39;</span><span class="p">,</span>    <span class="s1">&#39;15.1.1&#39;</span><span class="p">,</span>           <span class="s1">&#39;-static&#39;</span><span class="p">),</span> <span class="c1"># for ncurses.</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="p">]</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="n">preconfigopts</span>  <span class="o">=</span> <span class="s1">&#39;CFLAGS=&quot;-I\$EBROOTSYSLIBS/include&quot; &#39;</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="n">preconfigopts</span> <span class="o">+=</span> <span class="s1">&#39;LIBS=&quot;-L\$EBROOTSYSLIBS/lib -lncurses&quot; &#39;</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="n">configopts</span>  <span class="o">=</span> <span class="s1">&#39;--with-features=huge &#39;</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39;--enable-cscope &#39;</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39;--disable-selinux &#39;</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39;--enable-multibyte &#39;</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39;--disable-gui --without-x &#39;</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39;--enable-pythoninterp=yes --with-python-command=python2 &#39;</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39;--enable-python3interp=yes --with-python3-command=python3 &#39;</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin/vim&#39;</span><span class="p">,</span><span class="s1">&#39;bin/vimdiff&#39;</span><span class="p">],</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span>  <span class="p">[],</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a><span class="p">}</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a><span class="n">sanity_check_commands</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>    <span class="s1">&#39;vim --version&#39;</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a><span class="p">]</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>
+<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;tools&#39;</span>
+</code></pre></div>
 <p><a href="../">[Vim]</a> <a href="../../..">[package list]</a></p>
 
               

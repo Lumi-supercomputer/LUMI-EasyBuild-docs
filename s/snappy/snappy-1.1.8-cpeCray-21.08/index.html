@@ -1002,67 +1002,66 @@
 <p>To access module help and find out for which stacks and partitions the module is
 installed, use <code>module spider snappy/1.1.8-cpeCray-21.08</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python">easyblock = 'CMakeMake'
-
-local_LZO_version =              '2.10'          # http://www.oberhumer.com/opensource/lzo/#download
-local_snappy_version =           '1.1.8'         # https://github.com/google/snappy/releases, problems with 1.1.9
-local_zlib_version =             '1.2.11'        # https://zlib.net/
-
-name =    'snappy'
-version = local_snappy_version
-
-homepage = 'https://github.com/google/snappy'
-
-whatis = [
-    'Description: Snappy is a compression/decompression library aiming for very high speeds and reasonable compression'
-]
-
-description = &quot;&quot;&quot;
-Snappy is a compression/decompression library. It does not aim
-for maximum compression, or compatibility with any other compression library;
-instead, it aims for very high speeds and reasonable compression.
-&quot;&quot;&quot;
-
-toolchain = {'name': 'cpeCray', 'version': '21.08'}
-toolchainopts = {'pic': True} # Doesn't make sense here but needed to imitate the behaviour of the baselibs build.
-
-sources = [{
-    'download_filename': '%(version)s.tar.gz',
-    'filename':          SOURCE_TAR_GZ,
-    'source_urls':       ['https://github.com/google/snappy/archive/']
-}]
-checksums = ['16b677f07832a612b0836178db7f374e414f94657c138e6993cbfc5dcc58651f']
-
-builddependencies = [
-    ('buildtools', '%(toolchain_version)s', '', True),
-]
-
-dependencies = [
-    ('zlib', local_zlib_version),
-    ('LZO',  local_LZO_version),
-]
-
-# In the Bundle, as of EasyBuild 4.2, it is better to set this to False,
-# though it does give a cleaner build procedure when this is set to True...
-separate_build_dir = False
-
-local_snappy_opts = ' -DSNAPPY_REQUIRE_AVX2=ON -DCMAKE_INSTALL_LIBDIR=lib'
-
-configopts = [
-    '-DBUILD_SHARED_LIBS=OFF' + local_snappy_opts,
-    '-DBUILD_SHARED_LIBS=ON'  + local_snappy_opts
-]
-
-buildopts = 'VERBOSE=1'
-
-sanity_check_paths = {
-    'files': ['lib64/libsnappy.a', 'lib64/libsnappy.%s' % SHLIB_EXT, 'include/snappy.h'],
-    'dirs':  ['lib/cmake/Snappy']
-}
-
-moduleclass = 'lib'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;CMakeMake&#39;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">local_LZO_version</span> <span class="o">=</span>              <span class="s1">&#39;2.10&#39;</span>          <span class="c1"># http://www.oberhumer.com/opensource/lzo/#download</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">local_snappy_version</span> <span class="o">=</span>           <span class="s1">&#39;1.1.8&#39;</span>         <span class="c1"># https://github.com/google/snappy/releases, problems with 1.1.9</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">local_zlib_version</span> <span class="o">=</span>             <span class="s1">&#39;1.2.11&#39;</span>        <span class="c1"># https://zlib.net/</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;snappy&#39;</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">version</span> <span class="o">=</span> <span class="n">local_snappy_version</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/google/snappy&#39;</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="s1">&#39;Description: Snappy is a compression/decompression library aiming for very high speeds and reasonable compression&#39;</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="p">]</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="s2">Snappy is a compression/decompression library. It does not aim</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="s2">for maximum compression, or compatibility with any other compression library;</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="s2">instead, it aims for very high speeds and reasonable compression.</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeCray&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;21.08&#39;</span><span class="p">}</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pic&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span> <span class="c1"># Doesn&#39;t make sense here but needed to imitate the behaviour of the baselibs build.</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="n">sources</span> <span class="o">=</span> <span class="p">[{</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="s1">&#39;download_filename&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%(version)s</span><span class="s1">.tar.gz&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="s1">&#39;filename&#39;</span><span class="p">:</span>          <span class="n">SOURCE_TAR_GZ</span><span class="p">,</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="s1">&#39;source_urls&#39;</span><span class="p">:</span>       <span class="p">[</span><span class="s1">&#39;https://github.com/google/snappy/archive/&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="p">}]</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="n">checksums</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;16b677f07832a612b0836178db7f374e414f94657c138e6993cbfc5dcc58651f&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="p">]</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="p">(</span><span class="s1">&#39;zlib&#39;</span><span class="p">,</span> <span class="n">local_zlib_version</span><span class="p">),</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="p">(</span><span class="s1">&#39;LZO&#39;</span><span class="p">,</span>  <span class="n">local_LZO_version</span><span class="p">),</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="p">]</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="c1"># In the Bundle, as of EasyBuild 4.2, it is better to set this to False,</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="c1"># though it does give a cleaner build procedure when this is set to True...</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="n">separate_build_dir</span> <span class="o">=</span> <span class="kc">False</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="n">local_snappy_opts</span> <span class="o">=</span> <span class="s1">&#39; -DSNAPPY_REQUIRE_AVX2=ON -DCMAKE_INSTALL_LIBDIR=lib&#39;</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="n">configopts</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>    <span class="s1">&#39;-DBUILD_SHARED_LIBS=OFF&#39;</span> <span class="o">+</span> <span class="n">local_snappy_opts</span><span class="p">,</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>    <span class="s1">&#39;-DBUILD_SHARED_LIBS=ON&#39;</span>  <span class="o">+</span> <span class="n">local_snappy_opts</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="p">]</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="n">buildopts</span> <span class="o">=</span> <span class="s1">&#39;VERBOSE=1&#39;</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;lib64/libsnappy.a&#39;</span><span class="p">,</span> <span class="s1">&#39;lib64/libsnappy.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">SHLIB_EXT</span><span class="p">,</span> <span class="s1">&#39;include/snappy.h&#39;</span><span class="p">],</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span>  <span class="p">[</span><span class="s1">&#39;lib/cmake/Snappy&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="p">}</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;lib&#39;</span>
+</code></pre></div>
 <p><a href="../">[snappy]</a> <a href="../../..">[package list]</a></p>
 
               

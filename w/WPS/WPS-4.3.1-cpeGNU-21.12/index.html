@@ -999,101 +999,100 @@
 
 <p><a href="../">[WPS]</a> <a href="../../..">[package list]</a></p>
 <h1 id="wps431-cpegnu-2112-wps-431-cpegnu-2112eb">WPS/4.3.1-cpeGNU-21.12 (WPS-4.3.1-cpeGNU-21.12.eb)</h1>
-<p>Install with the EasyBuild-user module:</p>
-<pre><code>eb WPS-4.3.1-cpeGNU-21.12.eb -r
-
-</code></pre>
-<p>To access module help after installation and get reminded for which stacks and partitions the module is
+<p>Install with the EasyBuild-user module:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>eb WPS-4.3.1-cpeGNU-21.12.eb -r
+</code></pre></div>
+To access module help after installation and get reminded for which stacks and partitions the module is
 installed, use <code>module spider WPS/4.3.1-cpeGNU-21.12</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># Created by Orian Louant for the LUMI consortium
-
-easyblock = 'CmdCp'
-
-name          = 'WPS'
-version       = '4.3.1'
-
-local_Perl_version   = '5.34.0'
-local_JasPer_version = '2.0.33'
-local_libpng_version = '1.6.37'
-local_zlib_version   = '1.2.11'
-local_WRF_version    = '4.3.3'
-
-local_configuration  = [
-    ('NETCDF',    '${NETCDF_DIR}'),
-    ('WRF_DIR',   '$EBROOTWRF'),
-    ('JASPERINC', '$EBROOTJASPER/include'),
-    ('JASPERLIB', '$EBROOTJASPER/lib'),
-]
-
-homepage = 'https://www2.acom.ucar.edu/wrf-chem'
-
-whatis = [
-    'Description: WPS is the is the Preprocessing System (WPS) for WRF'
-]
-
-description = &quot;&quot;&quot;
-WRF Preprocessing System (WPS) for WRF. The Weather Research and Forecasting
-(WRF) Model is a next-generation mesoscale numerical weather prediction system
-designed to serve both operational forecasting and atmospheric research needs.
-&quot;&quot;&quot;
-
-toolchain = {'name': 'cpeGNU', 'version': '21.12'}
-
-source_urls = ['https://github.com/wrf-model/WPS/archive/']
-sources = ['v%(version)s.tar.gz']
-
-checksums = ['db6da44a2ca68cc289e98ab388a53c27283eb4ed8e92edee268466543fdedb0e']
-
-builddependencies = [
-    ('buildtools', '%(toolchain_version)s', '', True),
-    ('Perl',       local_Perl_version)
-]
-
-dependencies = [
-    ('cray-hdf5',   EXTERNAL_MODULE),
-    ('cray-netcdf', EXTERNAL_MODULE),
-    ('WRF',         local_WRF_version, '-chem'),
-    ('zlib',        local_zlib_version),
-    ('JasPer',      local_JasPer_version),
-    ('libpng',      local_libpng_version),
-]
-
-unpack_options    = '--strip-components=1'
-buildininstalldir = True
-
-local_configure_cmds = &quot;&quot;&quot;./configure &lt;&lt;'EOF'
-3
-EOF
-sed -i s/gcc/cc/ configure.wps &amp;&amp; \
-sed -i s/mpicc/cc/ configure.wps &amp;&amp; \
-sed -i s/gfortran/ftn/ configure.wps &amp;&amp; \
-sed -i s/mpif90/ftn/ configure.wps&quot;&quot;&quot;
-
-local_preconfigure_cmds = ' &amp;&amp; '.join(['export ' + x[0] + '=' + x[1] for x in local_configuration])
-local_build_cmds        = './compile'
-
-cmds_map = [
-    ('v%(version)s.tar.gz', 
-     ' &amp;&amp; '.join([
-        local_preconfigure_cmds,
-        local_configure_cmds,
-        local_build_cmds
-    ])),
-]
-
-files_to_copy = None
-
-sanity_check_paths = {
-    'files': ['geogrid.exe', 'metgrid.exe', 'ungrib.exe'],
-    'dirs':  ['util']
-}
-
-modextrapaths = {
-    'PATH'            : ['.', 'util'],
-    'LD_LIBRARY_PATH' : '.',
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Created by Orian Louant for the LUMI consortium</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;CmdCp&#39;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">name</span>          <span class="o">=</span> <span class="s1">&#39;WPS&#39;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">version</span>       <span class="o">=</span> <span class="s1">&#39;4.3.1&#39;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">local_Perl_version</span>   <span class="o">=</span> <span class="s1">&#39;5.34.0&#39;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">local_JasPer_version</span> <span class="o">=</span> <span class="s1">&#39;2.0.33&#39;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">local_libpng_version</span> <span class="o">=</span> <span class="s1">&#39;1.6.37&#39;</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="n">local_zlib_version</span>   <span class="o">=</span> <span class="s1">&#39;1.2.11&#39;</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">local_WRF_version</span>    <span class="o">=</span> <span class="s1">&#39;4.3.3&#39;</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="n">local_configuration</span>  <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="p">(</span><span class="s1">&#39;NETCDF&#39;</span><span class="p">,</span>    <span class="s1">&#39;$</span><span class="si">{NETCDF_DIR}</span><span class="s1">&#39;</span><span class="p">),</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    <span class="p">(</span><span class="s1">&#39;WRF_DIR&#39;</span><span class="p">,</span>   <span class="s1">&#39;$EBROOTWRF&#39;</span><span class="p">),</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    <span class="p">(</span><span class="s1">&#39;JASPERINC&#39;</span><span class="p">,</span> <span class="s1">&#39;$EBROOTJASPER/include&#39;</span><span class="p">),</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    <span class="p">(</span><span class="s1">&#39;JASPERLIB&#39;</span><span class="p">,</span> <span class="s1">&#39;$EBROOTJASPER/lib&#39;</span><span class="p">),</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="p">]</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://www2.acom.ucar.edu/wrf-chem&#39;</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>    <span class="s1">&#39;Description: WPS is the is the Preprocessing System (WPS) for WRF&#39;</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="p">]</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="s2">WRF Preprocessing System (WPS) for WRF. The Weather Research and Forecasting</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="s2">(WRF) Model is a next-generation mesoscale numerical weather prediction system</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="s2">designed to serve both operational forecasting and atmospheric research needs.</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeGNU&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;21.12&#39;</span><span class="p">}</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://github.com/wrf-model/WPS/archive/&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;v</span><span class="si">%(version)s</span><span class="s1">.tar.gz&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="n">checksums</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;db6da44a2ca68cc289e98ab388a53c27283eb4ed8e92edee268466543fdedb0e&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>    <span class="p">(</span><span class="s1">&#39;Perl&#39;</span><span class="p">,</span>       <span class="n">local_Perl_version</span><span class="p">)</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="p">]</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>    <span class="p">(</span><span class="s1">&#39;cray-hdf5&#39;</span><span class="p">,</span>   <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>    <span class="p">(</span><span class="s1">&#39;cray-netcdf&#39;</span><span class="p">,</span> <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>    <span class="p">(</span><span class="s1">&#39;WRF&#39;</span><span class="p">,</span>         <span class="n">local_WRF_version</span><span class="p">,</span> <span class="s1">&#39;-chem&#39;</span><span class="p">),</span>
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>    <span class="p">(</span><span class="s1">&#39;zlib&#39;</span><span class="p">,</span>        <span class="n">local_zlib_version</span><span class="p">),</span>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>    <span class="p">(</span><span class="s1">&#39;JasPer&#39;</span><span class="p">,</span>      <span class="n">local_JasPer_version</span><span class="p">),</span>
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>    <span class="p">(</span><span class="s1">&#39;libpng&#39;</span><span class="p">,</span>      <span class="n">local_libpng_version</span><span class="p">),</span>
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a><span class="p">]</span>
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a><span class="n">unpack_options</span>    <span class="o">=</span> <span class="s1">&#39;--strip-components=1&#39;</span>
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a><span class="n">buildininstalldir</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a><span class="n">local_configure_cmds</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;./configure &lt;&lt;&#39;EOF&#39;</span>
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a><span class="s2">3</span>
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a><span class="s2">EOF</span>
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a><span class="s2">sed -i s/gcc/cc/ configure.wps &amp;&amp; </span><span class="se">\</span>
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a><span class="s2">sed -i s/mpicc/cc/ configure.wps &amp;&amp; </span><span class="se">\</span>
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a><span class="s2">sed -i s/gfortran/ftn/ configure.wps &amp;&amp; </span><span class="se">\</span>
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a><span class="s2">sed -i s/mpif90/ftn/ configure.wps&quot;&quot;&quot;</span>
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a><span class="n">local_preconfigure_cmds</span> <span class="o">=</span> <span class="s1">&#39; &amp;&amp; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;export &#39;</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;=&#39;</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">local_configuration</span><span class="p">])</span>
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a><span class="n">local_build_cmds</span>        <span class="o">=</span> <span class="s1">&#39;./compile&#39;</span>
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a><span class="n">cmds_map</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>    <span class="p">(</span><span class="s1">&#39;v</span><span class="si">%(version)s</span><span class="s1">.tar.gz&#39;</span><span class="p">,</span> 
+<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>     <span class="s1">&#39; &amp;&amp; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span>
+<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>        <span class="n">local_preconfigure_cmds</span><span class="p">,</span>
+<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>        <span class="n">local_configure_cmds</span><span class="p">,</span>
+<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>        <span class="n">local_build_cmds</span>
+<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>    <span class="p">])),</span>
+<a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a><span class="p">]</span>
+<a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>
+<a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a><span class="n">files_to_copy</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>
+<a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;geogrid.exe&#39;</span><span class="p">,</span> <span class="s1">&#39;metgrid.exe&#39;</span><span class="p">,</span> <span class="s1">&#39;ungrib.exe&#39;</span><span class="p">],</span>
+<a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span>  <span class="p">[</span><span class="s1">&#39;util&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a><span class="p">}</span>
+<a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a>
+<a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a><span class="n">modextrapaths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a>    <span class="s1">&#39;PATH&#39;</span>            <span class="p">:</span> <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;util&#39;</span><span class="p">],</span>
+<a id="__codelineno-1-86" name="__codelineno-1-86" href="#__codelineno-1-86"></a>    <span class="s1">&#39;LD_LIBRARY_PATH&#39;</span> <span class="p">:</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a><span class="p">}</span>
+</code></pre></div>
 <p><a href="../">[WPS]</a> <a href="../../..">[package list]</a></p>
 
               

@@ -999,117 +999,116 @@
 
 <p><a href="../">[ABINIT]</a> <a href="../../..">[package list]</a></p>
 <h1 id="abinit962-cpegnu-2112-abinit-962-cpegnu-2112eb">ABINIT/9.6.2-cpeGNU-21.12 (ABINIT-9.6.2-cpeGNU-21.12.eb)</h1>
-<p>Install with the EasyBuild-user module:</p>
-<pre><code>eb ABINIT-9.6.2-cpeGNU-21.12.eb -r
-
-</code></pre>
-<p>To access module help after installation and get reminded for which stacks and partitions the module is
+<p>Install with the EasyBuild-user module:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>eb ABINIT-9.6.2-cpeGNU-21.12.eb -r
+</code></pre></div>
+To access module help after installation and get reminded for which stacks and partitions the module is
 installed, use <code>module spider ABINIT/9.6.2-cpeGNU-21.12</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># Based on work of  Matthias Kraushaar (CSCS)
-# Adapted for LUMI by Orian Louant
-
-local_libxc_version = '5.1.7'
-local_Wannier90_version = '3.1.0'
-
-easyblock = 'ConfigureMake'
-
-name = 'ABINIT'
-version = '9.6.2'
-
-homepage = 'https://www.abinit.org/'
-
-whatis = [
-    &quot;Description: ABINIT is a software suite to calculate the optical, &quot;
-    &quot;mechanical, vibrational, and other observable properties of materials&quot;
-]
-
-description = &quot;&quot;&quot;
-ABINIT is a software suite to calculate the optical, mechanical, vibrational,
-and other observable properties of materials. Starting from the quantum
-equations of density functional theory, you can build up to advanced
-applications with perturbation theories based on DFT, and many-body Green's
-functions (GW and DMFT).
-
-ABINIT can calculate molecules, nanostructures and solids with any chemical
-composition, and comes with several complete and robust tables of atomic
-potentials.
-
-This module provides an pure MPI executable. It includes support for netCDF,
-HDF5, LibXC functionals and Wannier90.
-&quot;&quot;&quot;
-
-docurls = [
-    'Documentation: https://docs.abinit.org/',
-    'Tutorials:  https://docs.abinit.org/tutorial/'
-]
-
-toolchain = {'name': 'cpeGNU', 'version': '21.12'}
-toolchainopts = {'usempi': True, 'openmp': True, 'pic': True, 'gfortran9-compat': True}
-
-source_urls = ['https://www.abinit.org/sites/default/files/packages/']
-sources = [SOURCELOWER_TAR_GZ]
-checksums = [
-    'b018c2ff24338a5952c5550a7e09d4c7793b62402c7aa4e09273e9a666e674fb'
-]
-
-builddependencies = [
-    ('buildtools', '%(toolchain_version)s', '', True),
-    ('cray-python', EXTERNAL_MODULE),
-]
-
-dependencies = [
-    ('libxc',                    local_libxc_version),
-    ('Wannier90',                local_Wannier90_version),
-    ('cray-fftw',                EXTERNAL_MODULE),
-    ('cray-hdf5-parallel',       EXTERNAL_MODULE),
-    ('cray-netcdf-hdf5parallel', EXTERNAL_MODULE),
-]
-
-configopts  = 'FCFLAGS=&quot;-ffree-line-length-none $FCFLAGS&quot; '
-configopts += 'FFLAGS=&quot; $FFLAGS&quot; '
-
-configopts += ' --enable-openmp=&quot;yes&quot; '
-
-# Ensure MPI
-configopts += ' --with-mpi=&quot;yes&quot; '
-configopts += ' --enable-mpi-io=&quot;yes&quot; '
-configopts += ' --enable-mpi-inplace=&quot;yes&quot; '
-configopts += ' FC=&quot;ftn&quot; CC=&quot;cc&quot; CXX=&quot;CC&quot; F90=&quot;ftn&quot; '
-
-# FFTW
-configopts += ' --with-fft-flavor=fftw3 --with-fftw3=$FFTW_DIR '
-
-# libxc support
-configopts += ' --with-libxc=${EBROOTLIBXC} '
-
-# hdf5/netcdf4 support
-configopts += ' --with-netcdf=&quot;${CRAY_NETCDF_HDF5PARALLEL_PREFIX}&quot; '
-configopts += ' --with-netcdf-fortran=&quot;${CRAY_NETCDF_HDF5PARALLEL_PREFIX}&quot; '
-configopts += ' --with-hdf5=&quot;${CRAY_HDF5_PARALLEL_PREFIX}&quot; '
-
-# Wannier90
-configopts += ' --with-wannier90=&quot;${EBROOTWANNIER90}&quot; '
-preconfigopts = 'export WANNIER90_LIBS=&quot;-L$EBROOTWANNIER90/lib -lwannier&quot; &amp;&amp; '
-
-# 'make check' is just executing some basic unit tests.
-# Also running 'make tests_v1' to have some basic validation
-# add export of HDF5_DISABLE_VERSION_CHECK to avoid HDF5 library mismatch error
-pretestopts = 'export HDF5_DISABLE_VERSION_CHECK=2 &amp;&amp; '
-runtest = 'check &amp;&amp; make test_v1'
-
-sanity_check_paths = {
-    'files': ['bin/%s' % x for x in ['abinit', 'aim', 'cut3d', 'conducti', 'mrgddb', 'mrgscr', 'optic']],
-    'dirs': ['lib/pkgconfig'],
-}
-
-# add export of HDF5_DISABLE_VERSION_CHECK to avoid HDF5 library mismatch error
-modextravars = {
-    'HDF5_DISABLE_VERSION_CHECK': '2',
-}
-
-moduleclass = 'chem'
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Based on work of  Matthias Kraushaar (CSCS)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># Adapted for LUMI by Orian Louant</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">local_libxc_version</span> <span class="o">=</span> <span class="s1">&#39;5.1.7&#39;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">local_Wannier90_version</span> <span class="o">=</span> <span class="s1">&#39;3.1.0&#39;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;ConfigureMake&#39;</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;ABINIT&#39;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;9.6.2&#39;</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://www.abinit.org/&#39;</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="s2">&quot;Description: ABINIT is a software suite to calculate the optical, &quot;</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    <span class="s2">&quot;mechanical, vibrational, and other observable properties of materials&quot;</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="p">]</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="s2">ABINIT is a software suite to calculate the optical, mechanical, vibrational,</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="s2">and other observable properties of materials. Starting from the quantum</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="s2">equations of density functional theory, you can build up to advanced</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="s2">applications with perturbation theories based on DFT, and many-body Green&#39;s</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="s2">functions (GW and DMFT).</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="s2">ABINIT can calculate molecules, nanostructures and solids with any chemical</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="s2">composition, and comes with several complete and robust tables of atomic</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="s2">potentials.</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="s2">This module provides an pure MPI executable. It includes support for netCDF,</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="s2">HDF5, LibXC functionals and Wannier90.</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="n">docurls</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>    <span class="s1">&#39;Documentation: https://docs.abinit.org/&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>    <span class="s1">&#39;Tutorials:  https://docs.abinit.org/tutorial/&#39;</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="p">]</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeGNU&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;21.12&#39;</span><span class="p">}</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;usempi&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;openmp&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;pic&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;gfortran9-compat&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://www.abinit.org/sites/default/files/packages/&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="n">SOURCELOWER_TAR_GZ</span><span class="p">]</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="n">checksums</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>    <span class="s1">&#39;b018c2ff24338a5952c5550a7e09d4c7793b62402c7aa4e09273e9a666e674fb&#39;</span>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="p">]</span>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>    <span class="p">(</span><span class="s1">&#39;cray-python&#39;</span><span class="p">,</span> <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a><span class="p">]</span>
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>    <span class="p">(</span><span class="s1">&#39;libxc&#39;</span><span class="p">,</span>                    <span class="n">local_libxc_version</span><span class="p">),</span>
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>    <span class="p">(</span><span class="s1">&#39;Wannier90&#39;</span><span class="p">,</span>                <span class="n">local_Wannier90_version</span><span class="p">),</span>
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>    <span class="p">(</span><span class="s1">&#39;cray-fftw&#39;</span><span class="p">,</span>                <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>    <span class="p">(</span><span class="s1">&#39;cray-hdf5-parallel&#39;</span><span class="p">,</span>       <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>    <span class="p">(</span><span class="s1">&#39;cray-netcdf-hdf5parallel&#39;</span><span class="p">,</span> <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a><span class="p">]</span>
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a><span class="n">configopts</span>  <span class="o">=</span> <span class="s1">&#39;FCFLAGS=&quot;-ffree-line-length-none $FCFLAGS&quot; &#39;</span>
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39;FFLAGS=&quot; $FFLAGS&quot; &#39;</span>
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39; --enable-openmp=&quot;yes&quot; &#39;</span>
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a><span class="c1"># Ensure MPI</span>
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39; --with-mpi=&quot;yes&quot; &#39;</span>
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39; --enable-mpi-io=&quot;yes&quot; &#39;</span>
+<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39; --enable-mpi-inplace=&quot;yes&quot; &#39;</span>
+<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39; FC=&quot;ftn&quot; CC=&quot;cc&quot; CXX=&quot;CC&quot; F90=&quot;ftn&quot; &#39;</span>
+<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>
+<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a><span class="c1"># FFTW</span>
+<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39; --with-fft-flavor=fftw3 --with-fftw3=$FFTW_DIR &#39;</span>
+<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>
+<a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a><span class="c1"># libxc support</span>
+<a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39; --with-libxc=$</span><span class="si">{EBROOTLIBXC}</span><span class="s1"> &#39;</span>
+<a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>
+<a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a><span class="c1"># hdf5/netcdf4 support</span>
+<a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39; --with-netcdf=&quot;$</span><span class="si">{CRAY_NETCDF_HDF5PARALLEL_PREFIX}</span><span class="s1">&quot; &#39;</span>
+<a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39; --with-netcdf-fortran=&quot;$</span><span class="si">{CRAY_NETCDF_HDF5PARALLEL_PREFIX}</span><span class="s1">&quot; &#39;</span>
+<a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39; --with-hdf5=&quot;$</span><span class="si">{CRAY_HDF5_PARALLEL_PREFIX}</span><span class="s1">&quot; &#39;</span>
+<a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a>
+<a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a><span class="c1"># Wannier90</span>
+<a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39; --with-wannier90=&quot;$</span><span class="si">{EBROOTWANNIER90}</span><span class="s1">&quot; &#39;</span>
+<a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a><span class="n">preconfigopts</span> <span class="o">=</span> <span class="s1">&#39;export WANNIER90_LIBS=&quot;-L$EBROOTWANNIER90/lib -lwannier&quot; &amp;&amp; &#39;</span>
+<a id="__codelineno-1-86" name="__codelineno-1-86" href="#__codelineno-1-86"></a>
+<a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a><span class="c1"># &#39;make check&#39; is just executing some basic unit tests.</span>
+<a id="__codelineno-1-88" name="__codelineno-1-88" href="#__codelineno-1-88"></a><span class="c1"># Also running &#39;make tests_v1&#39; to have some basic validation</span>
+<a id="__codelineno-1-89" name="__codelineno-1-89" href="#__codelineno-1-89"></a><span class="c1"># add export of HDF5_DISABLE_VERSION_CHECK to avoid HDF5 library mismatch error</span>
+<a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a><span class="n">pretestopts</span> <span class="o">=</span> <span class="s1">&#39;export HDF5_DISABLE_VERSION_CHECK=2 &amp;&amp; &#39;</span>
+<a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a><span class="n">runtest</span> <span class="o">=</span> <span class="s1">&#39;check &amp;&amp; make test_v1&#39;</span>
+<a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a>
+<a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-1-94" name="__codelineno-1-94" href="#__codelineno-1-94"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin/</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;abinit&#39;</span><span class="p">,</span> <span class="s1">&#39;aim&#39;</span><span class="p">,</span> <span class="s1">&#39;cut3d&#39;</span><span class="p">,</span> <span class="s1">&#39;conducti&#39;</span><span class="p">,</span> <span class="s1">&#39;mrgddb&#39;</span><span class="p">,</span> <span class="s1">&#39;mrgscr&#39;</span><span class="p">,</span> <span class="s1">&#39;optic&#39;</span><span class="p">]],</span>
+<a id="__codelineno-1-95" name="__codelineno-1-95" href="#__codelineno-1-95"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;lib/pkgconfig&#39;</span><span class="p">],</span>
+<a id="__codelineno-1-96" name="__codelineno-1-96" href="#__codelineno-1-96"></a><span class="p">}</span>
+<a id="__codelineno-1-97" name="__codelineno-1-97" href="#__codelineno-1-97"></a>
+<a id="__codelineno-1-98" name="__codelineno-1-98" href="#__codelineno-1-98"></a><span class="c1"># add export of HDF5_DISABLE_VERSION_CHECK to avoid HDF5 library mismatch error</span>
+<a id="__codelineno-1-99" name="__codelineno-1-99" href="#__codelineno-1-99"></a><span class="n">modextravars</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-1-100" name="__codelineno-1-100" href="#__codelineno-1-100"></a>    <span class="s1">&#39;HDF5_DISABLE_VERSION_CHECK&#39;</span><span class="p">:</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-101" name="__codelineno-1-101" href="#__codelineno-1-101"></a><span class="p">}</span>
+<a id="__codelineno-1-102" name="__codelineno-1-102" href="#__codelineno-1-102"></a>
+<a id="__codelineno-1-103" name="__codelineno-1-103" href="#__codelineno-1-103"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;chem&#39;</span>
+</code></pre></div>
 <p><a href="../">[ABINIT]</a> <a href="../../..">[package list]</a></p>
 
               

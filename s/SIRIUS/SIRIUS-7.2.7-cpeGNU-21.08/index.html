@@ -999,89 +999,88 @@
 
 <p><a href="../">[SIRIUS]</a> <a href="../../..">[package list]</a></p>
 <h1 id="sirius727-cpegnu-2108-sirius-727-cpegnu-2108eb">SIRIUS/7.2.7-cpeGNU-21.08 (SIRIUS-7.2.7-cpeGNU-21.08.eb)</h1>
-<p>Install with the EasyBuild-user module:</p>
-<pre><code>eb SIRIUS-7.2.7-cpeGNU-21.08.eb -r
-
-</code></pre>
-<p>To access module help after installation and get reminded for which stacks and partitions the module is
+<p>Install with the EasyBuild-user module:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>eb SIRIUS-7.2.7-cpeGNU-21.08.eb -r
+</code></pre></div>
+To access module help after installation and get reminded for which stacks and partitions the module is
 installed, use <code>module spider SIRIUS/7.2.7-cpeGNU-21.08</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># contributed by Anton Kozhevnikov (CSCS)
-# adapted for LUMI by Orian Louant
-
-easyblock = 'CMakeMake'
-
-local_ELPA_version   = '2021.05.002'
-local_GSL_version    = '2.7'
-local_libxc_version  = '5.1.7'
-local_SpFFT_version  = '1.0.5'
-local_spglib_version = '1.16.0'
-local_SPLA_version   = '1.5.1'
-
-name = 'SIRIUS'
-version = '7.2.7'
-
-homepage = 'https://github.com/electronic-structure/SIRIUS'
-
-whatis = [
-    'SIRIUS is a domain specific library for electronic structure calculations'
-]
-
-description = &quot;&quot;&quot;
-SIRIUS is a domain specific library for electronic structure calculations. It 
-implements pseudopotential plane wave (PP-PW) and full potential linearized 
-augmented plane wave (FP-LAPW) methods and is designed for GPU acceleration of
-popular community codes such as Exciting, Elk and Quantum ESPRESSO. SIRIUS is
-written in C++14 with MPI, OpenMP and CUDA/ROCm programming models. SIRIUS is
-organised as a collection of classes that abstract away the different building
-blocks of DFT self-consistency cycle.
-
-The following functionality is currently implemented in SIRIUS:
-
-  - (PP-PW) Norm-conserving, ultrasoft and PAW pseudopotentials
-  - (PP-PW) Spin-orbit coupling
-  - (PP-PW) Stress tensor
-  - (PP-PW, FP-LAPW) Atomic forces
-  - (PP-PW, FP-LAPW) Collinear and non-collinear magnetism
-  - (FP-LAPW) APW and LAPW basis sets with arbitrary number of local orbitals
-  - (FP-LAPW) ZORA and IORA approximations for valence states; full relativistic 
-             Dirac equation for core states
-  - Symmetrization of lattice-periodic functions and on-site matrices
-  - Generation of irreducible k-meshes
-  - Python frontend
-&quot;&quot;&quot;
-
-toolchain = {'name': 'cpeGNU', 'version': '21.08'}
-toolchainopts = {'openmp': True, 'opt': True, 'pic': True, 'usempi': True}
-
-source_urls = ['https://github.com/electronic-structure/%(name)s/archive/']
-sources = ['v%(version)s.tar.gz']
-
-builddependencies = [
-    ('buildtools', '%(toolchain_version)s', '', True),
-]
-
-dependencies = [
-    ('cray-hdf5', EXTERNAL_MODULE),
-    ('ELPA',      local_ELPA_version),
-    ('GSL',       local_GSL_version),
-    ('libxc',     local_libxc_version),
-    ('SpFFT',     local_SpFFT_version),
-    ('spglib',    local_spglib_version),
-    ('SPLA',      local_SPLA_version),
-]
-
-preconfigopts = 'CXX=CC CC=cc FC=ftn &amp;&amp; '
-
-configopts  = ' -DUSE_CUDA=0 -DBUILD_TESTS=0 '
-configopts += ' -DUSE_CRAY_LIBSCI=1 -DUSE_MAGMA=0 -DUSE_MKL=0  '
-configopts += ' -DUSE_SCALAPACK=1 -DUSE_ELPA=1 '
-configopts += ' -DSpFFT_DIR=$EBROOTSPFFT/lib64/cmake/SpFFT '
-
-modextrapaths = {'CPATH': ['include/%(namelower)s']}
-
-moduleclass = 'chem'
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># contributed by Anton Kozhevnikov (CSCS)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># adapted for LUMI by Orian Louant</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;CMakeMake&#39;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">local_ELPA_version</span>   <span class="o">=</span> <span class="s1">&#39;2021.05.002&#39;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">local_GSL_version</span>    <span class="o">=</span> <span class="s1">&#39;2.7&#39;</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">local_libxc_version</span>  <span class="o">=</span> <span class="s1">&#39;5.1.7&#39;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">local_SpFFT_version</span>  <span class="o">=</span> <span class="s1">&#39;1.0.5&#39;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">local_spglib_version</span> <span class="o">=</span> <span class="s1">&#39;1.16.0&#39;</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="n">local_SPLA_version</span>   <span class="o">=</span> <span class="s1">&#39;1.5.1&#39;</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;SIRIUS&#39;</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;7.2.7&#39;</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/electronic-structure/SIRIUS&#39;</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    <span class="s1">&#39;SIRIUS is a domain specific library for electronic structure calculations&#39;</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="p">]</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="s2">SIRIUS is a domain specific library for electronic structure calculations. It </span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="s2">implements pseudopotential plane wave (PP-PW) and full potential linearized </span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="s2">augmented plane wave (FP-LAPW) methods and is designed for GPU acceleration of</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="s2">popular community codes such as Exciting, Elk and Quantum ESPRESSO. SIRIUS is</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="s2">written in C++14 with MPI, OpenMP and CUDA/ROCm programming models. SIRIUS is</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="s2">organised as a collection of classes that abstract away the different building</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="s2">blocks of DFT self-consistency cycle.</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="s2">The following functionality is currently implemented in SIRIUS:</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="s2">  - (PP-PW) Norm-conserving, ultrasoft and PAW pseudopotentials</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="s2">  - (PP-PW) Spin-orbit coupling</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="s2">  - (PP-PW) Stress tensor</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="s2">  - (PP-PW, FP-LAPW) Atomic forces</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="s2">  - (PP-PW, FP-LAPW) Collinear and non-collinear magnetism</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="s2">  - (FP-LAPW) APW and LAPW basis sets with arbitrary number of local orbitals</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="s2">  - (FP-LAPW) ZORA and IORA approximations for valence states; full relativistic </span>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="s2">             Dirac equation for core states</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="s2">  - Symmetrization of lattice-periodic functions and on-site matrices</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="s2">  - Generation of irreducible k-meshes</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="s2">  - Python frontend</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeGNU&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;21.08&#39;</span><span class="p">}</span>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;openmp&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;opt&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;pic&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;usempi&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://github.com/electronic-structure/</span><span class="si">%(name)s</span><span class="s1">/archive/&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a><span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;v</span><span class="si">%(version)s</span><span class="s1">.tar.gz&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a><span class="p">]</span>
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>    <span class="p">(</span><span class="s1">&#39;cray-hdf5&#39;</span><span class="p">,</span> <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>    <span class="p">(</span><span class="s1">&#39;ELPA&#39;</span><span class="p">,</span>      <span class="n">local_ELPA_version</span><span class="p">),</span>
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>    <span class="p">(</span><span class="s1">&#39;GSL&#39;</span><span class="p">,</span>       <span class="n">local_GSL_version</span><span class="p">),</span>
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>    <span class="p">(</span><span class="s1">&#39;libxc&#39;</span><span class="p">,</span>     <span class="n">local_libxc_version</span><span class="p">),</span>
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>    <span class="p">(</span><span class="s1">&#39;SpFFT&#39;</span><span class="p">,</span>     <span class="n">local_SpFFT_version</span><span class="p">),</span>
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>    <span class="p">(</span><span class="s1">&#39;spglib&#39;</span><span class="p">,</span>    <span class="n">local_spglib_version</span><span class="p">),</span>
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>    <span class="p">(</span><span class="s1">&#39;SPLA&#39;</span><span class="p">,</span>      <span class="n">local_SPLA_version</span><span class="p">),</span>
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a><span class="p">]</span>
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a><span class="n">preconfigopts</span> <span class="o">=</span> <span class="s1">&#39;CXX=CC CC=cc FC=ftn &amp;&amp; &#39;</span>
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a><span class="n">configopts</span>  <span class="o">=</span> <span class="s1">&#39; -DUSE_CUDA=0 -DBUILD_TESTS=0 &#39;</span>
+<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39; -DUSE_CRAY_LIBSCI=1 -DUSE_MAGMA=0 -DUSE_MKL=0  &#39;</span>
+<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39; -DUSE_SCALAPACK=1 -DUSE_ELPA=1 &#39;</span>
+<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39; -DSpFFT_DIR=$EBROOTSPFFT/lib64/cmake/SpFFT &#39;</span>
+<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>
+<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a><span class="n">modextrapaths</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;CPATH&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;include/</span><span class="si">%(namelower)s</span><span class="s1">&#39;</span><span class="p">]}</span>
+<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>
+<a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;chem&#39;</span>
+</code></pre></div>
 <p><a href="../">[SIRIUS]</a> <a href="../../..">[package list]</a></p>
 
               

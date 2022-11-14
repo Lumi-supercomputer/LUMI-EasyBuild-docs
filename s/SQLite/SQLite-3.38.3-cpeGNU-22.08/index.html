@@ -1002,86 +1002,85 @@
 <p>To access module help and find out for which stacks and partitions the module is
 installed, use <code>module spider SQLite/3.38.3-cpeGNU-22.08</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># Contributed by Luca Marsella (CSCS)
-# Adapted by Kurt Lust (kurt.lust@uantwerpen.be) for the LUMI consortium
-#
-# This file is an EasyBuild reciPY as per https://github.com/hpcugent/easybuild
-#
-# Copyright:: Copyright 2012-2014 Uni.Lu/LCSB, NTUA
-# Authors::   Fotis Georgatos &lt;fotis@cern.ch&gt;
-# License::   MIT/GPL
-# $Id$
-#
-# This work implements a part of the HPCBIOS project and is a component of the policy:
-# http://hpcbios.readthedocs.org/en/latest/
-easyblock = 'ConfigureMake'
-
-local_libreadline_version =  '8.1.2'         # https://ftp.gnu.org/pub/gnu/readline/
-local_Tcl_version =          '8.6.12'        # https://tcl.tk/
-
-local_SQLite_version =       '3.38.3'        # https://www.sqlite.org/
-name =    'SQLite'
-version = local_SQLite_version
-
-homepage = 'http://www.sqlite.org/'
-
-whatis = [
-    'Description: SQLite: SQL Database Engine in a C Library'
-]
-description = &quot;&quot;&quot;
-SQLite is a C-language library that implements a small, fast, self-contained,
-high-reliability, full-featured, SQL database engine. SQLite is the most used
-database engine in the world. SQLite is built into all mobile phones and most
-computers and comes bundled inside countless other applications that people
-use every day. More Information...
-
-The SQLite file format is stable, cross-platform, and backwards compatible and
-the developers pledge to keep it that way through the year 2050. SQLite database f
-iles are commonly used as containers to transfer rich content between systems
-and as a long-term archival format for data. There are over 1 trillion (1e12)
-SQLite databases in active use.
-
-SQLite source code is in the public-domain and is free to everyone to use for
-any purpose.
-&quot;&quot;&quot;
-
-toolchain = {'name': 'cpeGNU', 'version': '22.08'}
-toolchainopts = {'pic': True}
-
-# https://www.sqlite.org/2021/sqlite-autoconf-3350500.tar.gz
-local_filename_version = '%1d%02d%02d00' % (int(version.split('.')[0]), int(version.split('.')[1]), int(version.split('.')[2]))
-source_urls = ['https://www.sqlite.org/2022/']
-sources =     ['%%(namelower)s-autoconf-%s.tar.gz' % (local_filename_version)]
-checksums =   ['61f2dd93a2e38c33468b7125967c3218bf9f4dd8365def6025e314f905dc942e']
-
-builddependencies = [ # Create a reproducible build environment.
-    ('buildtools',   '%(toolchain_version)s',   '', True),
-]
-
-dependencies = [
-    ('libreadline', local_libreadline_version),
-    ('Tcl',         local_Tcl_version),
-]
-
-# enable additional APIs that provide access to meta-data about tables and queries
-# needed for GDAL when it used as a dep for QGIS
-buildopts = 'CC=&quot;$CC&quot; CFLAGS=&quot;$CFLAGS -DSQLITE_ENABLE_COLUMN_METADATA&quot;'
-
-#parallel = 1
-
-sanity_check_paths = {
-    'files': ['bin/sqlite3', 'include/sqlite3ext.h', 'include/sqlite3.h',
-              'lib/libsqlite3.a', 'lib/libsqlite3.%s' % SHLIB_EXT],
-    'dirs':  ['lib/pkgconfig'],
-}
-
-sanity_check_commands = [
-    'sqlite3 --version | grep ^%(version)s',
-]
-
-moduleclass = 'devel'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Contributed by Luca Marsella (CSCS)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Adapted by Kurt Lust (kurt.lust@uantwerpen.be) for the LUMI consortium</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1">#</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># This file is an EasyBuild reciPY as per https://github.com/hpcugent/easybuild</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1">#</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># Copyright:: Copyright 2012-2014 Uni.Lu/LCSB, NTUA</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># Authors::   Fotis Georgatos &lt;fotis@cern.ch&gt;</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># License::   MIT/GPL</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1"># $Id$</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1">#</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># This work implements a part of the HPCBIOS project and is a component of the policy:</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1"># http://hpcbios.readthedocs.org/en/latest/</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;ConfigureMake&#39;</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="n">local_libreadline_version</span> <span class="o">=</span>  <span class="s1">&#39;8.1.2&#39;</span>         <span class="c1"># https://ftp.gnu.org/pub/gnu/readline/</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="n">local_Tcl_version</span> <span class="o">=</span>          <span class="s1">&#39;8.6.12&#39;</span>        <span class="c1"># https://tcl.tk/</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="n">local_SQLite_version</span> <span class="o">=</span>       <span class="s1">&#39;3.38.3&#39;</span>        <span class="c1"># https://www.sqlite.org/</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;SQLite&#39;</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="n">version</span> <span class="o">=</span> <span class="n">local_SQLite_version</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;http://www.sqlite.org/&#39;</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="s1">&#39;Description: SQLite: SQL Database Engine in a C Library&#39;</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="p">]</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="s2">SQLite is a C-language library that implements a small, fast, self-contained,</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="s2">high-reliability, full-featured, SQL database engine. SQLite is the most used</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="s2">database engine in the world. SQLite is built into all mobile phones and most</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="s2">computers and comes bundled inside countless other applications that people</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="s2">use every day. More Information...</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="s2">The SQLite file format is stable, cross-platform, and backwards compatible and</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="s2">the developers pledge to keep it that way through the year 2050. SQLite database f</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="s2">iles are commonly used as containers to transfer rich content between systems</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="s2">and as a long-term archival format for data. There are over 1 trillion (1e12)</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="s2">SQLite databases in active use.</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="s2">SQLite source code is in the public-domain and is free to everyone to use for</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="s2">any purpose.</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeGNU&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;22.08&#39;</span><span class="p">}</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pic&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="c1"># https://www.sqlite.org/2021/sqlite-autoconf-3350500.tar.gz</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="n">local_filename_version</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%1d%02d%02d</span><span class="s1">00&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">version</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">version</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">version</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">]))</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://www.sqlite.org/2022/&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="n">sources</span> <span class="o">=</span>     <span class="p">[</span><span class="s1">&#39;</span><span class="si">%%</span><span class="s1">(namelower)s-autoconf-</span><span class="si">%s</span><span class="s1">.tar.gz&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">local_filename_version</span><span class="p">)]</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="n">checksums</span> <span class="o">=</span>   <span class="p">[</span><span class="s1">&#39;61f2dd93a2e38c33468b7125967c3218bf9f4dd8365def6025e314f905dc942e&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span> <span class="c1"># Create a reproducible build environment.</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span>   <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span>   <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="p">]</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>    <span class="p">(</span><span class="s1">&#39;libreadline&#39;</span><span class="p">,</span> <span class="n">local_libreadline_version</span><span class="p">),</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    <span class="p">(</span><span class="s1">&#39;Tcl&#39;</span><span class="p">,</span>         <span class="n">local_Tcl_version</span><span class="p">),</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="p">]</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="c1"># enable additional APIs that provide access to meta-data about tables and queries</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="c1"># needed for GDAL when it used as a dep for QGIS</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="n">buildopts</span> <span class="o">=</span> <span class="s1">&#39;CC=&quot;$CC&quot; CFLAGS=&quot;$CFLAGS -DSQLITE_ENABLE_COLUMN_METADATA&quot;&#39;</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="c1">#parallel = 1</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin/sqlite3&#39;</span><span class="p">,</span> <span class="s1">&#39;include/sqlite3ext.h&#39;</span><span class="p">,</span> <span class="s1">&#39;include/sqlite3.h&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>              <span class="s1">&#39;lib/libsqlite3.a&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/libsqlite3.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">SHLIB_EXT</span><span class="p">],</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span>  <span class="p">[</span><span class="s1">&#39;lib/pkgconfig&#39;</span><span class="p">],</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a><span class="p">}</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>
+<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a><span class="n">sanity_check_commands</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>    <span class="s1">&#39;sqlite3 --version | grep ^</span><span class="si">%(version)s</span><span class="s1">&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a><span class="p">]</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>
+<a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;devel&#39;</span>
+</code></pre></div>
 <p><a href="../">[SQLite]</a> <a href="../../..">[package list]</a></p>
 
               

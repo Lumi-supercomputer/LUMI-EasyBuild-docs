@@ -1002,83 +1002,82 @@
 <p>To access module help and find out for which stacks and partitions the module is
 installed, use <code>module spider Boost/1.79.0-cpeAMD-22.08</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># contributed by Luca Marsella (CSCS)
-# Adapted by Kurt Lust (kurt.lust@uantwerpen.be) for the LUMI consortium
-easyblock = 'EB_BoostCPE'
-
-local_bzip2_version =        '1.0.8'         # http://www.bzip.org/downloads.html
-local_ICU_version =          '71.1'          # http://site.icu-project.org/home
-local_zlib_version =         '1.2.12'        # https://zlib.net/
-local_zstd_version =         '1.5.2'         # https://github.com/facebook/zstd/releases
-
-local_Boost_version =        '1.79.0'        # https://www.boost.org/
-
-name =    'Boost'
-version = local_Boost_version
-
-homepage = 'http://www.boost.org/'
-
-whatis = [
-    'Description: Boost provides free peer-reviewed portable C++ source libraries.'
-]
-
-description = &quot;&quot;&quot;
-Boost provides free peer-reviewed portable C++ source libraries.
-
-We emphasize libraries that work well with the C++ Standard Library. Boost
-libraries are intended to be widely useful, and usable across a broad spectrum
-of applications. The Boost license encourages both commercial and non-commercial
-use.
-
-We aim to establish &quot;existing practice&quot; and provide reference implementations so
-that Boost libraries are suitable for eventual standardization. Ten Boost
-libraries are included in the C++ Standards Committee's Library Technical Report
-(TR1) and in the new C++11 Standard. C++11 also includes several more Boost
-libraries in addition to those from TR1. More Boost libraries are proposed for
-standardization in C++17.
-
-This module includes static and shared libraries, compiled with MPI support.
-The library boost_python is build for the system Python.
-
-This version of the module does not include support for Cray Python.
-The module does inlude single-threaded (suffix -x86) and multithreaded (suffix
--mt-x86) versions of the libraries. The default names (without suffix) link
-to the multithreaded versions.
-&quot;&quot;&quot;
-
-toolchain = {'name': 'cpeAMD', 'version': '22.08'}
-toolchainopts = {'usempi': True, 'pic': True, 'verbose': False}
-
-# https://boostorg.jfrog.io/native/main/release/1.77.0/source/boost_1_77_0.tar.bz2
-source_urls = ['https://boostorg.jfrog.io/artifactory/main/release/%(version)s/source']
-sources =     ['%(namelower)s_%(version_major)s_%(version_minor)s_0.tar.bz2']
-checksums =   ['475d589d51a7f8b3ba2ba4eda022b170e562ca3b760ee922c146b6c65856ef39']
-
-builddependencies = [ # Create a reproducible build environment.
-    ('buildtools',   '%(toolchain_version)s',   '', True),
-]
-
-dependencies = [
-    ('bzip2', local_bzip2_version),
-    ('zlib',  local_zlib_version),
-    ('zstd',  local_zstd_version),
-    ('ICU',   local_ICU_version),
-]
-
-configopts = '--without-libraries=python'
-
-# Also build boost_mpi - not needed as we already set use_mpi to True
-# boost_mpi = True
-
-# Toolsets - Not needed as the EasyBlock recognizes the toolchain.
-# toolset = 'clang'
-# build_toolset = 'clang'
-
-modextravars = {'BOOST_ROOT': '%(installdir)s'}
-
-moduleclass = 'devel'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># contributed by Luca Marsella (CSCS)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Adapted by Kurt Lust (kurt.lust@uantwerpen.be) for the LUMI consortium</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;EB_BoostCPE&#39;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">local_bzip2_version</span> <span class="o">=</span>        <span class="s1">&#39;1.0.8&#39;</span>         <span class="c1"># http://www.bzip.org/downloads.html</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">local_ICU_version</span> <span class="o">=</span>          <span class="s1">&#39;71.1&#39;</span>          <span class="c1"># http://site.icu-project.org/home</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">local_zlib_version</span> <span class="o">=</span>         <span class="s1">&#39;1.2.12&#39;</span>        <span class="c1"># https://zlib.net/</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">local_zstd_version</span> <span class="o">=</span>         <span class="s1">&#39;1.5.2&#39;</span>         <span class="c1"># https://github.com/facebook/zstd/releases</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">local_Boost_version</span> <span class="o">=</span>        <span class="s1">&#39;1.79.0&#39;</span>        <span class="c1"># https://www.boost.org/</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;Boost&#39;</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">version</span> <span class="o">=</span> <span class="n">local_Boost_version</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;http://www.boost.org/&#39;</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="s1">&#39;Description: Boost provides free peer-reviewed portable C++ source libraries.&#39;</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="p">]</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="s2">Boost provides free peer-reviewed portable C++ source libraries.</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="s2">We emphasize libraries that work well with the C++ Standard Library. Boost</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="s2">libraries are intended to be widely useful, and usable across a broad spectrum</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="s2">of applications. The Boost license encourages both commercial and non-commercial</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="s2">use.</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="s2">We aim to establish &quot;existing practice&quot; and provide reference implementations so</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="s2">that Boost libraries are suitable for eventual standardization. Ten Boost</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="s2">libraries are included in the C++ Standards Committee&#39;s Library Technical Report</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="s2">(TR1) and in the new C++11 Standard. C++11 also includes several more Boost</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="s2">libraries in addition to those from TR1. More Boost libraries are proposed for</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="s2">standardization in C++17.</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="s2">This module includes static and shared libraries, compiled with MPI support.</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="s2">The library boost_python is build for the system Python.</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="s2">This version of the module does not include support for Cray Python.</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="s2">The module does inlude single-threaded (suffix -x86) and multithreaded (suffix</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="s2">-mt-x86) versions of the libraries. The default names (without suffix) link</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="s2">to the multithreaded versions.</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeAMD&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;22.08&#39;</span><span class="p">}</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;usempi&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;pic&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;verbose&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="c1"># https://boostorg.jfrog.io/native/main/release/1.77.0/source/boost_1_77_0.tar.bz2</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://boostorg.jfrog.io/artifactory/main/release/</span><span class="si">%(version)s</span><span class="s1">/source&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="n">sources</span> <span class="o">=</span>     <span class="p">[</span><span class="s1">&#39;</span><span class="si">%(namelower)s</span><span class="s1">_</span><span class="si">%(version_major)s</span><span class="s1">_</span><span class="si">%(version_minor)s</span><span class="s1">_0.tar.bz2&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="n">checksums</span> <span class="o">=</span>   <span class="p">[</span><span class="s1">&#39;475d589d51a7f8b3ba2ba4eda022b170e562ca3b760ee922c146b6c65856ef39&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span> <span class="c1"># Create a reproducible build environment.</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span>   <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span>   <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="p">]</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>    <span class="p">(</span><span class="s1">&#39;bzip2&#39;</span><span class="p">,</span> <span class="n">local_bzip2_version</span><span class="p">),</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    <span class="p">(</span><span class="s1">&#39;zlib&#39;</span><span class="p">,</span>  <span class="n">local_zlib_version</span><span class="p">),</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    <span class="p">(</span><span class="s1">&#39;zstd&#39;</span><span class="p">,</span>  <span class="n">local_zstd_version</span><span class="p">),</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    <span class="p">(</span><span class="s1">&#39;ICU&#39;</span><span class="p">,</span>   <span class="n">local_ICU_version</span><span class="p">),</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="p">]</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="n">configopts</span> <span class="o">=</span> <span class="s1">&#39;--without-libraries=python&#39;</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="c1"># Also build boost_mpi - not needed as we already set use_mpi to True</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a><span class="c1"># boost_mpi = True</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a><span class="c1"># Toolsets - Not needed as the EasyBlock recognizes the toolchain.</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a><span class="c1"># toolset = &#39;clang&#39;</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a><span class="c1"># build_toolset = &#39;clang&#39;</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>
+<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a><span class="n">modextravars</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;BOOST_ROOT&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%(installdir)s</span><span class="s1">&#39;</span><span class="p">}</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>
+<a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;devel&#39;</span>
+</code></pre></div>
 <p><a href="../">[Boost]</a> <a href="../../..">[package list]</a></p>
 
               

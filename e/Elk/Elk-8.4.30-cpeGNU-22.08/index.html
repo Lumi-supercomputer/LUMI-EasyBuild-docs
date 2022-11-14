@@ -999,73 +999,71 @@
 
 <p><a href="../">[Elk]</a> <a href="../../..">[package list]</a></p>
 <h1 id="elk8430-cpegnu-2208-elk-8430-cpegnu-2208eb">Elk/8.4.30-cpeGNU-22.08 (Elk-8.4.30-cpeGNU-22.08.eb)</h1>
-<p>Install with the EasyBuild-user module:</p>
-<pre><code>eb Elk-8.4.30-cpeGNU-22.08.eb -r
-
-</code></pre>
-<p>To access module help after installation and get reminded for which stacks and partitions the module is
+<p>Install with the EasyBuild-user module:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>eb Elk-8.4.30-cpeGNU-22.08.eb -r
+</code></pre></div>
+To access module help after installation and get reminded for which stacks and partitions the module is
 installed, use <code>module spider Elk/8.4.30-cpeGNU-22.08</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># contributed by Peter Larsson (LUMI) and Johan Hellsvik (PDC)
-easyblock = 'MakeCp'
-
-name = 'Elk'
-version = '8.4.30'
-
-homepage = 'https://elk.sourceforge.io/'
-
-whatis = [
-    'Description: The Elk all-electron full-potential linearised augmented-plane wave (LAPW) code with many advanced features.'
-]
-
-description = &quot;&quot;&quot;
-The Elk all-electron full-potential linearised augmented-plane wave (LAPW) code with many advanced features.
-&quot;&quot;&quot;
-
-toolchain = {'name': 'cpeGNU', 'version': '22.08'}
-toolchainopts = {'openmp': True, 'usempi': True}
-
-source_urls = ['https://sourceforge.net/projects/%(namelower)s/files/']
-sources =     [SOURCELOWER_TGZ]
-checksums =   ['ed7df93cd2e5c4345f86eef0612ef4fb47d2989d78015410351612fee9130f1f']
-
-patches = [
-    ('%(name)s-%(version)s-make.inc','%(builddir)s/%(namelower)s-%(version)s/make.inc')
-]
-
-builddependencies = [ # Create a reproducible build environment.
-    ('buildtools', '%(toolchain_version)s', '', True),
-]
-
-dependencies = [
-     ('cray-libsci/22.08.1.1', EXTERNAL_MODULE),
-     ('cray-fftw/3.3.10.1',    EXTERNAL_MODULE),
-]
-
-files_to_copy = [
-    (['./src/elk'], './bin/'),
-    (['./src/eos/eos'], './bin/'),
-    (['./src/spacegroup/spacegroup'], './bin/'),
-    (['utilities/blocks2columns/blocks2columns.py', 'utilities/elk-bands/elk-bands', 'utilities/elk-optics/elk-optics.py',
-      'utilities/wien2k-elk/se.pl'], 'bin'),
-    (['./species'], '.'),
-]
-
-# Correct permissions
-postinstallcmds = [
-    'cd %(installdir)s/bin ; chmod a+x blocks2columns.py elk-optics.py'    
-]
-
-sanity_check_paths = {
-    'files': ['bin/elk','bin/eos','bin/spacegroup'],
-    'dirs':  ['bin','species'],
-}
-
-maxparallel = 1
-
-moduleclass = 'phys'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># contributed by Peter Larsson (LUMI) and Johan Hellsvik (PDC)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;MakeCp&#39;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Elk&#39;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;8.4.30&#39;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://elk.sourceforge.io/&#39;</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="s1">&#39;Description: The Elk all-electron full-potential linearised augmented-plane wave (LAPW) code with many advanced features.&#39;</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="p">]</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="s2">The Elk all-electron full-potential linearised augmented-plane wave (LAPW) code with many advanced features.</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeGNU&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;22.08&#39;</span><span class="p">}</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;openmp&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;usempi&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://sourceforge.net/projects/</span><span class="si">%(namelower)s</span><span class="s1">/files/&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="n">sources</span> <span class="o">=</span>     <span class="p">[</span><span class="n">SOURCELOWER_TGZ</span><span class="p">]</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="n">checksums</span> <span class="o">=</span>   <span class="p">[</span><span class="s1">&#39;ed7df93cd2e5c4345f86eef0612ef4fb47d2989d78015410351612fee9130f1f&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="n">patches</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>    <span class="p">(</span><span class="s1">&#39;</span><span class="si">%(name)s</span><span class="s1">-</span><span class="si">%(version)s</span><span class="s1">-make.inc&#39;</span><span class="p">,</span><span class="s1">&#39;</span><span class="si">%(builddir)s</span><span class="s1">/</span><span class="si">%(namelower)s</span><span class="s1">-</span><span class="si">%(version)s</span><span class="s1">/make.inc&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="p">]</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span> <span class="c1"># Create a reproducible build environment.</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="p">]</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>     <span class="p">(</span><span class="s1">&#39;cray-libsci/22.08.1.1&#39;</span><span class="p">,</span> <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>     <span class="p">(</span><span class="s1">&#39;cray-fftw/3.3.10.1&#39;</span><span class="p">,</span>    <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="p">]</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="n">files_to_copy</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>    <span class="p">([</span><span class="s1">&#39;./src/elk&#39;</span><span class="p">],</span> <span class="s1">&#39;./bin/&#39;</span><span class="p">),</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>    <span class="p">([</span><span class="s1">&#39;./src/eos/eos&#39;</span><span class="p">],</span> <span class="s1">&#39;./bin/&#39;</span><span class="p">),</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>    <span class="p">([</span><span class="s1">&#39;./src/spacegroup/spacegroup&#39;</span><span class="p">],</span> <span class="s1">&#39;./bin/&#39;</span><span class="p">),</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>    <span class="p">([</span><span class="s1">&#39;utilities/blocks2columns/blocks2columns.py&#39;</span><span class="p">,</span> <span class="s1">&#39;utilities/elk-bands/elk-bands&#39;</span><span class="p">,</span> <span class="s1">&#39;utilities/elk-optics/elk-optics.py&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>      <span class="s1">&#39;utilities/wien2k-elk/se.pl&#39;</span><span class="p">],</span> <span class="s1">&#39;bin&#39;</span><span class="p">),</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>    <span class="p">([</span><span class="s1">&#39;./species&#39;</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">),</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="p">]</span>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="c1"># Correct permissions</span>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="n">postinstallcmds</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>    <span class="s1">&#39;cd </span><span class="si">%(installdir)s</span><span class="s1">/bin ; chmod a+x blocks2columns.py elk-optics.py&#39;</span>    
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a><span class="p">]</span>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin/elk&#39;</span><span class="p">,</span><span class="s1">&#39;bin/eos&#39;</span><span class="p">,</span><span class="s1">&#39;bin/spacegroup&#39;</span><span class="p">],</span>
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span>  <span class="p">[</span><span class="s1">&#39;bin&#39;</span><span class="p">,</span><span class="s1">&#39;species&#39;</span><span class="p">],</span>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a><span class="p">}</span>
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a><span class="n">maxparallel</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;phys&#39;</span>
+</code></pre></div>
 <p><a href="../">[Elk]</a> <a href="../../..">[package list]</a></p>
 
               

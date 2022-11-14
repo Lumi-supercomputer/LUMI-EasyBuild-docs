@@ -1002,92 +1002,91 @@
 <p>To access module help and find out for which stacks and partitions the module is
 installed, use <code>module spider UDUNITS/2.2.28-cpeAOCC-22.06</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python">##
-# This file is an EasyBuild reciPY as per https://github.com/easybuilders/easybuild
-#
-# Copyright:: Copyright 2012-2013 University of Luxembourg, Ghent University
-# Authors::   Fotis Georgatos &lt;fotis@cern.ch&gt;, Kenneth Hoste (Ghent University)
-# License::   MIT/GPL
-# $Id$
-#
-# This work implements a part of the HPCBIOS project and is a component of the policy:
-# http://hpcbios.readthedocs.org/en/latest/HPCBIOS_2012-97.html
-##
-
-easyblock = 'ConfigureMake'
-
-local_expat_version =        '2.4.8'         # https://github.com/libexpat/libexpat/releases
-local_UDUNITS_version =      '2.2.28'        # https://artifacts.unidata.ucar.edu/service/rest/repository/browse/downloads-udunits/
-
-name =    'UDUNITS'
-version = local_UDUNITS_version
-
-homepage = 'http://www.unidata.ucar.edu/software/udunits/'
-
-whatis = [
-    &quot;Description: UDUNITS is a toolset to work with various unit systems&quot;,
-    &quot;This module provides both static and shared libraries, and a command line utility&quot;,
-]
-
-description = &quot;&quot;&quot;
-UDUNITS supports conversioOThe UDUNITS package supports units of physical
-quantities. Its C library provides for arithmetic manipulation of units and
-for conversion of numeric values between compatible units. The package contains
-an extensive unit database, which is in XML format and user-extendable. The
-package also contains a command-line utility for investigating units and
-converting values.
-
-This module provides both static and shared libraries, and a command line
-utility.
-&quot;&quot;&quot;
-
-docurls = [
-    &quot;The package supports the info command (info udunits2, info udunits2prog, info udunits2lib)&quot;
-]
-
-toolchain = {'name': 'cpeAOCC', 'version': '22.06'}
-toolchainopts = {'pic': True}
-
-sources =     [SOURCELOWER_TAR_GZ]
-source_urls = [
-    'https://artifacts.unidata.ucar.edu/repository/downloads-udunits/',
-    'https://sources.easybuild.io/u/UDUNITS/',
-]
-checksums =   ['590baec83161a3fd62c00efa66f6113cec8a7c461e3f61a5182167e0cc5d579e']
-
-builddependencies = [ # Create a reproducible build environment.
-    ('buildtools', '%(toolchain_version)s', '', True),
-]
-
-dependencies = [
-    ('expat', local_expat_version),
-]
-
-parallel = 1
-
-sanity_check_paths = {
-    'files': ['bin/udunits2', 'include/converter.h', 'include/udunits2.h', 'include/udunits.h',
-              'lib/libudunits2.a', 'lib/libudunits2.%s' % SHLIB_EXT],
-    'dirs':  ['share'],
-}
-
-sanity_check_commands = [
-    'udunits2 -h',
-    'udunits2 -H &quot;80 km/h&quot; -W m/s',
-]
-
-# In case we'd experience problems that the data files are not found, this might help.
-#modextravars = {
-#    'UDUNITS2_XML_PATH': '%(installdir)s/share/udunits/udunits2.xml',
-#}
-
-modextrapaths = {
-    'INFOPATH' : 'share/info',
-}
-
-moduleclass = 'phys'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">##</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># This file is an EasyBuild reciPY as per https://github.com/easybuilders/easybuild</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1">#</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Copyright:: Copyright 2012-2013 University of Luxembourg, Ghent University</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># Authors::   Fotis Georgatos &lt;fotis@cern.ch&gt;, Kenneth Hoste (Ghent University)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># License::   MIT/GPL</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># $Id$</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1">#</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1"># This work implements a part of the HPCBIOS project and is a component of the policy:</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># http://hpcbios.readthedocs.org/en/latest/HPCBIOS_2012-97.html</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1">##</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;ConfigureMake&#39;</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="n">local_expat_version</span> <span class="o">=</span>        <span class="s1">&#39;2.4.8&#39;</span>         <span class="c1"># https://github.com/libexpat/libexpat/releases</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="n">local_UDUNITS_version</span> <span class="o">=</span>      <span class="s1">&#39;2.2.28&#39;</span>        <span class="c1"># https://artifacts.unidata.ucar.edu/service/rest/repository/browse/downloads-udunits/</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;UDUNITS&#39;</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="n">version</span> <span class="o">=</span> <span class="n">local_UDUNITS_version</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;http://www.unidata.ucar.edu/software/udunits/&#39;</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="s2">&quot;Description: UDUNITS is a toolset to work with various unit systems&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="s2">&quot;This module provides both static and shared libraries, and a command line utility&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="p">]</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="s2">UDUNITS supports conversioOThe UDUNITS package supports units of physical</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="s2">quantities. Its C library provides for arithmetic manipulation of units and</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="s2">for conversion of numeric values between compatible units. The package contains</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="s2">an extensive unit database, which is in XML format and user-extendable. The</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="s2">package also contains a command-line utility for investigating units and</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="s2">converting values.</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="s2">This module provides both static and shared libraries, and a command line</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="s2">utility.</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="n">docurls</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="s2">&quot;The package supports the info command (info udunits2, info udunits2prog, info udunits2lib)&quot;</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="p">]</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeAOCC&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;22.06&#39;</span><span class="p">}</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pic&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="n">sources</span> <span class="o">=</span>     <span class="p">[</span><span class="n">SOURCELOWER_TAR_GZ</span><span class="p">]</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>    <span class="s1">&#39;https://artifacts.unidata.ucar.edu/repository/downloads-udunits/&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>    <span class="s1">&#39;https://sources.easybuild.io/u/UDUNITS/&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="p">]</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="n">checksums</span> <span class="o">=</span>   <span class="p">[</span><span class="s1">&#39;590baec83161a3fd62c00efa66f6113cec8a7c461e3f61a5182167e0cc5d579e&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span> <span class="c1"># Create a reproducible build environment.</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="p">]</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    <span class="p">(</span><span class="s1">&#39;expat&#39;</span><span class="p">,</span> <span class="n">local_expat_version</span><span class="p">),</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="p">]</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="n">parallel</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin/udunits2&#39;</span><span class="p">,</span> <span class="s1">&#39;include/converter.h&#39;</span><span class="p">,</span> <span class="s1">&#39;include/udunits2.h&#39;</span><span class="p">,</span> <span class="s1">&#39;include/udunits.h&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>              <span class="s1">&#39;lib/libudunits2.a&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/libudunits2.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">SHLIB_EXT</span><span class="p">],</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span>  <span class="p">[</span><span class="s1">&#39;share&#39;</span><span class="p">],</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a><span class="p">}</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>
+<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a><span class="n">sanity_check_commands</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>    <span class="s1">&#39;udunits2 -h&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>    <span class="s1">&#39;udunits2 -H &quot;80 km/h&quot; -W m/s&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a><span class="p">]</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>
+<a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a><span class="c1"># In case we&#39;d experience problems that the data files are not found, this might help.</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a><span class="c1">#modextravars = {</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a><span class="c1">#    &#39;UDUNITS2_XML_PATH&#39;: &#39;%(installdir)s/share/udunits/udunits2.xml&#39;,</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a><span class="c1">#}</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>
+<a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a><span class="n">modextrapaths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>    <span class="s1">&#39;INFOPATH&#39;</span> <span class="p">:</span> <span class="s1">&#39;share/info&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a><span class="p">}</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>
+<a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;phys&#39;</span>
+</code></pre></div>
 <p><a href="../">[UDUNITS]</a> <a href="../../..">[package list]</a></p>
 
               

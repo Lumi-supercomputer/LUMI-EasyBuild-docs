@@ -1002,74 +1002,73 @@
 <p>To access module help and find out for which stacks and partitions the module is
 installed, use <code>module spider SCOTCH/6.1.3-cpeGNU-22.06</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># provided by mkra (CSCS), 2018
-# Adapted by Kurt Lust (kurt.lust@uantwerpen.be) for the LUMI consortium
-easyblock = 'EB_SCOTCH_CPE'
-
-local_SCOTCH_version =       '6.1.3'         # https://gforge.inria.fr/projects/scotch/
-
-local_bzip2_version =        '1.0.8'         # http://www.bzip.org/downloads.html
-local_XZ_version =           '5.2.5'         # https://tukaani.org/xz/
-local_zlib_version =         '1.2.12'        # https://zlib.net/
-
-name =    'SCOTCH'
-version = local_SCOTCH_version
-
-homepage = 'http://gforge.inria.fr/projects/scotch/'
-
-whatis = [
-    'Description: Scotch is a software package for graph and mesh/hypergraph partitioning, graph clustering, and sparse matrix ordering'
-]
-
-description = &quot;&quot;&quot;
-Scotch is a software package and libraries for sequential and parallel graph
-partitioning, static mapping, and sparse matrix block ordering, and sequential
-mesh and hypergraph partitioning.
-
-The module provides static libraries only. The library is compiled with support
-for GZ-, BZ2- and LZMA-compressed graph files.
-
-
-LICENSE
-=======
-SCOTCH is licensed under the CeCILL-C Free Software License Agreement, see
-https://cecill.info/licences/Licence_CeCILL-C_V1-en.html.
-&quot;&quot;&quot;
-
-software_license_urls = ['https://cecill.info/licences/Licence_CeCILL-C_V1-en.html']
-
-
-toolchain = {'name': 'cpeGNU', 'version': '22.06'}
-toolchainopts = {'pic': True}
-
-sources = [
-    {   # https://gitlab.inria.fr/scotch/scotch/-/archive/v6.1.2/scotch-v6.1.3.tar.gz
-        'filename': '%(namelower)s_v%(version)s.tar.gz',
-        'source_urls': ['https://gitlab.inria.fr/scotch/scotch/-/archive/v%(version)s/'],
-        'extract_cmd': 'tar xvf %s ; mv scotch-v%(version)s* scotch-%(version)s'
-    },
-    {
-        'filename': 'Makefile.inc.CPE.%(version)s',
-        'extract_cmd': 'cp %s scotch-%(version)s/src/Make.inc/Makefile.inc.CPE',
-    },
-]
-#checksums =   [
-#    'a2f65f58f31085e4c3dcca22e571a3a1b9d65a6ff05ff882b0eb07c78e3b755b' # scotch_v6.1.2.tar.gz
-#]
-
-builddependencies = [ # Create a reproducible build environment.
-    ('buildtools',   '%(toolchain_version)s',   '', True), # For CMake
-]
-
-dependencies = [
-    ('bzip2', local_bzip2_version),
-    ('XZ',    local_XZ_version),
-    ('zlib',  local_zlib_version),
-]
-
-moduleclass = 'math'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># provided by mkra (CSCS), 2018</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Adapted by Kurt Lust (kurt.lust@uantwerpen.be) for the LUMI consortium</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;EB_SCOTCH_CPE&#39;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">local_SCOTCH_version</span> <span class="o">=</span>       <span class="s1">&#39;6.1.3&#39;</span>         <span class="c1"># https://gforge.inria.fr/projects/scotch/</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">local_bzip2_version</span> <span class="o">=</span>        <span class="s1">&#39;1.0.8&#39;</span>         <span class="c1"># http://www.bzip.org/downloads.html</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">local_XZ_version</span> <span class="o">=</span>           <span class="s1">&#39;5.2.5&#39;</span>         <span class="c1"># https://tukaani.org/xz/</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">local_zlib_version</span> <span class="o">=</span>         <span class="s1">&#39;1.2.12&#39;</span>        <span class="c1"># https://zlib.net/</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;SCOTCH&#39;</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">version</span> <span class="o">=</span> <span class="n">local_SCOTCH_version</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;http://gforge.inria.fr/projects/scotch/&#39;</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="s1">&#39;Description: Scotch is a software package for graph and mesh/hypergraph partitioning, graph clustering, and sparse matrix ordering&#39;</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="p">]</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="s2">Scotch is a software package and libraries for sequential and parallel graph</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="s2">partitioning, static mapping, and sparse matrix block ordering, and sequential</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="s2">mesh and hypergraph partitioning.</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="s2">The module provides static libraries only. The library is compiled with support</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="s2">for GZ-, BZ2- and LZMA-compressed graph files.</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="s2">LICENSE</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="s2">=======</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="s2">SCOTCH is licensed under the CeCILL-C Free Software License Agreement, see</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="s2">https://cecill.info/licences/Licence_CeCILL-C_V1-en.html.</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="n">software_license_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://cecill.info/licences/Licence_CeCILL-C_V1-en.html&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeGNU&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;22.06&#39;</span><span class="p">}</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pic&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="n">sources</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="p">{</span>   <span class="c1"># https://gitlab.inria.fr/scotch/scotch/-/archive/v6.1.2/scotch-v6.1.3.tar.gz</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>        <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%(namelower)s</span><span class="s1">_v</span><span class="si">%(version)s</span><span class="s1">.tar.gz&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>        <span class="s1">&#39;source_urls&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;https://gitlab.inria.fr/scotch/scotch/-/archive/v</span><span class="si">%(version)s</span><span class="s1">/&#39;</span><span class="p">],</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>        <span class="s1">&#39;extract_cmd&#39;</span><span class="p">:</span> <span class="s1">&#39;tar xvf </span><span class="si">%s</span><span class="s1"> ; mv scotch-v</span><span class="si">%(version)s</span><span class="s1">* scotch-</span><span class="si">%(version)s</span><span class="s1">&#39;</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>    <span class="p">},</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>    <span class="p">{</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>        <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="s1">&#39;Makefile.inc.CPE.</span><span class="si">%(version)s</span><span class="s1">&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>        <span class="s1">&#39;extract_cmd&#39;</span><span class="p">:</span> <span class="s1">&#39;cp </span><span class="si">%s</span><span class="s1"> scotch-</span><span class="si">%(version)s</span><span class="s1">/src/Make.inc/Makefile.inc.CPE&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>    <span class="p">},</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="p">]</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="c1">#checksums =   [</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="c1">#    &#39;a2f65f58f31085e4c3dcca22e571a3a1b9d65a6ff05ff882b0eb07c78e3b755b&#39; # scotch_v6.1.2.tar.gz</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="c1">#]</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span> <span class="c1"># Create a reproducible build environment.</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span>   <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span>   <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span> <span class="c1"># For CMake</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="p">]</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    <span class="p">(</span><span class="s1">&#39;bzip2&#39;</span><span class="p">,</span> <span class="n">local_bzip2_version</span><span class="p">),</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    <span class="p">(</span><span class="s1">&#39;XZ&#39;</span><span class="p">,</span>    <span class="n">local_XZ_version</span><span class="p">),</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>    <span class="p">(</span><span class="s1">&#39;zlib&#39;</span><span class="p">,</span>  <span class="n">local_zlib_version</span><span class="p">),</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="p">]</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;math&#39;</span>
+</code></pre></div>
 <p><a href="../">[SCOTCH]</a> <a href="../../..">[package list]</a></p>
 
               

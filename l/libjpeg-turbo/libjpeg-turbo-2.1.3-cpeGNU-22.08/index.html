@@ -1002,91 +1002,90 @@
 <p>To access module help and find out for which stacks and partitions the module is
 installed, use <code>module spider libjpeg-turbo/2.1.3-cpeGNU-22.08</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># Contributed by Kurt Lust, LUMI project &amp; UAntwerpen
-easyblock = 'CMakeMake'
-
-local_libjpegturbo_version = '2.1.3'         # https://github.com/libjpeg-turbo/libjpeg-turbo/releases
-
-name =    'libjpeg-turbo'
-version = local_libjpegturbo_version
-
-homepage = 'https://github.com/libjpeg-turbo/libjpeg-turbo'
-
-whatis = [
-    'Description: SIMD-accelerated libjpeg-compatible JPEG codec library',
-    'This module provides a number of command line tools and static and shared libraries.'
-]
-
-description = &quot;&quot;&quot;
-libjpeg-turbo is a JPEG image codec that uses SIMD instructions (MMX, SSE2,
-NEON, AltiVec) to accelerate baseline JPEG compression and decompression on x86,
-x86-64, ARM, and PowerPC systems. On such systems, libjpeg-turbo is generally
-2-6x as fast as libjpeg, all else being equal. On other types of systems,
-libjpeg-turbo can still outperform libjpeg by a significant amount, by virtue of
-its highly-optimized Huffman coding routines. In many cases, the performance of
-libjpeg-turbo rivals that of proprietary high-speed JPEG codecs.
-
-libjpeg-turbo implements both the traditional libjpeg API as well as the less
-powerful but more straightforward TurboJPEG API. libjpeg-turbo also features
-colorspace extensions that allow it to compress from/decompress to 32-bit and
-big-endian pixel buffers (RGBX, XBGR, etc.).
-&quot;&quot;&quot;
-usage = &quot;&quot;&quot;
-The libjpeg-turbo package contains a number of command line utilities:
-+ cjpeg: compress an image file to a JPEG file
-+ djpeg: Decompress a JPEG file to an image file
-+ jpegtran: Lossless transformation of JPEG files
-+ rdjpgcom: Display text comments from a JPEG file
-+ wrjpgcom: Insert text comments into a JPEG file
-Extensive help is available for these commands as Linux man pages. All
-commands also support the --help command line option.
-
-The module also provides the benchmarking tool tjbench.
-
-The API-documentation is web-based.
-&quot;&quot;&quot;
-
-docurls = [
-    'Web-based API-documentation: https://libjpeg-turbo.org/Documentation',
-    'Man pages for the command line utilities cjpeg, djpeg, jpegtran, rdjpgcom and wrjpgcom',
-]
-
-toolchain = {'name': 'cpeGNU', 'version': '22.08'}
-toolchainopts = {'pic': True}
-
-# https://github.com/libjpeg-turbo/libjpeg-turbo/archive/refs/tags/2.1.0.tar.gz
-sources = {
-    'download_filename': '%(version)s.tar.gz',
-    'filename':          SOURCELOWER_TAR_GZ,
-    'source_urls':       ['https://github.com/libjpeg-turbo/libjpeg-turbo/archive/refs/tags/'],
-}
-checksums = ['dbda0c685942aa3ea908496592491e5ec8160d2cf1ec9d5fd5470e50768e7859']
-
-builddependencies = [ # Create a reproducible build environment.
-    ('buildtools', '%(toolchain_version)s', '', True), # NASM and CMake
-]
-
-# Note: In 2.0.14 with the CMake from the 2019b build set, 12-bit support causes a failure
-# during the configure step in CMakeLists.txt (wrong number of arguments for the
-# add_bittest macro).
-configopts = '-G&quot;Unix Makefiles&quot; -DWITH_JPEG7=1 -DWITH_JPEG8=1 -DWITH_12BIT=0'
-runtest = &quot;test&quot;
-
-sanity_check_paths = {
-    'files': ['bin/cjpeg', 'bin/djpeg', 'bin/jpegtran', 'bin/rdjpgcom', 'bin/tjbench', 'bin/wrjpgcom',
-              'lib/libjpeg.a', 'lib/libjpeg.%s' % SHLIB_EXT, 'lib/libturbojpeg.a', 'lib/libturbojpeg.%s' % SHLIB_EXT],
-    'dirs':  ['include', 'share'],
-}
-
-sanity_check_commands = [ # Not that much needed as there is a test procedure during the build.
-    'cjpeg -version',
-    'djpeg -version',
-    'jpegtran -version',
-]
-
-moduleclass = 'lib'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Contributed by Kurt Lust, LUMI project &amp; UAntwerpen</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;CMakeMake&#39;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">local_libjpegturbo_version</span> <span class="o">=</span> <span class="s1">&#39;2.1.3&#39;</span>         <span class="c1"># https://github.com/libjpeg-turbo/libjpeg-turbo/releases</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;libjpeg-turbo&#39;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">version</span> <span class="o">=</span> <span class="n">local_libjpegturbo_version</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/libjpeg-turbo/libjpeg-turbo&#39;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="s1">&#39;Description: SIMD-accelerated libjpeg-compatible JPEG codec library&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="s1">&#39;This module provides a number of command line tools and static and shared libraries.&#39;</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="p">]</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="s2">libjpeg-turbo is a JPEG image codec that uses SIMD instructions (MMX, SSE2,</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="s2">NEON, AltiVec) to accelerate baseline JPEG compression and decompression on x86,</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="s2">x86-64, ARM, and PowerPC systems. On such systems, libjpeg-turbo is generally</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="s2">2-6x as fast as libjpeg, all else being equal. On other types of systems,</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="s2">libjpeg-turbo can still outperform libjpeg by a significant amount, by virtue of</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="s2">its highly-optimized Huffman coding routines. In many cases, the performance of</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="s2">libjpeg-turbo rivals that of proprietary high-speed JPEG codecs.</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="s2">libjpeg-turbo implements both the traditional libjpeg API as well as the less</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="s2">powerful but more straightforward TurboJPEG API. libjpeg-turbo also features</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="s2">colorspace extensions that allow it to compress from/decompress to 32-bit and</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="s2">big-endian pixel buffers (RGBX, XBGR, etc.).</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="n">usage</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="s2">The libjpeg-turbo package contains a number of command line utilities:</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="s2">+ cjpeg: compress an image file to a JPEG file</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="s2">+ djpeg: Decompress a JPEG file to an image file</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="s2">+ jpegtran: Lossless transformation of JPEG files</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="s2">+ rdjpgcom: Display text comments from a JPEG file</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="s2">+ wrjpgcom: Insert text comments into a JPEG file</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="s2">Extensive help is available for these commands as Linux man pages. All</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="s2">commands also support the --help command line option.</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="s2">The module also provides the benchmarking tool tjbench.</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="s2">The API-documentation is web-based.</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="n">docurls</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>    <span class="s1">&#39;Web-based API-documentation: https://libjpeg-turbo.org/Documentation&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>    <span class="s1">&#39;Man pages for the command line utilities cjpeg, djpeg, jpegtran, rdjpgcom and wrjpgcom&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="p">]</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeGNU&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;22.08&#39;</span><span class="p">}</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pic&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="c1"># https://github.com/libjpeg-turbo/libjpeg-turbo/archive/refs/tags/2.1.0.tar.gz</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="n">sources</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="s1">&#39;download_filename&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%(version)s</span><span class="s1">.tar.gz&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="s1">&#39;filename&#39;</span><span class="p">:</span>          <span class="n">SOURCELOWER_TAR_GZ</span><span class="p">,</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>    <span class="s1">&#39;source_urls&#39;</span><span class="p">:</span>       <span class="p">[</span><span class="s1">&#39;https://github.com/libjpeg-turbo/libjpeg-turbo/archive/refs/tags/&#39;</span><span class="p">],</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="p">}</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="n">checksums</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dbda0c685942aa3ea908496592491e5ec8160d2cf1ec9d5fd5470e50768e7859&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span> <span class="c1"># Create a reproducible build environment.</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span> <span class="c1"># NASM and CMake</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="p">]</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a><span class="c1"># Note: In 2.0.14 with the CMake from the 2019b build set, 12-bit support causes a failure</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="c1"># during the configure step in CMakeLists.txt (wrong number of arguments for the</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a><span class="c1"># add_bittest macro).</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a><span class="n">configopts</span> <span class="o">=</span> <span class="s1">&#39;-G&quot;Unix Makefiles&quot; -DWITH_JPEG7=1 -DWITH_JPEG8=1 -DWITH_12BIT=0&#39;</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a><span class="n">runtest</span> <span class="o">=</span> <span class="s2">&quot;test&quot;</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin/cjpeg&#39;</span><span class="p">,</span> <span class="s1">&#39;bin/djpeg&#39;</span><span class="p">,</span> <span class="s1">&#39;bin/jpegtran&#39;</span><span class="p">,</span> <span class="s1">&#39;bin/rdjpgcom&#39;</span><span class="p">,</span> <span class="s1">&#39;bin/tjbench&#39;</span><span class="p">,</span> <span class="s1">&#39;bin/wrjpgcom&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>              <span class="s1">&#39;lib/libjpeg.a&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/libjpeg.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">SHLIB_EXT</span><span class="p">,</span> <span class="s1">&#39;lib/libturbojpeg.a&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/libturbojpeg.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">SHLIB_EXT</span><span class="p">],</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span>  <span class="p">[</span><span class="s1">&#39;include&#39;</span><span class="p">,</span> <span class="s1">&#39;share&#39;</span><span class="p">],</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a><span class="p">}</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>
+<a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a><span class="n">sanity_check_commands</span> <span class="o">=</span> <span class="p">[</span> <span class="c1"># Not that much needed as there is a test procedure during the build.</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>    <span class="s1">&#39;cjpeg -version&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>    <span class="s1">&#39;djpeg -version&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>    <span class="s1">&#39;jpegtran -version&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a><span class="p">]</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>
+<a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;lib&#39;</span>
+</code></pre></div>
 <p><a href="../">[libjpeg-turbo]</a> <a href="../../..">[package list]</a></p>
 
               

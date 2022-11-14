@@ -1002,66 +1002,65 @@
 <p>To access module help and find out for which stacks and partitions the module is
 installed, use <code>module spider DB/18.1.40-cpeCray-22.06</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python">##
-# Author:    Robert Mijakovic &lt;robert.mijakovic@lxp.lu&gt;
-# Ported to Cray by Kurt Lust (University of Antwerpen and LUMI consortium)
-##
-
-local_DB_version =           '18.1.40'       # https://www.oracle.com/database/technologies/related/berkeleydb-downloads.html
-
-name =    'DB'
-version = local_DB_version
-
-homepage = 'https://www.oracle.com/technetwork/products/berkeleydb'
-
-whatis = [
-    'Description: Berkeley DB, a family of embedded key-value database libraries'
-]
-
-description = &quot;&quot;&quot;
-Berkeley DB is a family of embedded key-value database libraries providing
-scalable high-performance data management services to applications. The
-Berkeley DB products use simple function-call APIs for data access and
-management.
-
-Berkeley DB enables the development of custom data management solutions,
-without the overhead traditionally associated with such custom projects.
-Berkeley DB provides a collection of well-proven building-block technologies
-that can be configured to address any application need from the hand-held
-device to the data center, from a local storage solution to a world-wide
-distributed one, from kilobytes to petabytes.
-&quot;&quot;&quot;
-
-toolchain = {'name': 'cpeCray', 'version': '22.06'}
-
-# use http to allow auto-downloading...
-source_urls = ['http://download.oracle.com/berkeley-db/']
-sources =     [SOURCELOWER_TAR_GZ]
-patches =     ['%(name)s-%(version)s_fix_doc_install.patch']
-checksums =   [
-    '0cecb2ef0c67b166de93732769abdeba0555086d51de1090df325e18ee8da9c8',  # db-18.1.40.tar.gz
-    '441f48568156f72f02a8662998d293cc7edad687604b4f8af722f21c6db2a52d',  # DB-18.1.40_fix_doc_install.patch
-]
-
-builddependencies = [ # Create a reproducible build environment.
-    ('buildtools', '%(toolchain_version)s', '', True),
-]
-
-osdependencies = [
-    ('openssl-devel', 'libssl-dev', 'libopenssl-devel'),
-]
-
-sanity_check_paths = {
-    'files': ['bin/db_%s' % x for x in ['archive', 'checkpoint', 'convert', 'deadlock', 'dump', 'hotbackup',
-                                        'load', 'log_verify', 'printlog', 'recover', 'replicate', 'stat',
-                                        'tuner', 'upgrade', 'verify']] +
-             ['include/db.h', 'lib/libdb.a', 'lib/libdb.%s' % SHLIB_EXT],
-    'dirs':  [],
-}
-
-moduleclass = 'tools'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">##</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Author:    Robert Mijakovic &lt;robert.mijakovic@lxp.lu&gt;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># Ported to Cray by Kurt Lust (University of Antwerpen and LUMI consortium)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1">##</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">local_DB_version</span> <span class="o">=</span>           <span class="s1">&#39;18.1.40&#39;</span>       <span class="c1"># https://www.oracle.com/database/technologies/related/berkeleydb-downloads.html</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;DB&#39;</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">version</span> <span class="o">=</span> <span class="n">local_DB_version</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://www.oracle.com/technetwork/products/berkeleydb&#39;</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="s1">&#39;Description: Berkeley DB, a family of embedded key-value database libraries&#39;</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="p">]</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="s2">Berkeley DB is a family of embedded key-value database libraries providing</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="s2">scalable high-performance data management services to applications. The</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="s2">Berkeley DB products use simple function-call APIs for data access and</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="s2">management.</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="s2">Berkeley DB enables the development of custom data management solutions,</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="s2">without the overhead traditionally associated with such custom projects.</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="s2">Berkeley DB provides a collection of well-proven building-block technologies</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="s2">that can be configured to address any application need from the hand-held</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="s2">device to the data center, from a local storage solution to a world-wide</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="s2">distributed one, from kilobytes to petabytes.</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeCray&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;22.06&#39;</span><span class="p">}</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="c1"># use http to allow auto-downloading...</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;http://download.oracle.com/berkeley-db/&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="n">sources</span> <span class="o">=</span>     <span class="p">[</span><span class="n">SOURCELOWER_TAR_GZ</span><span class="p">]</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="n">patches</span> <span class="o">=</span>     <span class="p">[</span><span class="s1">&#39;</span><span class="si">%(name)s</span><span class="s1">-</span><span class="si">%(version)s</span><span class="s1">_fix_doc_install.patch&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="n">checksums</span> <span class="o">=</span>   <span class="p">[</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="s1">&#39;0cecb2ef0c67b166de93732769abdeba0555086d51de1090df325e18ee8da9c8&#39;</span><span class="p">,</span>  <span class="c1"># db-18.1.40.tar.gz</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    <span class="s1">&#39;441f48568156f72f02a8662998d293cc7edad687604b4f8af722f21c6db2a52d&#39;</span><span class="p">,</span>  <span class="c1"># DB-18.1.40_fix_doc_install.patch</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="p">]</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span> <span class="c1"># Create a reproducible build environment.</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="p">]</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="n">osdependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>    <span class="p">(</span><span class="s1">&#39;openssl-devel&#39;</span><span class="p">,</span> <span class="s1">&#39;libssl-dev&#39;</span><span class="p">,</span> <span class="s1">&#39;libopenssl-devel&#39;</span><span class="p">),</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="p">]</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin/db_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;archive&#39;</span><span class="p">,</span> <span class="s1">&#39;checkpoint&#39;</span><span class="p">,</span> <span class="s1">&#39;convert&#39;</span><span class="p">,</span> <span class="s1">&#39;deadlock&#39;</span><span class="p">,</span> <span class="s1">&#39;dump&#39;</span><span class="p">,</span> <span class="s1">&#39;hotbackup&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>                                        <span class="s1">&#39;load&#39;</span><span class="p">,</span> <span class="s1">&#39;log_verify&#39;</span><span class="p">,</span> <span class="s1">&#39;printlog&#39;</span><span class="p">,</span> <span class="s1">&#39;recover&#39;</span><span class="p">,</span> <span class="s1">&#39;replicate&#39;</span><span class="p">,</span> <span class="s1">&#39;stat&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>                                        <span class="s1">&#39;tuner&#39;</span><span class="p">,</span> <span class="s1">&#39;upgrade&#39;</span><span class="p">,</span> <span class="s1">&#39;verify&#39;</span><span class="p">]]</span> <span class="o">+</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>             <span class="p">[</span><span class="s1">&#39;include/db.h&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/libdb.a&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/libdb.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">SHLIB_EXT</span><span class="p">],</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span>  <span class="p">[],</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="p">}</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;tools&#39;</span>
+</code></pre></div>
 <p><a href="../">[DB]</a> <a href="../../..">[package list]</a></p>
 
               

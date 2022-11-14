@@ -999,77 +999,75 @@
 
 <p><a href="../">[NWChem]</a> <a href="../../..">[package list]</a></p>
 <h1 id="nwchem702-cpegnu-2108-nwchem-702-cpegnu-2108eb">NWChem/7.0.2-cpeGNU-21.08 (NWChem-7.0.2-cpeGNU-21.08.eb)</h1>
-<p>Install with the EasyBuild-user module:</p>
-<pre><code>eb NWChem-7.0.2-cpeGNU-21.08.eb -r
-
-</code></pre>
-<p>To access module help after installation and get reminded for which stacks and partitions the module is
+<p>Install with the EasyBuild-user module:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>eb NWChem-7.0.2-cpeGNU-21.08.eb -r
+</code></pre></div>
+To access module help after installation and get reminded for which stacks and partitions the module is
 installed, use <code>module spider NWChem/7.0.2-cpeGNU-21.08</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python">easyblock = 'MakeCp'
-
-name = 'NWChem'
-version = '7.0.2'
-local_verdate = '2020-10-12'
-local_revision = 'b9985dfa'
-
-homepage = 'https://www.nwchem-sw.org'
-
-whatis = [
-    'Description: NWChem is an OpenSource High Performance Computational Chemistry code'
-]
-
-description = &quot;&quot;&quot;
-NWChem aims to provide its users with computational chemistry tools that are scalable both in
-their ability to treat large scientific computational chemistry problems efficiently, and in their use of available
-parallel computing resources from high-performance parallel supercomputers to conventional workstation clusters.
-NWChem software can handle: biomolecules, nanostructures, and solid-state; from quantum to classical, and all
-combinations; Gaussian basis functions or plane-waves; scaling from one to thousands of processors; properties
-and relativity.
-&quot;&quot;&quot;
-
-toolchain = {'name': 'cpeGNU', 'version': '21.08'}
-
-source_urls = ['https://github.com/nwchemgit/nwchem/releases/download/v%(version)s-release/']
-sources = ['nwchem-%%(version)s-release.revision-%s-src.%s.tar.bz2' % (local_revision, local_verdate)]
-
-#patches = [
-#    'NWChem_fix-date.patch',
-#]
-
-#checksums = [
-#    # nwchem-7.0.2-release.revision-b9985dfa-src.2020-10-12.tar.bz2
-#    'd9d19d87e70abf43d61b2d34e60c293371af60d14df4a6333bf40ea63f6dc8ce',
-#    '215ec54f6132f2c9306bd636456722a36f0f1d98a67a0c8cbd10c5d1eed68feb',  # NWChem_fix-date.patch
-#]
-
-builddependencies = [
-    ('buildtools',   '%(toolchain_version)s', '', True),
-]
-
-dependencies = [
-    ('GlobalArrays', '5.8', ''),  # Static library
-    ('cray-python',  EXTERNAL_MODULE),
-]
-
-
-start_dir = 'src'
-
-build_cmd_targets = &quot;nwchem_config all&quot;
-
-buildopts = 'FC=ftn NWCHEM_TARGET=LINUX64 NWCHEM_MODULES=&quot;all python&quot; MSG_COMMS=MPI ARMCI_NETWORK=MPI-PT USE_NOIO=TRUE EXTERNAL_GA_PATH=${EBROOTGLOBALARRAYS} BLASOPT=-lsci_gnu BLAS_SIZE=8 LAPACK_LIB=-lsci_gnu'
-
-files_to_copy = [(['../bin/LINUX64/nwchem'], 'bin'), (['data', 'basis'], 'data')]
-
-sanity_check_paths = { 'files': ['bin/nwchem'], 'dirs': ['data'] }
-
-modextrapaths = {'PATH': 'bin'}
-
-modextravars = {'NWCHEM_BASIS_LIBRARY': '%(installdir)s/data/basis/libraries/'}
-
-moduleclass = 'chem'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;MakeCp&#39;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;NWChem&#39;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;7.0.2&#39;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">local_verdate</span> <span class="o">=</span> <span class="s1">&#39;2020-10-12&#39;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">local_revision</span> <span class="o">=</span> <span class="s1">&#39;b9985dfa&#39;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://www.nwchem-sw.org&#39;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="s1">&#39;Description: NWChem is an OpenSource High Performance Computational Chemistry code&#39;</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="p">]</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="s2">NWChem aims to provide its users with computational chemistry tools that are scalable both in</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="s2">their ability to treat large scientific computational chemistry problems efficiently, and in their use of available</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="s2">parallel computing resources from high-performance parallel supercomputers to conventional workstation clusters.</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="s2">NWChem software can handle: biomolecules, nanostructures, and solid-state; from quantum to classical, and all</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="s2">combinations; Gaussian basis functions or plane-waves; scaling from one to thousands of processors; properties</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="s2">and relativity.</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeGNU&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;21.08&#39;</span><span class="p">}</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://github.com/nwchemgit/nwchem/releases/download/v</span><span class="si">%(version)s</span><span class="s1">-release/&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;nwchem-</span><span class="si">%%</span><span class="s1">(version)s-release.revision-</span><span class="si">%s</span><span class="s1">-src.</span><span class="si">%s</span><span class="s1">.tar.bz2&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">local_revision</span><span class="p">,</span> <span class="n">local_verdate</span><span class="p">)]</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="c1">#patches = [</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="c1">#    &#39;NWChem_fix-date.patch&#39;,</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="c1">#]</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="c1">#checksums = [</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="c1">#    # nwchem-7.0.2-release.revision-b9985dfa-src.2020-10-12.tar.bz2</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="c1">#    &#39;d9d19d87e70abf43d61b2d34e60c293371af60d14df4a6333bf40ea63f6dc8ce&#39;,</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="c1">#    &#39;215ec54f6132f2c9306bd636456722a36f0f1d98a67a0c8cbd10c5d1eed68feb&#39;,  # NWChem_fix-date.patch</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="c1">#]</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span>   <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="p">]</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>    <span class="p">(</span><span class="s1">&#39;GlobalArrays&#39;</span><span class="p">,</span> <span class="s1">&#39;5.8&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>  <span class="c1"># Static library</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>    <span class="p">(</span><span class="s1">&#39;cray-python&#39;</span><span class="p">,</span>  <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="p">]</span>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a><span class="n">start_dir</span> <span class="o">=</span> <span class="s1">&#39;src&#39;</span>
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a><span class="n">build_cmd_targets</span> <span class="o">=</span> <span class="s2">&quot;nwchem_config all&quot;</span>
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a><span class="n">buildopts</span> <span class="o">=</span> <span class="s1">&#39;FC=ftn NWCHEM_TARGET=LINUX64 NWCHEM_MODULES=&quot;all python&quot; MSG_COMMS=MPI ARMCI_NETWORK=MPI-PT USE_NOIO=TRUE EXTERNAL_GA_PATH=$</span><span class="si">{EBROOTGLOBALARRAYS}</span><span class="s1"> BLASOPT=-lsci_gnu BLAS_SIZE=8 LAPACK_LIB=-lsci_gnu&#39;</span>
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a><span class="n">files_to_copy</span> <span class="o">=</span> <span class="p">[([</span><span class="s1">&#39;../bin/LINUX64/nwchem&#39;</span><span class="p">],</span> <span class="s1">&#39;bin&#39;</span><span class="p">),</span> <span class="p">([</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;basis&#39;</span><span class="p">],</span> <span class="s1">&#39;data&#39;</span><span class="p">)]</span>
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin/nwchem&#39;</span><span class="p">],</span> <span class="s1">&#39;dirs&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="p">}</span>
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a><span class="n">modextrapaths</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;PATH&#39;</span><span class="p">:</span> <span class="s1">&#39;bin&#39;</span><span class="p">}</span>
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a><span class="n">modextravars</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;NWCHEM_BASIS_LIBRARY&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%(installdir)s</span><span class="s1">/data/basis/libraries/&#39;</span><span class="p">}</span>
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;chem&#39;</span>
+</code></pre></div>
 <p><a href="../">[NWChem]</a> <a href="../../..">[package list]</a></p>
 
               

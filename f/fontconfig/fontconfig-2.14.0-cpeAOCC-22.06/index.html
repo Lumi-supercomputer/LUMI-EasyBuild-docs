@@ -1002,66 +1002,65 @@
 <p>To access module help and find out for which stacks and partitions the module is
 installed, use <code>module spider fontconfig/2.14.0-cpeAOCC-22.06</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python">easyblock = 'ConfigureMake'
-
-local_expat_version =        '2.4.8'         # https://github.com/libexpat/libexpat/releases
-local_util_version =         '2.38'          # https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/
-local_freetype_version =     '2.12.1'        # https://download.savannah.gnu.org/releases/freetype/
-local_fontconfig_version =   '2.14.0'        # https://www.freedesktop.org/software/fontconfig/release/
-
-name =    'fontconfig'
-version = local_fontconfig_version
-
-homepage = 'http://www.freedesktop.org/software/fontconfig'
-
-whatis = [
-    'Description: A library for system-wide font configuration',
-    'The module contains a number of command line tools and a shared library',
-]
-
-description = &quot;&quot;&quot;
-Fontconfig is a library designed to provide system-wide font configuration,
-customization and application access.
-
-The module contains a number of command line tools and a shared library.
-&quot;&quot;&quot;
-
-toolchain = {'name': 'cpeAOCC', 'version': '22.06'}
-toolchainopts = {'pic': True}
-
-source_urls = ['http://www.freedesktop.org/software/fontconfig/release/']
-sources =     [SOURCE_TAR_XZ]
-checksums =   ['dcbeb84c9c74bbfdb133d535fe1c7bedc9f2221a8daf3914b984c44c520e9bac']
-
-builddependencies = [ # Create a reproducible build environment.
-    ('buildtools', '%(toolchain_version)s', '', True), # for gperf
-]
-
-dependencies = [
-    ('expat',      local_expat_version),
-    ('util-linux', local_util_version),
-    ('freetype',   local_freetype_version),
-]
-
-configopts = '--disable-docs '
-
-sanity_check_paths = {
-    'files': ['lib/libfontconfig.%s' % x for x in ['la', SHLIB_EXT]] +
-             ['include/fontconfig/%s.h'% x for x in ['fcfreetype', 'fcprivate', 'fontconfig']] +
-             ['bin/fc-%s' % x for x in ['cache', 'cat', 'conflist', 'list', 'match', 'pattern', 'query', 'scan', 'validate']] +
-             [ 'lib/pkgconfig/fontconfig.pc'],
-    'dirs':  []
-}
-
-sanity_check_commands = [
-    'pkg-config --libs fontconfig',
-] + [
-    'fc-%s -V' % x for x in ['cache', 'cat', 'conflist', 'list', 'match', 'pattern', 'query', 'scan', 'validate']
-]
-
-moduleclass = 'vis'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;ConfigureMake&#39;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">local_expat_version</span> <span class="o">=</span>        <span class="s1">&#39;2.4.8&#39;</span>         <span class="c1"># https://github.com/libexpat/libexpat/releases</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">local_util_version</span> <span class="o">=</span>         <span class="s1">&#39;2.38&#39;</span>          <span class="c1"># https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">local_freetype_version</span> <span class="o">=</span>     <span class="s1">&#39;2.12.1&#39;</span>        <span class="c1"># https://download.savannah.gnu.org/releases/freetype/</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">local_fontconfig_version</span> <span class="o">=</span>   <span class="s1">&#39;2.14.0&#39;</span>        <span class="c1"># https://www.freedesktop.org/software/fontconfig/release/</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;fontconfig&#39;</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">version</span> <span class="o">=</span> <span class="n">local_fontconfig_version</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;http://www.freedesktop.org/software/fontconfig&#39;</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="s1">&#39;Description: A library for system-wide font configuration&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="s1">&#39;The module contains a number of command line tools and a shared library&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="p">]</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="s2">Fontconfig is a library designed to provide system-wide font configuration,</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="s2">customization and application access.</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="s2">The module contains a number of command line tools and a shared library.</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeAOCC&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;22.06&#39;</span><span class="p">}</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pic&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;http://www.freedesktop.org/software/fontconfig/release/&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="n">sources</span> <span class="o">=</span>     <span class="p">[</span><span class="n">SOURCE_TAR_XZ</span><span class="p">]</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="n">checksums</span> <span class="o">=</span>   <span class="p">[</span><span class="s1">&#39;dcbeb84c9c74bbfdb133d535fe1c7bedc9f2221a8daf3914b984c44c520e9bac&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span> <span class="c1"># Create a reproducible build environment.</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span> <span class="c1"># for gperf</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="p">]</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="p">(</span><span class="s1">&#39;expat&#39;</span><span class="p">,</span>      <span class="n">local_expat_version</span><span class="p">),</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="p">(</span><span class="s1">&#39;util-linux&#39;</span><span class="p">,</span> <span class="n">local_util_version</span><span class="p">),</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    <span class="p">(</span><span class="s1">&#39;freetype&#39;</span><span class="p">,</span>   <span class="n">local_freetype_version</span><span class="p">),</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="p">]</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="n">configopts</span> <span class="o">=</span> <span class="s1">&#39;--disable-docs &#39;</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;lib/libfontconfig.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;la&#39;</span><span class="p">,</span> <span class="n">SHLIB_EXT</span><span class="p">]]</span> <span class="o">+</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>             <span class="p">[</span><span class="s1">&#39;include/fontconfig/</span><span class="si">%s</span><span class="s1">.h&#39;</span><span class="o">%</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;fcfreetype&#39;</span><span class="p">,</span> <span class="s1">&#39;fcprivate&#39;</span><span class="p">,</span> <span class="s1">&#39;fontconfig&#39;</span><span class="p">]]</span> <span class="o">+</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>             <span class="p">[</span><span class="s1">&#39;bin/fc-</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;cache&#39;</span><span class="p">,</span> <span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="s1">&#39;conflist&#39;</span><span class="p">,</span> <span class="s1">&#39;list&#39;</span><span class="p">,</span> <span class="s1">&#39;match&#39;</span><span class="p">,</span> <span class="s1">&#39;pattern&#39;</span><span class="p">,</span> <span class="s1">&#39;query&#39;</span><span class="p">,</span> <span class="s1">&#39;scan&#39;</span><span class="p">,</span> <span class="s1">&#39;validate&#39;</span><span class="p">]]</span> <span class="o">+</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>             <span class="p">[</span> <span class="s1">&#39;lib/pkgconfig/fontconfig.pc&#39;</span><span class="p">],</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span>  <span class="p">[]</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="p">}</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="n">sanity_check_commands</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>    <span class="s1">&#39;pkg-config --libs fontconfig&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="p">]</span> <span class="o">+</span> <span class="p">[</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="s1">&#39;fc-</span><span class="si">%s</span><span class="s1"> -V&#39;</span> <span class="o">%</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;cache&#39;</span><span class="p">,</span> <span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="s1">&#39;conflist&#39;</span><span class="p">,</span> <span class="s1">&#39;list&#39;</span><span class="p">,</span> <span class="s1">&#39;match&#39;</span><span class="p">,</span> <span class="s1">&#39;pattern&#39;</span><span class="p">,</span> <span class="s1">&#39;query&#39;</span><span class="p">,</span> <span class="s1">&#39;scan&#39;</span><span class="p">,</span> <span class="s1">&#39;validate&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="p">]</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;vis&#39;</span>
+</code></pre></div>
 <p><a href="../">[fontconfig]</a> <a href="../../..">[package list]</a></p>
 
               

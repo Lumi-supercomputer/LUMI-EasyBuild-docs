@@ -999,93 +999,91 @@
 
 <p><a href="../">[OpenFOAM]</a> <a href="../../..">[package list]</a></p>
 <h1 id="openfoam9-cpegnu-2206-openfoam-9-cpegnu-2206eb">OpenFOAM/9-cpeGNU-22.06 (OpenFOAM-9-cpeGNU-22.06.eb)</h1>
-<p>Install with the EasyBuild-user module:</p>
-<pre><code>eb OpenFOAM-9-cpeGNU-22.06.eb -r
-
-</code></pre>
-<p>To access module help after installation and get reminded for which stacks and partitions the module is
+<p>Install with the EasyBuild-user module:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>eb OpenFOAM-9-cpeGNU-22.06.eb -r
+</code></pre></div>
+To access module help after installation and get reminded for which stacks and partitions the module is
 installed, use <code>module spider OpenFOAM/9-cpeGNU-22.06</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># Based on instructions from Esko Järvinen, CSC
-
-easyblock = 'Binary'
-
-name =          'OpenFOAM'
-version =       '9'
-versionprefix = 'OpenFOAM-'
-
-homepage = 'http://www.openfoam.org/'
-
-whatis = [
-    'Description: The OpenFOAM (CFD software) distribution from the OpenFOAM Foundation'
-]
-
-description = &quot;&quot;&quot;
-OpenFOAM is the leading free, open source software for computational fluid dynamics (CFD),
-owned by the OpenFOAM Foundation and distributed exclusively under the General Public Licence (GPL).
-The GPL gives users the freedom to modify and redistribute the software and a guarantee of continued
-free use, within the terms of the licence.
-&quot;&quot;&quot;
-
-usage = &quot;&quot;&quot;
-Initialize the OpenFOAM environment with following command:
-
- source $EBROOTOPENFOAM/etc/bashrc WM_COMPILER=Cray WM_MPLIB=CRAY-MPICH
-
-To run OpenFOAM solvers on compute nodes use srun command:
-
- srun foamSolverName -parallel
-
-in either job script for sbatch or directly within salloc session.
-
-Allrun scripts require some additional tweaking.
-&quot;&quot;&quot;
-
-toolchain =     {'name': 'cpeGNU', 'version': '22.06'}
-toolchainopts = {'cstd': 'c++11'}
-
-sources = [
-    {
-        'download_filename': 'version-%(version)s.tar.gz',
-        'filename':          '%(name)s-%(version)s.tar.gz',
-        'source_urls':       ['https://github.com/OpenFOAM/OpenFOAM-%(version_major)s/archive'],
-    }
-]
-checksums =   ['0c48fb56e2fbb4dd534112811364d3b2dc12106e670a6486b361e4f864b435ee']
-
-patches = [('wmake-rules-linux64Cray.patch',1),]
-
-builddependencies = [
-    ('buildtools', '%(toolchain_version)s', '', True),
-    ('Boost',      '1.79.0', ''),
-]
-
-dependencies = [
-    ('cray-fftw', EXTERNAL_MODULE),
-    ('SCOTCH',    '6.1.3'),
-    ('CGAL',      '4.12.2',        '-OpenFOAM'),
-]
-
-unpack_options = '--strip-components=1'
-extract_sources = 'True'
-buildininstalldir = 'True'
-
-install_cmd  = &quot;./bin/tools/foamConfigurePaths --scotchArchPath ${EBROOTSCOTCH} --projectName %(name)s-%(version_major)s-%(toolchain_name)s-%(toolchain_version)s &quot;
-install_cmd += &quot;&amp;&amp; source etc/bashrc WM_COMPILER=Cray WM_MPLIB=CRAY-MPICH MPICH_DIR=${CRAY_MPICH_PREFIX} &quot;
-install_cmd += &quot;&amp;&amp; ./Allwmake -j 32&quot;
-
-sanity_check_paths = {
-    'files': [],
-    'dirs':  ['platforms/linux64CrayDPInt32Opt/bin', 'platforms/linux64CrayDPInt32Opt/lib'],
-}
-
-modextravars = {
-    'FOAM_BASH': '%(installdir)s/bashrc',
-}
-
-moduleclass = 'cae'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Based on instructions from Esko Järvinen, CSC</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;Binary&#39;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">name</span> <span class="o">=</span>          <span class="s1">&#39;OpenFOAM&#39;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">version</span> <span class="o">=</span>       <span class="s1">&#39;9&#39;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">versionprefix</span> <span class="o">=</span> <span class="s1">&#39;OpenFOAM-&#39;</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;http://www.openfoam.org/&#39;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="s1">&#39;Description: The OpenFOAM (CFD software) distribution from the OpenFOAM Foundation&#39;</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="p">]</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="s2">OpenFOAM is the leading free, open source software for computational fluid dynamics (CFD),</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="s2">owned by the OpenFOAM Foundation and distributed exclusively under the General Public Licence (GPL).</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="s2">The GPL gives users the freedom to modify and redistribute the software and a guarantee of continued</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="s2">free use, within the terms of the licence.</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="n">usage</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="s2">Initialize the OpenFOAM environment with following command:</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="s2"> source $EBROOTOPENFOAM/etc/bashrc WM_COMPILER=Cray WM_MPLIB=CRAY-MPICH</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="s2">To run OpenFOAM solvers on compute nodes use srun command:</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="s2"> srun foamSolverName -parallel</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="s2">in either job script for sbatch or directly within salloc session.</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="s2">Allrun scripts require some additional tweaking.</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="n">toolchain</span> <span class="o">=</span>     <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeGNU&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;22.06&#39;</span><span class="p">}</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;cstd&#39;</span><span class="p">:</span> <span class="s1">&#39;c++11&#39;</span><span class="p">}</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="n">sources</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>    <span class="p">{</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>        <span class="s1">&#39;download_filename&#39;</span><span class="p">:</span> <span class="s1">&#39;version-</span><span class="si">%(version)s</span><span class="s1">.tar.gz&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>        <span class="s1">&#39;filename&#39;</span><span class="p">:</span>          <span class="s1">&#39;</span><span class="si">%(name)s</span><span class="s1">-</span><span class="si">%(version)s</span><span class="s1">.tar.gz&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>        <span class="s1">&#39;source_urls&#39;</span><span class="p">:</span>       <span class="p">[</span><span class="s1">&#39;https://github.com/OpenFOAM/OpenFOAM-</span><span class="si">%(version_major)s</span><span class="s1">/archive&#39;</span><span class="p">],</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>    <span class="p">}</span>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="p">]</span>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="n">checksums</span> <span class="o">=</span>   <span class="p">[</span><span class="s1">&#39;0c48fb56e2fbb4dd534112811364d3b2dc12106e670a6486b361e4f864b435ee&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a><span class="n">patches</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;wmake-rules-linux64Cray.patch&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">),]</span>
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>    <span class="p">(</span><span class="s1">&#39;Boost&#39;</span><span class="p">,</span>      <span class="s1">&#39;1.79.0&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a><span class="p">]</span>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>    <span class="p">(</span><span class="s1">&#39;cray-fftw&#39;</span><span class="p">,</span> <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>    <span class="p">(</span><span class="s1">&#39;SCOTCH&#39;</span><span class="p">,</span>    <span class="s1">&#39;6.1.3&#39;</span><span class="p">),</span>
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>    <span class="p">(</span><span class="s1">&#39;CGAL&#39;</span><span class="p">,</span>      <span class="s1">&#39;4.12.2&#39;</span><span class="p">,</span>        <span class="s1">&#39;-OpenFOAM&#39;</span><span class="p">),</span>
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a><span class="p">]</span>
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a><span class="n">unpack_options</span> <span class="o">=</span> <span class="s1">&#39;--strip-components=1&#39;</span>
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a><span class="n">extract_sources</span> <span class="o">=</span> <span class="s1">&#39;True&#39;</span>
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a><span class="n">buildininstalldir</span> <span class="o">=</span> <span class="s1">&#39;True&#39;</span>
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a><span class="n">install_cmd</span>  <span class="o">=</span> <span class="s2">&quot;./bin/tools/foamConfigurePaths --scotchArchPath $</span><span class="si">{EBROOTSCOTCH}</span><span class="s2"> --projectName </span><span class="si">%(name)s</span><span class="s2">-</span><span class="si">%(version_major)s</span><span class="s2">-</span><span class="si">%(toolchain_name)s</span><span class="s2">-</span><span class="si">%(toolchain_version)s</span><span class="s2"> &quot;</span>
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a><span class="n">install_cmd</span> <span class="o">+=</span> <span class="s2">&quot;&amp;&amp; source etc/bashrc WM_COMPILER=Cray WM_MPLIB=CRAY-MPICH MPICH_DIR=$</span><span class="si">{CRAY_MPICH_PREFIX}</span><span class="s2"> &quot;</span>
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a><span class="n">install_cmd</span> <span class="o">+=</span> <span class="s2">&quot;&amp;&amp; ./Allwmake -j 32&quot;</span>
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>
+<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[],</span>
+<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span>  <span class="p">[</span><span class="s1">&#39;platforms/linux64CrayDPInt32Opt/bin&#39;</span><span class="p">,</span> <span class="s1">&#39;platforms/linux64CrayDPInt32Opt/lib&#39;</span><span class="p">],</span>
+<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a><span class="p">}</span>
+<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>
+<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a><span class="n">modextravars</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>    <span class="s1">&#39;FOAM_BASH&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%(installdir)s</span><span class="s1">/bashrc&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a><span class="p">}</span>
+<a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>
+<a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;cae&#39;</span>
+</code></pre></div>
 <p><a href="../">[OpenFOAM]</a> <a href="../../..">[package list]</a></p>
 
               

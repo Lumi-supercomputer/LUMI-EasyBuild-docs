@@ -1002,97 +1002,96 @@
 <p>To access module help and find out for which stacks and partitions the module is
 installed, use <code>module spider GLib/2.73.0-cpeGNU-22.06</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># Note that GLib is really made to be compiled with GCC and nothing else
-# due to the use of compiler-specific pragma, so you may get warnings
-# about unrecognizded pragmas when compiling with another compiler.
-easyblock = 'MesonNinja'
-
-local_gettext_version =      '0.21'          # https://ftp.gnu.org/pub/gnu/gettext/
-local_libffi_version =       '3.4.2'         # ftp://sourceware.org/pub/libffi/
-local_libiconv_version =     '1.17'          # https://ftp.gnu.org/pub/gnu/libiconv/
-local_libxml2_version =      '2.9.12'        # http://xmlsoft.org/sources/
-local_PCRE_version =         '8.45'          # https://ftp.pcre.org/pub/pcre/
-local_util_version =         '2.38'          # https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/
-
-local_GLib_version =          '2.73.0'       # https://ftp.gnome.org/pub/GNOME/sources/glib/
-
-name =    'GLib'
-version = local_GLib_version
-
-homepage = 'http://www.gtk.org/'
-
-whatis = [
-    'Description: One of the GTK+ base libraries',
-    'The module provides a number of command line utilities and static and shared libraries',
-]
-
-description = &quot;&quot;&quot;
-GLib provides the core application building blocks for libraries and
-applications written in C. It provides the core object system used in GNOME,
-the main loop implementation, and a large set of utility functions for strings
-and common data structures.
-
-The module provides a number of command line utilities and staqtic and shared
-libraries.
-&quot;&quot;&quot;
-
-docurls= [
-    'Web-based documentation: https://developer.gnome.org/glib/',
-]
-
-docpaths = [
-    'share/gtk-doc/html/glib',
-    'share/gtk-doc/html/gobject',
-    'share/gtk-doc/html/gio'
-]
-
-toolchain = {'name': 'cpeGNU', 'version': '22.06'}
-toolchainopts = {'pic': True}
-
-# Check on https://ftp.gnome.org/pub/GNOME/sources/glib/
-source_urls = [FTPGNOME_SOURCE]
-sources =     [SOURCELOWER_TAR_XZ]
-checksums =   ['3673f10515f4bcfb9ee2ce0a921a18fa359c36fab388b19819467e7b09506870']
-
-builddependencies = [
-    # Python is required for building against GLib, at least when
-    # gdbus-codegen or one of the other python scripts are used.
-    # Since Meson 0.50 and later are Python &gt;=3.5 only we can't build
-    # Python specific versions of GLib that uses Python 2.x
-    # thus Python should not be a runtime dependency for GLib.
-    # Packages that use GLib should either have an explicit
-    # (build)dependency on Python or it will use the system version
-    # EasyBuild itself uses.
-    ('buildtools', '%(toolchain_version)s', '', True),
-]
-
-dependencies = [
-    ('libffi',     local_libffi_version),
-    ('gettext',    local_gettext_version),
-    ('libiconv',   local_libiconv_version),
-    ('libxml2',    local_libxml2_version),
-    ('PCRE',       local_PCRE_version),
-    ('util-linux', local_util_version),
-]
-
-# avoid using hardcoded path to Python binary in build step
-preconfigopts = &quot;export PYTHON=python3 &amp;&amp; &quot;
-
-configopts  = &quot;--buildtype=release --default-library=both &quot;
-configopts += &quot;-Diconv=external &quot;
-
-#parallel = 1 # For debugging
-
-postinstallcmds = [&quot;sed -i -e 's|#!.*python[0-9.]*$|#!/usr/bin/env python|' %(installdir)s/bin/*&quot;]
-
-sanity_check_paths = {
-    'files': ['lib/libglib-%(version_major)s.0.a', 'lib/libglib-%%(version_major)s.0.%s' % SHLIB_EXT],
-    'dirs': ['bin', 'include'],
-}
-
-moduleclass = 'vis'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Note that GLib is really made to be compiled with GCC and nothing else</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># due to the use of compiler-specific pragma, so you may get warnings</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># about unrecognizded pragmas when compiling with another compiler.</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;MesonNinja&#39;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">local_gettext_version</span> <span class="o">=</span>      <span class="s1">&#39;0.21&#39;</span>          <span class="c1"># https://ftp.gnu.org/pub/gnu/gettext/</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">local_libffi_version</span> <span class="o">=</span>       <span class="s1">&#39;3.4.2&#39;</span>         <span class="c1"># ftp://sourceware.org/pub/libffi/</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">local_libiconv_version</span> <span class="o">=</span>     <span class="s1">&#39;1.17&#39;</span>          <span class="c1"># https://ftp.gnu.org/pub/gnu/libiconv/</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">local_libxml2_version</span> <span class="o">=</span>      <span class="s1">&#39;2.9.12&#39;</span>        <span class="c1"># http://xmlsoft.org/sources/</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">local_PCRE_version</span> <span class="o">=</span>         <span class="s1">&#39;8.45&#39;</span>          <span class="c1"># https://ftp.pcre.org/pub/pcre/</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">local_util_version</span> <span class="o">=</span>         <span class="s1">&#39;2.38&#39;</span>          <span class="c1"># https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">local_GLib_version</span> <span class="o">=</span>          <span class="s1">&#39;2.73.0&#39;</span>       <span class="c1"># https://ftp.gnome.org/pub/GNOME/sources/glib/</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;GLib&#39;</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="n">version</span> <span class="o">=</span> <span class="n">local_GLib_version</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;http://www.gtk.org/&#39;</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="s1">&#39;Description: One of the GTK+ base libraries&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="s1">&#39;The module provides a number of command line utilities and static and shared libraries&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="p">]</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="s2">GLib provides the core application building blocks for libraries and</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="s2">applications written in C. It provides the core object system used in GNOME,</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="s2">the main loop implementation, and a large set of utility functions for strings</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="s2">and common data structures.</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="s2">The module provides a number of command line utilities and staqtic and shared</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="s2">libraries.</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="n">docurls</span><span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="s1">&#39;Web-based documentation: https://developer.gnome.org/glib/&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="p">]</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="n">docpaths</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="s1">&#39;share/gtk-doc/html/glib&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="s1">&#39;share/gtk-doc/html/gobject&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="s1">&#39;share/gtk-doc/html/gio&#39;</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="p">]</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeGNU&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;22.06&#39;</span><span class="p">}</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pic&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="c1"># Check on https://ftp.gnome.org/pub/GNOME/sources/glib/</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="n">FTPGNOME_SOURCE</span><span class="p">]</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="n">sources</span> <span class="o">=</span>     <span class="p">[</span><span class="n">SOURCELOWER_TAR_XZ</span><span class="p">]</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="n">checksums</span> <span class="o">=</span>   <span class="p">[</span><span class="s1">&#39;3673f10515f4bcfb9ee2ce0a921a18fa359c36fab388b19819467e7b09506870&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="c1"># Python is required for building against GLib, at least when</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="c1"># gdbus-codegen or one of the other python scripts are used.</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="c1"># Since Meson 0.50 and later are Python &gt;=3.5 only we can&#39;t build</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>    <span class="c1"># Python specific versions of GLib that uses Python 2.x</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>    <span class="c1"># thus Python should not be a runtime dependency for GLib.</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    <span class="c1"># Packages that use GLib should either have an explicit</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    <span class="c1"># (build)dependency on Python or it will use the system version</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    <span class="c1"># EasyBuild itself uses.</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="p">]</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>    <span class="p">(</span><span class="s1">&#39;libffi&#39;</span><span class="p">,</span>     <span class="n">local_libffi_version</span><span class="p">),</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>    <span class="p">(</span><span class="s1">&#39;gettext&#39;</span><span class="p">,</span>    <span class="n">local_gettext_version</span><span class="p">),</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>    <span class="p">(</span><span class="s1">&#39;libiconv&#39;</span><span class="p">,</span>   <span class="n">local_libiconv_version</span><span class="p">),</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>    <span class="p">(</span><span class="s1">&#39;libxml2&#39;</span><span class="p">,</span>    <span class="n">local_libxml2_version</span><span class="p">),</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>    <span class="p">(</span><span class="s1">&#39;PCRE&#39;</span><span class="p">,</span>       <span class="n">local_PCRE_version</span><span class="p">),</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>    <span class="p">(</span><span class="s1">&#39;util-linux&#39;</span><span class="p">,</span> <span class="n">local_util_version</span><span class="p">),</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a><span class="p">]</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>
+<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a><span class="c1"># avoid using hardcoded path to Python binary in build step</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a><span class="n">preconfigopts</span> <span class="o">=</span> <span class="s2">&quot;export PYTHON=python3 &amp;&amp; &quot;</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>
+<a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a><span class="n">configopts</span>  <span class="o">=</span> <span class="s2">&quot;--buildtype=release --default-library=both &quot;</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s2">&quot;-Diconv=external &quot;</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>
+<a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a><span class="c1">#parallel = 1 # For debugging</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>
+<a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a><span class="n">postinstallcmds</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sed -i -e &#39;s|#!.*python[0-9.]*$|#!/usr/bin/env python|&#39; </span><span class="si">%(installdir)s</span><span class="s2">/bin/*&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>
+<a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;lib/libglib-</span><span class="si">%(version_major)s</span><span class="s1">.0.a&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/libglib-</span><span class="si">%%</span><span class="s1">(version_major)s.0.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">SHLIB_EXT</span><span class="p">],</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin&#39;</span><span class="p">,</span> <span class="s1">&#39;include&#39;</span><span class="p">],</span>
+<a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a><span class="p">}</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>
+<a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;vis&#39;</span>
+</code></pre></div>
 <p><a href="../">[GLib]</a> <a href="../../..">[package list]</a></p>
 
               

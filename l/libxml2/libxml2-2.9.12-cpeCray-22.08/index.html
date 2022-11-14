@@ -1002,80 +1002,79 @@
 <p>To access module help and find out for which stacks and partitions the module is
 installed, use <code>module spider libxml2/2.9.12-cpeCray-22.08</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># contributed by Luca Marsella (CSCS)
-easyblock = 'ConfigureMake'
-
-local_ICU_version =          '71.1'          # http://site.icu-project.org/home
-local_zlib_version =         '1.2.12'        # https://zlib.net/
-local_XZ_version =           '5.2.5'         # https://tukaani.org/xz/
-local_libxml2_version =      '2.9.12'        # http://xmlsoft.org/sources/
-
-name =    'libxml2'
-version = '2.9.12'
-
-homepage = 'http://xmlsoft.org/'
-
-whatis = [
-    'The XML C parcer and toolkit of Gnome, but usable outside of the Gnome platform also',
-    'This module provides command line tools and static and shared libraries',
-]
-
-description = &quot;&quot;&quot;
-Libxml2 is the XML C parser and toolkit developed for the Gnome project (but
-usable outside of the Gnome platform), it is free software available under the
-MIT License. XML itself is a metalanguage to design markup languages, i.e. text
-language where semantic and structure are added to the content using extra
-&quot;markup&quot; information enclosed between angle brackets. HTML is the most
-well-known markup language. Though the library is written in C a variety of
-language bindings make it available in other environments.
-
-This module provides command line tools and static and shared libraries.
-&quot;&quot;&quot;
-
-usage = &quot;&quot;&quot;
-The module provides a number of command line tools
-+ xmlcatalog: Parse and manipulate XML or SGML catalog files
-+ xmllint:    Comand-line XML parser
-+ xml-config: Provides information about the installed version of the library
-xmlcatalog and xmllint also support --help
-
-The library API is documented on the libxml website.
-&quot;&quot;&quot;
-
-docurls = [
-    'Web-based documentation: http://xmlsoft.org/html/index.html',
-    'Man pages for the command line tools and libxml',
-]
-
-toolchain = {'name': 'cpeCray', 'version': '22.08'}
-toolchainopts = {'pic': True}
-
-source_urls = ['http://xmlsoft.org/sources/']
-sources =     [SOURCELOWER_TAR_GZ]
-
-dependencies = [
-    ('ICU',  local_ICU_version),
-    ('zlib', local_zlib_version),
-    ('XZ',   local_XZ_version),
-]
-
-configopts = 'CC=&quot;$CC&quot; CXX=&quot;$CXX&quot; --with-pic --without-python --with-zlib --with-lzma --with-icu'
-
-sanity_check_paths = {
-    'files': [('lib/%(name)s.a', 'lib64/%(name)s.a'), ('lib/%(name)s.so', 'lib64/%(name)s.so')],
-    'dirs':  ['bin', 'include/%(name)s/libxml'],
-}
-
-sanity_check_commands = [
-    'xmlcatalog -v',
-    'xmllint --version',
-    'xml2-config --help',
-    'pkg-config --libs libxml-2.0',
-]
-
-moduleclass = 'lib'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># contributed by Luca Marsella (CSCS)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;ConfigureMake&#39;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">local_ICU_version</span> <span class="o">=</span>          <span class="s1">&#39;71.1&#39;</span>          <span class="c1"># http://site.icu-project.org/home</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">local_zlib_version</span> <span class="o">=</span>         <span class="s1">&#39;1.2.12&#39;</span>        <span class="c1"># https://zlib.net/</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">local_XZ_version</span> <span class="o">=</span>           <span class="s1">&#39;5.2.5&#39;</span>         <span class="c1"># https://tukaani.org/xz/</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">local_libxml2_version</span> <span class="o">=</span>      <span class="s1">&#39;2.9.12&#39;</span>        <span class="c1"># http://xmlsoft.org/sources/</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;libxml2&#39;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;2.9.12&#39;</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;http://xmlsoft.org/&#39;</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="s1">&#39;The XML C parcer and toolkit of Gnome, but usable outside of the Gnome platform also&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="s1">&#39;This module provides command line tools and static and shared libraries&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="p">]</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="s2">Libxml2 is the XML C parser and toolkit developed for the Gnome project (but</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="s2">usable outside of the Gnome platform), it is free software available under the</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="s2">MIT License. XML itself is a metalanguage to design markup languages, i.e. text</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="s2">language where semantic and structure are added to the content using extra</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="s2">&quot;markup&quot; information enclosed between angle brackets. HTML is the most</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="s2">well-known markup language. Though the library is written in C a variety of</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="s2">language bindings make it available in other environments.</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="s2">This module provides command line tools and static and shared libraries.</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="n">usage</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="s2">The module provides a number of command line tools</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="s2">+ xmlcatalog: Parse and manipulate XML or SGML catalog files</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="s2">+ xmllint:    Comand-line XML parser</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="s2">+ xml-config: Provides information about the installed version of the library</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="s2">xmlcatalog and xmllint also support --help</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="s2">The library API is documented on the libxml website.</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="n">docurls</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="s1">&#39;Web-based documentation: http://xmlsoft.org/html/index.html&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="s1">&#39;Man pages for the command line tools and libxml&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="p">]</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeCray&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;22.08&#39;</span><span class="p">}</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pic&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;http://xmlsoft.org/sources/&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="n">sources</span> <span class="o">=</span>     <span class="p">[</span><span class="n">SOURCELOWER_TAR_GZ</span><span class="p">]</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>    <span class="p">(</span><span class="s1">&#39;ICU&#39;</span><span class="p">,</span>  <span class="n">local_ICU_version</span><span class="p">),</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="p">(</span><span class="s1">&#39;zlib&#39;</span><span class="p">,</span> <span class="n">local_zlib_version</span><span class="p">),</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="p">(</span><span class="s1">&#39;XZ&#39;</span><span class="p">,</span>   <span class="n">local_XZ_version</span><span class="p">),</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="p">]</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="n">configopts</span> <span class="o">=</span> <span class="s1">&#39;CC=&quot;$CC&quot; CXX=&quot;$CXX&quot; --with-pic --without-python --with-zlib --with-lzma --with-icu&#39;</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="s1">&#39;lib/</span><span class="si">%(name)s</span><span class="s1">.a&#39;</span><span class="p">,</span> <span class="s1">&#39;lib64/</span><span class="si">%(name)s</span><span class="s1">.a&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;lib/</span><span class="si">%(name)s</span><span class="s1">.so&#39;</span><span class="p">,</span> <span class="s1">&#39;lib64/</span><span class="si">%(name)s</span><span class="s1">.so&#39;</span><span class="p">)],</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span>  <span class="p">[</span><span class="s1">&#39;bin&#39;</span><span class="p">,</span> <span class="s1">&#39;include/</span><span class="si">%(name)s</span><span class="s1">/libxml&#39;</span><span class="p">],</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="p">}</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a><span class="n">sanity_check_commands</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>    <span class="s1">&#39;xmlcatalog -v&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>    <span class="s1">&#39;xmllint --version&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>    <span class="s1">&#39;xml2-config --help&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>    <span class="s1">&#39;pkg-config --libs libxml-2.0&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a><span class="p">]</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>
+<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;lib&#39;</span>
+</code></pre></div>
 <p><a href="../">[libxml2]</a> <a href="../../..">[package list]</a></p>
 
               

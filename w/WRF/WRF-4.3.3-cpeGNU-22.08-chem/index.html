@@ -999,110 +999,109 @@
 
 <p><a href="../">[WRF]</a> <a href="../../..">[package list]</a></p>
 <h1 id="wrf433-cpegnu-2208-chem-wrf-433-cpegnu-2208-chemeb">WRF/4.3.3-cpeGNU-22.08-chem (WRF-4.3.3-cpeGNU-22.08-chem.eb)</h1>
-<p>Install with the EasyBuild-user module:</p>
-<pre><code>eb WRF-4.3.3-cpeGNU-22.08-chem.eb -r
-
-</code></pre>
-<p>To access module help after installation and get reminded for which stacks and partitions the module is
+<p>Install with the EasyBuild-user module:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>eb WRF-4.3.3-cpeGNU-22.08-chem.eb -r
+</code></pre></div>
+To access module help after installation and get reminded for which stacks and partitions the module is
 installed, use <code>module spider WRF/4.3.3-cpeGNU-22.08-chem</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># Created by Orian Louant for the LUMI consortium
-
-easyblock = 'CmdCp'
-
-name          = 'WRF'
-version       = '4.3.3'
-versionsuffix = '-chem'
-
-local_Perl_version = '5.36.0'
-
-local_configuration  = [
-    ('WRF_EM_CORE',                  '1'),
-    ('WRF_CHEM',                     '1'),
-    ('WRF_KPP',                      '1'),
-    ('WRFIO_NCD_LARGE_FILE_SUPPORT', '1'),
-    ('NETCDF',                       '${NETCDF_DIR}'),
-    ('FLEX_LIB_DIR',                 '$EBROOTFLEX/lib'),
-    ('YACC_PATH',                    '$EBROOTBYACC/bin'),
-    ('HDF5',                         '$CRAY_HDF5_PREFIX'),
-]
-
-local_compile_targets = [
-    'em_real',
-    'emi_conv',
-]
-
-homepage = 'https://www2.acom.ucar.edu/wrf-chem'
-
-whatis = [
-    'Description: WRF-Chem is the Weather Research and Forecasting (WRF) model coupled with Chemistry.'
-]
-
-description = &quot;&quot;&quot;
-WRF-Chem is the Weather Research and Forecasting (WRF) model coupled with
-Chemistry. The model simulates the emission, transport, mixing, and chemical
-transformation of trace gases and aerosols simultaneously with the meteorology.
-The model is used for investigation of regional-scale air quality, field program
-analysis, and cloud-scale interactions between clouds and chemistry.
-&quot;&quot;&quot;
-
-toolchain = {'name': 'cpeGNU', 'version': '22.08'}
-
-source_urls = ['https://github.com/wrf-model/WRF/archive/']
-sources = ['v%(version)s.tar.gz']
-
-checksums = ['1b98b8673513f95716c7fc54e950dfebdb582516e22758cd94bc442bccfc0b86']
-
-builddependencies = [
-    ('buildtools', '%(toolchain_version)s', '', True),
-    ('Perl',       local_Perl_version),
-]
-
-dependencies = [
-    ('cray-hdf5',   EXTERNAL_MODULE),
-    ('cray-netcdf', EXTERNAL_MODULE),
-]
-
-unpack_options    = '--strip-components=1'
-buildininstalldir = True
-
-local_configure_cmds = &quot;&quot;&quot;./configure &lt;&lt;'EOF'
-34
-1
-EOF
-sed -i s/gcc/cc/ configure.wrf &amp;&amp; \
-sed -i s/mpicc/cc/ configure.wrf &amp;&amp; \
-sed -i s/gfortran/ftn/ configure.wrf &amp;&amp; \
-sed -i s/mpif90/ftn/ configure.wrf &amp;&amp; \
-sed -i 's/-ll //' chem/KPP/kpp/kpp-2.1/src/Makefile &amp;&amp; \
-sed -i 's/#  YACC=/YACC=${YACC_PATH}\//' chem/KPP/configure_kpp&quot;&quot;&quot;
-
-local_preconfigure_cmds = ' &amp;&amp; '.join(['export ' + x[0] + '=' + x[1] for x in local_configuration])
-local_build_cmds        = ' &amp;&amp; '.join(['./compile %s' % x for x in local_compile_targets])
-
-cmds_map = [
-    ('v%(version)s.tar.gz', 
-     ' &amp;&amp; '.join([
-        local_preconfigure_cmds,
-        local_configure_cmds,
-        local_build_cmds
-    ])),
-]
-
-files_to_copy = None
-
-sanity_check_paths = {
-    'files': ['main/%s' % x for x in ['wrf.exe', 'ndown.exe', 'tc.exe', 'real.exe', 'libwrflib.a']],
-    'dirs':  ['main']
-}
-
-modextrapaths = {
-    'PATH'            : 'main',
-    'LD_LIBRARY_PATH' : 'main',
-}
-
-moduleclass = 'chem'
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Created by Orian Louant for the LUMI consortium</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;CmdCp&#39;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">name</span>          <span class="o">=</span> <span class="s1">&#39;WRF&#39;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">version</span>       <span class="o">=</span> <span class="s1">&#39;4.3.3&#39;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">versionsuffix</span> <span class="o">=</span> <span class="s1">&#39;-chem&#39;</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">local_Perl_version</span> <span class="o">=</span> <span class="s1">&#39;5.36.0&#39;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="n">local_configuration</span>  <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="p">(</span><span class="s1">&#39;WRF_EM_CORE&#39;</span><span class="p">,</span>                  <span class="s1">&#39;1&#39;</span><span class="p">),</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="p">(</span><span class="s1">&#39;WRF_CHEM&#39;</span><span class="p">,</span>                     <span class="s1">&#39;1&#39;</span><span class="p">),</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="p">(</span><span class="s1">&#39;WRF_KPP&#39;</span><span class="p">,</span>                      <span class="s1">&#39;1&#39;</span><span class="p">),</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="p">(</span><span class="s1">&#39;WRFIO_NCD_LARGE_FILE_SUPPORT&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">),</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    <span class="p">(</span><span class="s1">&#39;NETCDF&#39;</span><span class="p">,</span>                       <span class="s1">&#39;$</span><span class="si">{NETCDF_DIR}</span><span class="s1">&#39;</span><span class="p">),</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    <span class="p">(</span><span class="s1">&#39;FLEX_LIB_DIR&#39;</span><span class="p">,</span>                 <span class="s1">&#39;$EBROOTFLEX/lib&#39;</span><span class="p">),</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    <span class="p">(</span><span class="s1">&#39;YACC_PATH&#39;</span><span class="p">,</span>                    <span class="s1">&#39;$EBROOTBYACC/bin&#39;</span><span class="p">),</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    <span class="p">(</span><span class="s1">&#39;HDF5&#39;</span><span class="p">,</span>                         <span class="s1">&#39;$CRAY_HDF5_PREFIX&#39;</span><span class="p">),</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="p">]</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="n">local_compile_targets</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>    <span class="s1">&#39;em_real&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>    <span class="s1">&#39;emi_conv&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="p">]</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://www2.acom.ucar.edu/wrf-chem&#39;</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>    <span class="s1">&#39;Description: WRF-Chem is the Weather Research and Forecasting (WRF) model coupled with Chemistry.&#39;</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="p">]</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="s2">WRF-Chem is the Weather Research and Forecasting (WRF) model coupled with</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="s2">Chemistry. The model simulates the emission, transport, mixing, and chemical</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="s2">transformation of trace gases and aerosols simultaneously with the meteorology.</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="s2">The model is used for investigation of regional-scale air quality, field program</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="s2">analysis, and cloud-scale interactions between clouds and chemistry.</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeGNU&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;22.08&#39;</span><span class="p">}</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://github.com/wrf-model/WRF/archive/&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;v</span><span class="si">%(version)s</span><span class="s1">.tar.gz&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="n">checksums</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;1b98b8673513f95716c7fc54e950dfebdb582516e22758cd94bc442bccfc0b86&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>    <span class="p">(</span><span class="s1">&#39;Perl&#39;</span><span class="p">,</span>       <span class="n">local_Perl_version</span><span class="p">),</span>
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a><span class="p">]</span>
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>    <span class="p">(</span><span class="s1">&#39;cray-hdf5&#39;</span><span class="p">,</span>   <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>    <span class="p">(</span><span class="s1">&#39;cray-netcdf&#39;</span><span class="p">,</span> <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a><span class="p">]</span>
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a><span class="n">unpack_options</span>    <span class="o">=</span> <span class="s1">&#39;--strip-components=1&#39;</span>
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a><span class="n">buildininstalldir</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a><span class="n">local_configure_cmds</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;./configure &lt;&lt;&#39;EOF&#39;</span>
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a><span class="s2">34</span>
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a><span class="s2">1</span>
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a><span class="s2">EOF</span>
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a><span class="s2">sed -i s/gcc/cc/ configure.wrf &amp;&amp; </span><span class="se">\</span>
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a><span class="s2">sed -i s/mpicc/cc/ configure.wrf &amp;&amp; </span><span class="se">\</span>
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a><span class="s2">sed -i s/gfortran/ftn/ configure.wrf &amp;&amp; </span><span class="se">\</span>
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a><span class="s2">sed -i s/mpif90/ftn/ configure.wrf &amp;&amp; </span><span class="se">\</span>
+<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a><span class="s2">sed -i &#39;s/-ll //&#39; chem/KPP/kpp/kpp-2.1/src/Makefile &amp;&amp; </span><span class="se">\</span>
+<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a><span class="s2">sed -i &#39;s/#  YACC=/YACC=$</span><span class="si">{YACC_PATH}</span><span class="s2">\//&#39; chem/KPP/configure_kpp&quot;&quot;&quot;</span>
+<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>
+<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a><span class="n">local_preconfigure_cmds</span> <span class="o">=</span> <span class="s1">&#39; &amp;&amp; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;export &#39;</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;=&#39;</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">local_configuration</span><span class="p">])</span>
+<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a><span class="n">local_build_cmds</span>        <span class="o">=</span> <span class="s1">&#39; &amp;&amp; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;./compile </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">local_compile_targets</span><span class="p">])</span>
+<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>
+<a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a><span class="n">cmds_map</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>    <span class="p">(</span><span class="s1">&#39;v</span><span class="si">%(version)s</span><span class="s1">.tar.gz&#39;</span><span class="p">,</span> 
+<a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>     <span class="s1">&#39; &amp;&amp; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span>
+<a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>        <span class="n">local_preconfigure_cmds</span><span class="p">,</span>
+<a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a>        <span class="n">local_configure_cmds</span><span class="p">,</span>
+<a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a>        <span class="n">local_build_cmds</span>
+<a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a>    <span class="p">])),</span>
+<a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a><span class="p">]</span>
+<a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a>
+<a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a><span class="n">files_to_copy</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a>
+<a id="__codelineno-1-86" name="__codelineno-1-86" href="#__codelineno-1-86"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;main/</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;wrf.exe&#39;</span><span class="p">,</span> <span class="s1">&#39;ndown.exe&#39;</span><span class="p">,</span> <span class="s1">&#39;tc.exe&#39;</span><span class="p">,</span> <span class="s1">&#39;real.exe&#39;</span><span class="p">,</span> <span class="s1">&#39;libwrflib.a&#39;</span><span class="p">]],</span>
+<a id="__codelineno-1-88" name="__codelineno-1-88" href="#__codelineno-1-88"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span>  <span class="p">[</span><span class="s1">&#39;main&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-89" name="__codelineno-1-89" href="#__codelineno-1-89"></a><span class="p">}</span>
+<a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a>
+<a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a><span class="n">modextrapaths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a>    <span class="s1">&#39;PATH&#39;</span>            <span class="p">:</span> <span class="s1">&#39;main&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a>    <span class="s1">&#39;LD_LIBRARY_PATH&#39;</span> <span class="p">:</span> <span class="s1">&#39;main&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-94" name="__codelineno-1-94" href="#__codelineno-1-94"></a><span class="p">}</span>
+<a id="__codelineno-1-95" name="__codelineno-1-95" href="#__codelineno-1-95"></a>
+<a id="__codelineno-1-96" name="__codelineno-1-96" href="#__codelineno-1-96"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;chem&#39;</span>
+</code></pre></div>
 <p><a href="../">[WRF]</a> <a href="../../..">[package list]</a></p>
 
               

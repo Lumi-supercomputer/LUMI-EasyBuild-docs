@@ -1002,69 +1002,68 @@
 <p>To access module help and find out for which stacks and partitions the module is
 installed, use <code>module spider libgd/2.3.3-cpeCray-21.08</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python">easyblock = 'ConfigureMake'
-
-local_fontconfig_version =   '2.13.94'       # https://www.freedesktop.org/software/fontconfig/release/
-local_libjpegturbo_version = '2.1.0'         # https://github.com/libjpeg-turbo/libjpeg-turbo/releases
-local_libpng_version =       '1.6.37'        # http://www.libpng.org/pub/png/libpng.html
-local_zlib_version =         '1.2.11'        # https://zlib.net/
-
-local_libgd_version =        '2.3.3'         # http://www.libgd.org/
-
-name =    'libgd'
-version = local_libgd_version
-
-homepage = 'http://www.libgd.org/'
-
-whatis = [
-    'Description: GD, a library for the dynamic creation of images',
-    'This module provides a number of command line tools and static and shared libraries',
-]
-
-description = &quot;&quot;&quot;
-GD is an open source code library for the dynamic creation of images by
-programmers. GD is written in C, and &quot;wrappers&quot; are available for Perl, PHP and
-other languages. GD creates PNG, JPEG, GIF, WebP, XPM, BMP images, among other
-formats. GD is commonly used to generate charts, graphics, thumbnails, and most
-anything else, on the fly. While not restricted to use on the web, the most
-common applications of GD involve website development.
-
-This module provides a number of command line tools and static and shared libraries.
-&quot;&quot;&quot;
-
-docurls = [
-    &quot;Web-based documentation: https://libgd.github.io/manuals/%(version)s/files/preamble-txt.html&quot;,
-]
-
-toolchain = {'name': 'cpeCray', 'version': '21.08'}
-toolchainopts = {'pic': True}
-
-source_urls = ['https://github.com/libgd/libgd/releases/download/gd-%(version)s/']
-sources =     [SOURCELOWER_TAR_GZ]
-checksums =   ['dd3f1f0bb016edcc0b2d082e8229c822ad1d02223511997c80461481759b1ed2']
-
-builddependencies = [
-    ('buildtools', '%(toolchain_version)s', '', True), # For ninja, meson, pkg-config and for help2man to generate the man page.
-]
-
-dependencies = [
-    ('fontconfig',    local_fontconfig_version),
-    ('libjpeg-turbo', local_libjpegturbo_version),
-    ('libpng',        local_libpng_version),
-    ('zlib',          local_zlib_version),
-]
-
-configopts = &quot;--with-fontconfig=$EBROOTFONTCONFIG --with-jpeg=$EBROOTLIBJPEGMINTURBO &quot;
-configopts += &quot;--with-png=$EBROOTLIBPNG --with-zlib=$EBROOTZLIB&quot;
-
-sanity_check_paths = {
-    'files': [&quot;lib/libgd.a&quot;, &quot;lib/libgd.%s&quot; % SHLIB_EXT],
-    'dirs':  [&quot;bin&quot;, &quot;include&quot;],
-}
-
-moduleclass = 'lib'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;ConfigureMake&#39;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">local_fontconfig_version</span> <span class="o">=</span>   <span class="s1">&#39;2.13.94&#39;</span>       <span class="c1"># https://www.freedesktop.org/software/fontconfig/release/</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">local_libjpegturbo_version</span> <span class="o">=</span> <span class="s1">&#39;2.1.0&#39;</span>         <span class="c1"># https://github.com/libjpeg-turbo/libjpeg-turbo/releases</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">local_libpng_version</span> <span class="o">=</span>       <span class="s1">&#39;1.6.37&#39;</span>        <span class="c1"># http://www.libpng.org/pub/png/libpng.html</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">local_zlib_version</span> <span class="o">=</span>         <span class="s1">&#39;1.2.11&#39;</span>        <span class="c1"># https://zlib.net/</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">local_libgd_version</span> <span class="o">=</span>        <span class="s1">&#39;2.3.3&#39;</span>         <span class="c1"># http://www.libgd.org/</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;libgd&#39;</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">version</span> <span class="o">=</span> <span class="n">local_libgd_version</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;http://www.libgd.org/&#39;</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="s1">&#39;Description: GD, a library for the dynamic creation of images&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="s1">&#39;This module provides a number of command line tools and static and shared libraries&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="p">]</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="s2">GD is an open source code library for the dynamic creation of images by</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="s2">programmers. GD is written in C, and &quot;wrappers&quot; are available for Perl, PHP and</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="s2">other languages. GD creates PNG, JPEG, GIF, WebP, XPM, BMP images, among other</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="s2">formats. GD is commonly used to generate charts, graphics, thumbnails, and most</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="s2">anything else, on the fly. While not restricted to use on the web, the most</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="s2">common applications of GD involve website development.</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="s2">This module provides a number of command line tools and static and shared libraries.</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="n">docurls</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    <span class="s2">&quot;Web-based documentation: https://libgd.github.io/manuals/</span><span class="si">%(version)s</span><span class="s2">/files/preamble-txt.html&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="p">]</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeCray&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;21.08&#39;</span><span class="p">}</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pic&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://github.com/libgd/libgd/releases/download/gd-</span><span class="si">%(version)s</span><span class="s1">/&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="n">sources</span> <span class="o">=</span>     <span class="p">[</span><span class="n">SOURCELOWER_TAR_GZ</span><span class="p">]</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="n">checksums</span> <span class="o">=</span>   <span class="p">[</span><span class="s1">&#39;dd3f1f0bb016edcc0b2d082e8229c822ad1d02223511997c80461481759b1ed2&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span> <span class="c1"># For ninja, meson, pkg-config and for help2man to generate the man page.</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="p">]</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>    <span class="p">(</span><span class="s1">&#39;fontconfig&#39;</span><span class="p">,</span>    <span class="n">local_fontconfig_version</span><span class="p">),</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>    <span class="p">(</span><span class="s1">&#39;libjpeg-turbo&#39;</span><span class="p">,</span> <span class="n">local_libjpegturbo_version</span><span class="p">),</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>    <span class="p">(</span><span class="s1">&#39;libpng&#39;</span><span class="p">,</span>        <span class="n">local_libpng_version</span><span class="p">),</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>    <span class="p">(</span><span class="s1">&#39;zlib&#39;</span><span class="p">,</span>          <span class="n">local_zlib_version</span><span class="p">),</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="p">]</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="n">configopts</span> <span class="o">=</span> <span class="s2">&quot;--with-fontconfig=$EBROOTFONTCONFIG --with-jpeg=$EBROOTLIBJPEGMINTURBO &quot;</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s2">&quot;--with-png=$EBROOTLIBPNG --with-zlib=$EBROOTZLIB&quot;</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;lib/libgd.a&quot;</span><span class="p">,</span> <span class="s2">&quot;lib/libgd.</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">SHLIB_EXT</span><span class="p">],</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span>  <span class="p">[</span><span class="s2">&quot;bin&quot;</span><span class="p">,</span> <span class="s2">&quot;include&quot;</span><span class="p">],</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="p">}</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;lib&#39;</span>
+</code></pre></div>
 <p><a href="../">[libgd]</a> <a href="../../..">[package list]</a></p>
 
               

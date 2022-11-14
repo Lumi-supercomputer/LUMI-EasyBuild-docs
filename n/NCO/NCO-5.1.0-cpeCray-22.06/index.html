@@ -999,111 +999,109 @@
 
 <p><a href="../">[NCO]</a> <a href="../../..">[package list]</a></p>
 <h1 id="nco510-cpecray-2206-nco-510-cpecray-2206eb">NCO/5.1.0-cpeCray-22.06 (NCO-5.1.0-cpeCray-22.06.eb)</h1>
-<p>Install with the EasyBuild-user module:</p>
-<pre><code>eb NCO-5.1.0-cpeCray-22.06.eb -r
-
-</code></pre>
-<p>To access module help after installation and get reminded for which stacks and partitions the module is
+<p>Install with the EasyBuild-user module:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>eb NCO-5.1.0-cpeCray-22.06.eb -r
+</code></pre></div>
+To access module help after installation and get reminded for which stacks and partitions the module is
 installed, use <code>module spider NCO/5.1.0-cpeCray-22.06</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># contributed by Luca Marsella (CSCS), updated by Samuel Omlin (CSCS)
-# Adapted by Kurt Lust (kurt.lust@uantwerpen.be) for the LUMI consortium
-easyblock = 'ConfigureMake'
-
-local_GSL_version =          '2.7.1'         # https://ftp.gnu.org/gnu/gsl/
-local_JasPer_version =       '3.0.4'         # https://github.com/jasper-software/jasper/releases
-local_UDUNITS_version =      '2.2.28'        # ftp://ftp.unidata.ucar.edu/pub/udunits
-
-name =    'NCO'
-version = '5.1.0'
-
-homepage = 'http://nco.sourceforge.net/'
-
-whatis = [
-    &quot;Description: The NCO toolkit manipulates and analyzes data stored in netCDF-accessible formats, including DAP, HDF4, and HDF5.&quot;
-]
-
-description = &quot;&quot;&quot;
-The NCO toolkit manipulates and analyzes data stored in netCDF-accessible
-formats, including DAP, HDF4, and HDF5.
-
-This version was build with cray-libsci unloaded as it causes crashes in
-the tests. If work with NCO depends heavily on an optimized BLAS, it may
-be very inefficient in this module.
-&quot;&quot;&quot;
-
-docurls = [
-    'Manual pages for the commands in section 1'
-    'Support for the info command: info nco',
-]
-
-toolchain = {'name': 'cpeCray', 'version': '22.06'}
-toolchainopts = {'opt': True, 'pic': True}
-
-# https://github.com/nco/nco/archive/refs/tags/5.0.6.tar.gz
-sources = [
-    {
-        'download_filename': '%(version)s.tar.gz',
-        'filename':          SOURCELOWER_TAR_GZ,
-        'source_urls':       ['https://github.com/nco/nco/archive/']
-    }
-]
-#source_urls = ['https://github.com/nco/nco/archive/']
-#sources = ['%(version)s.tar.gz']
-#patches = ['NCO-%(version)s_fix_build_of_cxx_interface.patch']
-checksums = [
-    '6f0ba812e0684881a85ebf3385117761cffbba36ba842889cc96f111157f89c2',  # nco-5.0.6.tar.gz
-]
-
-builddependencies = [ # Create a reproducible build environment.
-    ('buildtools',   '%(toolchain_version)s',   '', True),
-]
-
-dependencies = [
-    # Cray packages
-    ('cray-hdf5',   EXTERNAL_MODULE),
-    ('cray-netcdf', EXTERNAL_MODULE),
-    # LUMI software stack
-    ('GSL',         local_GSL_version,    '-OpenMP'), # NCO by default compiles with OpenMP enabled.
-    ('JasPer',      local_JasPer_version),
-    ('UDUNITS',     local_UDUNITS_version),             # Also pulls in expat
-    # Contributed dependencies
-    ('ANTLR',       '2.7.7',               '-python3'), # It really requires this antique version!
-    ('libdap',      '3.20.10'),
-]
-
-preconfigopts = 'module unload cray-libsci ; '
-# Configure will complain that it cannot find the udunits2.xml file. However, it only checks in
-# some fixed locations and not in the the path pointed to by UDUNITS2_XML_PATH.
-configopts = &quot;--disable-udunits --enable-udunits2 &quot;
-# If that doesn't work, uncomment the next line instead
-# configopts = &quot;--enable-udunits --disable-udunits2 &quot;
-
-prebuildopts = 'module unload cray-libsci ; '
-
-sanity_check_paths = {
-    'files': ['bin/ncbo'],
-    'dirs':  [],
-}
-
-sanity_check_commands = [
-    'ncap2 --version',
-    'ncatted --version',
-    'ncbo --version',
-    'ncclimo --version',
-    'ncecat --version',
-    'ncflint --version',
-    'ncks --version',
-    'ncpdq --version',
-    'ncra --version',
-    'ncremap --version',
-    'ncrename --version',
-    'ncwa --version',
-]
-
-moduleclass = 'data'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># contributed by Luca Marsella (CSCS), updated by Samuel Omlin (CSCS)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># Adapted by Kurt Lust (kurt.lust@uantwerpen.be) for the LUMI consortium</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;ConfigureMake&#39;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">local_GSL_version</span> <span class="o">=</span>          <span class="s1">&#39;2.7.1&#39;</span>         <span class="c1"># https://ftp.gnu.org/gnu/gsl/</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">local_JasPer_version</span> <span class="o">=</span>       <span class="s1">&#39;3.0.4&#39;</span>         <span class="c1"># https://github.com/jasper-software/jasper/releases</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">local_UDUNITS_version</span> <span class="o">=</span>      <span class="s1">&#39;2.2.28&#39;</span>        <span class="c1"># ftp://ftp.unidata.ucar.edu/pub/udunits</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;NCO&#39;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;5.1.0&#39;</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;http://nco.sourceforge.net/&#39;</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="s2">&quot;Description: The NCO toolkit manipulates and analyzes data stored in netCDF-accessible formats, including DAP, HDF4, and HDF5.&quot;</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="p">]</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="s2">The NCO toolkit manipulates and analyzes data stored in netCDF-accessible</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="s2">formats, including DAP, HDF4, and HDF5.</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="s2">This version was build with cray-libsci unloaded as it causes crashes in</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="s2">the tests. If work with NCO depends heavily on an optimized BLAS, it may</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="s2">be very inefficient in this module.</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="n">docurls</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>    <span class="s1">&#39;Manual pages for the commands in section 1&#39;</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>    <span class="s1">&#39;Support for the info command: info nco&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="p">]</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeCray&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;22.06&#39;</span><span class="p">}</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;opt&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;pic&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="c1"># https://github.com/nco/nco/archive/refs/tags/5.0.6.tar.gz</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="n">sources</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>    <span class="p">{</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>        <span class="s1">&#39;download_filename&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%(version)s</span><span class="s1">.tar.gz&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>        <span class="s1">&#39;filename&#39;</span><span class="p">:</span>          <span class="n">SOURCELOWER_TAR_GZ</span><span class="p">,</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>        <span class="s1">&#39;source_urls&#39;</span><span class="p">:</span>       <span class="p">[</span><span class="s1">&#39;https://github.com/nco/nco/archive/&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>    <span class="p">}</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="p">]</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="c1">#source_urls = [&#39;https://github.com/nco/nco/archive/&#39;]</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="c1">#sources = [&#39;%(version)s.tar.gz&#39;]</span>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="c1">#patches = [&#39;NCO-%(version)s_fix_build_of_cxx_interface.patch&#39;]</span>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="n">checksums</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>    <span class="s1">&#39;6f0ba812e0684881a85ebf3385117761cffbba36ba842889cc96f111157f89c2&#39;</span><span class="p">,</span>  <span class="c1"># nco-5.0.6.tar.gz</span>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a><span class="p">]</span>
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span> <span class="c1"># Create a reproducible build environment.</span>
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span>   <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span>   <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a><span class="p">]</span>
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>    <span class="c1"># Cray packages</span>
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>    <span class="p">(</span><span class="s1">&#39;cray-hdf5&#39;</span><span class="p">,</span>   <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>    <span class="p">(</span><span class="s1">&#39;cray-netcdf&#39;</span><span class="p">,</span> <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>    <span class="c1"># LUMI software stack</span>
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>    <span class="p">(</span><span class="s1">&#39;GSL&#39;</span><span class="p">,</span>         <span class="n">local_GSL_version</span><span class="p">,</span>    <span class="s1">&#39;-OpenMP&#39;</span><span class="p">),</span> <span class="c1"># NCO by default compiles with OpenMP enabled.</span>
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>    <span class="p">(</span><span class="s1">&#39;JasPer&#39;</span><span class="p">,</span>      <span class="n">local_JasPer_version</span><span class="p">),</span>
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>    <span class="p">(</span><span class="s1">&#39;UDUNITS&#39;</span><span class="p">,</span>     <span class="n">local_UDUNITS_version</span><span class="p">),</span>             <span class="c1"># Also pulls in expat</span>
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>    <span class="c1"># Contributed dependencies</span>
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>    <span class="p">(</span><span class="s1">&#39;ANTLR&#39;</span><span class="p">,</span>       <span class="s1">&#39;2.7.7&#39;</span><span class="p">,</span>               <span class="s1">&#39;-python3&#39;</span><span class="p">),</span> <span class="c1"># It really requires this antique version!</span>
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>    <span class="p">(</span><span class="s1">&#39;libdap&#39;</span><span class="p">,</span>      <span class="s1">&#39;3.20.10&#39;</span><span class="p">),</span>
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a><span class="p">]</span>
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a><span class="n">preconfigopts</span> <span class="o">=</span> <span class="s1">&#39;module unload cray-libsci ; &#39;</span>
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a><span class="c1"># Configure will complain that it cannot find the udunits2.xml file. However, it only checks in</span>
+<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a><span class="c1"># some fixed locations and not in the the path pointed to by UDUNITS2_XML_PATH.</span>
+<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a><span class="n">configopts</span> <span class="o">=</span> <span class="s2">&quot;--disable-udunits --enable-udunits2 &quot;</span>
+<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a><span class="c1"># If that doesn&#39;t work, uncomment the next line instead</span>
+<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a><span class="c1"># configopts = &quot;--enable-udunits --disable-udunits2 &quot;</span>
+<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>
+<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a><span class="n">prebuildopts</span> <span class="o">=</span> <span class="s1">&#39;module unload cray-libsci ; &#39;</span>
+<a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>
+<a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin/ncbo&#39;</span><span class="p">],</span>
+<a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span>  <span class="p">[],</span>
+<a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a><span class="p">}</span>
+<a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a>
+<a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a><span class="n">sanity_check_commands</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a>    <span class="s1">&#39;ncap2 --version&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a>    <span class="s1">&#39;ncatted --version&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a>    <span class="s1">&#39;ncbo --version&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a>    <span class="s1">&#39;ncclimo --version&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-86" name="__codelineno-1-86" href="#__codelineno-1-86"></a>    <span class="s1">&#39;ncecat --version&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a>    <span class="s1">&#39;ncflint --version&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-88" name="__codelineno-1-88" href="#__codelineno-1-88"></a>    <span class="s1">&#39;ncks --version&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-89" name="__codelineno-1-89" href="#__codelineno-1-89"></a>    <span class="s1">&#39;ncpdq --version&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a>    <span class="s1">&#39;ncra --version&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a>    <span class="s1">&#39;ncremap --version&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a>    <span class="s1">&#39;ncrename --version&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a>    <span class="s1">&#39;ncwa --version&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-94" name="__codelineno-1-94" href="#__codelineno-1-94"></a><span class="p">]</span>
+<a id="__codelineno-1-95" name="__codelineno-1-95" href="#__codelineno-1-95"></a>
+<a id="__codelineno-1-96" name="__codelineno-1-96" href="#__codelineno-1-96"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;data&#39;</span>
+</code></pre></div>
 <p><a href="../">[NCO]</a> <a href="../../..">[package list]</a></p>
 
               

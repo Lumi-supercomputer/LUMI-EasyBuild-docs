@@ -1007,19 +1007,6 @@
     EasyBuild
   </a>
   
-    <nav class="md-nav" aria-label="EasyBuild">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#java-11" class="md-nav__link">
-    Java 11
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
       </ul>
@@ -1045,11 +1032,10 @@
 <h1 id="java">Java</h1>
 <p><span class='lumi-software-button-userinstallable'></span></p>
 <h2 id="user-installable-modules-and-easyconfigs">User-installable modules (and EasyConfigs)</h2>
-<p>Install with the EasyBuild-user module:</p>
-<pre><code>eb &lt;easyconfig&gt; -r
-
-</code></pre>
-<p>To access module help after installation and get reminded for which stacks and partitions the module is
+<p>Install with the EasyBuild-user module:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>eb &lt;easyconfig&gt; -r
+</code></pre></div>
+To access module help after installation and get reminded for which stacks and partitions the module is
 installed, use <code>module spider Java/&lt;version&gt;</code>.</p>
 <p>EasyConfig:</p>
 <ul>
@@ -1063,8 +1049,8 @@ by Oracle.</p>
 only creates an Lmod file telling Lmod which version of Java should be loaded when
 that major version is given, while there is also a separate EasyConfig to install
 the specific version. So to install, e.g., Java 11, one would use</p>
-<pre><code>eb Java-11.eb -r
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>eb Java-11.eb -r
+</code></pre></div>
 <p>where the <code>-r</code> is important here to ensure that also the matching actual version
 gets installed.</p>
 <p>Java can be installed in the special <code>partition/common</code> partition to avoid installing

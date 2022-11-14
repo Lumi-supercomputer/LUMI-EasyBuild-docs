@@ -1002,66 +1002,65 @@
 <p>To access module help and find out for which stacks and partitions the module is
 installed, use <code>module spider ARMForge/22.0.1</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python">easyblock = 'EB_Allinea'
-
-name =    'ARMForge'
-version = '22.0.1'
-
-homepage = 'https://developer.arm.com/Tools%20and%20Software/Arm%20Forge'
-
-whatis = [
-    'Description: Arm Forge debugging and profiling tools'
-]
-
-description = &quot;&quot;&quot;
-Arm Forge is the leading server and HPC development tool
-suite in research, industry, and academia for C, C++,
-Fortran, and Python high performance code on Linux.
-
-Arm Forge is the leading server and HPC development tool suite in research, 
-industry, and academia for C, C++, Fortran, and Python high performance 
-code on Linux.  
-
-Arm Forge includes Arm DDT, the best debugger for time-saving high 
-performance application debugging, Arm MAP, the trusted performance profiler 
-for invaluable optimization advice, and Arm Performance Reports to help you 
-analyze your HPC application runs.
-&quot;&quot;&quot;
-
-usage = &quot;&quot;&quot;
-Arm Forge can be used in two different modes on LUMI:
-
--   It is possible to run the GUI on LUMI but then you'll have to use the VNC
-    server provided by the lumi-vnc module.
--   It is also possible to install a remote client on your personal machine and
-    let LUMI connect to it through proper ssh tunneling. 
-    The remote clients can be downloaded fro Windows, macOS and Linux from
-    https://developer.arm.com/downloads/-/arm-forge. The package for Linux
-    contains everything, but only the remote client will work on your machine 
-    (unless you would happen to have a personal license for Arm Forge).
-
-For more information, try also &quot;ddt -h&quot;, &quot;map -h&quot; or &quot;perf-report -h&quot;.
-&quot;&quot;&quot;
-
-docurls = [
-    'Links to PDF versions of the manuals on https://developer.arm.com/Tools%20and%20Software/Arm%20Forge',
-    'Copy of the PDF user guide in $EBROOTARMFORGE/doc/userguide.pdf (after loading the module)',
-]
-
-toolchain = SYSTEM
-
-source_urls = ['https://content.allinea.com/downloads/']
-sources =     ['arm-forge-%(version)s-linux-x86_64.tar']
-checksums =   ['8f8a61c159665d3de3bc5334ed97bdb4966bfbdb91b65d32d162d489eb2219ac']
-
-#start_dir = '%(builddir)s/arm-forge-%(version)s-linux-x86_64/'
-#install_cmd = &quot;./textinstall.sh --accept-licence %(installdir)s&quot;
-
-license_file = '/appl/lumi/licenses/Arm-Forge/Licence'
-
-moduleclass = 'tools'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;EB_Allinea&#39;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;ARMForge&#39;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;22.0.1&#39;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://developer.arm.com/Tools</span><span class="si">%20a</span><span class="s1">nd%20Software/Arm</span><span class="si">%20F</span><span class="s1">orge&#39;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="s1">&#39;Description: Arm Forge debugging and profiling tools&#39;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">]</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="s2">Arm Forge is the leading server and HPC development tool</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="s2">suite in research, industry, and academia for C, C++,</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="s2">Fortran, and Python high performance code on Linux.</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="s2">Arm Forge is the leading server and HPC development tool suite in research, </span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="s2">industry, and academia for C, C++, Fortran, and Python high performance </span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="s2">code on Linux.  </span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="s2">Arm Forge includes Arm DDT, the best debugger for time-saving high </span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="s2">performance application debugging, Arm MAP, the trusted performance profiler </span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="s2">for invaluable optimization advice, and Arm Performance Reports to help you </span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="s2">analyze your HPC application runs.</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="n">usage</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="s2">Arm Forge can be used in two different modes on LUMI:</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="s2">-   It is possible to run the GUI on LUMI but then you&#39;ll have to use the VNC</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="s2">    server provided by the lumi-vnc module.</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="s2">-   It is also possible to install a remote client on your personal machine and</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="s2">    let LUMI connect to it through proper ssh tunneling. </span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="s2">    The remote clients can be downloaded fro Windows, macOS and Linux from</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="s2">    https://developer.arm.com/downloads/-/arm-forge. The package for Linux</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="s2">    contains everything, but only the remote client will work on your machine </span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="s2">    (unless you would happen to have a personal license for Arm Forge).</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="s2">For more information, try also &quot;ddt -h&quot;, &quot;map -h&quot; or &quot;perf-report -h&quot;.</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="n">docurls</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="s1">&#39;Links to PDF versions of the manuals on https://developer.arm.com/Tools</span><span class="si">%20a</span><span class="s1">nd%20Software/Arm</span><span class="si">%20F</span><span class="s1">orge&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>    <span class="s1">&#39;Copy of the PDF user guide in $EBROOTARMFORGE/doc/userguide.pdf (after loading the module)&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="p">]</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="n">SYSTEM</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://content.allinea.com/downloads/&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="n">sources</span> <span class="o">=</span>     <span class="p">[</span><span class="s1">&#39;arm-forge-</span><span class="si">%(version)s</span><span class="s1">-linux-x86_64.tar&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="n">checksums</span> <span class="o">=</span>   <span class="p">[</span><span class="s1">&#39;8f8a61c159665d3de3bc5334ed97bdb4966bfbdb91b65d32d162d489eb2219ac&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="c1">#start_dir = &#39;%(builddir)s/arm-forge-%(version)s-linux-x86_64/&#39;</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="c1">#install_cmd = &quot;./textinstall.sh --accept-licence %(installdir)s&quot;</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="n">license_file</span> <span class="o">=</span> <span class="s1">&#39;/appl/lumi/licenses/Arm-Forge/Licence&#39;</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;tools&#39;</span>
+</code></pre></div>
 <p><a href="../">[ARMForge]</a> <a href="../../..">[package list]</a></p>
 
               

@@ -999,96 +999,94 @@
 
 <p><a href="../">[LAMMPS]</a> <a href="../../..">[package list]</a></p>
 <h1 id="lammps29oct20-cpegnu-2108-minimal-lammps-29oct20-cpegnu-2108-minimaleb">LAMMPS/29Oct20-cpeGNU-21.08-minimal (LAMMPS-29Oct20-cpeGNU-21.08-minimal.eb)</h1>
-<p>Install with the EasyBuild-user module:</p>
-<pre><code>eb LAMMPS-29Oct20-cpeGNU-21.08-minimal.eb -r
-
-</code></pre>
-<p>To access module help after installation and get reminded for which stacks and partitions the module is
+<p>Install with the EasyBuild-user module:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>eb LAMMPS-29Oct20-cpeGNU-21.08-minimal.eb -r
+</code></pre></div>
+To access module help after installation and get reminded for which stacks and partitions the module is
 installed, use <code>module spider LAMMPS/29Oct20-cpeGNU-21.08-minimal</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># Contributed by TWR and Luca Marsella (CSCS)
-# Adapted by Kurt Lust (kurt.lust@uantwerpen.be) for use on LUMI
-#
-easyblock = 'CMakeMake'
-
-local_FFmpeg_version =       '4.3.3'         # https://ffmpeg.org/download.html#releases
-local_libjpegturbo_version = '2.1.0'         # https://github.com/libjpeg-turbo/libjpeg-turbo/releases
-local_libpng_version =       '1.6.37'        # http://www.libpng.org/pub/png/libpng.html
-local_zstd_version =         '1.5.0'         # https://github.com/facebook/zstd/releases
-
-name =          'LAMMPS'
-version =       '29Oct20'
-versionsuffix = '-minimal'
-
-homepage = 'https://www.lammps.org/'
-
-whatis = [
-    'Description: LAMMPS (Large-scale Atomic/Molecular Massively Parallel Simulator) is a classical molecular dynamics simulation code designed for HPC systems'
-]
-
-description = &quot;&quot;&quot;
-LAMMPS is a classical molecular dynamics code with a focus on materials
-modeling. It's an acronym for Large-scale Atomic/Molecular Massively
-Parallel Simulator.
-
-LAMMPS has potentials for solid-state materials (metals, semiconductors)
-and soft matter (biomolecules, polymers) and coarse-grained or mesoscopic
-systems. It can be used to model atoms or, more generically, as a parallel
-particle simulator at the atomic, meso, or continuum scale.
-
-LAMMPS runs on single processors or in parallel using message-passing
-techniques and a spatial-decomposition of the simulation domain. Many of
-its models have versions that provide accelerated performance on CPUs, GPUs,
-and Intel Xeon Phis. The code is designed to be easy to modify or extend
- with new functionality.
-
-LAMMPS is distributed as an open source code under the terms of the GPLv2.
-
-This module provides a rather minimal setup of LAMMPS, based on the setup
-used at CSCS. The only currently enabled packages are COMPRESS, MPIIO and
-PYTHON. It is based on MPI.
-&quot;&quot;&quot;
-
-toolchain =     {'name': 'cpeGNU', 'version': '21.08'}
-toolchainopts = {'usempi': True, 'verbose': False, 'openmp': True}
-
-source_urls = ['https://github.com/%(namelower)s/%(namelower)s/archive']
-sources =     ['stable_29Oct2020.tar.gz']
-
-builddependencies = [
-    ('buildtools', '%(toolchain_version)s', '', True),
-]
-
-dependencies = [
-    ('cray-python',   EXTERNAL_MODULE),
-    ('FFmpeg',        local_FFmpeg_version), # 4.4.1 is out but let's stay on the safe side for now.
-    ('libjpeg-turbo', local_libjpegturbo_version),
-    ('libpng',        local_libpng_version),
-    ('zstd',          local_zstd_version),
-]
-
-# see https://lammps.sandia.gov/doc/Build_package.html#cmake-presets
-configopts  = '-C ../%(namelower)s-stable_29Oct2020/cmake/presets/nolib.cmake '
-configopts += '-DBUILD_MPI=Yes -DCMAKE_CXX_COMPILER:STRING=CC -DLAMMPS_MACHINE=mpi -DMPICXX=CC '
-configopts += '-DWITH_JPEG=ON -DWITH_PNG=ON -DWITH_FFMPEG=ON '
-# Enabled packages
-configopts += '-DPKG_COMPRESS=ON -DPKG_MPIIO=ON -DPKG_PYTHON=ON '
-# Packages explicitly turned off
-configopts += '-DPKG_USER-INTEL=OFF '
-
-# fix missing cray-python lib in LD_LIBRARY_PATH
-modluafooter = 'prepend_path(&quot;LD_LIBRARY_PATH&quot;,pathJoin(os.getenv(&quot;CRAY_PYTHON_PREFIX&quot;), &quot;lib&quot;))'
-# folder with CMakeLists.txt relative to the unpacked tarball
-srcdir = 'cmake'
-
-sanity_check_paths = {
-    'files': ['bin/lmp_mpi'],
-    'dirs':  [],
-}
-
-moduleclass = 'chem'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Contributed by TWR and Luca Marsella (CSCS)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># Adapted by Kurt Lust (kurt.lust@uantwerpen.be) for use on LUMI</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1">#</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;CMakeMake&#39;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">local_FFmpeg_version</span> <span class="o">=</span>       <span class="s1">&#39;4.3.3&#39;</span>         <span class="c1"># https://ffmpeg.org/download.html#releases</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">local_libjpegturbo_version</span> <span class="o">=</span> <span class="s1">&#39;2.1.0&#39;</span>         <span class="c1"># https://github.com/libjpeg-turbo/libjpeg-turbo/releases</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">local_libpng_version</span> <span class="o">=</span>       <span class="s1">&#39;1.6.37&#39;</span>        <span class="c1"># http://www.libpng.org/pub/png/libpng.html</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">local_zstd_version</span> <span class="o">=</span>         <span class="s1">&#39;1.5.0&#39;</span>         <span class="c1"># https://github.com/facebook/zstd/releases</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="n">name</span> <span class="o">=</span>          <span class="s1">&#39;LAMMPS&#39;</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">version</span> <span class="o">=</span>       <span class="s1">&#39;29Oct20&#39;</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">versionsuffix</span> <span class="o">=</span> <span class="s1">&#39;-minimal&#39;</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://www.lammps.org/&#39;</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    <span class="s1">&#39;Description: LAMMPS (Large-scale Atomic/Molecular Massively Parallel Simulator) is a classical molecular dynamics simulation code designed for HPC systems&#39;</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="p">]</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="s2">LAMMPS is a classical molecular dynamics code with a focus on materials</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="s2">modeling. It&#39;s an acronym for Large-scale Atomic/Molecular Massively</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="s2">Parallel Simulator.</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="s2">LAMMPS has potentials for solid-state materials (metals, semiconductors)</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="s2">and soft matter (biomolecules, polymers) and coarse-grained or mesoscopic</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="s2">systems. It can be used to model atoms or, more generically, as a parallel</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="s2">particle simulator at the atomic, meso, or continuum scale.</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="s2">LAMMPS runs on single processors or in parallel using message-passing</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="s2">techniques and a spatial-decomposition of the simulation domain. Many of</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="s2">its models have versions that provide accelerated performance on CPUs, GPUs,</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="s2">and Intel Xeon Phis. The code is designed to be easy to modify or extend</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="s2"> with new functionality.</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="s2">LAMMPS is distributed as an open source code under the terms of the GPLv2.</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="s2">This module provides a rather minimal setup of LAMMPS, based on the setup</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="s2">used at CSCS. The only currently enabled packages are COMPRESS, MPIIO and</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="s2">PYTHON. It is based on MPI.</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="n">toolchain</span> <span class="o">=</span>     <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeGNU&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;21.08&#39;</span><span class="p">}</span>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;usempi&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;verbose&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;openmp&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://github.com/</span><span class="si">%(namelower)s</span><span class="s1">/</span><span class="si">%(namelower)s</span><span class="s1">/archive&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a><span class="n">sources</span> <span class="o">=</span>     <span class="p">[</span><span class="s1">&#39;stable_29Oct2020.tar.gz&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a><span class="p">]</span>
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>    <span class="p">(</span><span class="s1">&#39;cray-python&#39;</span><span class="p">,</span>   <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>    <span class="p">(</span><span class="s1">&#39;FFmpeg&#39;</span><span class="p">,</span>        <span class="n">local_FFmpeg_version</span><span class="p">),</span> <span class="c1"># 4.4.1 is out but let&#39;s stay on the safe side for now.</span>
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>    <span class="p">(</span><span class="s1">&#39;libjpeg-turbo&#39;</span><span class="p">,</span> <span class="n">local_libjpegturbo_version</span><span class="p">),</span>
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>    <span class="p">(</span><span class="s1">&#39;libpng&#39;</span><span class="p">,</span>        <span class="n">local_libpng_version</span><span class="p">),</span>
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>    <span class="p">(</span><span class="s1">&#39;zstd&#39;</span><span class="p">,</span>          <span class="n">local_zstd_version</span><span class="p">),</span>
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a><span class="p">]</span>
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a><span class="c1"># see https://lammps.sandia.gov/doc/Build_package.html#cmake-presets</span>
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a><span class="n">configopts</span>  <span class="o">=</span> <span class="s1">&#39;-C ../</span><span class="si">%(namelower)s</span><span class="s1">-stable_29Oct2020/cmake/presets/nolib.cmake &#39;</span>
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39;-DBUILD_MPI=Yes -DCMAKE_CXX_COMPILER:STRING=CC -DLAMMPS_MACHINE=mpi -DMPICXX=CC &#39;</span>
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39;-DWITH_JPEG=ON -DWITH_PNG=ON -DWITH_FFMPEG=ON &#39;</span>
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a><span class="c1"># Enabled packages</span>
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39;-DPKG_COMPRESS=ON -DPKG_MPIIO=ON -DPKG_PYTHON=ON &#39;</span>
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a><span class="c1"># Packages explicitly turned off</span>
+<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39;-DPKG_USER-INTEL=OFF &#39;</span>
+<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>
+<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a><span class="c1"># fix missing cray-python lib in LD_LIBRARY_PATH</span>
+<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a><span class="n">modluafooter</span> <span class="o">=</span> <span class="s1">&#39;prepend_path(&quot;LD_LIBRARY_PATH&quot;,pathJoin(os.getenv(&quot;CRAY_PYTHON_PREFIX&quot;), &quot;lib&quot;))&#39;</span>
+<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a><span class="c1"># folder with CMakeLists.txt relative to the unpacked tarball</span>
+<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a><span class="n">srcdir</span> <span class="o">=</span> <span class="s1">&#39;cmake&#39;</span>
+<a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>
+<a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin/lmp_mpi&#39;</span><span class="p">],</span>
+<a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span>  <span class="p">[],</span>
+<a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a><span class="p">}</span>
+<a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a>
+<a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;chem&#39;</span>
+</code></pre></div>
 <p><a href="../">[LAMMPS]</a> <a href="../../..">[package list]</a></p>
 
               

@@ -999,75 +999,73 @@
 
 <p><a href="../">[libdap]</a> <a href="../../..">[package list]</a></p>
 <h1 id="libdap32010-cpegnu-2206-libdap-32010-cpegnu-2206eb">libdap/3.20.10-cpeGNU-22.06 (libdap-3.20.10-cpeGNU-22.06.eb)</h1>
-<p>Install with the EasyBuild-user module:</p>
-<pre><code>eb libdap-3.20.10-cpeGNU-22.06.eb -r
-
-</code></pre>
-<p>To access module help after installation and get reminded for which stacks and partitions the module is
+<p>Install with the EasyBuild-user module:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>eb libdap-3.20.10-cpeGNU-22.06.eb -r
+</code></pre></div>
+To access module help after installation and get reminded for which stacks and partitions the module is
 installed, use <code>module spider libdap/3.20.10-cpeGNU-22.06</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># Adapted by Kurt Lust (kurt.lust@uantwerpen.be) for the LUMI consortium
-easyblock = 'ConfigureMake'
-
-local_cURL_version =         '7.83.1'        # https://curl.haxx.se/download/
-local_libxml2_version =      '2.9.12'        # http://xmlsoft.org/sources/
-local_PCRE2_version =        '10.40'         # https://ftp.pcre.org/pub/pcre/
-local_libtirpc_version =     '1.3.2'         # https://sourceforge.net/projects/libtirpc/files/libtirpc/
-local_util_version =         '2.38'          # https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/
-
-
-name =    'libdap'
-version = '3.20.10'
-
-homepage = 'https://www.opendap.org/software/libdap'
-
-whatis = [
-    'Description: libdap is a C++ SDK implementtin DAP 2.0 and 4.0'
-]
-
-description = &quot;&quot;&quot;
-A C++ SDK which contains an implementation of DAP 2.0 and
-DAP4.0. This includes both Client- and Server-side support classes.
-&quot;&quot;&quot;
-
-toolchain = {'name': 'cpeGNU', 'version': '22.06'}
-
-source_urls = ['https://www.opendap.org/pub/source/']
-sources =     [SOURCE_TAR_GZ]
-checksums =   ['d68c8a95916fa6057a5218c79a0f06e4bb2b24c2adff01ccd7e23e1678cabd90']
-
-builddependencies = [ # Create a reproducible build environment.
-    ('buildtools',   '%(toolchain_version)s',   '', True),  # Bison, flex
-]
-
-dependencies = [
-    ('cURL',       local_cURL_version),
-    ('libxml2',    local_libxml2_version),
-    ('libtirpc',   local_libtirpc_version),
-    ('PCRE2',      local_PCRE2_version),
-    ('util-linux', local_util_version),
-]
-
-configopts = 'TIRPC_LIBS=&quot;-ltirpc&quot;'
-
-sanity_check_paths = {
-    'files': ['bin/getdap', 'bin/getdap4', 'bin/dap-config', 'lib/libdap.a', 'lib/libdap.%s' % SHLIB_EXT],
-    'dirs':  ['include'],
-}
-
-sanity_check_commands = [
-    'dap-config --libs',
-    'dap-config-pkgconfig --libs',
-    'getdap -V',
-    'getdap4 -V',
-    'pkg-config libdap --libs',
-    'pkg-config libdapclient --libs',
-    'pkg-config libdapserver --libs',
-]
-
-moduleclass = 'lib'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Adapted by Kurt Lust (kurt.lust@uantwerpen.be) for the LUMI consortium</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;ConfigureMake&#39;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">local_cURL_version</span> <span class="o">=</span>         <span class="s1">&#39;7.83.1&#39;</span>        <span class="c1"># https://curl.haxx.se/download/</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">local_libxml2_version</span> <span class="o">=</span>      <span class="s1">&#39;2.9.12&#39;</span>        <span class="c1"># http://xmlsoft.org/sources/</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">local_PCRE2_version</span> <span class="o">=</span>        <span class="s1">&#39;10.40&#39;</span>         <span class="c1"># https://ftp.pcre.org/pub/pcre/</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">local_libtirpc_version</span> <span class="o">=</span>     <span class="s1">&#39;1.3.2&#39;</span>         <span class="c1"># https://sourceforge.net/projects/libtirpc/files/libtirpc/</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">local_util_version</span> <span class="o">=</span>         <span class="s1">&#39;2.38&#39;</span>          <span class="c1"># https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;libdap&#39;</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;3.20.10&#39;</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://www.opendap.org/software/libdap&#39;</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    <span class="s1">&#39;Description: libdap is a C++ SDK implementtin DAP 2.0 and 4.0&#39;</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="p">]</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="s2">A C++ SDK which contains an implementation of DAP 2.0 and</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="s2">DAP4.0. This includes both Client- and Server-side support classes.</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeGNU&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;22.06&#39;</span><span class="p">}</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://www.opendap.org/pub/source/&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="n">sources</span> <span class="o">=</span>     <span class="p">[</span><span class="n">SOURCE_TAR_GZ</span><span class="p">]</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="n">checksums</span> <span class="o">=</span>   <span class="p">[</span><span class="s1">&#39;d68c8a95916fa6057a5218c79a0f06e4bb2b24c2adff01ccd7e23e1678cabd90&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span> <span class="c1"># Create a reproducible build environment.</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span>   <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span>   <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>  <span class="c1"># Bison, flex</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="p">]</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>    <span class="p">(</span><span class="s1">&#39;cURL&#39;</span><span class="p">,</span>       <span class="n">local_cURL_version</span><span class="p">),</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>    <span class="p">(</span><span class="s1">&#39;libxml2&#39;</span><span class="p">,</span>    <span class="n">local_libxml2_version</span><span class="p">),</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>    <span class="p">(</span><span class="s1">&#39;libtirpc&#39;</span><span class="p">,</span>   <span class="n">local_libtirpc_version</span><span class="p">),</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>    <span class="p">(</span><span class="s1">&#39;PCRE2&#39;</span><span class="p">,</span>      <span class="n">local_PCRE2_version</span><span class="p">),</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>    <span class="p">(</span><span class="s1">&#39;util-linux&#39;</span><span class="p">,</span> <span class="n">local_util_version</span><span class="p">),</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="p">]</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="n">configopts</span> <span class="o">=</span> <span class="s1">&#39;TIRPC_LIBS=&quot;-ltirpc&quot;&#39;</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin/getdap&#39;</span><span class="p">,</span> <span class="s1">&#39;bin/getdap4&#39;</span><span class="p">,</span> <span class="s1">&#39;bin/dap-config&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/libdap.a&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/libdap.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">SHLIB_EXT</span><span class="p">],</span>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span>  <span class="p">[</span><span class="s1">&#39;include&#39;</span><span class="p">],</span>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a><span class="p">}</span>
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a><span class="n">sanity_check_commands</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>    <span class="s1">&#39;dap-config --libs&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>    <span class="s1">&#39;dap-config-pkgconfig --libs&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>    <span class="s1">&#39;getdap -V&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>    <span class="s1">&#39;getdap4 -V&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>    <span class="s1">&#39;pkg-config libdap --libs&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>    <span class="s1">&#39;pkg-config libdapclient --libs&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>    <span class="s1">&#39;pkg-config libdapserver --libs&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a><span class="p">]</span>
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;lib&#39;</span>
+</code></pre></div>
 <p><a href="../">[libdap]</a> <a href="../../..">[package list]</a></p>
 
               

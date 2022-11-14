@@ -999,68 +999,66 @@
 
 <p><a href="../">[singularity-bindings]</a> <a href="../../..">[package list]</a></p>
 <h1 id="singularity-bindingssystem-cpegnu-2208-noglibc-singularity-bindings-system-cpegnu-2208-noglibceb">singularity-bindings/system-cpeGNU-22.08-noglibc (singularity-bindings-system-cpeGNU-22.08-noglibc.eb)</h1>
-<p>Install with the EasyBuild-user module:</p>
-<pre><code>eb singularity-bindings-system-cpeGNU-22.08-noglibc.eb -r
-
-</code></pre>
-<p>To access module help after installation and get reminded for which stacks and partitions the module is
+<p>Install with the EasyBuild-user module:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>eb singularity-bindings-system-cpeGNU-22.08-noglibc.eb -r
+</code></pre></div>
+To access module help after installation and get reminded for which stacks and partitions the module is
 installed, use <code>module spider singularity-bindings/system-cpeGNU-22.08-noglibc</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python">easyblock = 'Bundle'
-
-local_craympich_version = '8.1.18'
-local_libfabric_version = '1.15.0.0'
-
-name = 'singularity-bindings'
-version = 'system'
-versionsuffix = '-noglibc'
-
-homepage = 'https://www.sylabs.io/'
-
-whatis = [
-    'Description: Bindings to let singularity containers use the cray-mpich libraries on the system'    
-]
-
-description = &quot;&quot;&quot;
-Singularity is a portable application stack packaging and runtime utility.
-This module provides the MPI support for singularity containers based
-on MPICH versions which are ABI-compatible with cray-mpich.
-
-Singularity on LUMI is provided in the base OS images, so no module needs
-to be loaded to just use singularity. This module sets SINGULARTY_BIND and
-SINGULARITYENV_LD_LIBRARY_PATH to enable containers that use an MPICH 
-version that is ABI compatible with cray-mpich to use the cray-mpich
-libraries provided on LUMI for optimal performance on the interconnect
-of LUMI.
-&quot;&quot;&quot;
-
-toolchain = {'name': 'cpeGNU', 'version': '22.08'}
-
-dependencies = [
-    (f'cray-mpich-abi/{local_craympich_version}', EXTERNAL_MODULE),
-]
-
-modextravars = {
-    'SINGULARITYENV_LD_LIBRARY_PATH': ('/lib64:'
-                                       '/opt/cray/pe/mpich/' + local_craympich_version + '/ofi/gnu/9.1/lib-abi-mpich:'
-                                       '/opt/cray/pe/lib64:'
-                                       '/opt/cray/pe:'
-                                       '/opt/cray/libfabric/' + local_libfabric_version + '/lib64:'
-                                       '/usr/lib64:'
-                                       '/opt/cray/pe/gcc-libs'),
-    'SINGULARITY_BIND': ('/opt/cray,'
-                         '/usr/lib64/libibverbs.so.1,'
-                         '/usr/lib64/librdmacm.so.1,'
-                         '/usr/lib64/libnl-3.so.200,'
-                         '/usr/lib64/libnl-route-3.so.200,'
-                         '/usr/lib64/libcxi.so.1,'
-                         '/usr/lib64/libpals.so.0,'
-                         '/var/spool/slurmd/mpi_cray_shasta,'
-                         '/usr/lib64/libibverbs/libmlx5-rdmav25.so,'
-                         '/etc/libibverbs.d')
-}
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;Bundle&#39;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">local_craympich_version</span> <span class="o">=</span> <span class="s1">&#39;8.1.18&#39;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">local_libfabric_version</span> <span class="o">=</span> <span class="s1">&#39;1.15.0.0&#39;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;singularity-bindings&#39;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;system&#39;</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">versionsuffix</span> <span class="o">=</span> <span class="s1">&#39;-noglibc&#39;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://www.sylabs.io/&#39;</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="s1">&#39;Description: Bindings to let singularity containers use the cray-mpich libraries on the system&#39;</span>    
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="p">]</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="s2">Singularity is a portable application stack packaging and runtime utility.</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="s2">This module provides the MPI support for singularity containers based</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="s2">on MPICH versions which are ABI-compatible with cray-mpich.</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="s2">Singularity on LUMI is provided in the base OS images, so no module needs</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="s2">to be loaded to just use singularity. This module sets SINGULARTY_BIND and</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="s2">SINGULARITYENV_LD_LIBRARY_PATH to enable containers that use an MPICH </span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="s2">version that is ABI compatible with cray-mpich to use the cray-mpich</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="s2">libraries provided on LUMI for optimal performance on the interconnect</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="s2">of LUMI.</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeGNU&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;22.08&#39;</span><span class="p">}</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>    <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;cray-mpich-abi/</span><span class="si">{</span><span class="n">local_craympich_version</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="p">]</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="n">modextravars</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>    <span class="s1">&#39;SINGULARITYENV_LD_LIBRARY_PATH&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;/lib64:&#39;</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>                                       <span class="s1">&#39;/opt/cray/pe/mpich/&#39;</span> <span class="o">+</span> <span class="n">local_craympich_version</span> <span class="o">+</span> <span class="s1">&#39;/ofi/gnu/9.1/lib-abi-mpich:&#39;</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>                                       <span class="s1">&#39;/opt/cray/pe/lib64:&#39;</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>                                       <span class="s1">&#39;/opt/cray/pe:&#39;</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>                                       <span class="s1">&#39;/opt/cray/libfabric/&#39;</span> <span class="o">+</span> <span class="n">local_libfabric_version</span> <span class="o">+</span> <span class="s1">&#39;/lib64:&#39;</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>                                       <span class="s1">&#39;/usr/lib64:&#39;</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>                                       <span class="s1">&#39;/opt/cray/pe/gcc-libs&#39;</span><span class="p">),</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>    <span class="s1">&#39;SINGULARITY_BIND&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;/opt/cray,&#39;</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>                         <span class="s1">&#39;/usr/lib64/libibverbs.so.1,&#39;</span>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>                         <span class="s1">&#39;/usr/lib64/librdmacm.so.1,&#39;</span>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>                         <span class="s1">&#39;/usr/lib64/libnl-3.so.200,&#39;</span>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>                         <span class="s1">&#39;/usr/lib64/libnl-route-3.so.200,&#39;</span>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>                         <span class="s1">&#39;/usr/lib64/libcxi.so.1,&#39;</span>
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>                         <span class="s1">&#39;/usr/lib64/libpals.so.0,&#39;</span>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>                         <span class="s1">&#39;/var/spool/slurmd/mpi_cray_shasta,&#39;</span>
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>                         <span class="s1">&#39;/usr/lib64/libibverbs/libmlx5-rdmav25.so,&#39;</span>
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>                         <span class="s1">&#39;/etc/libibverbs.d&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a><span class="p">}</span>
+</code></pre></div>
 <p><a href="../">[singularity-bindings]</a> <a href="../../..">[package list]</a></p>
 
               

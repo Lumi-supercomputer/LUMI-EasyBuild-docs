@@ -1002,66 +1002,65 @@
 <p>To access module help and find out for which stacks and partitions the module is
 installed, use <code>module spider ParMETIS/4.0.3-cpeGNU-21.12</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># Adapted by Kurt Lust (Kurt.Lust@uantwerpen.be) from recipes in
-# the EasyBuild and repository, for the LUMI consortium.
-local_ParMETIS_version =     '4.0.3'         # https:/http://glaros.dtc.umn.edu/gkhome/metis/parmetis/download
-
-name =    'ParMETIS'
-version = local_ParMETIS_version
-
-homepage = 'http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview'
-
-whatis = [
-    'Description: ParMETIS - Parallel Graph Partitioning and Fill-reducing Matrix Ordering'
-]
-
-description = &quot;&quot;&quot;
-ParMETIS is an MPI-based parallel library that implements a variety of algorithms
-for partitioning  unstructured graphs, meshes, and for computing fill-reducing
-orderings of sparse matrices. ParMETIS extends the  functionality provided by
-METIS and includes routines that are especially suited for parallel AMR
-computations and large scale numerical simulations. The algorithms implemented
-in ParMETIS are based on the parallel multilevel k-way graph-partitioning,
-adaptive repartitioning, and parallel multi-constrained partitioning schemes.
-
-ParMETIS also contains the METIS library.
-
-
-Copyright &amp; License Notice
-==========================
-ParMETIS is copyrighted by the Regents of the University of Minnesota. It can
-be freely used for educational and research purposes by non-profit institutions
-and US government agencies only. Other organizations are allowed to use ParMETIS
-only for evaluation purposes, and any further uses will require prior approval.
-The software may not be sold or redistributed without prior approval. One may
-make copies of the software for their use provided that the copies, are not sold
-or distributed, are used under the same terms and conditions.
-&quot;&quot;&quot;
-
-docurls = [
-    'PDF of the manual at http://glaros.dtc.umn.edu/gkhome/fetch/sw/parmetis/manual.pdf'
-]
-
-toolchain = {'name': 'cpeGNU', 'version': '21.12'}
-toolchainopts = {'usempi': True, 'pic': True}
-
-source_urls = [
-    'http://glaros.dtc.umn.edu/gkhome/fetch/sw/parmetis',
-    'http://glaros.dtc.umn.edu/gkhome/fetch/sw/parmetis/OLD',
-]
-sources =   [SOURCELOWER_TAR_GZ]
-checksums = ['f2d9a231b7cf97f1fee6e8c9663113ebf6c240d407d3c118c55b3633d6be6e5f']
-
-builddependencies = [ # Create a reproducible build environment.
-    ('buildtools',   '%(toolchain_version)s',   '', True), # For CMake
-]
-
-# To better check the log files, do a verbose build.
-buildopts = 'VERBOSE=1'
-
-moduleclass = 'math'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Adapted by Kurt Lust (Kurt.Lust@uantwerpen.be) from recipes in</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># the EasyBuild and repository, for the LUMI consortium.</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">local_ParMETIS_version</span> <span class="o">=</span>     <span class="s1">&#39;4.0.3&#39;</span>         <span class="c1"># https:/http://glaros.dtc.umn.edu/gkhome/metis/parmetis/download</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;ParMETIS&#39;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">version</span> <span class="o">=</span> <span class="n">local_ParMETIS_version</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview&#39;</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="s1">&#39;Description: ParMETIS - Parallel Graph Partitioning and Fill-reducing Matrix Ordering&#39;</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="p">]</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="s2">ParMETIS is an MPI-based parallel library that implements a variety of algorithms</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="s2">for partitioning  unstructured graphs, meshes, and for computing fill-reducing</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="s2">orderings of sparse matrices. ParMETIS extends the  functionality provided by</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="s2">METIS and includes routines that are especially suited for parallel AMR</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="s2">computations and large scale numerical simulations. The algorithms implemented</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="s2">in ParMETIS are based on the parallel multilevel k-way graph-partitioning,</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="s2">adaptive repartitioning, and parallel multi-constrained partitioning schemes.</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="s2">ParMETIS also contains the METIS library.</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="s2">Copyright &amp; License Notice</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="s2">==========================</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="s2">ParMETIS is copyrighted by the Regents of the University of Minnesota. It can</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="s2">be freely used for educational and research purposes by non-profit institutions</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="s2">and US government agencies only. Other organizations are allowed to use ParMETIS</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="s2">only for evaluation purposes, and any further uses will require prior approval.</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="s2">The software may not be sold or redistributed without prior approval. One may</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="s2">make copies of the software for their use provided that the copies, are not sold</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="s2">or distributed, are used under the same terms and conditions.</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="n">docurls</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="s1">&#39;PDF of the manual at http://glaros.dtc.umn.edu/gkhome/fetch/sw/parmetis/manual.pdf&#39;</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="p">]</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeGNU&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;21.12&#39;</span><span class="p">}</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;usempi&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;pic&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>    <span class="s1">&#39;http://glaros.dtc.umn.edu/gkhome/fetch/sw/parmetis&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>    <span class="s1">&#39;http://glaros.dtc.umn.edu/gkhome/fetch/sw/parmetis/OLD&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="p">]</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="n">sources</span> <span class="o">=</span>   <span class="p">[</span><span class="n">SOURCELOWER_TAR_GZ</span><span class="p">]</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="n">checksums</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;f2d9a231b7cf97f1fee6e8c9663113ebf6c240d407d3c118c55b3633d6be6e5f&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span> <span class="c1"># Create a reproducible build environment.</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span>   <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span>   <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span> <span class="c1"># For CMake</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="p">]</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="c1"># To better check the log files, do a verbose build.</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="n">buildopts</span> <span class="o">=</span> <span class="s1">&#39;VERBOSE=1&#39;</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;math&#39;</span>
+</code></pre></div>
 <p><a href="../">[ParMETIS]</a> <a href="../../..">[package list]</a></p>
 
               

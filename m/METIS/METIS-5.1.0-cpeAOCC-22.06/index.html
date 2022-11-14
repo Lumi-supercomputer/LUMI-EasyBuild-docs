@@ -1002,57 +1002,56 @@
 <p>To access module help and find out for which stacks and partitions the module is
 installed, use <code>module spider METIS/5.1.0-cpeAOCC-22.06</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># Adapted by Kurt Lust (Kurt.Lust@uantwerpen.be) from recipes in
-# the EasyBuild and CSCS repository, for the LUMI consortium.
-local_METIS_version =        '5.1.0'         # https:/http://glaros.dtc.umn.edu/gkhome/metis/metis/download
-
-name =    'METIS'
-version = local_METIS_version
-
-homepage = 'http://glaros.dtc.umn.edu/gkhome/metis/metis/overview'
-
-whatis = [
-    'Description: METIS - Serial Graph Partitioning and Fill-reducing Matrix Ordering'
-]
-
-description = &quot;&quot;&quot;
-METIS is a set of serial programs for partitioning graphs, partitioning finite
-element meshes, and producing fill reducing orderings for sparse matrices. The
-algorithms implemented in METIS are based on the multilevel recursive-bisection,
-multilevel k-way, and multi-constraint partitioning schemes.
-
-This module has been compiled with 32-bit indices and double precision floating
-point which is the default build for EasyBuild.
-
-METIS is distributed under the Apache License Version 2.0.
-&quot;&quot;&quot;
-
-software_license_urls = ['http://www.apache.org/licenses/LICENSE-2.0']
-
-toolchain = {'name': 'cpeAOCC', 'version': '22.06'}
-toolchainopts = {'optarch': True, 'pic': True}
-
-source_urls = [
-    'http://glaros.dtc.umn.edu/gkhome/fetch/sw/%(namelower)s',
-    'http://glaros.dtc.umn.edu/gkhome/fetch/sw/%(namelower)s/OLD',
-]
-sources = [SOURCELOWER_TAR_GZ]
-# we use 32bit for indices and 64bit for content
-patches = ['%(name)s-%(version)s-use-doubles.patch']
-checksums = [
-    '76faebe03f6c963127dbb73c13eab58c9a3faeae48779f049066a21c087c5db2', # metis-5.1.0.tar.gz
-    '7e38a3ec8f2b8e3d189239bade5b28c0dd1c564485050109164fa71a6a767c67', # METIS-5.1.0-use-doubles.patch
-]
-
-builddependencies = [ # Create a reproducible build environment.
-    ('buildtools',   '%(toolchain_version)s',   '', True), # For CMake
-]
-
-configopts = ['', 'shared=1']
-
-moduleclass = 'math'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Adapted by Kurt Lust (Kurt.Lust@uantwerpen.be) from recipes in</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># the EasyBuild and CSCS repository, for the LUMI consortium.</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">local_METIS_version</span> <span class="o">=</span>        <span class="s1">&#39;5.1.0&#39;</span>         <span class="c1"># https:/http://glaros.dtc.umn.edu/gkhome/metis/metis/download</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;METIS&#39;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">version</span> <span class="o">=</span> <span class="n">local_METIS_version</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;http://glaros.dtc.umn.edu/gkhome/metis/metis/overview&#39;</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="s1">&#39;Description: METIS - Serial Graph Partitioning and Fill-reducing Matrix Ordering&#39;</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="p">]</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="s2">METIS is a set of serial programs for partitioning graphs, partitioning finite</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="s2">element meshes, and producing fill reducing orderings for sparse matrices. The</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="s2">algorithms implemented in METIS are based on the multilevel recursive-bisection,</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="s2">multilevel k-way, and multi-constraint partitioning schemes.</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="s2">This module has been compiled with 32-bit indices and double precision floating</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="s2">point which is the default build for EasyBuild.</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="s2">METIS is distributed under the Apache License Version 2.0.</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="n">software_license_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;http://www.apache.org/licenses/LICENSE-2.0&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeAOCC&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;22.06&#39;</span><span class="p">}</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;optarch&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;pic&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    <span class="s1">&#39;http://glaros.dtc.umn.edu/gkhome/fetch/sw/</span><span class="si">%(namelower)s</span><span class="s1">&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>    <span class="s1">&#39;http://glaros.dtc.umn.edu/gkhome/fetch/sw/</span><span class="si">%(namelower)s</span><span class="s1">/OLD&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="p">]</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="n">SOURCELOWER_TAR_GZ</span><span class="p">]</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="c1"># we use 32bit for indices and 64bit for content</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="n">patches</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;</span><span class="si">%(name)s</span><span class="s1">-</span><span class="si">%(version)s</span><span class="s1">-use-doubles.patch&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="n">checksums</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    <span class="s1">&#39;76faebe03f6c963127dbb73c13eab58c9a3faeae48779f049066a21c087c5db2&#39;</span><span class="p">,</span> <span class="c1"># metis-5.1.0.tar.gz</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="s1">&#39;7e38a3ec8f2b8e3d189239bade5b28c0dd1c564485050109164fa71a6a767c67&#39;</span><span class="p">,</span> <span class="c1"># METIS-5.1.0-use-doubles.patch</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="p">]</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span> <span class="c1"># Create a reproducible build environment.</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span>   <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span>   <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span> <span class="c1"># For CMake</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="p">]</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="n">configopts</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;shared=1&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;math&#39;</span>
+</code></pre></div>
 <p><a href="../">[METIS]</a> <a href="../../..">[package list]</a></p>
 
               

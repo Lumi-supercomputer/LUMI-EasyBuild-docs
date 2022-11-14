@@ -999,76 +999,75 @@
 
 <p><a href="../">[Wannier90]</a> <a href="../../..">[package list]</a></p>
 <h1 id="wannier90310-cpegnu-2108-wannier90-310-cpegnu-2108eb">Wannier90/3.1.0-cpeGNU-21.08 (Wannier90-3.1.0-cpeGNU-21.08.eb)</h1>
-<p>Install with the EasyBuild-user module:</p>
-<pre><code>eb Wannier90-3.1.0-cpeGNU-21.08.eb -r
-
-</code></pre>
-<p>To access module help after installation and get reminded for which stacks and partitions the module is
+<p>Install with the EasyBuild-user module:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>eb Wannier90-3.1.0-cpeGNU-21.08.eb -r
+</code></pre></div>
+To access module help after installation and get reminded for which stacks and partitions the module is
 installed, use <code>module spider Wannier90/3.1.0-cpeGNU-21.08</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># adapted for LUMI by Orian Louant
-
-easyblock = 'MakeCp'
-
-name = 'Wannier90'
-version = '3.1.0'
-
-homepage = 'http://www.wannier.org'
-
-whatis = [
-    'Desription: Wannier90 is a code for generating maximally-localized Wannier functions'
-]
-
-description = &quot;&quot;&quot;
-Wannier90 is an open-source code (released under GPLv2) for generating
-maximally-localized Wannier functions and using them to compute advanced
-electronic properties of materials with high efficiency and accuracy.
-
-Many electronic structure codes have an interface to Wannier90, including
-Quantum ESPRESSO, Abinit, VASP, Siesta, Wien2k, Fleur, OpenMX and GPAW; and
-there are several post-processing codes that are able to use the output of
-Wannier90 for further analysis and calculation.
-
-In all publications resulting from your use of Wannier90, please cite:
-
-[ref] &quot;Wannier90 as a community code: new features and applications&quot;,
-      G. Pizzi et al., J. Phys. Cond. Matt. 32, 165902 (2020)
-
-This module was build with with MPI support.
-&quot;&quot;&quot;
-
-docurls = [
-    'User guide and tutorial:  http://www.wannier.org/support/'
-]
-
-toolchain = {'name': 'cpeGNU', 'version': '21.08'}
-toolchainopts = {'usempi': True, 'gfortran9-compat': True}
-
-github_account = 'wannier-developers'
-source_urls = [GITHUB_LOWER_SOURCE]
-sources = [{'download_filename': 'v%(version)s.tar.gz', 'filename': SOURCELOWER_TAR_GZ}]
-patches = ['Wannier90_3x_ignore_makeinc.patch']
-checksums = [
-    '40651a9832eb93dec20a8360dd535262c261c34e13c41b6755fa6915c936b254',  # wannier90-3.1.0.tar.gz
-    '561c0d296e0e30b8bb303702cd6e41ded54c153d9b9e6cd9cab73858e5e2945e',  # Wannier90_3x_ignore_makeinc.patch
-]
-
-builddependencies = [
-    ('buildtools', '%(toolchain_version)s', '', True)
-]
-
-buildopts  = 'all F90=$F90 MPIF90=$MPIF90 FCOPTS=&quot;$FFLAGS&quot; LDOPTS=&quot;$FFLAGS&quot; '
-buildopts += 'COMMS=mpi'
-
-files_to_copy = [(['wannier90.x', 'postw90.x'], 'bin'), (['libwannier.a'], 'lib')]
-
-sanity_check_paths = {
-    'files': ['bin/wannier90.x', 'bin/postw90.x', 'lib/libwannier.a'],
-    'dirs': []
-}
-
-moduleclass = 'chem'
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># adapted for LUMI by Orian Louant</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;MakeCp&#39;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Wannier90&#39;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;3.1.0&#39;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;http://www.wannier.org&#39;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="s1">&#39;Desription: Wannier90 is a code for generating maximally-localized Wannier functions&#39;</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="p">]</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="s2">Wannier90 is an open-source code (released under GPLv2) for generating</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="s2">maximally-localized Wannier functions and using them to compute advanced</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="s2">electronic properties of materials with high efficiency and accuracy.</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="s2">Many electronic structure codes have an interface to Wannier90, including</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="s2">Quantum ESPRESSO, Abinit, VASP, Siesta, Wien2k, Fleur, OpenMX and GPAW; and</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="s2">there are several post-processing codes that are able to use the output of</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="s2">Wannier90 for further analysis and calculation.</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="s2">In all publications resulting from your use of Wannier90, please cite:</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="s2">[ref] &quot;Wannier90 as a community code: new features and applications&quot;,</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="s2">      G. Pizzi et al., J. Phys. Cond. Matt. 32, 165902 (2020)</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="s2">This module was build with with MPI support.</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="n">docurls</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>    <span class="s1">&#39;User guide and tutorial:  http://www.wannier.org/support/&#39;</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="p">]</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeGNU&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;21.08&#39;</span><span class="p">}</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;usempi&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;gfortran9-compat&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="n">github_account</span> <span class="o">=</span> <span class="s1">&#39;wannier-developers&#39;</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="n">GITHUB_LOWER_SOURCE</span><span class="p">]</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="n">sources</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;download_filename&#39;</span><span class="p">:</span> <span class="s1">&#39;v</span><span class="si">%(version)s</span><span class="s1">.tar.gz&#39;</span><span class="p">,</span> <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">SOURCELOWER_TAR_GZ</span><span class="p">}]</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="n">patches</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Wannier90_3x_ignore_makeinc.patch&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="n">checksums</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>    <span class="s1">&#39;40651a9832eb93dec20a8360dd535262c261c34e13c41b6755fa6915c936b254&#39;</span><span class="p">,</span>  <span class="c1"># wannier90-3.1.0.tar.gz</span>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>    <span class="s1">&#39;561c0d296e0e30b8bb303702cd6e41ded54c153d9b9e6cd9cab73858e5e2945e&#39;</span><span class="p">,</span>  <span class="c1"># Wannier90_3x_ignore_makeinc.patch</span>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="p">]</span>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a><span class="p">]</span>
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a><span class="n">buildopts</span>  <span class="o">=</span> <span class="s1">&#39;all F90=$F90 MPIF90=$MPIF90 FCOPTS=&quot;$FFLAGS&quot; LDOPTS=&quot;$FFLAGS&quot; &#39;</span>
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a><span class="n">buildopts</span> <span class="o">+=</span> <span class="s1">&#39;COMMS=mpi&#39;</span>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a><span class="n">files_to_copy</span> <span class="o">=</span> <span class="p">[([</span><span class="s1">&#39;wannier90.x&#39;</span><span class="p">,</span> <span class="s1">&#39;postw90.x&#39;</span><span class="p">],</span> <span class="s1">&#39;bin&#39;</span><span class="p">),</span> <span class="p">([</span><span class="s1">&#39;libwannier.a&#39;</span><span class="p">],</span> <span class="s1">&#39;lib&#39;</span><span class="p">)]</span>
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin/wannier90.x&#39;</span><span class="p">,</span> <span class="s1">&#39;bin/postw90.x&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/libwannier.a&#39;</span><span class="p">],</span>
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span> <span class="p">[]</span>
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a><span class="p">}</span>
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;chem&#39;</span>
+</code></pre></div>
 <p><a href="../">[Wannier90]</a> <a href="../../..">[package list]</a></p>
 
               

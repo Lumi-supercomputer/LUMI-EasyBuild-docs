@@ -1002,82 +1002,81 @@
 <p>To access module help and find out for which stacks and partitions the module is
 installed, use <code>module spider PCRE2/10.40-cpeCray-22.06</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python">easyblock = 'ConfigureMake'
-
-local_libreadline_version =  '8.1.2'         # https://ftp.gnu.org/pub/gnu/readline/
-local_zlib_version =         '1.2.12'        # https://zlib.net/
-local_bzip2_version =        '1.0.8'         # http://www.bzip.org/downloads.html
-local_PCRE2_version =        '10.40'         # https://ftp.pcre.org/pub/pcre/
-
-name =    'PCRE2'
-version = local_PCRE2_version
-
-homepage = 'http://www.pcre.org/'
-
-whatis = [
-    'Description: PCRE2 is a library for Perl-compatible regular expressions, this one with the version 2 API',
-    'This package provides some command line tools and static and shared libraries'
-]
-
-description = &quot;&quot;&quot;
-The PCRE library is a set of functions that implement regular expression pattern
-matching using the same syntax and semantics as Perl 5. PCRE has its own native
-API, as well as a set of wrapper functions that correspond to the POSIX regular
-expression API. The PCRE library is free, even for building proprietary software.
-&quot;&quot;&quot;
-
-docurls = [
-    &quot;Man pages in section 1 (pcre2grep, pcre2test) and 3 (API, start with pcre2)&quot;,
-    &quot;http://www.pcre.org/current/doc/html/&quot;,
-]
-
-toolchain = {'name': 'cpeCray', 'version': '22.06'}
-toolchainopts = {'pic': True}
-
-source_urls = ['https://github.com/PCRE2Project/%(namelower)s/releases/download/%(namelower)s-%(version)s']
-sources =     [SOURCELOWER_TAR_BZ2]
-checksums =   ['14e4b83c4783933dc17e964318e6324f7cae1bc75d8f3c79bc6969f00c159d68']
-
-builddependencies = [ # Create a reproducible build environment.
-    ('buildtools', '%(toolchain_version)s', '', True),
-]
-
-dependencies = [
-    ('libreadline', local_libreadline_version),
-    ('zlib',        local_zlib_version),
-    ('bzip2',       local_bzip2_version),
-]
-
-configopts  = &quot;--with-pic --disable-cpp --enable-newline-is-any &quot;
-configopts += &quot;--enable-pcre2-16 --enable-pcre2-32 &quot;
-configopts += &quot;--enable-jit &quot;
-configopts += &quot;--enable-pcre2grep-libz --enable-pcre2grep-libbz2 --enable-pcre2test-libreadline &quot;
-
-#configopts = &quot;--enable-shared --enable-jit --enable-pcre2-16 --enable-unicode&quot;
-
-sanity_check_paths = {
-    'files': [&quot;bin/pcre2-config&quot;, &quot;bin/pcre2grep&quot;, &quot;bin/pcre2test&quot;, &quot;lib/libpcre2-8.a&quot;, &quot;lib/libpcre2-16.a&quot;],
-    'dirs': [],
-}
-
-local_executables = ['pcre2-config', 'pcre2grep', 'pcre2test']
-local_lib_variants = ['posix', '8', '16', '32']
-sanity_check_paths = {
-    'files': ['bin/%s' %x for x in local_executables] +
-             ['share/man/man1/%s.1' % x for x in local_executables] +
-             ['lib/libpcre2-%s.%s' % (x,y) for x in local_lib_variants for y in ['a', 'la', SHLIB_EXT]] +
-             ['lib/pkgconfig/libpcre2-%s.pc' % x for x in local_lib_variants] +
-             ['include/pcre2.h', 'include/pcre2posix.h'],
-    'dirs': ['share/doc/pcre2/html', 'share/man/man3'],
-}
-
-sanity_check_commands = [
-    '%s --version' % x for x in local_executables] + [
-    'pkg-config --libs libpcre2-%s' % x for x in local_lib_variants]
-
-moduleclass = 'devel'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;ConfigureMake&#39;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">local_libreadline_version</span> <span class="o">=</span>  <span class="s1">&#39;8.1.2&#39;</span>         <span class="c1"># https://ftp.gnu.org/pub/gnu/readline/</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">local_zlib_version</span> <span class="o">=</span>         <span class="s1">&#39;1.2.12&#39;</span>        <span class="c1"># https://zlib.net/</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">local_bzip2_version</span> <span class="o">=</span>        <span class="s1">&#39;1.0.8&#39;</span>         <span class="c1"># http://www.bzip.org/downloads.html</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">local_PCRE2_version</span> <span class="o">=</span>        <span class="s1">&#39;10.40&#39;</span>         <span class="c1"># https://ftp.pcre.org/pub/pcre/</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;PCRE2&#39;</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">version</span> <span class="o">=</span> <span class="n">local_PCRE2_version</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;http://www.pcre.org/&#39;</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="s1">&#39;Description: PCRE2 is a library for Perl-compatible regular expressions, this one with the version 2 API&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="s1">&#39;This package provides some command line tools and static and shared libraries&#39;</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="p">]</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="s2">The PCRE library is a set of functions that implement regular expression pattern</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="s2">matching using the same syntax and semantics as Perl 5. PCRE has its own native</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="s2">API, as well as a set of wrapper functions that correspond to the POSIX regular</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="s2">expression API. The PCRE library is free, even for building proprietary software.</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="n">docurls</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="s2">&quot;Man pages in section 1 (pcre2grep, pcre2test) and 3 (API, start with pcre2)&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="s2">&quot;http://www.pcre.org/current/doc/html/&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="p">]</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeCray&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;22.06&#39;</span><span class="p">}</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pic&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://github.com/PCRE2Project/</span><span class="si">%(namelower)s</span><span class="s1">/releases/download/</span><span class="si">%(namelower)s</span><span class="s1">-</span><span class="si">%(version)s</span><span class="s1">&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="n">sources</span> <span class="o">=</span>     <span class="p">[</span><span class="n">SOURCELOWER_TAR_BZ2</span><span class="p">]</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="n">checksums</span> <span class="o">=</span>   <span class="p">[</span><span class="s1">&#39;14e4b83c4783933dc17e964318e6324f7cae1bc75d8f3c79bc6969f00c159d68&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span> <span class="c1"># Create a reproducible build environment.</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="p">]</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="p">(</span><span class="s1">&#39;libreadline&#39;</span><span class="p">,</span> <span class="n">local_libreadline_version</span><span class="p">),</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="p">(</span><span class="s1">&#39;zlib&#39;</span><span class="p">,</span>        <span class="n">local_zlib_version</span><span class="p">),</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>    <span class="p">(</span><span class="s1">&#39;bzip2&#39;</span><span class="p">,</span>       <span class="n">local_bzip2_version</span><span class="p">),</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="p">]</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="n">configopts</span>  <span class="o">=</span> <span class="s2">&quot;--with-pic --disable-cpp --enable-newline-is-any &quot;</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s2">&quot;--enable-pcre2-16 --enable-pcre2-32 &quot;</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s2">&quot;--enable-jit &quot;</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s2">&quot;--enable-pcre2grep-libz --enable-pcre2grep-libbz2 --enable-pcre2test-libreadline &quot;</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="c1">#configopts = &quot;--enable-shared --enable-jit --enable-pcre2-16 --enable-unicode&quot;</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;bin/pcre2-config&quot;</span><span class="p">,</span> <span class="s2">&quot;bin/pcre2grep&quot;</span><span class="p">,</span> <span class="s2">&quot;bin/pcre2test&quot;</span><span class="p">,</span> <span class="s2">&quot;lib/libpcre2-8.a&quot;</span><span class="p">,</span> <span class="s2">&quot;lib/libpcre2-16.a&quot;</span><span class="p">],</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span> <span class="p">[],</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="p">}</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="n">local_executables</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pcre2-config&#39;</span><span class="p">,</span> <span class="s1">&#39;pcre2grep&#39;</span><span class="p">,</span> <span class="s1">&#39;pcre2test&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="n">local_lib_variants</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;posix&#39;</span><span class="p">,</span> <span class="s1">&#39;8&#39;</span><span class="p">,</span> <span class="s1">&#39;16&#39;</span><span class="p">,</span> <span class="s1">&#39;32&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin/</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">local_executables</span><span class="p">]</span> <span class="o">+</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>             <span class="p">[</span><span class="s1">&#39;share/man/man1/</span><span class="si">%s</span><span class="s1">.1&#39;</span> <span class="o">%</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">local_executables</span><span class="p">]</span> <span class="o">+</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>             <span class="p">[</span><span class="s1">&#39;lib/libpcre2-</span><span class="si">%s</span><span class="s1">.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">local_lib_variants</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;la&#39;</span><span class="p">,</span> <span class="n">SHLIB_EXT</span><span class="p">]]</span> <span class="o">+</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>             <span class="p">[</span><span class="s1">&#39;lib/pkgconfig/libpcre2-</span><span class="si">%s</span><span class="s1">.pc&#39;</span> <span class="o">%</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">local_lib_variants</span><span class="p">]</span> <span class="o">+</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>             <span class="p">[</span><span class="s1">&#39;include/pcre2.h&#39;</span><span class="p">,</span> <span class="s1">&#39;include/pcre2posix.h&#39;</span><span class="p">],</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;share/doc/pcre2/html&#39;</span><span class="p">,</span> <span class="s1">&#39;share/man/man3&#39;</span><span class="p">],</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a><span class="p">}</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>
+<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a><span class="n">sanity_check_commands</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>    <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> --version&#39;</span> <span class="o">%</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">local_executables</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>    <span class="s1">&#39;pkg-config --libs libpcre2-</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">local_lib_variants</span><span class="p">]</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>
+<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;devel&#39;</span>
+</code></pre></div>
 <p><a href="../">[PCRE2]</a> <a href="../../..">[package list]</a></p>
 
               

@@ -1002,83 +1002,82 @@
 <p>To access module help and find out for which stacks and partitions the module is
 installed, use <code>module spider ELPA/2021.11.001-cpeGNU-22.06</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># Contributed by Luca Marsella (CSCS)
-# Some adaptations by Kurt Lust (University of Antwerpen and LUMI consortium)
-easyblock = 'ConfigureMake'
-
-local_ELPA_version =           '2021.11.001'     # Synchronized with CSCS but also the version in EB 2021b
-
-name =    'ELPA'
-version = local_ELPA_version
-
-homepage = 'http://elpa.mpcdf.mpg.de'
-
-whatis = [
-    &quot;Description: ELPA - Eigenvalue SoLvers for Petaflop-Applications&quot;,
-]
-
-description = &quot;&quot;&quot;
-The publicly available ELPA library provides highly efficient and highly
-scalable direct eigensolvers for symmetric matrices. Though especially designed
-for use for PetaFlop/s applications solving large problem sizes on massively
-parallel supercomputers, ELPA eigensolvers have proven to be also very efficient
-for smaller matrices. All major architectures are supported.
-
-ELPA provides static and shared libraries with and without OpenMP support
-and with and without MPI. GPU support is not included in this module.
-&quot;&quot;&quot;
-
-docurls = [
-    'Manual pages in section 1 and 3'
-]
-
-toolchain = {'name': 'cpeGNU', 'version': '22.06'}
-toolchainopts = {'usempi': True, 'openmp': True}
-
-source_urls = ['https://gitlab.mpcdf.mpg.de/elpa/elpa/-/archive/new_release_%(version)s/']
-sources =     ['elpa-new_release_%(version)s.tar.gz']
-patches =     ['%(name)s-%(version)s_fix_hardcoded_perl_path.patch']
-checksums =   [
-    'e61048393a5e5f460858a11b216547fa3f434dd620c478cb20a52ebf543260f1',  # elpa-new_release_2021.11.001.tar.gz
-    # ELPA-2021.11.001_fix_hardcoded_perl_path.patch
-    '5fc40b6f3f948fd026efc688f9bafba0461d68ad007d9dc161bfd1507e2fc13b',
-]
-
-builddependencies = [ # We use the system Python and Perl.
-    ('buildtools', '%(toolchain_version)s', '', True), # For Autotools and others.
-]
-
-preconfigopts  = './autogen.sh &amp;&amp; '
-preconfigopts += &quot; CC=cc CXX=CC FC=ftn &amp;&amp; &quot;
-
-# TODO: GPU support for future versions, there is an --enable-gpu/--disable-gpu switch!
-local_commonopts = ' FCFLAGS=&quot;$FCFLAGS&quot; --disable-generic --disable-sse --disable-avx --enable-avx2  --disable-avx512 --enable-static '
-configopts = [
-    local_commonopts + ' --disable-openmp ',
-    local_commonopts + ' --enable-openmp '
-]
-
-prebuildopts = &quot; make clean &amp;&amp; &quot;
-
-sanity_check_paths = {
-    'files': ['lib/libelpa.a', 'lib/libelpa.so', 'lib/libelpa_openmp.a', 'lib/libelpa_openmp.so'],
-    'dirs':  ['bin', 'lib/pkgconfig',
-              'include/%(namelower)s-%(version)s/%(namelower)s', 'include/%(namelower)s-%(version)s/modules',
-              'include/%(namelower)s_openmp-%(version)s/%(namelower)s', 'include/%(namelower)s_openmp-%(version)s/modules']
-}
-
-modextrapaths = {
-    'CPATH': ['include/elpa_openmp-%(version)s', 'include/elpa-%(version)s']
-}
-
-modextravars = {
-    'ELPA_INCLUDE_DIR': '%(installdir)s/include/elpa-%(version)s',
-    'ELPA_OPENMP_INCLUDE_DIR': '%(installdir)s/include/elpa_openmp-%(version)s'
-}
-
-moduleclass = 'math'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Contributed by Luca Marsella (CSCS)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Some adaptations by Kurt Lust (University of Antwerpen and LUMI consortium)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;ConfigureMake&#39;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">local_ELPA_version</span> <span class="o">=</span>           <span class="s1">&#39;2021.11.001&#39;</span>     <span class="c1"># Synchronized with CSCS but also the version in EB 2021b</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;ELPA&#39;</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">version</span> <span class="o">=</span> <span class="n">local_ELPA_version</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;http://elpa.mpcdf.mpg.de&#39;</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="s2">&quot;Description: ELPA - Eigenvalue SoLvers for Petaflop-Applications&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="p">]</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="s2">The publicly available ELPA library provides highly efficient and highly</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="s2">scalable direct eigensolvers for symmetric matrices. Though especially designed</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="s2">for use for PetaFlop/s applications solving large problem sizes on massively</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="s2">parallel supercomputers, ELPA eigensolvers have proven to be also very efficient</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="s2">for smaller matrices. All major architectures are supported.</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="s2">ELPA provides static and shared libraries with and without OpenMP support</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="s2">and with and without MPI. GPU support is not included in this module.</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="n">docurls</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="s1">&#39;Manual pages in section 1 and 3&#39;</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="p">]</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeGNU&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;22.06&#39;</span><span class="p">}</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;usempi&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;openmp&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://gitlab.mpcdf.mpg.de/elpa/elpa/-/archive/new_release_</span><span class="si">%(version)s</span><span class="s1">/&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="n">sources</span> <span class="o">=</span>     <span class="p">[</span><span class="s1">&#39;elpa-new_release_</span><span class="si">%(version)s</span><span class="s1">.tar.gz&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="n">patches</span> <span class="o">=</span>     <span class="p">[</span><span class="s1">&#39;</span><span class="si">%(name)s</span><span class="s1">-</span><span class="si">%(version)s</span><span class="s1">_fix_hardcoded_perl_path.patch&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="n">checksums</span> <span class="o">=</span>   <span class="p">[</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="s1">&#39;e61048393a5e5f460858a11b216547fa3f434dd620c478cb20a52ebf543260f1&#39;</span><span class="p">,</span>  <span class="c1"># elpa-new_release_2021.11.001.tar.gz</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    <span class="c1"># ELPA-2021.11.001_fix_hardcoded_perl_path.patch</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="s1">&#39;5fc40b6f3f948fd026efc688f9bafba0461d68ad007d9dc161bfd1507e2fc13b&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="p">]</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span> <span class="c1"># We use the system Python and Perl.</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span> <span class="c1"># For Autotools and others.</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="p">]</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="n">preconfigopts</span>  <span class="o">=</span> <span class="s1">&#39;./autogen.sh &amp;&amp; &#39;</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="n">preconfigopts</span> <span class="o">+=</span> <span class="s2">&quot; CC=cc CXX=CC FC=ftn &amp;&amp; &quot;</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="c1"># TODO: GPU support for future versions, there is an --enable-gpu/--disable-gpu switch!</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="n">local_commonopts</span> <span class="o">=</span> <span class="s1">&#39; FCFLAGS=&quot;$FCFLAGS&quot; --disable-generic --disable-sse --disable-avx --enable-avx2  --disable-avx512 --enable-static &#39;</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="n">configopts</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>    <span class="n">local_commonopts</span> <span class="o">+</span> <span class="s1">&#39; --disable-openmp &#39;</span><span class="p">,</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="n">local_commonopts</span> <span class="o">+</span> <span class="s1">&#39; --enable-openmp &#39;</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="p">]</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="n">prebuildopts</span> <span class="o">=</span> <span class="s2">&quot; make clean &amp;&amp; &quot;</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;lib/libelpa.a&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/libelpa.so&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/libelpa_openmp.a&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/libelpa_openmp.so&#39;</span><span class="p">],</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span>  <span class="p">[</span><span class="s1">&#39;bin&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/pkgconfig&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>              <span class="s1">&#39;include/</span><span class="si">%(namelower)s</span><span class="s1">-</span><span class="si">%(version)s</span><span class="s1">/</span><span class="si">%(namelower)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;include/</span><span class="si">%(namelower)s</span><span class="s1">-</span><span class="si">%(version)s</span><span class="s1">/modules&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>              <span class="s1">&#39;include/</span><span class="si">%(namelower)s</span><span class="s1">_openmp-</span><span class="si">%(version)s</span><span class="s1">/</span><span class="si">%(namelower)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;include/</span><span class="si">%(namelower)s</span><span class="s1">_openmp-</span><span class="si">%(version)s</span><span class="s1">/modules&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="p">}</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="n">modextrapaths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>    <span class="s1">&#39;CPATH&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;include/elpa_openmp-</span><span class="si">%(version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;include/elpa-</span><span class="si">%(version)s</span><span class="s1">&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a><span class="p">}</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>
+<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a><span class="n">modextravars</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>    <span class="s1">&#39;ELPA_INCLUDE_DIR&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%(installdir)s</span><span class="s1">/include/elpa-</span><span class="si">%(version)s</span><span class="s1">&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>    <span class="s1">&#39;ELPA_OPENMP_INCLUDE_DIR&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%(installdir)s</span><span class="s1">/include/elpa_openmp-</span><span class="si">%(version)s</span><span class="s1">&#39;</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a><span class="p">}</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>
+<a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;math&#39;</span>
+</code></pre></div>
 <p><a href="../">[ELPA]</a> <a href="../../..">[package list]</a></p>
 
               

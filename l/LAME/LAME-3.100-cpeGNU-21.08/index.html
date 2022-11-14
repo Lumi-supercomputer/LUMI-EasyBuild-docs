@@ -1002,86 +1002,85 @@
 <p>To access module help and find out for which stacks and partitions the module is
 installed, use <code>module spider LAME/3.100-cpeGNU-21.08</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># NOTE: Requires libnuma and its development package.
-#
-##
-# This file is an EasyBuild reciPY as per https://github.com/easybuilders/easybuild
-#
-# Author:    Stephane Thiell &lt;sthiell@stanford.edu&gt;
-###
-
-easyblock = 'ConfigureMake'
-
-local_ncurses_version =      '6.2'           # https://ftp.gnu.org/pub/gnu/ncurses/
-local_LAME_version =         '3.100'         # http://lame.sourceforge.net/
-
-name =    'LAME'
-version = local_LAME_version
-
-homepage = 'http://lame.sourceforge.net/'
-
-whatis = [
-    &quot;Description: LAME is a high quality MPEG Audio Layer III (mp3) encoder&quot;,
-    &quot;This module provides the lame command line tool and static and shared libraries&quot;,
-]
-
-description = &quot;&quot;&quot;
-LAME is a high quality MPEG Audio Layer III (MP3) encoder licensed under the
-LGPL.
-
-This module provides the command line tool lame and static and shared
-libraries
-&quot;&quot;&quot;
-
-examples = &quot;&quot;&quot;
-Run lame with the --help option to get some help on the command line options
-of the lame command line tool. There is also a manual page for the lame
-command.
-
-The API is very poorly documented (basically through the source code).
-&quot;&quot;&quot;
-
-docurls = [
-    &quot;Web-based documentation: http://lame.sourceforge.net/using.php&quot;,
-    &quot;Man page for lame (section 1)&quot;,
-]
-
-docpaths = [
-    'share/doc/lame/html'
-]
-
-toolchain = {'name': 'cpeGNU', 'version': '21.08'}
-toolchainopts = {'pic': True}
-
-source_urls = ['https://sourceforge.net/projects/lame/files/lame/%(version_major_minor)s/']
-sources =     [SOURCELOWER_TAR_GZ]
-patches =     ['LAME-3.99.5_check-tgetent.patch']
-checksums = [
-    'ddfe36cab873794038ae2c1210557ad34857a4b6bdc515785d1da9e175b1da1e',  # lame-3.100.tar.gz
-    '8bfb6a73f2db1511baf90fbd7174f11043ec4b592a4917edc30ccfb53bf37256',  # LAME-3.99.5_check-tgetent.patch
-]
-
-builddependencies = [ # Create a reproducible build environment.
-    ('buildtools', '%(toolchain_version)s', '', True), # For autoconf
-]
-
-dependencies = [
-    ('ncurses',    local_ncurses_version)
-]
-
-preconfigopts = &quot;autoconf &amp;&amp; &quot;
-
-# configure is broken: add workaround to find libncurses...
-configure_cmd_prefix = &quot;FRONTEND_LDADD='-L${EBROOTNCURSES}/lib' &quot;
-
-sanity_check_paths = {
-    'files': ['bin/lame', 'include/lame/lame.h', 'lib/libmp3lame.%s' % SHLIB_EXT],
-    'dirs':  [],
-}
-
-moduleclass = 'data'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># NOTE: Requires libnuma and its development package.</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1">#</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1">##</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># This file is an EasyBuild reciPY as per https://github.com/easybuilders/easybuild</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1">#</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># Author:    Stephane Thiell &lt;sthiell@stanford.edu&gt;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1">###</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;ConfigureMake&#39;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">local_ncurses_version</span> <span class="o">=</span>      <span class="s1">&#39;6.2&#39;</span>           <span class="c1"># https://ftp.gnu.org/pub/gnu/ncurses/</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">local_LAME_version</span> <span class="o">=</span>         <span class="s1">&#39;3.100&#39;</span>         <span class="c1"># http://lame.sourceforge.net/</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;LAME&#39;</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="n">version</span> <span class="o">=</span> <span class="n">local_LAME_version</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;http://lame.sourceforge.net/&#39;</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="s2">&quot;Description: LAME is a high quality MPEG Audio Layer III (mp3) encoder&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="s2">&quot;This module provides the lame command line tool and static and shared libraries&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="p">]</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="s2">LAME is a high quality MPEG Audio Layer III (MP3) encoder licensed under the</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="s2">LGPL.</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="s2">This module provides the command line tool lame and static and shared</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="s2">libraries</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="n">examples</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="s2">Run lame with the --help option to get some help on the command line options</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="s2">of the lame command line tool. There is also a manual page for the lame</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="s2">command.</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="s2">The API is very poorly documented (basically through the source code).</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="n">docurls</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="s2">&quot;Web-based documentation: http://lame.sourceforge.net/using.php&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="s2">&quot;Man page for lame (section 1)&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="p">]</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="n">docpaths</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>    <span class="s1">&#39;share/doc/lame/html&#39;</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="p">]</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeGNU&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;21.08&#39;</span><span class="p">}</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pic&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://sourceforge.net/projects/lame/files/lame/</span><span class="si">%(version_major_minor)s</span><span class="s1">/&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="n">sources</span> <span class="o">=</span>     <span class="p">[</span><span class="n">SOURCELOWER_TAR_GZ</span><span class="p">]</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="n">patches</span> <span class="o">=</span>     <span class="p">[</span><span class="s1">&#39;LAME-3.99.5_check-tgetent.patch&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="n">checksums</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="s1">&#39;ddfe36cab873794038ae2c1210557ad34857a4b6bdc515785d1da9e175b1da1e&#39;</span><span class="p">,</span>  <span class="c1"># lame-3.100.tar.gz</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>    <span class="s1">&#39;8bfb6a73f2db1511baf90fbd7174f11043ec4b592a4917edc30ccfb53bf37256&#39;</span><span class="p">,</span>  <span class="c1"># LAME-3.99.5_check-tgetent.patch</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="p">]</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span> <span class="c1"># Create a reproducible build environment.</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span> <span class="c1"># For autoconf</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="p">]</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>    <span class="p">(</span><span class="s1">&#39;ncurses&#39;</span><span class="p">,</span>    <span class="n">local_ncurses_version</span><span class="p">)</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="p">]</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a><span class="n">preconfigopts</span> <span class="o">=</span> <span class="s2">&quot;autoconf &amp;&amp; &quot;</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>
+<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a><span class="c1"># configure is broken: add workaround to find libncurses...</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a><span class="n">configure_cmd_prefix</span> <span class="o">=</span> <span class="s2">&quot;FRONTEND_LDADD=&#39;-L$</span><span class="si">{EBROOTNCURSES}</span><span class="s2">/lib&#39; &quot;</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>
+<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin/lame&#39;</span><span class="p">,</span> <span class="s1">&#39;include/lame/lame.h&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/libmp3lame.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">SHLIB_EXT</span><span class="p">],</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span>  <span class="p">[],</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a><span class="p">}</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>
+<a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;data&#39;</span>
+</code></pre></div>
 <p><a href="../">[LAME]</a> <a href="../../..">[package list]</a></p>
 
               

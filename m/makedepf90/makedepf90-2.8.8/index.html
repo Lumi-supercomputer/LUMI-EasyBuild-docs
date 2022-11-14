@@ -999,66 +999,64 @@
 
 <p><a href="../">[makedepf90]</a> <a href="../../..">[package list]</a></p>
 <h1 id="makedepf90288-makedepf90-288eb">makedepf90/2.8.8 (makedepf90-2.8.8.eb)</h1>
-<p>Install with the EasyBuild-user module:</p>
-<pre><code>eb makedepf90-2.8.8.eb -r
-
-</code></pre>
-<p>To access module help after installation and get reminded for which stacks and partitions the module is
+<p>Install with the EasyBuild-user module:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>eb makedepf90-2.8.8.eb -r
+</code></pre></div>
+To access module help after installation and get reminded for which stacks and partitions the module is
 installed, use <code>module spider makedepf90/2.8.8</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python">easyblock = 'ConfigureMake'
-
-name =    'makedepf90'
-version = '2.8.8'
-
-homepage = 'https://linux.die.net/man/1/makedepf90'
-
-whatis = [
-   'Description: Makedepf90 is a program for automatic creation of Makefile-style dependency lists for Fortran source code.'
-]
-
-description = &quot;&quot;&quot;
-makedepf90 is a program for automatic creation of dependency lists and 
-compilation rules for Makefiles.
-
-The original idea was to provide the same functionality for Fortran as
-
-gcc -MM *.c
-
-does for C. Nowadays makedepf90 actually supersedes this functionality
-
-This software is no longer maintained so is offered without any warranty
-that it works properly or can continue to work on LUMI in the future.
-It is fully offered &quot;as-is&quot;, without support from the LUMI User Support
-Team, unless someone would pick up development again.
-&quot;&quot;&quot;
-
-docurls = [
-    'Man page for the makedepf90 command in section 1'    
-]
-
-toolchain = SYSTEM
-
-sources =     ['%(name)s_%(version)s.orig.tar.gz']
-source_urls = ['https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/%(name)s/%(version)s-1/']
-checksums =   ['a5118aea198219f59bc04eab0a2099341cecac76a7029c2aef72141645e7596a']
-
-preconfigopts = 'sed -e &quot;s|^mandir=.*|mandir=\'\${prefix}/share/man\'|&quot; -i configure &amp;&amp; '
-prebuildopts = 'make depend &amp;&amp; '
-
-sanity_check_paths = {
-    'files': ['bin/makedepf90', 'share/man/man1/makedepf90.1'],
-    'dirs':  []
-}
-
-sanity_check_commands = [
-    'makedepf90 --help',
-    'makedepf90 --version',    
-]
-
-moduleclass = 'devel'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;ConfigureMake&#39;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;makedepf90&#39;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;2.8.8&#39;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://linux.die.net/man/1/makedepf90&#39;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>   <span class="s1">&#39;Description: Makedepf90 is a program for automatic creation of Makefile-style dependency lists for Fortran source code.&#39;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="p">]</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="s2">makedepf90 is a program for automatic creation of dependency lists and </span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="s2">compilation rules for Makefiles.</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="s2">The original idea was to provide the same functionality for Fortran as</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="s2">gcc -MM *.c</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="s2">does for C. Nowadays makedepf90 actually supersedes this functionality</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="s2">This software is no longer maintained so is offered without any warranty</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="s2">that it works properly or can continue to work on LUMI in the future.</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="s2">It is fully offered &quot;as-is&quot;, without support from the LUMI User Support</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="s2">Team, unless someone would pick up development again.</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="n">docurls</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>    <span class="s1">&#39;Man page for the makedepf90 command in section 1&#39;</span>    
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="p">]</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="n">SYSTEM</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="n">sources</span> <span class="o">=</span>     <span class="p">[</span><span class="s1">&#39;</span><span class="si">%(name)s</span><span class="s1">_</span><span class="si">%(version)s</span><span class="s1">.orig.tar.gz&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/</span><span class="si">%(name)s</span><span class="s1">/</span><span class="si">%(version)s</span><span class="s1">-1/&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="n">checksums</span> <span class="o">=</span>   <span class="p">[</span><span class="s1">&#39;a5118aea198219f59bc04eab0a2099341cecac76a7029c2aef72141645e7596a&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="n">preconfigopts</span> <span class="o">=</span> <span class="s1">&#39;sed -e &quot;s|^mandir=.*|mandir=</span><span class="se">\&#39;</span><span class="s1">\$</span><span class="si">{prefix}</span><span class="s1">/share/man</span><span class="se">\&#39;</span><span class="s1">|&quot; -i configure &amp;&amp; &#39;</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="n">prebuildopts</span> <span class="o">=</span> <span class="s1">&#39;make depend &amp;&amp; &#39;</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin/makedepf90&#39;</span><span class="p">,</span> <span class="s1">&#39;share/man/man1/makedepf90.1&#39;</span><span class="p">],</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span>  <span class="p">[]</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="p">}</span>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="n">sanity_check_commands</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>    <span class="s1">&#39;makedepf90 --help&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>    <span class="s1">&#39;makedepf90 --version&#39;</span><span class="p">,</span>    
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a><span class="p">]</span>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;devel&#39;</span>
+</code></pre></div>
 <p><a href="../">[makedepf90]</a> <a href="../../..">[package list]</a></p>
 
               

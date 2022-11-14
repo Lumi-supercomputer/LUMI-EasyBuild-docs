@@ -999,90 +999,89 @@
 
 <p><a href="../">[OpenMM]</a> <a href="../../..">[package list]</a></p>
 <h1 id="openmm751-cpegnu-2108-openmm-751-cpegnu-2108eb">OpenMM/7.5.1-cpeGNU-21.08 (OpenMM-7.5.1-cpeGNU-21.08.eb)</h1>
-<p>Install with the EasyBuild-user module:</p>
-<pre><code>eb OpenMM-7.5.1-cpeGNU-21.08.eb -r
-
-</code></pre>
-<p>To access module help after installation and get reminded for which stacks and partitions the module is
+<p>Install with the EasyBuild-user module:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>eb OpenMM-7.5.1-cpeGNU-21.08.eb -r
+</code></pre></div>
+To access module help after installation and get reminded for which stacks and partitions the module is
 installed, use <code>module spider OpenMM/7.5.1-cpeGNU-21.08</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># based on the Easybuilders Easyconfig
-# adapted for LUMI by Orian Louant
-
-local_SWIG_version = '4.0.2'
-
-easyblock = 'CMakeMake'
-
-name = 'OpenMM'
-version = '7.5.1'
-
-homepage = 'https://openmm.org'
-
-whatis = [
-    'OpenMM is a high-performance toolkit for molecular simulation'
-]
-
-description = &quot;&quot;&quot;
-OpenMM is a high-performance toolkit for molecular simulation. You can use it as
-an application, a library, or a flexible programming environment. It include 
-extensive language bindings for Python, C, C++, and Fortran.
-&quot;&quot;&quot;
-
-docurls = [
-    'User guide: http://docs.openmm.org/latest/userguide/',
-    'Python API: http://docs.openmm.org/latest/api-python/',
-    'C++ API: http://docs.openmm.org/latest/api-c++/',
-]
-
-toolchain = {'name': 'cpeGNU', 'version': '21.08'}
-toolchainopts = {'opt': True}
-
-source_urls = ['https://github.com/openmm/openmm/archive/']
-sources = ['%(version)s.tar.gz']
-patches = [
-    'OpenMM-%(version)s-fix-doxygen-1.9.patch'
-]
-
-checksums = [
-    'c88d6946468a2bde2619acb834f57b859b5e114a93093cf562165612e10f4ff7', # source
-    '539db336d1cd519c8bebba2e3a6a9fc38b135b84d8f3dc4076314ecd2e555e38', # patch
-]
-
-builddependencies = [
-    ('buildtools', '%(toolchain_version)s', '', True),
-]
-
-separate_build_dir = True
-
-dependencies = [
-    ('cray-fftw', EXTERNAL_MODULE),
-    ('cray-python', EXTERNAL_MODULE),
-    ('SWIG', local_SWIG_version),
-]
-
-runtest = &quot;&quot;&quot;test -e ARGS=&quot;-E \'(Integrator)|(Thermostat)|(Barostat)|(Rpmd)|(Amoeba)|(HippoNonbondedForce)\'&quot; &quot;&quot;&quot;
-
-preinstallopts = ' export OPENMM_INCLUDE_PATH=%(installdir)s/include &amp;&amp; '
-preinstallopts += ' export OPENMM_LIB_PATH=%(installdir)s/lib &amp;&amp; '
-
-# required to install the python API
-installopts = ' &amp;&amp; cd python &amp;&amp; python setup.py build &amp;&amp; python setup.py install --prefix=%(installdir)s'
-
-sanity_check_paths = {
-    'files': ['lib/libOpenMM.%s' % SHLIB_EXT, 'lib/python%(pyshortver)s/site-packages/simtk/openmm/openmm.py'],
-    'dirs': []
-}
-
-sanity_check_commands = [&quot;python -m simtk.testInstallation&quot;]
-
-modextrapaths = {
-    'PYTHONPATH': 'lib/python%(pyshortver)s/site-packages',
-    'OPENMM_INCLUDE_PATH': 'include',
-    'OPENMM_LIB_PATH': 'lib',
-}
-
-moduleclass = 'bio'
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># based on the Easybuilders Easyconfig</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># adapted for LUMI by Orian Louant</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">local_SWIG_version</span> <span class="o">=</span> <span class="s1">&#39;4.0.2&#39;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;CMakeMake&#39;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;OpenMM&#39;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;7.5.1&#39;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://openmm.org&#39;</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="s1">&#39;OpenMM is a high-performance toolkit for molecular simulation&#39;</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="p">]</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="s2">OpenMM is a high-performance toolkit for molecular simulation. You can use it as</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="s2">an application, a library, or a flexible programming environment. It include </span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="s2">extensive language bindings for Python, C, C++, and Fortran.</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="n">docurls</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>    <span class="s1">&#39;User guide: http://docs.openmm.org/latest/userguide/&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>    <span class="s1">&#39;Python API: http://docs.openmm.org/latest/api-python/&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>    <span class="s1">&#39;C++ API: http://docs.openmm.org/latest/api-c++/&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="p">]</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeGNU&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;21.08&#39;</span><span class="p">}</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;opt&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://github.com/openmm/openmm/archive/&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;</span><span class="si">%(version)s</span><span class="s1">.tar.gz&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="n">patches</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>    <span class="s1">&#39;OpenMM-</span><span class="si">%(version)s</span><span class="s1">-fix-doxygen-1.9.patch&#39;</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="p">]</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="n">checksums</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>    <span class="s1">&#39;c88d6946468a2bde2619acb834f57b859b5e114a93093cf562165612e10f4ff7&#39;</span><span class="p">,</span> <span class="c1"># source</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>    <span class="s1">&#39;539db336d1cd519c8bebba2e3a6a9fc38b135b84d8f3dc4076314ecd2e555e38&#39;</span><span class="p">,</span> <span class="c1"># patch</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="p">]</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="p">]</span>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="n">separate_build_dir</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>    <span class="p">(</span><span class="s1">&#39;cray-fftw&#39;</span><span class="p">,</span> <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>    <span class="p">(</span><span class="s1">&#39;cray-python&#39;</span><span class="p">,</span> <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>    <span class="p">(</span><span class="s1">&#39;SWIG&#39;</span><span class="p">,</span> <span class="n">local_SWIG_version</span><span class="p">),</span>
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a><span class="p">]</span>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a><span class="n">runtest</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;test -e ARGS=&quot;-E </span><span class="se">\&#39;</span><span class="s2">(Integrator)|(Thermostat)|(Barostat)|(Rpmd)|(Amoeba)|(HippoNonbondedForce)</span><span class="se">\&#39;</span><span class="s2">&quot; &quot;&quot;&quot;</span>
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a><span class="n">preinstallopts</span> <span class="o">=</span> <span class="s1">&#39; export OPENMM_INCLUDE_PATH=</span><span class="si">%(installdir)s</span><span class="s1">/include &amp;&amp; &#39;</span>
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a><span class="n">preinstallopts</span> <span class="o">+=</span> <span class="s1">&#39; export OPENMM_LIB_PATH=</span><span class="si">%(installdir)s</span><span class="s1">/lib &amp;&amp; &#39;</span>
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a><span class="c1"># required to install the python API</span>
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a><span class="n">installopts</span> <span class="o">=</span> <span class="s1">&#39; &amp;&amp; cd python &amp;&amp; python setup.py build &amp;&amp; python setup.py install --prefix=</span><span class="si">%(installdir)s</span><span class="s1">&#39;</span>
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;lib/libOpenMM.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">SHLIB_EXT</span><span class="p">,</span> <span class="s1">&#39;lib/python</span><span class="si">%(pyshortver)s</span><span class="s1">/site-packages/simtk/openmm/openmm.py&#39;</span><span class="p">],</span>
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span> <span class="p">[]</span>
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a><span class="p">}</span>
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a><span class="n">sanity_check_commands</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;python -m simtk.testInstallation&quot;</span><span class="p">]</span>
+<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>
+<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a><span class="n">modextrapaths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>    <span class="s1">&#39;PYTHONPATH&#39;</span><span class="p">:</span> <span class="s1">&#39;lib/python</span><span class="si">%(pyshortver)s</span><span class="s1">/site-packages&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>    <span class="s1">&#39;OPENMM_INCLUDE_PATH&#39;</span><span class="p">:</span> <span class="s1">&#39;include&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>    <span class="s1">&#39;OPENMM_LIB_PATH&#39;</span><span class="p">:</span> <span class="s1">&#39;lib&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a><span class="p">}</span>
+<a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>
+<a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;bio&#39;</span>
+</code></pre></div>
 <p><a href="../">[OpenMM]</a> <a href="../../..">[package list]</a></p>
 
               

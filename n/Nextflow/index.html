@@ -1041,26 +1041,6 @@
     EasyBuild
   </a>
   
-    <nav class="md-nav" aria-label="EasyBuild">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#java-11" class="md-nav__link">
-    Java 11
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#nextflow-22100" class="md-nav__link">
-    Nextflow 22.10.0
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
       </ul>
@@ -1089,25 +1069,25 @@
 <p><a href="https://www.nextflow.io/">NextFlow</a> can be installed with 
 <a href="https://docs.lumi-supercomputer.eu/software/installing/easybuild/">EasyBuild</a>
 (<code>EasyBuild-user</code> configuration module), and for most users
-<code>partition/L</code> is the one you want to use:</p>
-<pre><code class="language-bash">eb Nextflow-22.10.0.eb -r
-</code></pre>
+<code>partition/L</code> is the one you want to use:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>eb Nextflow-22.10.0.eb -r
+</code></pre></div></p>
 <h3 id="enabling-the-slurm-executor">Enabling the Slurm executor</h3>
 <p>To enable the SLURM executor on LUMI, find or create <code>$HOME/.nextflow/nextflow.config</code> file and set <code>process.executor</code> property to slurm value:</p>
-<pre><code>profiles {
-
- lumi {
-     process.clusterOptions = '--account=project_xxxx --ntasks-per-node=1 --cpus-per-task=4 --ntasks=1 --time=00:00:05'
-     process.executor = 'slurm'
-     process.queue = 'small'
-     process.memory = '10G'
-    }
-
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>profiles {
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a> lumi {
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>     process.clusterOptions = &#39;--account=project_xxxx --ntasks-per-node=1 --cpus-per-task=4 --ntasks=1 --time=00:00:05&#39;
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>     process.executor = &#39;slurm&#39;
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>     process.queue = &#39;small&#39;
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>     process.memory = &#39;10G&#39;
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    }
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>}
+</code></pre></div>
 <p>Then, you can run a nextflow script with <code>lumi</code> profile: </p>
-<pre><code>nextflow run &lt;nextflow_script&gt; -profile lumi
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>nextflow run &lt;nextflow_script&gt; -profile lumi
+</code></pre></div>
 <p>Note however that the Slurm executor not suitable for large workflows 
 involving tens of thousands of processes on HPC systems. In fact,
 you'll quickly bump against the limit of the number of jobs that
@@ -1134,11 +1114,10 @@ a user can have in the queue.</p>
 </li>
 </ul>
 <h2 id="user-installable-modules-and-easyconfigs">User-installable modules (and EasyConfigs)</h2>
-<p>Install with the EasyBuild-user module:</p>
-<pre><code>eb &lt;easyconfig&gt; -r
-
-</code></pre>
-<p>To access module help after installation and get reminded for which stacks and partitions the module is
+<p>Install with the EasyBuild-user module:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>eb &lt;easyconfig&gt; -r
+</code></pre></div>
+To access module help after installation and get reminded for which stacks and partitions the module is
 installed, use <code>module spider Nextflow/&lt;version&gt;</code>.</p>
 <p>EasyConfig:</p>
 <ul>
@@ -1146,25 +1125,25 @@ installed, use <code>module spider Nextflow/&lt;version&gt;</code>.</p>
 </ul>
 <h2 id="technical-documentation">Technical documentation</h2>
 <p>Nextflow comes as a binary Java package. It should be portable enough to run on LUMI.</p>
-<p>Nextflow should be installed in the <code>partition/L</code>. Try with basic command: </p>
-<pre><code>eb Nextflow-22.10.0.eb
-</code></pre>
+<p>Nextflow should be installed in the <code>partition/L</code>. Try with basic command: 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>eb Nextflow-22.10.0.eb
+</code></pre></div></p>
 <h3 id="enabling-the-slurm-executor_1">Enabling the SLURM executor</h3>
 <p>To enable the SLURM executor on LUMI, find or create <code>$HOME/.nextflow/nextflow.config</code> file and set <code>process.executor</code> property to slurm value:</p>
-<pre><code>profiles {
-
- lumi {
-     process.clusterOptions = '--account=project_xxxx --ntasks-per-node=1 --cpus-per-task=4 --ntasks=1 --time=00:00:05'
-     process.executor = 'slurm'
-     process.queue = 'small'
-     process.memory = '10G'
-    }
-
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>profiles {
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a> lumi {
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>     process.clusterOptions = &#39;--account=project_xxxx --ntasks-per-node=1 --cpus-per-task=4 --ntasks=1 --time=00:00:05&#39;
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>     process.executor = &#39;slurm&#39;
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>     process.queue = &#39;small&#39;
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>     process.memory = &#39;10G&#39;
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    }
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>}
+</code></pre></div>
 <p>Then, you can run a nextflow script with <code>lumi</code> profile: </p>
-<pre><code>nextflow run &lt;nextflow_script&gt; -profile lumi
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>nextflow run &lt;nextflow_script&gt; -profile lumi
+</code></pre></div>
 <ul>
 <li>
 <p><a href="https://nextflow.io/">Nextflow web site</a></p>

@@ -999,90 +999,88 @@
 
 <p><a href="../">[HyperQueue]</a> <a href="../../..">[package list]</a></p>
 <h1 id="hyperqueue050-hyperqueue-050eb">HyperQueue/0.5.0 (HyperQueue-0.5.0.eb)</h1>
-<p>Install with the EasyBuild-user module:</p>
-<pre><code>eb HyperQueue-0.5.0.eb -r
-
-</code></pre>
-<p>To access module help after installation and get reminded for which stacks and partitions the module is
+<p>Install with the EasyBuild-user module:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>eb HyperQueue-0.5.0.eb -r
+</code></pre></div>
+To access module help after installation and get reminded for which stacks and partitions the module is
 installed, use <code>module spider HyperQueue/0.5.0</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># We suggest to install this build recipe in partition/common so that
-# the same binaries are available for all LUMI partitions. This will make
-# it a lot easier to start HyperQueue.
-#
-# HyperQueue is written in Rust and build using the Rust cargo system.
-# As there is no support in EasyBuild for building with cargo and as we
-# want to avoid building a special-purpose EasyBlock for HyperQueue in this
-# stage of development of the tool, we take another route: We use the CmdCp
-# generic EasyBlock to execute the cargo build command in the build phase and
-# then copy the executable manually in the install phase.
-#
-# Note that this build may not be reproducible: Cargo pulls in a lot of dependencies
-# so those sources are not saved by EasyBuild, and if the sources disappear from the
-# location where they are found or are modified, rebuilding will fail or produce a
-# different result.
-#
-easyblock = 'CmdCp'
-
-# These dependency version numbers are correct for the LUMI/21.08 software stack.
-local_Rust_version  =      '1.55.0'   # https://www.rust-lang.org/
-local_HyperQueue_version = '0.5.0'    # https://github.com/It4innovations/hyperqueue/releases
-
-name =    'HyperQueue'
-version = local_HyperQueue_version
-
-homepage = 'https://it4innovations.github.io/hyperqueue/'
-
-whatis = [
-    'Description: HyperQueue (HQ) lets you build a computation plan consisting of a large amount of tasks and then execute it transparently over a system like SLURM/PBS'
-]
-
-description = &quot;&quot;&quot;
-HyperQueue lets you build a computation plan consisting of a large amount of
-tasks and then execute it transparently over a system like SLURM/PBS. It
-dynamically groups jobs into SLURM/PBS jobs and distributes them to fully
-utilize allocated notes. You thus do not have to manually aggregate your
-tasks into SLURM/PBS jobs.
-&quot;&quot;&quot;
-
-docurls = [
-    'Web-based manual at https://it4innovations.github.io/hyperqueue/'
-]
-
-toolchain = SYSTEM
-
-# https://github.com/It4innovations/hyperqueue/archive/refs/tags/v0.4.0.tar.gz
-sources = {
-    'download_filename': 'v%(version)s.tar.gz',
-    'filename':          SOURCELOWER_TAR_GZ,
-    'source_urls':       ['https://github.com/It4innovations/hyperqueue/archive/refs/tags']
-}
-checksums =   ['b215dcfc81369e744ea0f73e1be7654e6fc133456f1cb99917fd15080ab6eb79']
-
-builddependencies = [
-    ('Rust',       local_Rust_version),
-]
-
-cmds_map = [
-    ('.*', 'mkdir -p %(builddir)s/cargo ; CARGO_HOME=&quot;%(builddir)s/cargo&quot; RUSTFLAGS=&quot;-C target-cpu=znver2&quot; cargo build --release')
-]
-
-files_to_copy = [
-    (['target/release/hq'], 'bin')
-]
-
-sanity_check_paths = {
-    'files': ['bin/hq'],
-    'dirs':  [],
-}
-
-sanity_check_commands = [
-    &quot;hq -V&quot;,
-]
-
-moduleclass = 'tools'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># We suggest to install this build recipe in partition/common so that</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># the same binaries are available for all LUMI partitions. This will make</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># it a lot easier to start HyperQueue.</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1">#</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># HyperQueue is written in Rust and build using the Rust cargo system.</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1"># As there is no support in EasyBuild for building with cargo and as we</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># want to avoid building a special-purpose EasyBlock for HyperQueue in this</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1"># stage of development of the tool, we take another route: We use the CmdCp</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="c1"># generic EasyBlock to execute the cargo build command in the build phase and</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># then copy the executable manually in the install phase.</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="c1">#</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="c1"># Note that this build may not be reproducible: Cargo pulls in a lot of dependencies</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="c1"># so those sources are not saved by EasyBuild, and if the sources disappear from the</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="c1"># location where they are found or are modified, rebuilding will fail or produce a</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="c1"># different result.</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="c1">#</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;CmdCp&#39;</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="c1"># These dependency version numbers are correct for the LUMI/21.08 software stack.</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="n">local_Rust_version</span>  <span class="o">=</span>      <span class="s1">&#39;1.55.0&#39;</span>   <span class="c1"># https://www.rust-lang.org/</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="n">local_HyperQueue_version</span> <span class="o">=</span> <span class="s1">&#39;0.5.0&#39;</span>    <span class="c1"># https://github.com/It4innovations/hyperqueue/releases</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;HyperQueue&#39;</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="n">version</span> <span class="o">=</span> <span class="n">local_HyperQueue_version</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://it4innovations.github.io/hyperqueue/&#39;</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>    <span class="s1">&#39;Description: HyperQueue (HQ) lets you build a computation plan consisting of a large amount of tasks and then execute it transparently over a system like SLURM/PBS&#39;</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="p">]</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="s2">HyperQueue lets you build a computation plan consisting of a large amount of</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="s2">tasks and then execute it transparently over a system like SLURM/PBS. It</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="s2">dynamically groups jobs into SLURM/PBS jobs and distributes them to fully</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="s2">utilize allocated notes. You thus do not have to manually aggregate your</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="s2">tasks into SLURM/PBS jobs.</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="n">docurls</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>    <span class="s1">&#39;Web-based manual at https://it4innovations.github.io/hyperqueue/&#39;</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="p">]</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="n">SYSTEM</span>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="c1"># https://github.com/It4innovations/hyperqueue/archive/refs/tags/v0.4.0.tar.gz</span>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="n">sources</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>    <span class="s1">&#39;download_filename&#39;</span><span class="p">:</span> <span class="s1">&#39;v</span><span class="si">%(version)s</span><span class="s1">.tar.gz&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>    <span class="s1">&#39;filename&#39;</span><span class="p">:</span>          <span class="n">SOURCELOWER_TAR_GZ</span><span class="p">,</span>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>    <span class="s1">&#39;source_urls&#39;</span><span class="p">:</span>       <span class="p">[</span><span class="s1">&#39;https://github.com/It4innovations/hyperqueue/archive/refs/tags&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a><span class="p">}</span>
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a><span class="n">checksums</span> <span class="o">=</span>   <span class="p">[</span><span class="s1">&#39;b215dcfc81369e744ea0f73e1be7654e6fc133456f1cb99917fd15080ab6eb79&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>    <span class="p">(</span><span class="s1">&#39;Rust&#39;</span><span class="p">,</span>       <span class="n">local_Rust_version</span><span class="p">),</span>
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a><span class="p">]</span>
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a><span class="n">cmds_map</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>    <span class="p">(</span><span class="s1">&#39;.*&#39;</span><span class="p">,</span> <span class="s1">&#39;mkdir -p </span><span class="si">%(builddir)s</span><span class="s1">/cargo ; CARGO_HOME=&quot;</span><span class="si">%(builddir)s</span><span class="s1">/cargo&quot; RUSTFLAGS=&quot;-C target-cpu=znver2&quot; cargo build --release&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a><span class="p">]</span>
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a><span class="n">files_to_copy</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>    <span class="p">([</span><span class="s1">&#39;target/release/hq&#39;</span><span class="p">],</span> <span class="s1">&#39;bin&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a><span class="p">]</span>
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin/hq&#39;</span><span class="p">],</span>
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span>  <span class="p">[],</span>
+<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a><span class="p">}</span>
+<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>
+<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a><span class="n">sanity_check_commands</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>    <span class="s2">&quot;hq -V&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a><span class="p">]</span>
+<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>
+<a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;tools&#39;</span>
+</code></pre></div>
 <p><a href="../">[HyperQueue]</a> <a href="../../..">[package list]</a></p>
 
               

@@ -1002,74 +1002,73 @@
 <p>To access module help and find out for which stacks and partitions the module is
 installed, use <code>module spider Tk/8.6.12-cpeGNU-22.08</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># contributed by Luca Marsella (CSCS)
-easyblock = 'ConfigureMake'
-
-local_Tcl_version =          '8.6.12'        # https://tcl.tk/
-local_zlib_version =         '1.2.12'        # https://zlib.net/
-
-local_Tk_version =           '8.6.12'        # https://tcl.tk/
-
-name =    'Tk'
-version = local_Tk_version
-
-homepage = 'http://www.tcl.tk/'
-
-whatis = [
-    'Description: Tk is a graphical user interface toolkit'
-]
-
-description = &quot;&quot;&quot;
-Tk is a graphical user interface toolkit that takes developing desktop
-applications to a higher level than conventional approaches. Tk is the
-standard GUI not only for Tcl, but for many other dynamic languages, and
-can produce rich, native applications that run unchanged across Windows,
-Mac OS X, Linux and more.
-&quot;&quot;&quot;
-
-toolchain = {'name': 'cpeGNU', 'version': '22.08'}
-
-source_urls = [&quot;https://prdownloads.sourceforge.net/tcl&quot;]
-sources =     ['%(namelower)s%(version)s-src.tar.gz']
-patches =     ['Tk-8.6.4_different-prefix-with-tcl.patch']
-checksums =   [
-    '12395c1f3fcb6bed2938689f797ea3cdf41ed5cb6c4766eec8ac949560310630',  # tk8.6.12-src.tar.gz
-    '7a6daa8349393af3d340e774aebf07c7410c51e01bc654ceb3679877063b961d',  # Tk-8.6.4_different-prefix-with-tcl.patch
-]
-
-builddependencies = [ # Create a reproducible build environment.
-    ('buildtools',   '%(toolchain_version)s',   '', True),
-]
-
-dependencies = [
-    ('Tcl',  local_Tcl_version),
-    ('X11',  '%(toolchain_version)s'),
-    ('zlib', local_zlib_version),
-]
-
-configopts = '--enable-threads --with-tcl=$EBROOTTCL/lib CFLAGS=&quot;-I$EBROOTTCL/include&quot;'
-
-installopts = &quot;&amp;&amp; make install-private-headers&quot;
-
-postinstallcmds = [
-    &quot;ln -s wish%(version_major_minor)s %(installdir)s/bin/wish&quot;
-]
-
-sanity_check_paths = {
-    'files': ['bin/wish', 'lib/tkConfig.sh',   'include/tkInt.h', 'lib/libtk%(version_major_minor)s.' + SHLIB_EXT],
-    'dirs':  ['lib/tk%(version_major_minor)s'],
-}
-
-sanity_check_commands = [
-    # No test for wish possible as that requires DISPLAY to be set.
-    'pkg-config --libs tk',
-]
-
-start_dir = 'unix'
-
-moduleclass = 'vis'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># contributed by Luca Marsella (CSCS)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;ConfigureMake&#39;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">local_Tcl_version</span> <span class="o">=</span>          <span class="s1">&#39;8.6.12&#39;</span>        <span class="c1"># https://tcl.tk/</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">local_zlib_version</span> <span class="o">=</span>         <span class="s1">&#39;1.2.12&#39;</span>        <span class="c1"># https://zlib.net/</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">local_Tk_version</span> <span class="o">=</span>           <span class="s1">&#39;8.6.12&#39;</span>        <span class="c1"># https://tcl.tk/</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;Tk&#39;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">version</span> <span class="o">=</span> <span class="n">local_Tk_version</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;http://www.tcl.tk/&#39;</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="s1">&#39;Description: Tk is a graphical user interface toolkit&#39;</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="p">]</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="s2">Tk is a graphical user interface toolkit that takes developing desktop</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="s2">applications to a higher level than conventional approaches. Tk is the</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="s2">standard GUI not only for Tcl, but for many other dynamic languages, and</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="s2">can produce rich, native applications that run unchanged across Windows,</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="s2">Mac OS X, Linux and more.</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeGNU&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;22.08&#39;</span><span class="p">}</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;https://prdownloads.sourceforge.net/tcl&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="n">sources</span> <span class="o">=</span>     <span class="p">[</span><span class="s1">&#39;</span><span class="si">%(namelower)s%(version)s</span><span class="s1">-src.tar.gz&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="n">patches</span> <span class="o">=</span>     <span class="p">[</span><span class="s1">&#39;Tk-8.6.4_different-prefix-with-tcl.patch&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="n">checksums</span> <span class="o">=</span>   <span class="p">[</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    <span class="s1">&#39;12395c1f3fcb6bed2938689f797ea3cdf41ed5cb6c4766eec8ac949560310630&#39;</span><span class="p">,</span>  <span class="c1"># tk8.6.12-src.tar.gz</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>    <span class="s1">&#39;7a6daa8349393af3d340e774aebf07c7410c51e01bc654ceb3679877063b961d&#39;</span><span class="p">,</span>  <span class="c1"># Tk-8.6.4_different-prefix-with-tcl.patch</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="p">]</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span> <span class="c1"># Create a reproducible build environment.</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span>   <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span>   <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="p">]</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="p">(</span><span class="s1">&#39;Tcl&#39;</span><span class="p">,</span>  <span class="n">local_Tcl_version</span><span class="p">),</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="p">(</span><span class="s1">&#39;X11&#39;</span><span class="p">,</span>  <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">),</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="p">(</span><span class="s1">&#39;zlib&#39;</span><span class="p">,</span> <span class="n">local_zlib_version</span><span class="p">),</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="p">]</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="n">configopts</span> <span class="o">=</span> <span class="s1">&#39;--enable-threads --with-tcl=$EBROOTTCL/lib CFLAGS=&quot;-I$EBROOTTCL/include&quot;&#39;</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="n">installopts</span> <span class="o">=</span> <span class="s2">&quot;&amp;&amp; make install-private-headers&quot;</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="n">postinstallcmds</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>    <span class="s2">&quot;ln -s wish</span><span class="si">%(version_major_minor)s</span><span class="s2"> </span><span class="si">%(installdir)s</span><span class="s2">/bin/wish&quot;</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="p">]</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin/wish&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/tkConfig.sh&#39;</span><span class="p">,</span>   <span class="s1">&#39;include/tkInt.h&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/libtk</span><span class="si">%(version_major_minor)s</span><span class="s1">.&#39;</span> <span class="o">+</span> <span class="n">SHLIB_EXT</span><span class="p">],</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span>  <span class="p">[</span><span class="s1">&#39;lib/tk</span><span class="si">%(version_major_minor)s</span><span class="s1">&#39;</span><span class="p">],</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="p">}</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="n">sanity_check_commands</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    <span class="c1"># No test for wish possible as that requires DISPLAY to be set.</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    <span class="s1">&#39;pkg-config --libs tk&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="p">]</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="n">start_dir</span> <span class="o">=</span> <span class="s1">&#39;unix&#39;</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;vis&#39;</span>
+</code></pre></div>
 <p><a href="../">[Tk]</a> <a href="../../..">[package list]</a></p>
 
               

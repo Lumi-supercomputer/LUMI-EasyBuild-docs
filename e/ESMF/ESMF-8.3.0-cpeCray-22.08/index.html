@@ -1002,60 +1002,59 @@
 <p>To access module help and find out for which stacks and partitions the module is
 installed, use <code>module spider ESMF/8.3.0-cpeCray-22.08</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># contributed by Luca Marsella (CSCS), Theofilos Manitaras (CSCS)
-# Adapted by Kurt Lust (kurt.lust@uantwerpen.be) for the LUMI consortium
-easyblock = 'esmfcray'
-
-local_ESMF_version =         '8.3.0'         # https://github.com/esmf-org/esmf/releases
-
-name =    'ESMF'
-version = local_ESMF_version
-
-homepage = 'http://sourceforge.net/projects/esmf'
-
-whatis = [
-    'Description: ESMF is the Earth System Modeling Framework, software for coupling weather, climate and related models'
-]
-
-description = &quot;&quot;&quot;
-The Earth System Modeling Framework (ESMF) is software for building and coupling weather,
-climate, and related models.
- &quot;&quot;&quot;
-
-toolchain = {'name': 'cpeCray', 'version': '22.08'}
-toolchainopts = {'usempi': True}
-
-# https://github.com/esmf-org/esmf/archive/refs/tags/v8.3.0.tar.gz
-sources = [
-    {
-        'download_filename': 'v%(version)s.tar.gz',
-        'filename':          SOURCE_TAR_GZ,
-        'source_urls':       ['https://github.com/esmf-org/esmf/archive/refs/tags']
-    }
-]
-patches = ['ESMF-6.1.1_libopts.patch']
-checksums = [
-    '0ff43ede83d1ac6beabd3d5e2a646f7574174b28a48d1b9f2c318a054ba268fd',  # ESMF-8.3.0.tar.gz
-    '3851627f07c32a7da55d99072d619942bd3a1d9dd002e1557716158e7aacdaf4',  # ESMF-6.1.1_libopts.patch
-]
-
-mpicomm = 'mpiuni'
-
-dependencies = [
-    ('cray-hdf5',   EXTERNAL_MODULE),
-    ('cray-netcdf', EXTERNAL_MODULE),
-]
-
-# Just a single sanity check command as the other commands generate output files even when simply using
-# -h or --version. It should be enough though to check if the executable can find all necessary 
-# shared libraries.
-sanity_check_commands = [ 
-    'ESMF_PrintInfoC --version',
-]
-
-moduleclass = 'geo'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># contributed by Luca Marsella (CSCS), Theofilos Manitaras (CSCS)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Adapted by Kurt Lust (kurt.lust@uantwerpen.be) for the LUMI consortium</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;esmfcray&#39;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">local_ESMF_version</span> <span class="o">=</span>         <span class="s1">&#39;8.3.0&#39;</span>         <span class="c1"># https://github.com/esmf-org/esmf/releases</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;ESMF&#39;</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">version</span> <span class="o">=</span> <span class="n">local_ESMF_version</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;http://sourceforge.net/projects/esmf&#39;</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="s1">&#39;Description: ESMF is the Earth System Modeling Framework, software for coupling weather, climate and related models&#39;</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="p">]</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="s2">The Earth System Modeling Framework (ESMF) is software for building and coupling weather,</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="s2">climate, and related models.</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="s2"> &quot;&quot;&quot;</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeCray&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;22.08&#39;</span><span class="p">}</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;usempi&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="c1"># https://github.com/esmf-org/esmf/archive/refs/tags/v8.3.0.tar.gz</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="n">sources</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="p">{</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>        <span class="s1">&#39;download_filename&#39;</span><span class="p">:</span> <span class="s1">&#39;v</span><span class="si">%(version)s</span><span class="s1">.tar.gz&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>        <span class="s1">&#39;filename&#39;</span><span class="p">:</span>          <span class="n">SOURCE_TAR_GZ</span><span class="p">,</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>        <span class="s1">&#39;source_urls&#39;</span><span class="p">:</span>       <span class="p">[</span><span class="s1">&#39;https://github.com/esmf-org/esmf/archive/refs/tags&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>    <span class="p">}</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="p">]</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="n">patches</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ESMF-6.1.1_libopts.patch&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="n">checksums</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="s1">&#39;0ff43ede83d1ac6beabd3d5e2a646f7574174b28a48d1b9f2c318a054ba268fd&#39;</span><span class="p">,</span>  <span class="c1"># ESMF-8.3.0.tar.gz</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="s1">&#39;3851627f07c32a7da55d99072d619942bd3a1d9dd002e1557716158e7aacdaf4&#39;</span><span class="p">,</span>  <span class="c1"># ESMF-6.1.1_libopts.patch</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="p">]</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="n">mpicomm</span> <span class="o">=</span> <span class="s1">&#39;mpiuni&#39;</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="p">(</span><span class="s1">&#39;cray-hdf5&#39;</span><span class="p">,</span>   <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="p">(</span><span class="s1">&#39;cray-netcdf&#39;</span><span class="p">,</span> <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="p">]</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="c1"># Just a single sanity check command as the other commands generate output files even when simply using</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="c1"># -h or --version. It should be enough though to check if the executable can find all necessary </span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="c1"># shared libraries.</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="n">sanity_check_commands</span> <span class="o">=</span> <span class="p">[</span> 
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>    <span class="s1">&#39;ESMF_PrintInfoC --version&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="p">]</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;geo&#39;</span>
+</code></pre></div>
 <p><a href="../">[ESMF]</a> <a href="../../..">[package list]</a></p>
 
               

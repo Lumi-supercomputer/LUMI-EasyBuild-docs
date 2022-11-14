@@ -1002,101 +1002,100 @@
 <p>To access module help and find out for which stacks and partitions the module is
 installed, use <code>module spider FFmpeg/4.3.3-cpeGNU-21.12</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># Adapted by Kurt Lust (kurt.lust@uantwerpen.be) for use on LUMI from
-# the CSCS and easybuilders recipes.
-#
-easyblock = 'ConfigureMake'
-
-local_bzip2_version =        '1.0.8'         # http://www.bzip.org/downloads.html
-local_fontconfig_version =   '2.13.94'       # https://www.freedesktop.org/software/fontconfig/release/
-local_freetype_version =     '2.11.0'        # https://download.savannah.gnu.org/releases/freetype/
-local_fribidi_version =      '1.0.10'        # https://github.com/fribidi/fribidi/releases
-local_LAME_version =         '3.100'         # http://lame.sourceforge.net/
-local_x264_version =         '20210613'      # Just follow EasyBuild as the distribution is currently a mess
-local_x265_version =         '3.5'           # http://download.videolan.org/pub/videolan/x265/
-local_zlib_version =         '1.2.11'        # https://zlib.net/
-
-local_FFmpeg_version =       '4.3.3'         # https://ffmpeg.org/download.html#releases
-
-name =    'FFmpeg'
-version = local_FFmpeg_version
-
-homepage = 'https://www.ffmpeg.org/'
-
-whatis = [
-    'Description: A complete, cross-platform solution to record, convert and stream audio and video'
-]
-
-description = &quot;A complete, cross-platform solution to record, convert and stream audio and video.&quot;
-description = &quot;&quot;&quot;
-FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
-mux, demux, stream, filter and play pretty much anything that humans and
-machines have created. It supports the most obscure ancient formats up to the
-cutting edge. No matter if they were designed by some standards committee, the
-community or a corporation. It is also highly portable: FFmpeg compiles, runs,
-and passes our testing infrastructure FATE across Linux, Mac OS X, Microsoft
-Windows, the BSDs, Solaris, etc. under a wide variety of build environments,
-machine architectures, and configurations.
-
-It contains libavcodec, libavutil, libavformat, libavfilter, libavdevice,
-libswscale and libswresample which can be used by applications. As well as
-ffmpeg, ffplay and ffprobe which can be used by end users for transcoding
-and playing.
-
-The FFmpeg project tries to provide the best technically possible solution
-for developers of applications and end users alike. To achieve this we combine
-the best free software options available. We slightly favor our own code to keep
-the dependencies on other libs low and to maximize code sharing between parts of
-FFmpeg. Wherever the question of &quot;best&quot; cannot be answered we support both
-options so the end user can choose.
-&quot;&quot;&quot;
-
-docurls = [
-    'Manual pages in section 1 and 3',
-    'Web-based documentation at https://ffmpeg.org/documentation.html'
-]
-
-toolchain = {'name': 'cpeGNU', 'version': '21.12'}
-
-source_urls = ['http://%(namelower)s.org/releases/']
-sources =     [SOURCELOWER_TAR_BZ2]
-checksums =   ['0bfe5929ad0c591ff2b6bd39e8b50bbe2f9278638ca39f52c7e666a50547da15']
-
-builddependencies = [
-    ('buildtools', '%(toolchain_version)s', '', True), # For NASM, see remarks in the README.md
-]
-
-dependencies = [
-    ('zlib',       local_zlib_version),
-    ('bzip2',      local_bzip2_version),
-    ('LAME',       local_LAME_version),
-    ('x264',       local_x264_version),
-    ('x265',       local_x265_version),
-    ('X11',        '%(toolchain_version)s'),
-    ('fontconfig', local_fontconfig_version),
-    ('freetype',   local_freetype_version),
-    ('FriBidi',    local_fribidi_version),
-]
-
-configopts  = '--enable-pic --enable-shared --enable-gpl --enable-version3 --enable-nonfree --cc=&quot;$CC&quot; --cxx=&quot;$CXX&quot; '
-configopts += '--enable-libx264 --enable-libx265 --enable-libmp3lame --enable-libfreetype --enable-fontconfig '
-configopts += '--enable-libfribidi'
-
-sanity_check_paths = {
-    'files': ['bin/ff%s' % x for x in ['mpeg', 'probe']] +
-             ['lib/lib%s.%s' % (x, y) for x in ['avdevice', 'avfilter', 'avformat', 'avcodec', 'postproc',
-                                                'swresample', 'swscale', 'avutil'] for y in [SHLIB_EXT, 'a']],
-    'dirs': ['include']
-}
-
-sanity_check_commands = [
-    'ffmpeg -version',
-    'ffprobe -version',
-]
-
-moduleclass = 'vis'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Adapted by Kurt Lust (kurt.lust@uantwerpen.be) for use on LUMI from</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># the CSCS and easybuilders recipes.</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1">#</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;ConfigureMake&#39;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">local_bzip2_version</span> <span class="o">=</span>        <span class="s1">&#39;1.0.8&#39;</span>         <span class="c1"># http://www.bzip.org/downloads.html</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">local_fontconfig_version</span> <span class="o">=</span>   <span class="s1">&#39;2.13.94&#39;</span>       <span class="c1"># https://www.freedesktop.org/software/fontconfig/release/</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">local_freetype_version</span> <span class="o">=</span>     <span class="s1">&#39;2.11.0&#39;</span>        <span class="c1"># https://download.savannah.gnu.org/releases/freetype/</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">local_fribidi_version</span> <span class="o">=</span>      <span class="s1">&#39;1.0.10&#39;</span>        <span class="c1"># https://github.com/fribidi/fribidi/releases</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">local_LAME_version</span> <span class="o">=</span>         <span class="s1">&#39;3.100&#39;</span>         <span class="c1"># http://lame.sourceforge.net/</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">local_x264_version</span> <span class="o">=</span>         <span class="s1">&#39;20210613&#39;</span>      <span class="c1"># Just follow EasyBuild as the distribution is currently a mess</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">local_x265_version</span> <span class="o">=</span>         <span class="s1">&#39;3.5&#39;</span>           <span class="c1"># http://download.videolan.org/pub/videolan/x265/</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">local_zlib_version</span> <span class="o">=</span>         <span class="s1">&#39;1.2.11&#39;</span>        <span class="c1"># https://zlib.net/</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="n">local_FFmpeg_version</span> <span class="o">=</span>       <span class="s1">&#39;4.3.3&#39;</span>         <span class="c1"># https://ffmpeg.org/download.html#releases</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;FFmpeg&#39;</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="n">version</span> <span class="o">=</span> <span class="n">local_FFmpeg_version</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://www.ffmpeg.org/&#39;</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="s1">&#39;Description: A complete, cross-platform solution to record, convert and stream audio and video&#39;</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="p">]</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;A complete, cross-platform solution to record, convert and stream audio and video.&quot;</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="s2">FFmpeg is the leading multimedia framework, able to decode, encode, transcode,</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="s2">mux, demux, stream, filter and play pretty much anything that humans and</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="s2">machines have created. It supports the most obscure ancient formats up to the</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="s2">cutting edge. No matter if they were designed by some standards committee, the</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="s2">community or a corporation. It is also highly portable: FFmpeg compiles, runs,</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="s2">and passes our testing infrastructure FATE across Linux, Mac OS X, Microsoft</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="s2">Windows, the BSDs, Solaris, etc. under a wide variety of build environments,</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="s2">machine architectures, and configurations.</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="s2">It contains libavcodec, libavutil, libavformat, libavfilter, libavdevice,</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="s2">libswscale and libswresample which can be used by applications. As well as</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="s2">ffmpeg, ffplay and ffprobe which can be used by end users for transcoding</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="s2">and playing.</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="s2">The FFmpeg project tries to provide the best technically possible solution</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="s2">for developers of applications and end users alike. To achieve this we combine</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="s2">the best free software options available. We slightly favor our own code to keep</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="s2">the dependencies on other libs low and to maximize code sharing between parts of</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="s2">FFmpeg. Wherever the question of &quot;best&quot; cannot be answered we support both</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="s2">options so the end user can choose.</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="n">docurls</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>    <span class="s1">&#39;Manual pages in section 1 and 3&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>    <span class="s1">&#39;Web-based documentation at https://ffmpeg.org/documentation.html&#39;</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="p">]</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeGNU&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;21.12&#39;</span><span class="p">}</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;http://</span><span class="si">%(namelower)s</span><span class="s1">.org/releases/&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="n">sources</span> <span class="o">=</span>     <span class="p">[</span><span class="n">SOURCELOWER_TAR_BZ2</span><span class="p">]</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="n">checksums</span> <span class="o">=</span>   <span class="p">[</span><span class="s1">&#39;0bfe5929ad0c591ff2b6bd39e8b50bbe2f9278638ca39f52c7e666a50547da15&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span> <span class="c1"># For NASM, see remarks in the README.md</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="p">]</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>    <span class="p">(</span><span class="s1">&#39;zlib&#39;</span><span class="p">,</span>       <span class="n">local_zlib_version</span><span class="p">),</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>    <span class="p">(</span><span class="s1">&#39;bzip2&#39;</span><span class="p">,</span>      <span class="n">local_bzip2_version</span><span class="p">),</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>    <span class="p">(</span><span class="s1">&#39;LAME&#39;</span><span class="p">,</span>       <span class="n">local_LAME_version</span><span class="p">),</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>    <span class="p">(</span><span class="s1">&#39;x264&#39;</span><span class="p">,</span>       <span class="n">local_x264_version</span><span class="p">),</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>    <span class="p">(</span><span class="s1">&#39;x265&#39;</span><span class="p">,</span>       <span class="n">local_x265_version</span><span class="p">),</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>    <span class="p">(</span><span class="s1">&#39;X11&#39;</span><span class="p">,</span>        <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">),</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>    <span class="p">(</span><span class="s1">&#39;fontconfig&#39;</span><span class="p">,</span> <span class="n">local_fontconfig_version</span><span class="p">),</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>    <span class="p">(</span><span class="s1">&#39;freetype&#39;</span><span class="p">,</span>   <span class="n">local_freetype_version</span><span class="p">),</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>    <span class="p">(</span><span class="s1">&#39;FriBidi&#39;</span><span class="p">,</span>    <span class="n">local_fribidi_version</span><span class="p">),</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a><span class="p">]</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>
+<a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a><span class="n">configopts</span>  <span class="o">=</span> <span class="s1">&#39;--enable-pic --enable-shared --enable-gpl --enable-version3 --enable-nonfree --cc=&quot;$CC&quot; --cxx=&quot;$CXX&quot; &#39;</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39;--enable-libx264 --enable-libx265 --enable-libmp3lame --enable-libfreetype --enable-fontconfig &#39;</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39;--enable-libfribidi&#39;</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>
+<a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin/ff</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;mpeg&#39;</span><span class="p">,</span> <span class="s1">&#39;probe&#39;</span><span class="p">]]</span> <span class="o">+</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>             <span class="p">[</span><span class="s1">&#39;lib/lib</span><span class="si">%s</span><span class="s1">.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;avdevice&#39;</span><span class="p">,</span> <span class="s1">&#39;avfilter&#39;</span><span class="p">,</span> <span class="s1">&#39;avformat&#39;</span><span class="p">,</span> <span class="s1">&#39;avcodec&#39;</span><span class="p">,</span> <span class="s1">&#39;postproc&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>                                                <span class="s1">&#39;swresample&#39;</span><span class="p">,</span> <span class="s1">&#39;swscale&#39;</span><span class="p">,</span> <span class="s1">&#39;avutil&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="p">[</span><span class="n">SHLIB_EXT</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">]],</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;include&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a><span class="p">}</span>
+<a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>
+<a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a><span class="n">sanity_check_commands</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>    <span class="s1">&#39;ffmpeg -version&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>    <span class="s1">&#39;ffprobe -version&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a><span class="p">]</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>
+<a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;vis&#39;</span>
+</code></pre></div>
 <p><a href="../">[FFmpeg]</a> <a href="../../..">[package list]</a></p>
 
               

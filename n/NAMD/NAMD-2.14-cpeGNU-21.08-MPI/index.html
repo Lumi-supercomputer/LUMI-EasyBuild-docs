@@ -999,128 +999,127 @@
 
 <p><a href="../">[NAMD]</a> <a href="../../..">[package list]</a></p>
 <h1 id="namd214-cpegnu-2108-mpi-namd-214-cpegnu-2108-mpieb">NAMD/2.14-cpeGNU-21.08-MPI (NAMD-2.14-cpeGNU-21.08-MPI.eb)</h1>
-<p>Install with the EasyBuild-user module:</p>
-<pre><code>eb NAMD-2.14-cpeGNU-21.08-MPI.eb -r
-
-</code></pre>
-<p>To access module help after installation and get reminded for which stacks and partitions the module is
+<p>Install with the EasyBuild-user module:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>eb NAMD-2.14-cpeGNU-21.08-MPI.eb -r
+</code></pre></div>
+To access module help after installation and get reminded for which stacks and partitions the module is
 installed, use <code>module spider NAMD/2.14-cpeGNU-21.08-MPI</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># Contributed by Guilherme Peretti Pezzi, Luca Marsella and Christopher Bignamini (CSCS)
-# Adapted by Kurt Lust (kurt.lust@uantwerpen.be) for the LUMI consortium
-
-easyblock = 'MakeCp'
-
-name =          'NAMD'
-version =       '2.14'
-versionsuffix = '-MPI'
-
-homepage = 'http://www.ks.uiuc.edu/Research/namd/'
-
-whatis = [
-    &quot;Description: NAMD is a parallel molecular dynamics code designed for &quot;
-    &quot;high-performance simulation of large biomolecular systems.&quot;
-]
-
-description = &quot;&quot;&quot;
-NAMD, recipient of a 2002 Gordon Bell Award and a 2012 Sidney Fernbach Award,
-is a parallel molecular dynamics code designed for high-performance simulation
-of large biomolecular systems. Based on Charm++ parallel objects, NAMD scales
-to hundreds of cores for typical simulations and beyond 500,000 cores for the
-largest simulations. NAMD uses the popular molecular graphics program VMD for
-simulation setup and trajectory analysis, but is also file-compatible with
-AMBER, CHARMM, and X-PLOR.
-
-This version of NAMD is compiled with MPI as the transport.
-
-Please check the NAMD license at https://www.ks.uiuc.edu/Research/namd/license.html
-before installing or using this software. In particular, this software is only free
-for non-commercial research and teaching. All commercial use requires a commercial
-license. Also, when installing this as part of a project, all users should explictly
-register on the NAMD web site (e.g., by trying to download the sources from
-https://www.ks.uiuc.edu/Development/Download/download.cgi?PackageName=NAMD).
-
-Please also note article 6 of the LICENSE:
-
-    The user agrees that any reports or published results obtained with
-    the Software will acknowledge its use by the appropriate citation as
-    follows:
-
-    &quot;NAMD was developed by the Theoretical and Computational Biophysics Group in
-     the Beckman Institute for Advanced Science and Technology at the University
-     of Illinois at Urbana-Champaign.&quot;
-
-    Any published work which utilizes NAMD shall include the following reference:
-
-    &quot;James C. Phillips, David J. Hardy, Julio D. C. Maia, John E. Stone,
-     Joao V. Ribeiro, Rafael C. Bernardi, Ronak Buch, Giacomo Fiorin,
-     Jerome Henin, Wei Jiang, Ryan McGreevy, Marcelo C. R. Melo,
-     Brian K. Radak, Robert D. Skeel, Abhishek Singharoy, Yi Wang, Benoit Roux,
-     Aleksei Aksimentiev, Zaida Luthey-Schulten, Laxmikant V. Kale,
-     Klaus Schulten, Christophe Chipot, and Emad Tajkhorshid.
-     Scalable molecular dynamics on CPU and GPU architectures with NAMD.
-     Journal of Chemical Physics, 153:044130, 2020. doi:10.1063/5.0014475&quot;
-
-    Electronic documents will include a direct link to the official NAMD page
-    at http://www.ks.uiuc.edu/Research/namd/
-&quot;&quot;&quot;
-
-docurls = [
-    'NAMD %(version)s User Guide: http://www.ks.uiuc.edu/Research/namd/%(version)s/ug/',
-    'NAMD Wiki: http://www.ks.uiuc.edu/Research/namd/wiki/',
-    'NAMD license: $EBROOTNAMD/license.txt'
-]
-
-upstream_contacts = [
-    'NAMD Mailing List/forum: http://www.ks.uiuc.edu/Research/namd/mailing_list/',
-    'NAMD bug report instructions: http://www.ks.uiuc.edu/Research/namd/bugreport.html',
-]
-
-docpaths = [ 'notes.txt' ]
-
-toolchain = {'name': 'cpeGNU', 'version': '21.08'}
-toolchainopts = {'dynamic': False}
-
-sources = ['NAMD_%(version)s_Source.tar.gz']
-
-builddependencies = [
-    ('buildtools',   '%(toolchain_version)s', '',     True),
-    ('cray-fftw',    EXTERNAL_MODULE),
-    ('cray-pmi',     EXTERNAL_MODULE),
-    ('cray-pmi-lib', EXTERNAL_MODULE),
-    ('Tcl',          '8.6.11'),
-]
-
-dependencies = [
-    ('Charm++',      '6.10.2',                '-MPI'),
-]
-
-prebuildopts = &quot;&quot;&quot;
-    touch arch/CRAY-EX.base &amp;&amp;
-    sed 's/8\\.5/8\\.6/' arch/CRAY-XE.tcl &gt; arch/CRAY-EX.tcl &amp;&amp;
-    sed 's#/lib##' arch/CRAY-XE.fftw3 &gt; arch/CRAY-EX.fftw3 &amp;&amp;
-    echo -e 'NAMD_ARCH = CRAY-EX
-CHARMARCH = $EBTYPECHARMPLUSPLUS
-CXX = CC -std=c++11
-CXXOPTS = -O3 -ffast-math -fexpensive-optimizations
-CC = cc
-COPTS = -O3 -ffast-math -fexpensive-optimizations ' &gt; arch/CRAY-EX-gnu.arch &amp;&amp;
-    ./config CRAY-EX-gnu --tcl-prefix $EBROOTTCL --with-fftw3 --fftw-prefix $FFTW_ROOT --charm-base $EBROOTCHARMPLUSPLUS --charm-arch $EBTYPECHARMPLUSPLUS &amp;&amp;
-    cd CRAY-EX-gnu &amp;&amp;
-    sed -i '/CHARM =/a NAMD_ARCH = CRAY-EX' Make.config &amp;&amp;
-&quot;&quot;&quot;
-
-files_to_copy = [
-    (['./CRAY-EX-gnu/namd2'], 'bin')
-]
-
-sanity_check_paths = {
-    'files': ['bin/namd2'],
-    'dirs':  [],
-}
-
-moduleclass = 'chem'
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Contributed by Guilherme Peretti Pezzi, Luca Marsella and Christopher Bignamini (CSCS)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># Adapted by Kurt Lust (kurt.lust@uantwerpen.be) for the LUMI consortium</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;MakeCp&#39;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">name</span> <span class="o">=</span>          <span class="s1">&#39;NAMD&#39;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">version</span> <span class="o">=</span>       <span class="s1">&#39;2.14&#39;</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">versionsuffix</span> <span class="o">=</span> <span class="s1">&#39;-MPI&#39;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;http://www.ks.uiuc.edu/Research/namd/&#39;</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="s2">&quot;Description: NAMD is a parallel molecular dynamics code designed for &quot;</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="s2">&quot;high-performance simulation of large biomolecular systems.&quot;</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="p">]</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="s2">NAMD, recipient of a 2002 Gordon Bell Award and a 2012 Sidney Fernbach Award,</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="s2">is a parallel molecular dynamics code designed for high-performance simulation</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="s2">of large biomolecular systems. Based on Charm++ parallel objects, NAMD scales</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="s2">to hundreds of cores for typical simulations and beyond 500,000 cores for the</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="s2">largest simulations. NAMD uses the popular molecular graphics program VMD for</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="s2">simulation setup and trajectory analysis, but is also file-compatible with</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="s2">AMBER, CHARMM, and X-PLOR.</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="s2">This version of NAMD is compiled with MPI as the transport.</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="s2">Please check the NAMD license at https://www.ks.uiuc.edu/Research/namd/license.html</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="s2">before installing or using this software. In particular, this software is only free</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="s2">for non-commercial research and teaching. All commercial use requires a commercial</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="s2">license. Also, when installing this as part of a project, all users should explictly</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="s2">register on the NAMD web site (e.g., by trying to download the sources from</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="s2">https://www.ks.uiuc.edu/Development/Download/download.cgi?PackageName=NAMD).</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="s2">Please also note article 6 of the LICENSE:</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="s2">    The user agrees that any reports or published results obtained with</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="s2">    the Software will acknowledge its use by the appropriate citation as</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="s2">    follows:</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="s2">    &quot;NAMD was developed by the Theoretical and Computational Biophysics Group in</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="s2">     the Beckman Institute for Advanced Science and Technology at the University</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="s2">     of Illinois at Urbana-Champaign.&quot;</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="s2">    Any published work which utilizes NAMD shall include the following reference:</span>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="s2">    &quot;James C. Phillips, David J. Hardy, Julio D. C. Maia, John E. Stone,</span>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a><span class="s2">     Joao V. Ribeiro, Rafael C. Bernardi, Ronak Buch, Giacomo Fiorin,</span>
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a><span class="s2">     Jerome Henin, Wei Jiang, Ryan McGreevy, Marcelo C. R. Melo,</span>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a><span class="s2">     Brian K. Radak, Robert D. Skeel, Abhishek Singharoy, Yi Wang, Benoit Roux,</span>
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a><span class="s2">     Aleksei Aksimentiev, Zaida Luthey-Schulten, Laxmikant V. Kale,</span>
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a><span class="s2">     Klaus Schulten, Christophe Chipot, and Emad Tajkhorshid.</span>
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a><span class="s2">     Scalable molecular dynamics on CPU and GPU architectures with NAMD.</span>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a><span class="s2">     Journal of Chemical Physics, 153:044130, 2020. doi:10.1063/5.0014475&quot;</span>
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a><span class="s2">    Electronic documents will include a direct link to the official NAMD page</span>
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a><span class="s2">    at http://www.ks.uiuc.edu/Research/namd/</span>
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a><span class="n">docurls</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>    <span class="s1">&#39;NAMD </span><span class="si">%(version)s</span><span class="s1"> User Guide: http://www.ks.uiuc.edu/Research/namd/</span><span class="si">%(version)s</span><span class="s1">/ug/&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>    <span class="s1">&#39;NAMD Wiki: http://www.ks.uiuc.edu/Research/namd/wiki/&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>    <span class="s1">&#39;NAMD license: $EBROOTNAMD/license.txt&#39;</span>
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a><span class="p">]</span>
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a><span class="n">upstream_contacts</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>    <span class="s1">&#39;NAMD Mailing List/forum: http://www.ks.uiuc.edu/Research/namd/mailing_list/&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>    <span class="s1">&#39;NAMD bug report instructions: http://www.ks.uiuc.edu/Research/namd/bugreport.html&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a><span class="p">]</span>
+<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>
+<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a><span class="n">docpaths</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;notes.txt&#39;</span> <span class="p">]</span>
+<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>
+<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeGNU&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;21.08&#39;</span><span class="p">}</span>
+<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;dynamic&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
+<a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>
+<a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a><span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;NAMD_</span><span class="si">%(version)s</span><span class="s1">_Source.tar.gz&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>
+<a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span>   <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>     <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a>    <span class="p">(</span><span class="s1">&#39;cray-fftw&#39;</span><span class="p">,</span>    <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a>    <span class="p">(</span><span class="s1">&#39;cray-pmi&#39;</span><span class="p">,</span>     <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a>    <span class="p">(</span><span class="s1">&#39;cray-pmi-lib&#39;</span><span class="p">,</span> <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a>    <span class="p">(</span><span class="s1">&#39;Tcl&#39;</span><span class="p">,</span>          <span class="s1">&#39;8.6.11&#39;</span><span class="p">),</span>
+<a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a><span class="p">]</span>
+<a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a>
+<a id="__codelineno-1-86" name="__codelineno-1-86" href="#__codelineno-1-86"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a>    <span class="p">(</span><span class="s1">&#39;Charm++&#39;</span><span class="p">,</span>      <span class="s1">&#39;6.10.2&#39;</span><span class="p">,</span>                <span class="s1">&#39;-MPI&#39;</span><span class="p">),</span>
+<a id="__codelineno-1-88" name="__codelineno-1-88" href="#__codelineno-1-88"></a><span class="p">]</span>
+<a id="__codelineno-1-89" name="__codelineno-1-89" href="#__codelineno-1-89"></a>
+<a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a><span class="n">prebuildopts</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a><span class="s2">    touch arch/CRAY-EX.base &amp;&amp;</span>
+<a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a><span class="s2">    sed &#39;s/8</span><span class="se">\\</span><span class="s2">.5/8</span><span class="se">\\</span><span class="s2">.6/&#39; arch/CRAY-XE.tcl &gt; arch/CRAY-EX.tcl &amp;&amp;</span>
+<a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a><span class="s2">    sed &#39;s#/lib##&#39; arch/CRAY-XE.fftw3 &gt; arch/CRAY-EX.fftw3 &amp;&amp;</span>
+<a id="__codelineno-1-94" name="__codelineno-1-94" href="#__codelineno-1-94"></a><span class="s2">    echo -e &#39;NAMD_ARCH = CRAY-EX</span>
+<a id="__codelineno-1-95" name="__codelineno-1-95" href="#__codelineno-1-95"></a><span class="s2">CHARMARCH = $EBTYPECHARMPLUSPLUS</span>
+<a id="__codelineno-1-96" name="__codelineno-1-96" href="#__codelineno-1-96"></a><span class="s2">CXX = CC -std=c++11</span>
+<a id="__codelineno-1-97" name="__codelineno-1-97" href="#__codelineno-1-97"></a><span class="s2">CXXOPTS = -O3 -ffast-math -fexpensive-optimizations</span>
+<a id="__codelineno-1-98" name="__codelineno-1-98" href="#__codelineno-1-98"></a><span class="s2">CC = cc</span>
+<a id="__codelineno-1-99" name="__codelineno-1-99" href="#__codelineno-1-99"></a><span class="s2">COPTS = -O3 -ffast-math -fexpensive-optimizations &#39; &gt; arch/CRAY-EX-gnu.arch &amp;&amp;</span>
+<a id="__codelineno-1-100" name="__codelineno-1-100" href="#__codelineno-1-100"></a><span class="s2">    ./config CRAY-EX-gnu --tcl-prefix $EBROOTTCL --with-fftw3 --fftw-prefix $FFTW_ROOT --charm-base $EBROOTCHARMPLUSPLUS --charm-arch $EBTYPECHARMPLUSPLUS &amp;&amp;</span>
+<a id="__codelineno-1-101" name="__codelineno-1-101" href="#__codelineno-1-101"></a><span class="s2">    cd CRAY-EX-gnu &amp;&amp;</span>
+<a id="__codelineno-1-102" name="__codelineno-1-102" href="#__codelineno-1-102"></a><span class="s2">    sed -i &#39;/CHARM =/a NAMD_ARCH = CRAY-EX&#39; Make.config &amp;&amp;</span>
+<a id="__codelineno-1-103" name="__codelineno-1-103" href="#__codelineno-1-103"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-104" name="__codelineno-1-104" href="#__codelineno-1-104"></a>
+<a id="__codelineno-1-105" name="__codelineno-1-105" href="#__codelineno-1-105"></a><span class="n">files_to_copy</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-106" name="__codelineno-1-106" href="#__codelineno-1-106"></a>    <span class="p">([</span><span class="s1">&#39;./CRAY-EX-gnu/namd2&#39;</span><span class="p">],</span> <span class="s1">&#39;bin&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-107" name="__codelineno-1-107" href="#__codelineno-1-107"></a><span class="p">]</span>
+<a id="__codelineno-1-108" name="__codelineno-1-108" href="#__codelineno-1-108"></a>
+<a id="__codelineno-1-109" name="__codelineno-1-109" href="#__codelineno-1-109"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-1-110" name="__codelineno-1-110" href="#__codelineno-1-110"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin/namd2&#39;</span><span class="p">],</span>
+<a id="__codelineno-1-111" name="__codelineno-1-111" href="#__codelineno-1-111"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span>  <span class="p">[],</span>
+<a id="__codelineno-1-112" name="__codelineno-1-112" href="#__codelineno-1-112"></a><span class="p">}</span>
+<a id="__codelineno-1-113" name="__codelineno-1-113" href="#__codelineno-1-113"></a>
+<a id="__codelineno-1-114" name="__codelineno-1-114" href="#__codelineno-1-114"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;chem&#39;</span>
+</code></pre></div>
 <p><a href="../">[NAMD]</a> <a href="../../..">[package list]</a></p>
 
               

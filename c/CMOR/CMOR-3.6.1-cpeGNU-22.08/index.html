@@ -999,84 +999,82 @@
 
 <p><a href="../">[CMOR]</a> <a href="../../..">[package list]</a></p>
 <h1 id="cmor361-cpegnu-2208-cmor-361-cpegnu-2208eb">CMOR/3.6.1-cpeGNU-22.08 (CMOR-3.6.1-cpeGNU-22.08.eb)</h1>
-<p>Install with the EasyBuild-user module:</p>
-<pre><code>eb CMOR-3.6.1-cpeGNU-22.08.eb -r
-
-</code></pre>
-<p>To access module help after installation and get reminded for which stacks and partitions the module is
+<p>Install with the EasyBuild-user module:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>eb CMOR-3.6.1-cpeGNU-22.08.eb -r
+</code></pre></div>
+To access module help after installation and get reminded for which stacks and partitions the module is
 installed, use <code>module spider CMOR/3.6.1-cpeGNU-22.08</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># Developed by Kurt Lust (kurt.lust@uantwerpen.be) for the LUMI consortium
-easyblock = 'ConfigureMake'
-
-local_UDUNITS_version =      '2.2.28'        # https://artifacts.unidata.ucar.edu/service/rest/repository/browse/downloads-udunits/
-local_util_version =         '2.38'          # https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/
-
-name =    'CMOR'
-version = '3.6.1'
-
-homepage = 'https://cmor.llnl.gov/'
-
-whatis = [
-    'Description: CMOR - Climate Model Output Rewriter'
-]
-
-description = &quot;&quot;&quot;
-CMOR was not designed to serve as an all-purpose writer of CF-compliant
-netCDF files, but simply to reduce the effort required to prepare and manage
-MIP model output. Although MIPs encourage systematic analysis of results
-across models, this is only easy to do if the model output is written in a
-common format with files structured similarly and with sufficient metadata
-uniformly stored according to a common standard. Individual modeling groups
-store their data in different ways, but if a group can read its own data,
-then it should easily be able to transform the data, using CMOR, into the
-common format required by the MIPs. The adoption of CMOR as a standard code
-for exchanging climate data will facilitate participation in MIPs because
-after learning how to satisfy the output requirements of one MIP, it will
-be easy to prepare output for other MIPs.
-
-NOTE: This module does not support the Python interface. It also does not
-include CDAT.
-&quot;&quot;&quot;
-
-toolchain = {'name': 'cpeGNU', 'version': '22.08'}
-toolchainopts = {'openmp': True, 'opt': True, 'pic': True, 'verbose': False}
-
-# https://github.com/PCMDI/cmor/archive/3.6.1.tar.gz
-sources = [{
-    'filename':          SOURCE_TAR_GZ,
-    'download_filename': '%(version)s.tar.gz',
-    'source_urls':       ['https://github.com/PCMDI/cmor/archive/'],
-}]
-checksums = ['991035a41424f72ea6f0f85653fc13730eb035e63c7dff6ca740aa7a70976fb4']
-
-builddependencies = [
-    ('buildtools',   '%(toolchain_version)s',   '', True),
-]
-
-dependencies = [
-    # Cray PE
-    ('cray-hdf5',   EXTERNAL_MODULE),
-    ('cray-netcdf', EXTERNAL_MODULE),
-    ('UDUNITS',     local_UDUNITS_version), # For UUID
-    ('util-linux',  local_util_version),
-    ('json-c',      '0.16')
-]
-
-preconfigopts = 'sed -i -e \'s/git log.*/echo &quot;%(version)s&quot;/\' get_git_version.sh &amp;&amp; '
-
-configopts  = '--enable-fortran '
-configopts += '--without-python --without-cdat '
-configopts += '--with-json-c --with-uuid --with-udunits --with-netcdf '
-
-sanity_check_paths = {
-    'files': ['lib/libcmor.a', 'include/cmor.h'],
-    'dirs':  [],
-}
-
-moduleclass = 'data'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Developed by Kurt Lust (kurt.lust@uantwerpen.be) for the LUMI consortium</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;ConfigureMake&#39;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">local_UDUNITS_version</span> <span class="o">=</span>      <span class="s1">&#39;2.2.28&#39;</span>        <span class="c1"># https://artifacts.unidata.ucar.edu/service/rest/repository/browse/downloads-udunits/</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">local_util_version</span> <span class="o">=</span>         <span class="s1">&#39;2.38&#39;</span>          <span class="c1"># https://mirrors.edge.kernel.org/pub/linux/utils/util-linux/</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;CMOR&#39;</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;3.6.1&#39;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://cmor.llnl.gov/&#39;</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="s1">&#39;Description: CMOR - Climate Model Output Rewriter&#39;</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="p">]</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="s2">CMOR was not designed to serve as an all-purpose writer of CF-compliant</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="s2">netCDF files, but simply to reduce the effort required to prepare and manage</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="s2">MIP model output. Although MIPs encourage systematic analysis of results</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="s2">across models, this is only easy to do if the model output is written in a</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="s2">common format with files structured similarly and with sufficient metadata</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="s2">uniformly stored according to a common standard. Individual modeling groups</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="s2">store their data in different ways, but if a group can read its own data,</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="s2">then it should easily be able to transform the data, using CMOR, into the</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="s2">common format required by the MIPs. The adoption of CMOR as a standard code</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="s2">for exchanging climate data will facilitate participation in MIPs because</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="s2">after learning how to satisfy the output requirements of one MIP, it will</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="s2">be easy to prepare output for other MIPs.</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="s2">NOTE: This module does not support the Python interface. It also does not</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="s2">include CDAT.</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeGNU&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;22.08&#39;</span><span class="p">}</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;openmp&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;opt&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;pic&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;verbose&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="c1"># https://github.com/PCMDI/cmor/archive/3.6.1.tar.gz</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="n">sources</span> <span class="o">=</span> <span class="p">[{</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>    <span class="s1">&#39;filename&#39;</span><span class="p">:</span>          <span class="n">SOURCE_TAR_GZ</span><span class="p">,</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>    <span class="s1">&#39;download_filename&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%(version)s</span><span class="s1">.tar.gz&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>    <span class="s1">&#39;source_urls&#39;</span><span class="p">:</span>       <span class="p">[</span><span class="s1">&#39;https://github.com/PCMDI/cmor/archive/&#39;</span><span class="p">],</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="p">}]</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="n">checksums</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;991035a41424f72ea6f0f85653fc13730eb035e63c7dff6ca740aa7a70976fb4&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span>   <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span>   <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="p">]</span>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>    <span class="c1"># Cray PE</span>
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>    <span class="p">(</span><span class="s1">&#39;cray-hdf5&#39;</span><span class="p">,</span>   <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>    <span class="p">(</span><span class="s1">&#39;cray-netcdf&#39;</span><span class="p">,</span> <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>    <span class="p">(</span><span class="s1">&#39;UDUNITS&#39;</span><span class="p">,</span>     <span class="n">local_UDUNITS_version</span><span class="p">),</span> <span class="c1"># For UUID</span>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>    <span class="p">(</span><span class="s1">&#39;util-linux&#39;</span><span class="p">,</span>  <span class="n">local_util_version</span><span class="p">),</span>
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>    <span class="p">(</span><span class="s1">&#39;json-c&#39;</span><span class="p">,</span>      <span class="s1">&#39;0.16&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a><span class="p">]</span>
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a><span class="n">preconfigopts</span> <span class="o">=</span> <span class="s1">&#39;sed -i -e </span><span class="se">\&#39;</span><span class="s1">s/git log.*/echo &quot;</span><span class="si">%(version)s</span><span class="s1">&quot;/</span><span class="se">\&#39;</span><span class="s1"> get_git_version.sh &amp;&amp; &#39;</span>
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a><span class="n">configopts</span>  <span class="o">=</span> <span class="s1">&#39;--enable-fortran &#39;</span>
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39;--without-python --without-cdat &#39;</span>
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39;--with-json-c --with-uuid --with-udunits --with-netcdf &#39;</span>
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;lib/libcmor.a&#39;</span><span class="p">,</span> <span class="s1">&#39;include/cmor.h&#39;</span><span class="p">],</span>
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span>  <span class="p">[],</span>
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a><span class="p">}</span>
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>
+<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;data&#39;</span>
+</code></pre></div>
 <p><a href="../">[CMOR]</a> <a href="../../..">[package list]</a></p>
 
               

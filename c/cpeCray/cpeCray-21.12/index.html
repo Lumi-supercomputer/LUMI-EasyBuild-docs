@@ -1002,80 +1002,78 @@
 <p>To access module help and find out for which stacks and partitions the module is
 installed, use <code>module spider cpeCray/21.12</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python">
-easyblock = 'CrayPEToolchain'
-
-name =    'cpeCray'
-version = &quot;21.12&quot;
-
-homepage = 'https://pubs.cray.com'
-
-whatis = [
-    &quot;Desription: EasyBuild toolchain using the Cray compiler wrapper with cce module (CPE release 21.12)&quot;
-]
-
-description = &quot;&quot;&quot;
-This module is the EasyBuild toolchain that uses the Cray compiler wrapper with
-the cce compiler activated. The components loaded are those of the Cray Programming
-Environment (CPE) version 21.12.
-
-The module has the same effect as loading PrgEnv-cray and cpe/21.12 should have, but
-does not use either of those modules. The use of PrgEnv-cray is avoided since the
-modules that it loads may change over time, reducing reproducibility, while loading
-cpe/21.04 is avoided as this module is buggy and conflicts with the way the LUMI
-software stack currently works. Instead, the module declares itself a member of
-the PrgEnv family and sets an PE_ENV which would otherwise be set by PrgEnv-cray,
-ensuring that the Cray PE will work as if those modules are loaded.
-&quot;&quot;&quot;
-
-toolchain = SYSTEM
-
-PrgEnv_load   = False
-PrgEnv_family = 'PrgEnv'
-CPE_load      = None
-
-import os
-local_partition = os.getenv('LUMI_STACK_PARTITION')
-
-if local_partition == 'common' or local_partition == 'L':
-    cray_targets = [
-        'craype-x86-rome',
-        'craype-accel-host',
-        'craype-network-ofi'
-    ]
-elif local_partition == 'C':
-    cray_targets = [
-        'craype-x86-milan',
-        'craype-accel-host',
-        'craype-network-ofi'
-    ]
-elif local_partition == 'G':
-    cray_targets = [
-        'craype-x86-trento',
-        'craype-accel-amd-gfx90a',
-        'craype-network-ofi'
-    ]
-elif local_partition == 'D':
-    cray_targets = [
-        'craype-x86-rome',
-        # 'craype-accel-nvidia80', # Does not work as cudatoolkit/11.0 is not installed.
-        'craype-accel-host',
-        'craype-network-ofi'
-    ]
-
-dependencies = [
-    ('cce/13.0.0', EXTERNAL_MODULE),
-    ('craype/2.7.13', EXTERNAL_MODULE),
-    ('cray-mpich/8.1.12', EXTERNAL_MODULE),
-    ('cray-libsci/21.08.1.2', EXTERNAL_MODULE),
-    ('cray-dsmml/0.2.2', EXTERNAL_MODULE),
-    ('perftools-base/21.12.0', EXTERNAL_MODULE),
-    ('xpmem', EXTERNAL_MODULE),
-]
-
-moduleclass = 'toolchain'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;CrayPEToolchain&#39;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;cpeCray&#39;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;21.12&quot;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://pubs.cray.com&#39;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="s2">&quot;Desription: EasyBuild toolchain using the Cray compiler wrapper with cce module (CPE release 21.12)&quot;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">]</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="s2">This module is the EasyBuild toolchain that uses the Cray compiler wrapper with</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="s2">the cce compiler activated. The components loaded are those of the Cray Programming</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="s2">Environment (CPE) version 21.12.</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="s2">The module has the same effect as loading PrgEnv-cray and cpe/21.12 should have, but</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="s2">does not use either of those modules. The use of PrgEnv-cray is avoided since the</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="s2">modules that it loads may change over time, reducing reproducibility, while loading</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="s2">cpe/21.04 is avoided as this module is buggy and conflicts with the way the LUMI</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="s2">software stack currently works. Instead, the module declares itself a member of</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="s2">the PrgEnv family and sets an PE_ENV which would otherwise be set by PrgEnv-cray,</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="s2">ensuring that the Cray PE will work as if those modules are loaded.</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="n">SYSTEM</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="n">PrgEnv_load</span>   <span class="o">=</span> <span class="kc">False</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="n">PrgEnv_family</span> <span class="o">=</span> <span class="s1">&#39;PrgEnv&#39;</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="n">CPE_load</span>      <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="kn">import</span> <span class="nn">os</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="n">local_partition</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;LUMI_STACK_PARTITION&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="k">if</span> <span class="n">local_partition</span> <span class="o">==</span> <span class="s1">&#39;common&#39;</span> <span class="ow">or</span> <span class="n">local_partition</span> <span class="o">==</span> <span class="s1">&#39;L&#39;</span><span class="p">:</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="n">cray_targets</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>        <span class="s1">&#39;craype-x86-rome&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>        <span class="s1">&#39;craype-accel-host&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>        <span class="s1">&#39;craype-network-ofi&#39;</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="p">]</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="k">elif</span> <span class="n">local_partition</span> <span class="o">==</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="n">cray_targets</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>        <span class="s1">&#39;craype-x86-milan&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>        <span class="s1">&#39;craype-accel-host&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>        <span class="s1">&#39;craype-network-ofi&#39;</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>    <span class="p">]</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="k">elif</span> <span class="n">local_partition</span> <span class="o">==</span> <span class="s1">&#39;G&#39;</span><span class="p">:</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>    <span class="n">cray_targets</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>        <span class="s1">&#39;craype-x86-trento&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>        <span class="s1">&#39;craype-accel-amd-gfx90a&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>        <span class="s1">&#39;craype-network-ofi&#39;</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>    <span class="p">]</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="k">elif</span> <span class="n">local_partition</span> <span class="o">==</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="n">cray_targets</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>        <span class="s1">&#39;craype-x86-rome&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>        <span class="c1"># &#39;craype-accel-nvidia80&#39;, # Does not work as cudatoolkit/11.0 is not installed.</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>        <span class="s1">&#39;craype-accel-host&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>        <span class="s1">&#39;craype-network-ofi&#39;</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    <span class="p">]</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    <span class="p">(</span><span class="s1">&#39;cce/13.0.0&#39;</span><span class="p">,</span> <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>    <span class="p">(</span><span class="s1">&#39;craype/2.7.13&#39;</span><span class="p">,</span> <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>    <span class="p">(</span><span class="s1">&#39;cray-mpich/8.1.12&#39;</span><span class="p">,</span> <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>    <span class="p">(</span><span class="s1">&#39;cray-libsci/21.08.1.2&#39;</span><span class="p">,</span> <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>    <span class="p">(</span><span class="s1">&#39;cray-dsmml/0.2.2&#39;</span><span class="p">,</span> <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>    <span class="p">(</span><span class="s1">&#39;perftools-base/21.12.0&#39;</span><span class="p">,</span> <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>    <span class="p">(</span><span class="s1">&#39;xpmem&#39;</span><span class="p">,</span> <span class="n">EXTERNAL_MODULE</span><span class="p">),</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a><span class="p">]</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;toolchain&#39;</span>
+</code></pre></div>
 <p><a href="../">[cpeCray]</a> <a href="../../..">[package list]</a></p>
 
               

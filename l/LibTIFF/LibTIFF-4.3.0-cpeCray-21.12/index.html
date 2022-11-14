@@ -1002,118 +1002,117 @@
 <p>To access module help and find out for which stacks and partitions the module is
 installed, use <code>module spider LibTIFF/4.3.0-cpeCray-21.12</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># NOTE: Can use libwebp too but then we have a circular dependency...
-# NOTE: Also checks for JBIG-KIT. Since this library hasn't been updated
-# since 2014 we do not include it, though the code is still used as part
-# of some other tools (e.g., it is included in ImageMagick).
-# NOTE: The configure routine also checks for OpenGL. Not clear which
-# features this enables though...
-#
-##
-# This file is an EasyBuild reciPY as per https://github.com/hpcugent/easybuild
-#
-# Copyright:: Copyright 2012-2014 Uni.Lu/LCSB, NTUA
-# Authors::   Fotis Georgatos &lt;fotis@cern.ch&gt;, Alan O'Cais (JSC)
-# License::   MIT/GPL
-# $Id$
-#
-# This work implements a part of the HPCBIOS project and is a component of the policy:
-# http://hpcbios.readthedocs.org/en/latest/
-##
-easyblock = 'ConfigureMake'
-
-local_XZ_version =           '5.2.5'         # https://tukaani.org/xz/
-local_zlib_version =         '1.2.11'        # https://zlib.net/
-local_zstd_version =         '1.5.0'         # https://github.com/facebook/zstd/releases
-local_giflib_version =       '5.2.1'         # https://sourceforge.net/projects/giflib/files/
-local_libjpegturbo_version = '2.1.0'         # https://github.com/libjpeg-turbo/libjpeg-turbo/releases
-local_libtiff_version =      '4.3.0'         # https://download.osgeo.org/libtiff/
-
-name =    'LibTIFF'
-version = local_libtiff_version
-
-homepage = 'http://simplesystems.org/libtiff/'
-
-whatis = [
-    'Description: Tools and library for reading and writing TIFF data files',
-    'This package provides a number of command line tools and static and share libraries',
-    'Keywords: TIFF, PPM, PGM, PBM, PDF, PostScript',
-]
-
-description = &quot;&quot;&quot;
-This software provides support for the Tag Image File Format (TIFF), a widely
-used format for storing image data. The latest version of the TIFF specification
-is available on-line in several different formats.
-
-Included in this software distribution is a library, libtiff, for reading and
-writing TIFF, a small collection of tools for doing simple manipulations of TIFF
-images, and documentation on the library and tools. Libtiff is a portable
-software, it was built and tested on various systems: UNIX flavors (Linux, BSD,
-Solaris, MacOS X), Windows, and OpenVMS. It should be possible to port libtiff
-and additional tools on other OSes.
-
-The library, along with associated tool programs, should handle most of your
-needs for reading and writing TIFF images.
-&quot;&quot;&quot;
-
-usage = &quot;&quot;&quot;
-This package provides a number of command line tools:
-+ fax2ps     - convert a TIFF facsimile to compressed PostScript
-+ fax2tiff   - create a TIFF Class F fax file from raw fax data
-+ pal2rgb    - convert a palette color TIFF image to a full color image
-+ ppm2tiff   - create a TIFF file from PPM, PGM and PBM image files
-+ raw2tiff   - create a TIFF file from a raw data
-+ tiff2bw    - convert a color TIFF image to greyscale
-+ tiff2pdf   - convert a TIFF image to a PDF document
-+ tiff2ps    - convert a TIFF image to PostScript
-+ tiff2rgba  - convert a TIFF image to RGBA color space
-+ tiffcmp    - compare two TIFF files
-+ tiffcp     - copy (and possibly convert) a TIFF file
-+ tiffcrop   - select, copy, crop, convert, extract, and/or process one or more TIFF files.
-+ tiffdither - convert a greyscale image to bilevel using dithering
-+ tiffdump   - print verbatim information about TIFF files
-+ tiffinfo   - print information about TIFF files
-+ tiffmedian - apply the median cut algorithm to data in a TIFF file
-+ tiffset    - set or unset a field in a TIFF header
-+ tiffsplit  - split a multi-image TIFF into single-image TIFF files
-Help for these tools is supplied via Linux man pages, and some tools support
-the -help command line option.
-
-The API is documented on the web and via Linux man pages. You can start
-searching the latter via the entry page libtiffi (try man libtiff).
-&quot;&quot;&quot;
-
-docurls = [
-    'Web-based documentation for the tools: http://simplesystems.org/libtiff/tools.html',
-    'Web-based documentation for the library: http://simplesystems.org/libtiff/libtiff.html',
-]
-
-toolchain = {'name': 'cpeCray', 'version': '21.12'}
-toolchainopts = {'pic': True}
-
-source_urls = ['https://download.osgeo.org/libtiff/']
-sources =     ['tiff-%(version)s.tar.gz']
-checksums =   ['0e46e5acb087ce7d1ac53cf4f56a09b221537fc86dfc5daaad1c2e89e1b37ac8']
-
-builddependencies = [ # Create a reproducible build environment.
-    ('buildtools', '%(toolchain_version)s', '', True),
-]
-
-dependencies = [
-    ('zlib',          local_zlib_version),
-    ('zstd',          local_zstd_version),
-    ('XZ',            local_XZ_version),
-    ('libjpeg-turbo', local_libjpegturbo_version),
-]
-
-sanity_check_paths = {
-    'files': ['bin/tiffinfo'],
-    'dirs': [],
-}
-
-moduleclass = 'lib'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># NOTE: Can use libwebp too but then we have a circular dependency...</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># NOTE: Also checks for JBIG-KIT. Since this library hasn&#39;t been updated</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># since 2014 we do not include it, though the code is still used as part</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># of some other tools (e.g., it is included in ImageMagick).</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># NOTE: The configure routine also checks for OpenGL. Not clear which</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># features this enables though...</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1">#</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1">##</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1"># This file is an EasyBuild reciPY as per https://github.com/hpcugent/easybuild</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1">#</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># Copyright:: Copyright 2012-2014 Uni.Lu/LCSB, NTUA</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1"># Authors::   Fotis Georgatos &lt;fotis@cern.ch&gt;, Alan O&#39;Cais (JSC)</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1"># License::   MIT/GPL</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1"># $Id$</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="c1">#</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="c1"># This work implements a part of the HPCBIOS project and is a component of the policy:</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="c1"># http://hpcbios.readthedocs.org/en/latest/</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="c1">##</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;ConfigureMake&#39;</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="n">local_XZ_version</span> <span class="o">=</span>           <span class="s1">&#39;5.2.5&#39;</span>         <span class="c1"># https://tukaani.org/xz/</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="n">local_zlib_version</span> <span class="o">=</span>         <span class="s1">&#39;1.2.11&#39;</span>        <span class="c1"># https://zlib.net/</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="n">local_zstd_version</span> <span class="o">=</span>         <span class="s1">&#39;1.5.0&#39;</span>         <span class="c1"># https://github.com/facebook/zstd/releases</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="n">local_giflib_version</span> <span class="o">=</span>       <span class="s1">&#39;5.2.1&#39;</span>         <span class="c1"># https://sourceforge.net/projects/giflib/files/</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="n">local_libjpegturbo_version</span> <span class="o">=</span> <span class="s1">&#39;2.1.0&#39;</span>         <span class="c1"># https://github.com/libjpeg-turbo/libjpeg-turbo/releases</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="n">local_libtiff_version</span> <span class="o">=</span>      <span class="s1">&#39;4.3.0&#39;</span>         <span class="c1"># https://download.osgeo.org/libtiff/</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;LibTIFF&#39;</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="n">version</span> <span class="o">=</span> <span class="n">local_libtiff_version</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;http://simplesystems.org/libtiff/&#39;</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="s1">&#39;Description: Tools and library for reading and writing TIFF data files&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="s1">&#39;This package provides a number of command line tools and static and share libraries&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="s1">&#39;Keywords: TIFF, PPM, PGM, PBM, PDF, PostScript&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="p">]</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="s2">This software provides support for the Tag Image File Format (TIFF), a widely</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="s2">used format for storing image data. The latest version of the TIFF specification</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="s2">is available on-line in several different formats.</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="s2">Included in this software distribution is a library, libtiff, for reading and</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="s2">writing TIFF, a small collection of tools for doing simple manipulations of TIFF</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="s2">images, and documentation on the library and tools. Libtiff is a portable</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="s2">software, it was built and tested on various systems: UNIX flavors (Linux, BSD,</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="s2">Solaris, MacOS X), Windows, and OpenVMS. It should be possible to port libtiff</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="s2">and additional tools on other OSes.</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="s2">The library, along with associated tool programs, should handle most of your</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="s2">needs for reading and writing TIFF images.</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="n">usage</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="s2">This package provides a number of command line tools:</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="s2">+ fax2ps     - convert a TIFF facsimile to compressed PostScript</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="s2">+ fax2tiff   - create a TIFF Class F fax file from raw fax data</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="s2">+ pal2rgb    - convert a palette color TIFF image to a full color image</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="s2">+ ppm2tiff   - create a TIFF file from PPM, PGM and PBM image files</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="s2">+ raw2tiff   - create a TIFF file from a raw data</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="s2">+ tiff2bw    - convert a color TIFF image to greyscale</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="s2">+ tiff2pdf   - convert a TIFF image to a PDF document</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="s2">+ tiff2ps    - convert a TIFF image to PostScript</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a><span class="s2">+ tiff2rgba  - convert a TIFF image to RGBA color space</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="s2">+ tiffcmp    - compare two TIFF files</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a><span class="s2">+ tiffcp     - copy (and possibly convert) a TIFF file</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a><span class="s2">+ tiffcrop   - select, copy, crop, convert, extract, and/or process one or more TIFF files.</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a><span class="s2">+ tiffdither - convert a greyscale image to bilevel using dithering</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a><span class="s2">+ tiffdump   - print verbatim information about TIFF files</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a><span class="s2">+ tiffinfo   - print information about TIFF files</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a><span class="s2">+ tiffmedian - apply the median cut algorithm to data in a TIFF file</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a><span class="s2">+ tiffset    - set or unset a field in a TIFF header</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a><span class="s2">+ tiffsplit  - split a multi-image TIFF into single-image TIFF files</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a><span class="s2">Help for these tools is supplied via Linux man pages, and some tools support</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a><span class="s2">the -help command line option.</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>
+<a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a><span class="s2">The API is documented on the web and via Linux man pages. You can start</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a><span class="s2">searching the latter via the entry page libtiffi (try man libtiff).</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>
+<a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a><span class="n">docurls</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>    <span class="s1">&#39;Web-based documentation for the tools: http://simplesystems.org/libtiff/tools.html&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>    <span class="s1">&#39;Web-based documentation for the library: http://simplesystems.org/libtiff/libtiff.html&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a><span class="p">]</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>
+<a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeCray&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;21.12&#39;</span><span class="p">}</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pic&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>
+<a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://download.osgeo.org/libtiff/&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a><span class="n">sources</span> <span class="o">=</span>     <span class="p">[</span><span class="s1">&#39;tiff-</span><span class="si">%(version)s</span><span class="s1">.tar.gz&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a><span class="n">checksums</span> <span class="o">=</span>   <span class="p">[</span><span class="s1">&#39;0e46e5acb087ce7d1ac53cf4f56a09b221537fc86dfc5daaad1c2e89e1b37ac8&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>
+<a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span> <span class="c1"># Create a reproducible build environment.</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a><span class="p">]</span>
+<a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>
+<a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>    <span class="p">(</span><span class="s1">&#39;zlib&#39;</span><span class="p">,</span>          <span class="n">local_zlib_version</span><span class="p">),</span>
+<a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>    <span class="p">(</span><span class="s1">&#39;zstd&#39;</span><span class="p">,</span>          <span class="n">local_zstd_version</span><span class="p">),</span>
+<a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>    <span class="p">(</span><span class="s1">&#39;XZ&#39;</span><span class="p">,</span>            <span class="n">local_XZ_version</span><span class="p">),</span>
+<a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>    <span class="p">(</span><span class="s1">&#39;libjpeg-turbo&#39;</span><span class="p">,</span> <span class="n">local_libjpegturbo_version</span><span class="p">),</span>
+<a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a><span class="p">]</span>
+<a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a>
+<a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin/tiffinfo&#39;</span><span class="p">],</span>
+<a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span> <span class="p">[],</span>
+<a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a><span class="p">}</span>
+<a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a>
+<a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;lib&#39;</span>
+</code></pre></div>
 <p><a href="../">[LibTIFF]</a> <a href="../../..">[package list]</a></p>
 
               

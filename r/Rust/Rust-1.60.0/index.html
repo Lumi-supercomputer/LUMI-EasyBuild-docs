@@ -1002,98 +1002,97 @@
 <p>To access module help and find out for which stacks and partitions the module is
 installed, use <code>module spider Rust/1.60.0</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># Contributed by Kurt Lust, University of Antwerpen and LUMI consortium, based on
-# the build recipe in the easybuilders repository.
-#
-# NOTE: This package is meant to be installed in partition/common on LUMI.
-#
-easyblock = 'ConfigureMake'
-
-import os as local_os
-
-# The first line below is a dirty trick not very much loved by the EasyBuild developers but
-# it helps to make this EasyConfig indpendent of the LUMI software stack version as there is
-# no other reference to that version in the file that we can use since it relies on the
-# SYSTEM toolchain.
-local_LUMI_version = local_os.environ['LUMI_STACK_CPE_VERSION']
-local_Rust_version =   '1.60.0'        # https://www.rust-lang.org
-
-name =    'Rust'
-version = local_Rust_version
-
-homepage = 'https://www.rust-lang.org'
-
-whatis = [
-    &quot;Description: Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety&quot;
-]
-
-description = &quot;&quot;&quot;
-Rust is blazingly fast and memory-efficient: with no runtime or garbage collector,
-it can power performance-critical services, run on embedded devices, and easily
-integrate with other languages. Rust’s rich type system and ownership model
-guarantee memory-safety and thread-safety — enabling you to eliminate many
-classes of bugs at compile-time.
-
-Note that the Rust installation process is not exactly HPC-friendly and 
-downloads files on the fly, so installation will not work on nodes that do
-not have internet access. Moreover, because of this we cannot give any
-guarantee about reproducibility of the install or even our ability to 
-re-install Rust when needed, so this version may disappear without any
-warning.
-&quot;&quot;&quot;
-
-toolchain = SYSTEM
-
-source_urls = ['https://static.rust-lang.org/dist/']
-sources =     ['rustc-%(version)s-src.tar.gz']
-checksums =   ['20ca826d1cf674daf8e22c4f8c4b9743af07973211c839b85839742314c838b7']
-
-builddependencies = [
-    ('buildtools', local_LUMI_version),  # For CMake
-]
-
-osdependencies = [
-    ('openssl-devel', 'libssl-dev', 'libopenssl-devel'), # For CMake
-]
-
-#
-# Configure phase
-#
-# TODO: Double-check if it makes sense to set CFLAGS, figure out how to see the compiler flags
-# in the log file which may not be trivial as we do not directly call Make.
-preconfigopts  = 'module unload cce gcc aocc PrgEnv-gnu PrgEnv-cray PrgEnv-aocc ; module list ; '
-preconfigopts += 'CFLAGS=&quot;-macrch=znver1 -O2 -fpic&quot; CXXFLAGS=&quot;-march=znver1 -O2 -fpic&quot; '
-
-configopts  = &quot;--enable-extended --sysconfdir=%(installdir)s/etc &quot;
-# avoid build dependency on Ninja, which requires Python,
-# since Rust is a build dependency for cryptography that is included with Python
-configopts += &quot;--set=llvm.ninja=false &quot;
-
-# Use ./x.py to bootstrap so that options like -j N are correctly passed through
-# see: https://rustc-dev-guide.rust-lang.org/building/how-to-build-and-run.html#what-is-xpy
-# (ConfigureMake already adds `-j %(parallel)s` to the `build_cmd`)
-build_cmd = &quot;./x.py build&quot;
-install_cmd = &quot;./x.py install -j %(parallel)s&quot;
-
-# avoid failure when home directory is an NFS mount,
-# see https://github.com/rust-lang/cargo/issues/6652
-prebuildopts  = 'module unload cce gcc aocc PrgEnv-gnu PrgEnv-cray PrgEnv-aocc ; module list ; '
-prebuildopts += 'export CARGO_HOME=%(builddir)s/cargo &amp;&amp; '
-preinstallopts = prebuildopts
-
-sanity_check_paths = {
-    'files': ['bin/cargo', 'bin/rustc', 'bin/rustdoc'],
-    'dirs':  ['lib/rustlib', 'share/doc', 'share/man'],
-}
-
-sanity_check_commands = [
-    &quot;cargo --version&quot;,
-    &quot;rustc --version&quot;,
-]
-
-moduleclass = 'lang'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Contributed by Kurt Lust, University of Antwerpen and LUMI consortium, based on</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># the build recipe in the easybuilders repository.</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1">#</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># NOTE: This package is meant to be installed in partition/common on LUMI.</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1">#</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;ConfigureMake&#39;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kn">import</span> <span class="nn">os</span> <span class="k">as</span> <span class="nn">local_os</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># The first line below is a dirty trick not very much loved by the EasyBuild developers but</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># it helps to make this EasyConfig indpendent of the LUMI software stack version as there is</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1"># no other reference to that version in the file that we can use since it relies on the</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1"># SYSTEM toolchain.</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">local_LUMI_version</span> <span class="o">=</span> <span class="n">local_os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;LUMI_STACK_CPE_VERSION&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="n">local_Rust_version</span> <span class="o">=</span>   <span class="s1">&#39;1.60.0&#39;</span>        <span class="c1"># https://www.rust-lang.org</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="n">name</span> <span class="o">=</span>    <span class="s1">&#39;Rust&#39;</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="n">version</span> <span class="o">=</span> <span class="n">local_Rust_version</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://www.rust-lang.org&#39;</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="s2">&quot;Description: Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety&quot;</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="p">]</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="s2">Rust is blazingly fast and memory-efficient: with no runtime or garbage collector,</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="s2">it can power performance-critical services, run on embedded devices, and easily</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="s2">integrate with other languages. Rust’s rich type system and ownership model</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="s2">guarantee memory-safety and thread-safety — enabling you to eliminate many</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="s2">classes of bugs at compile-time.</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="s2">Note that the Rust installation process is not exactly HPC-friendly and </span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="s2">downloads files on the fly, so installation will not work on nodes that do</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="s2">not have internet access. Moreover, because of this we cannot give any</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="s2">guarantee about reproducibility of the install or even our ability to </span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="s2">re-install Rust when needed, so this version may disappear without any</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="s2">warning.</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="n">SYSTEM</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://static.rust-lang.org/dist/&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="n">sources</span> <span class="o">=</span>     <span class="p">[</span><span class="s1">&#39;rustc-</span><span class="si">%(version)s</span><span class="s1">-src.tar.gz&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="n">checksums</span> <span class="o">=</span>   <span class="p">[</span><span class="s1">&#39;20ca826d1cf674daf8e22c4f8c4b9743af07973211c839b85839742314c838b7&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="n">local_LUMI_version</span><span class="p">),</span>  <span class="c1"># For CMake</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="p">]</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="n">osdependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>    <span class="p">(</span><span class="s1">&#39;openssl-devel&#39;</span><span class="p">,</span> <span class="s1">&#39;libssl-dev&#39;</span><span class="p">,</span> <span class="s1">&#39;libopenssl-devel&#39;</span><span class="p">),</span> <span class="c1"># For CMake</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="p">]</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="c1">#</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="c1"># Configure phase</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="c1">#</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="c1"># TODO: Double-check if it makes sense to set CFLAGS, figure out how to see the compiler flags</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="c1"># in the log file which may not be trivial as we do not directly call Make.</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="n">preconfigopts</span>  <span class="o">=</span> <span class="s1">&#39;module unload cce gcc aocc PrgEnv-gnu PrgEnv-cray PrgEnv-aocc ; module list ; &#39;</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="n">preconfigopts</span> <span class="o">+=</span> <span class="s1">&#39;CFLAGS=&quot;-macrch=znver1 -O2 -fpic&quot; CXXFLAGS=&quot;-march=znver1 -O2 -fpic&quot; &#39;</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="n">configopts</span>  <span class="o">=</span> <span class="s2">&quot;--enable-extended --sysconfdir=</span><span class="si">%(installdir)s</span><span class="s2">/etc &quot;</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="c1"># avoid build dependency on Ninja, which requires Python,</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a><span class="c1"># since Rust is a build dependency for cryptography that is included with Python</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s2">&quot;--set=llvm.ninja=false &quot;</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a><span class="c1"># Use ./x.py to bootstrap so that options like -j N are correctly passed through</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a><span class="c1"># see: https://rustc-dev-guide.rust-lang.org/building/how-to-build-and-run.html#what-is-xpy</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a><span class="c1"># (ConfigureMake already adds `-j %(parallel)s` to the `build_cmd`)</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a><span class="n">build_cmd</span> <span class="o">=</span> <span class="s2">&quot;./x.py build&quot;</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a><span class="n">install_cmd</span> <span class="o">=</span> <span class="s2">&quot;./x.py install -j </span><span class="si">%(parallel)s</span><span class="s2">&quot;</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>
+<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a><span class="c1"># avoid failure when home directory is an NFS mount,</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a><span class="c1"># see https://github.com/rust-lang/cargo/issues/6652</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a><span class="n">prebuildopts</span>  <span class="o">=</span> <span class="s1">&#39;module unload cce gcc aocc PrgEnv-gnu PrgEnv-cray PrgEnv-aocc ; module list ; &#39;</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a><span class="n">prebuildopts</span> <span class="o">+=</span> <span class="s1">&#39;export CARGO_HOME=</span><span class="si">%(builddir)s</span><span class="s1">/cargo &amp;&amp; &#39;</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a><span class="n">preinstallopts</span> <span class="o">=</span> <span class="n">prebuildopts</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>
+<a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin/cargo&#39;</span><span class="p">,</span> <span class="s1">&#39;bin/rustc&#39;</span><span class="p">,</span> <span class="s1">&#39;bin/rustdoc&#39;</span><span class="p">],</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span>  <span class="p">[</span><span class="s1">&#39;lib/rustlib&#39;</span><span class="p">,</span> <span class="s1">&#39;share/doc&#39;</span><span class="p">,</span> <span class="s1">&#39;share/man&#39;</span><span class="p">],</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a><span class="p">}</span>
+<a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>
+<a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a><span class="n">sanity_check_commands</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>    <span class="s2">&quot;cargo --version&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>    <span class="s2">&quot;rustc --version&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a><span class="p">]</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>
+<a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;lang&#39;</span>
+</code></pre></div>
 <p><a href="../">[Rust]</a> <a href="../../..">[package list]</a></p>
 
               

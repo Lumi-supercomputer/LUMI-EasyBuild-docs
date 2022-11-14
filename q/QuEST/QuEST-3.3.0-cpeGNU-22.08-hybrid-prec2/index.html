@@ -999,121 +999,119 @@
 
 <p><a href="../">[QuEST]</a> <a href="../../..">[package list]</a></p>
 <h1 id="quest330-cpegnu-2208-hybrid-prec2-quest-330-cpegnu-2208-hybrid-prec2eb">QuEST/3.3.0-cpeGNU-22.08-hybrid-prec2 (QuEST-3.3.0-cpeGNU-22.08-hybrid-prec2.eb)</h1>
-<p>Install with the EasyBuild-user module:</p>
-<pre><code>eb QuEST-3.3.0-cpeGNU-22.08-hybrid-prec2.eb -r
-
-</code></pre>
-<p>To access module help after installation and get reminded for which stacks and partitions the module is
+<p>Install with the EasyBuild-user module:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>eb QuEST-3.3.0-cpeGNU-22.08-hybrid-prec2.eb -r
+</code></pre></div>
+To access module help after installation and get reminded for which stacks and partitions the module is
 installed, use <code>module spider QuEST/3.3.0-cpeGNU-22.08-hybrid-prec2</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python"># Written by Kurt Lust (kurt.lust@uantwerpen.be) for the LUMI project.
-#
-# This EasyConfig file is offered as a courtasy to users of the LUMI system
-# without any warranty as QuEST isn't really meant to be installed as a
-# module.
-#
-# Please follow the instructions in this EasyConfig file to configure
-# QuEST as you need it. There is currently no EasyBlock to guide you
-# through the configuration process.
-#
-
-easyblock = 'CMakeMake'
-
-name =          'QuEST'
-version =       '3.3.0'
-versionsuffix = 'hybrid-prec2'
-
-homepage = 'https://quest.qtechtheory.org/'
-
-whatis = [
-    'Description: Quantum Exact Simulation Toolkit, a high performance simulator of universal quantum circuits, state vectors and density matrices'
-]
-
-description = &quot;&quot;&quot;
-The Quantum Exact Simulation Toolkit is a high performance simulator of
-universal quantum circuits, state vectors and density matrices. QuEST
-can be used by both C and C++, is open source, multithreaded, distributed
-and GPU-accelerated. Needing only compilation, QuEST is easy to run both
-on laptops and supercomputers, where it can take advantage of multicore
-and networked machines to quickly simulate circuits on many qubits.
-
-Note that when using this installation you should carefully check the
-configuration that was used to build the library, e.g., from the
-EasyBuild recipe stored in $EBROOTQUEST/easybuild.
-&quot;&quot;&quot;
-
-usage = &quot;&quot;&quot;
-After loading the module, you can test the compilation of an example
-program included with QuEST as follows:
-  * Copy the sources from $EBROOTQUEST/examples to your working directory:
-    cp $EBROOTQUEST/examples/tutorial_example.c .
-  * Compile using the Cray compiler wrapper:
-    cc tutorial_example.c -o demo -lQuEST
-  * Run the demo executable that was generated in the previous step:
-    ./demo
-&quot;&quot;&quot;
-
-docurls = [
-    'Web-based documentation at https://quest.qtechtheory.org/docs/',
-    'Web-based API information at https://quest-kit.github.io/QuEST/modules.html',
-]
-
-toolchain = {'name': 'cpeGNU', 'version': '22.08'}
-# We specify mpi and OpenMP in the toolchainopts though it is not
-# really needed as CMake will figure things out correctly from the
-# configuration switches given to it.
-toolchainopts = { 'usempi': True, 'openmp': True, 'pic': True}
-
-sources = [
-    {   # QuEST itself: https://github.com/QuEST-Kit/QuEST/archive/refs/tags/v3.3.0.tar.gz
-        'filename':          'QuEST-%(version)s.tar.gz',
-        'download_filename': 'v%(version)s.tar.gz',
-        'source_urls':       ['https://github.com/QuEST-Kit/QuEST/archive/refs/tags'],
-    },
-    {   # The CMakeLists.txt file
-        'filename':    'QuEST_CMakeLists-%(version)s.txt',
-        'extract_cmd': 'cp %s QuEST-%(version)s/QuEST/CMakeLists.txt',
-    }
-]
-
-builddependencies = [ # Create a reproducible build environment.
-    ('buildtools', '%(toolchain_version)s', '', True),
-]
-
-# The first one of the next options is very important to ensure proper compilation
-# for the intended LUMI partition. The second one just produces a bit more information
-# in the log files for debugging.
-configopts  = '-DOVERWRITE_DEFAULT_COMPILER_OPTS=OFF -DCMAKE_VERBOSE_MAKEFILE=ON '
-# Turn multithreading via OpenMP ON or OFF.
-configopts += '-DMULTITHREADED=ON '
-# Turn MPI support ON or OFF.
-configopts += '-DDISTRIBUTED=ON '
-# QuEST GPU compuring is not supported on LUMI since it is CUDA-based.
-configopts += '-DGPUACCELERATED=OFF '
-# PRecision: 1, 2 or 4 (the latter not supported in all configurations)
-configopts += '-DPRECISION=2 '
-
-# Only build the library through CMake
-srcdir = 'QuEST'
-
-# We need an askward construction here to copy from the source directories and not
-# from the CMake build directories. As the location of the CMake build directory
-# has already changed at least once in EasyBuild history, this may brake in
-# future releases of EasyBuild.
-postinstallcmds = [
-    'cd ../QuEST-%(version)s; cp AUTHORS.txt LICENCE.txt README.md %(installdir)s',
-    'cd ../QuEST-%(version)s; cp -r examples %(installdir)s',
-]
-
-sanity_check_paths = {
-    'files': ['lib/libQuEST.%s' % SHLIB_EXT] +
-             ['include/%s.h' %x for x in ['QuEST', 'QuEST_complex', 'QuEST_precision']],
-    'dirs':  ['examples'],
-}
-
-moduleclass = 'lib'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Written by Kurt Lust (kurt.lust@uantwerpen.be) for the LUMI project.</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1">#</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># This EasyConfig file is offered as a courtasy to users of the LUMI system</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># without any warranty as QuEST isn&#39;t really meant to be installed as a</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># module.</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1">#</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Please follow the instructions in this EasyConfig file to configure</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1"># QuEST as you need it. There is currently no EasyBlock to guide you</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="c1"># through the configuration process.</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1">#</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;CMakeMake&#39;</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="n">name</span> <span class="o">=</span>          <span class="s1">&#39;QuEST&#39;</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="n">version</span> <span class="o">=</span>       <span class="s1">&#39;3.3.0&#39;</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="n">versionsuffix</span> <span class="o">=</span> <span class="s1">&#39;hybrid-prec2&#39;</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://quest.qtechtheory.org/&#39;</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>    <span class="s1">&#39;Description: Quantum Exact Simulation Toolkit, a high performance simulator of universal quantum circuits, state vectors and density matrices&#39;</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="p">]</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="s2">The Quantum Exact Simulation Toolkit is a high performance simulator of</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="s2">universal quantum circuits, state vectors and density matrices. QuEST</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="s2">can be used by both C and C++, is open source, multithreaded, distributed</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="s2">and GPU-accelerated. Needing only compilation, QuEST is easy to run both</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="s2">on laptops and supercomputers, where it can take advantage of multicore</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="s2">and networked machines to quickly simulate circuits on many qubits.</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="s2">Note that when using this installation you should carefully check the</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="s2">configuration that was used to build the library, e.g., from the</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="s2">EasyBuild recipe stored in $EBROOTQUEST/easybuild.</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="n">usage</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="s2">After loading the module, you can test the compilation of an example</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="s2">program included with QuEST as follows:</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="s2">  * Copy the sources from $EBROOTQUEST/examples to your working directory:</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="s2">    cp $EBROOTQUEST/examples/tutorial_example.c .</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="s2">  * Compile using the Cray compiler wrapper:</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="s2">    cc tutorial_example.c -o demo -lQuEST</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="s2">  * Run the demo executable that was generated in the previous step:</span>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="s2">    ./demo</span>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a><span class="n">docurls</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>    <span class="s1">&#39;Web-based documentation at https://quest.qtechtheory.org/docs/&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>    <span class="s1">&#39;Web-based API information at https://quest-kit.github.io/QuEST/modules.html&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a><span class="p">]</span>
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeGNU&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;22.08&#39;</span><span class="p">}</span>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a><span class="c1"># We specify mpi and OpenMP in the toolchainopts though it is not</span>
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a><span class="c1"># really needed as CMake will figure things out correctly from the</span>
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a><span class="c1"># configuration switches given to it.</span>
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;usempi&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;openmp&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;pic&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a><span class="n">sources</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>    <span class="p">{</span>   <span class="c1"># QuEST itself: https://github.com/QuEST-Kit/QuEST/archive/refs/tags/v3.3.0.tar.gz</span>
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>        <span class="s1">&#39;filename&#39;</span><span class="p">:</span>          <span class="s1">&#39;QuEST-</span><span class="si">%(version)s</span><span class="s1">.tar.gz&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>        <span class="s1">&#39;download_filename&#39;</span><span class="p">:</span> <span class="s1">&#39;v</span><span class="si">%(version)s</span><span class="s1">.tar.gz&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>        <span class="s1">&#39;source_urls&#39;</span><span class="p">:</span>       <span class="p">[</span><span class="s1">&#39;https://github.com/QuEST-Kit/QuEST/archive/refs/tags&#39;</span><span class="p">],</span>
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>    <span class="p">},</span>
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>    <span class="p">{</span>   <span class="c1"># The CMakeLists.txt file</span>
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>        <span class="s1">&#39;filename&#39;</span><span class="p">:</span>    <span class="s1">&#39;QuEST_CMakeLists-</span><span class="si">%(version)s</span><span class="s1">.txt&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>        <span class="s1">&#39;extract_cmd&#39;</span><span class="p">:</span> <span class="s1">&#39;cp </span><span class="si">%s</span><span class="s1"> QuEST-</span><span class="si">%(version)s</span><span class="s1">/QuEST/CMakeLists.txt&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>    <span class="p">}</span>
+<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a><span class="p">]</span>
+<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>
+<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span> <span class="c1"># Create a reproducible build environment.</span>
+<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a><span class="p">]</span>
+<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>
+<a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a><span class="c1"># The first one of the next options is very important to ensure proper compilation</span>
+<a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a><span class="c1"># for the intended LUMI partition. The second one just produces a bit more information</span>
+<a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a><span class="c1"># in the log files for debugging.</span>
+<a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a><span class="n">configopts</span>  <span class="o">=</span> <span class="s1">&#39;-DOVERWRITE_DEFAULT_COMPILER_OPTS=OFF -DCMAKE_VERBOSE_MAKEFILE=ON &#39;</span>
+<a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a><span class="c1"># Turn multithreading via OpenMP ON or OFF.</span>
+<a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39;-DMULTITHREADED=ON &#39;</span>
+<a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a><span class="c1"># Turn MPI support ON or OFF.</span>
+<a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39;-DDISTRIBUTED=ON &#39;</span>
+<a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a><span class="c1"># QuEST GPU compuring is not supported on LUMI since it is CUDA-based.</span>
+<a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39;-DGPUACCELERATED=OFF &#39;</span>
+<a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a><span class="c1"># PRecision: 1, 2 or 4 (the latter not supported in all configurations)</span>
+<a id="__codelineno-1-86" name="__codelineno-1-86" href="#__codelineno-1-86"></a><span class="n">configopts</span> <span class="o">+=</span> <span class="s1">&#39;-DPRECISION=2 &#39;</span>
+<a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a>
+<a id="__codelineno-1-88" name="__codelineno-1-88" href="#__codelineno-1-88"></a><span class="c1"># Only build the library through CMake</span>
+<a id="__codelineno-1-89" name="__codelineno-1-89" href="#__codelineno-1-89"></a><span class="n">srcdir</span> <span class="o">=</span> <span class="s1">&#39;QuEST&#39;</span>
+<a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a>
+<a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a><span class="c1"># We need an askward construction here to copy from the source directories and not</span>
+<a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a><span class="c1"># from the CMake build directories. As the location of the CMake build directory</span>
+<a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a><span class="c1"># has already changed at least once in EasyBuild history, this may brake in</span>
+<a id="__codelineno-1-94" name="__codelineno-1-94" href="#__codelineno-1-94"></a><span class="c1"># future releases of EasyBuild.</span>
+<a id="__codelineno-1-95" name="__codelineno-1-95" href="#__codelineno-1-95"></a><span class="n">postinstallcmds</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-96" name="__codelineno-1-96" href="#__codelineno-1-96"></a>    <span class="s1">&#39;cd ../QuEST-</span><span class="si">%(version)s</span><span class="s1">; cp AUTHORS.txt LICENCE.txt README.md </span><span class="si">%(installdir)s</span><span class="s1">&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-97" name="__codelineno-1-97" href="#__codelineno-1-97"></a>    <span class="s1">&#39;cd ../QuEST-</span><span class="si">%(version)s</span><span class="s1">; cp -r examples </span><span class="si">%(installdir)s</span><span class="s1">&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-98" name="__codelineno-1-98" href="#__codelineno-1-98"></a><span class="p">]</span>
+<a id="__codelineno-1-99" name="__codelineno-1-99" href="#__codelineno-1-99"></a>
+<a id="__codelineno-1-100" name="__codelineno-1-100" href="#__codelineno-1-100"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-1-101" name="__codelineno-1-101" href="#__codelineno-1-101"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;lib/libQuEST.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">SHLIB_EXT</span><span class="p">]</span> <span class="o">+</span>
+<a id="__codelineno-1-102" name="__codelineno-1-102" href="#__codelineno-1-102"></a>             <span class="p">[</span><span class="s1">&#39;include/</span><span class="si">%s</span><span class="s1">.h&#39;</span> <span class="o">%</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;QuEST&#39;</span><span class="p">,</span> <span class="s1">&#39;QuEST_complex&#39;</span><span class="p">,</span> <span class="s1">&#39;QuEST_precision&#39;</span><span class="p">]],</span>
+<a id="__codelineno-1-103" name="__codelineno-1-103" href="#__codelineno-1-103"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span>  <span class="p">[</span><span class="s1">&#39;examples&#39;</span><span class="p">],</span>
+<a id="__codelineno-1-104" name="__codelineno-1-104" href="#__codelineno-1-104"></a><span class="p">}</span>
+<a id="__codelineno-1-105" name="__codelineno-1-105" href="#__codelineno-1-105"></a>
+<a id="__codelineno-1-106" name="__codelineno-1-106" href="#__codelineno-1-106"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;lib&#39;</span>
+</code></pre></div>
 <p><a href="../">[QuEST]</a> <a href="../../..">[package list]</a></p>
 
               

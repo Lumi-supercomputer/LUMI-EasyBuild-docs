@@ -999,87 +999,85 @@
 
 <p><a href="../">[Nek5000]</a> <a href="../../..">[package list]</a></p>
 <h1 id="nek5000190-cpegnu-2112-nek5000-190-cpegnu-2112eb">Nek5000/19.0-cpeGNU-21.12 (Nek5000-19.0-cpeGNU-21.12.eb)</h1>
-<p>Install with the EasyBuild-user module:</p>
-<pre><code>eb Nek5000-19.0-cpeGNU-21.12.eb -r
-
-</code></pre>
-<p>To access module help after installation and get reminded for which stacks and partitions the module is
+<p>Install with the EasyBuild-user module:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>eb Nek5000-19.0-cpeGNU-21.12.eb -r
+</code></pre></div>
+To access module help after installation and get reminded for which stacks and partitions the module is
 installed, use <code>module spider Nek5000/19.0-cpeGNU-21.12</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python">easyblock = 'PackedBinary'
-
-name = 'Nek5000'
-version = '19.0'
-
-homepage = 'https://nek5000.mcs.anl.gov/'
-
-whatis = [
-    'Description: Nek5000 is a fast and scalable high-order solver for computational fluid dynamics'
-]
-
-description = &quot;&quot;&quot;
-Nek5000 is a spectral element solver for computational fluid dynamics.
-It features state-of-the-art, scalable algorithms that are fast and 
-efficient on platforms ranging from laptops to the world’s fastest 
-computers. Applications span a wide range of fields, including fluid 
-flow, thermal convection, combustion and magnetohydrodynamics. 
-The user community includes hundreds of scientists and engineers in 
-academia, laboratories and industry.
-
-This module provides the necessary tools to build your Nek5000
-binary.
-&quot;&quot;&quot;
-
-toolchain = {'name': 'cpeGNU', 'version': '21.12'}
-toolchainopts = {'pic': True, 'usempi': True}
-
-source_urls = ['https://github.com/Nek5000/Nek5000/archive/']
-sources = ['v%(version)s.tar.gz']
-#patches = [
-#    '%(name)s-%(version)s_hypre_blas.patch',
-#    '%(name)s-%(version)s_sundials.patch',
-#]
-
-#checksums = [
-#    '4d8d4793ce3c926c54e09a5a5968fa959fe0ba46bd2e6b8043e099528ee35a60',  # v17.0.tar.gz
-#    'b3820a9e141a1c3087aaabbb140ecf11756b552a175619f9e12d913afd850794',  # Nek5000-17.0_hypre_blas.patch
-#    'af9e3771483d9a1732135ca1fd25f902706bf6e8f9c8552bc4bdf24d9a1c0244',  # Nek5000-17.0_sundials.patch
-#]
-
-#builddependencies = [('CMake', '3.10.2')]
-
-dependencies = [(
-    'X11', '%(toolchain_version)s')
-]
-
-buildininstalldir = True
-
-install_cmd = (
-    'mv %(name)s-%(version)s/{*,.[^.]*} . &amp;&amp; rmdir %(name)s-%(version)s &amp;&amp; cd tools &amp;&amp; env CC=cc FC=ftn &amp;&amp; ' 
-    './maketools genmap gencon genbox n2to3 reatore2 nekmerge prenek postnek nekamg_setup gmsh2nek cgns2nek'
-    #'cd ../3rd_party/gslib &amp;&amp; env GSLIB_OPT=&quot;USREXIT=1 BLAS=2 PREFIX=gslib_ FPREFIX=fgslib_&quot; ./install &amp;&amp; '
-    #'cd ../cvode &amp;&amp; ./install'
-)
-
-postinstallcmds = [
-    'sed -i -e &quot;s|^#FC=.*|FC=$FC|&quot; bin/makenek',
-    'sed -i -e &quot;s|^#CC=.*|CC=$CC|&quot; bin/makenek',
-    'sed -i -e &quot;s|^#FFLAGS=.*|FFLAGS=&lt;dquote&gt;$FFLAGS&lt;dquote&gt;|&quot; bin/makenek',
-    'sed -i -e &quot;s|^#CFLAGS=.*|CFLAGS=&lt;dquote&gt;$CFLAGS&lt;dquote&gt;|&quot; bin/makenek',
-    &quot;&quot;&quot;sed -i -e 's|&lt;dquote&gt;|&quot;|g' bin/makenek&quot;&quot;&quot;,
-]
-
-sanity_check_paths = {
-    'files': ['bin/genmap', 'bin/nekmerge', 'bin/prex', 'bin/genbox', 'bin/n2to3', 'bin/postx',
-              'bin/reatore2', 'bin/re2torea'],
-    'dirs': []
-}
-
-modextravars = {'NEK_SOURCE_ROOT': '%(installdir)s'}
-
-moduleclass = 'cae'
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;PackedBinary&#39;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Nek5000&#39;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;19.0&#39;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://nek5000.mcs.anl.gov/&#39;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="s1">&#39;Description: Nek5000 is a fast and scalable high-order solver for computational fluid dynamics&#39;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="p">]</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="s2">Nek5000 is a spectral element solver for computational fluid dynamics.</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="s2">It features state-of-the-art, scalable algorithms that are fast and </span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="s2">efficient on platforms ranging from laptops to the world’s fastest </span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="s2">computers. Applications span a wide range of fields, including fluid </span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="s2">flow, thermal convection, combustion and magnetohydrodynamics. </span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="s2">The user community includes hundreds of scientists and engineers in </span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="s2">academia, laboratories and industry.</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="s2">This module provides the necessary tools to build your Nek5000</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="s2">binary.</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeGNU&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;21.12&#39;</span><span class="p">}</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="n">toolchainopts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pic&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;usempi&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://github.com/Nek5000/Nek5000/archive/&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;v</span><span class="si">%(version)s</span><span class="s1">.tar.gz&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="c1">#patches = [</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="c1">#    &#39;%(name)s-%(version)s_hypre_blas.patch&#39;,</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="c1">#    &#39;%(name)s-%(version)s_sundials.patch&#39;,</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="c1">#]</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="c1">#checksums = [</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="c1">#    &#39;4d8d4793ce3c926c54e09a5a5968fa959fe0ba46bd2e6b8043e099528ee35a60&#39;,  # v17.0.tar.gz</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="c1">#    &#39;b3820a9e141a1c3087aaabbb140ecf11756b552a175619f9e12d913afd850794&#39;,  # Nek5000-17.0_hypre_blas.patch</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="c1">#    &#39;af9e3771483d9a1732135ca1fd25f902706bf6e8f9c8552bc4bdf24d9a1c0244&#39;,  # Nek5000-17.0_sundials.patch</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="c1">#]</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="c1">#builddependencies = [(&#39;CMake&#39;, &#39;3.10.2&#39;)]</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="n">dependencies</span> <span class="o">=</span> <span class="p">[(</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>    <span class="s1">&#39;X11&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="p">]</span>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="n">buildininstalldir</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a><span class="n">install_cmd</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>    <span class="s1">&#39;mv </span><span class="si">%(name)s</span><span class="s1">-</span><span class="si">%(version)s</span><span class="s1">/{*,.[^.]*} . &amp;&amp; rmdir </span><span class="si">%(name)s</span><span class="s1">-</span><span class="si">%(version)s</span><span class="s1"> &amp;&amp; cd tools &amp;&amp; env CC=cc FC=ftn &amp;&amp; &#39;</span> 
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>    <span class="s1">&#39;./maketools genmap gencon genbox n2to3 reatore2 nekmerge prenek postnek nekamg_setup gmsh2nek cgns2nek&#39;</span>
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>    <span class="c1">#&#39;cd ../3rd_party/gslib &amp;&amp; env GSLIB_OPT=&quot;USREXIT=1 BLAS=2 PREFIX=gslib_ FPREFIX=fgslib_&quot; ./install &amp;&amp; &#39;</span>
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>    <span class="c1">#&#39;cd ../cvode &amp;&amp; ./install&#39;</span>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a><span class="p">)</span>
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a><span class="n">postinstallcmds</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>    <span class="s1">&#39;sed -i -e &quot;s|^#FC=.*|FC=$FC|&quot; bin/makenek&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>    <span class="s1">&#39;sed -i -e &quot;s|^#CC=.*|CC=$CC|&quot; bin/makenek&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>    <span class="s1">&#39;sed -i -e &quot;s|^#FFLAGS=.*|FFLAGS=&lt;dquote&gt;$FFLAGS&lt;dquote&gt;|&quot; bin/makenek&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>    <span class="s1">&#39;sed -i -e &quot;s|^#CFLAGS=.*|CFLAGS=&lt;dquote&gt;$CFLAGS&lt;dquote&gt;|&quot; bin/makenek&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>    <span class="sd">&quot;&quot;&quot;sed -i -e &#39;s|&lt;dquote&gt;|&quot;|g&#39; bin/makenek&quot;&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a><span class="p">]</span>
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>    <span class="s1">&#39;files&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin/genmap&#39;</span><span class="p">,</span> <span class="s1">&#39;bin/nekmerge&#39;</span><span class="p">,</span> <span class="s1">&#39;bin/prex&#39;</span><span class="p">,</span> <span class="s1">&#39;bin/genbox&#39;</span><span class="p">,</span> <span class="s1">&#39;bin/n2to3&#39;</span><span class="p">,</span> <span class="s1">&#39;bin/postx&#39;</span><span class="p">,</span>
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>              <span class="s1">&#39;bin/reatore2&#39;</span><span class="p">,</span> <span class="s1">&#39;bin/re2torea&#39;</span><span class="p">],</span>
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>    <span class="s1">&#39;dirs&#39;</span><span class="p">:</span> <span class="p">[]</span>
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a><span class="p">}</span>
+<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>
+<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a><span class="n">modextravars</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;NEK_SOURCE_ROOT&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%(installdir)s</span><span class="s1">&#39;</span><span class="p">}</span>
+<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>
+<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;cae&#39;</span>
+</code></pre></div>
 <p><a href="../">[Nek5000]</a> <a href="../../..">[package list]</a></p>
 
               

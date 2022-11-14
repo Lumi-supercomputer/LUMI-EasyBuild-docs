@@ -1002,33 +1002,31 @@
 <p>To access module help and find out for which stacks and partitions the module is
 installed, use <code>module spider DFTD4/3.3.0-cpeGNU-21.08</code>.</p>
 <p>EasyConfig:</p>
-<pre><code class="language-python">easyblock = 'MesonNinja'
-
-name = 'DFTD4'
-version = '3.3.0'
-
-homepage= 'https://github.com/dftd4/dftd4'
-description = 'Generally Applicable Atomic-Charge Dependent London Dispersion Correction.'
-
-toolchain = { 'name': 'cpeGNU', 'version': '21.08' }
-
-source_urls = ['https://github.com/dftd4/dftd4/releases/download/v3.3.0/']
-sources = ['dftd4-3.3.0-source.tar.xz']
-checksums = ['408720b8545532d5240dd743c05d57b140af983192dad6d965b0d79393d0a9ef']
-
-builddependencies = [('buildtools', '%(toolchain_version)s', '', True)]
-
-preconfigopts = 'export FC=ftn &amp;&amp; export CC=cc &amp;&amp;' 
-# Add API v2 for VASP compatibility
-configopts = '-Dlapack=custom -Dapi_v2=true' 
-
-sanity_check_paths = {
-    'files' : ['bin/dftd4','lib/libdftd4.a','include/dftd4.h'],
-    'dirs' : ['bin','lib64','include']
-}
-
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;MesonNinja&#39;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;DFTD4&#39;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;3.3.0&#39;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">homepage</span><span class="o">=</span> <span class="s1">&#39;https://github.com/dftd4/dftd4&#39;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;Generally Applicable Atomic-Charge Dependent London Dispersion Correction.&#39;</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;cpeGNU&#39;</span><span class="p">,</span> <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;21.08&#39;</span> <span class="p">}</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">source_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://github.com/dftd4/dftd4/releases/download/v3.3.0/&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dftd4-3.3.0-source.tar.xz&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">checksums</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;408720b8545532d5240dd743c05d57b140af983192dad6d965b0d79393d0a9ef&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%(toolchain_version)s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)]</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="n">preconfigopts</span> <span class="o">=</span> <span class="s1">&#39;export FC=ftn &amp;&amp; export CC=cc &amp;&amp;&#39;</span> 
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="c1"># Add API v2 for VASP compatibility</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="n">configopts</span> <span class="o">=</span> <span class="s1">&#39;-Dlapack=custom -Dapi_v2=true&#39;</span> 
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="n">sanity_check_paths</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="s1">&#39;files&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin/dftd4&#39;</span><span class="p">,</span><span class="s1">&#39;lib/libdftd4.a&#39;</span><span class="p">,</span><span class="s1">&#39;include/dftd4.h&#39;</span><span class="p">],</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="s1">&#39;dirs&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bin&#39;</span><span class="p">,</span><span class="s1">&#39;lib64&#39;</span><span class="p">,</span><span class="s1">&#39;include&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="p">}</span>
+</code></pre></div>
 <p><a href="../">[DFTD4]</a> <a href="../../..">[package list]</a></p>
 
               

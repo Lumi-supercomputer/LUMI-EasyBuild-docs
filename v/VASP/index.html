@@ -1014,8 +1014,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#recommendations" class="md-nav__link">
-    Recommendations
+  <a href="#tuning-recommendations" class="md-nav__link">
+    Tuning recommendations
   </a>
   
 </li>
@@ -1050,80 +1050,112 @@
 <h1 id="vasp">VASP</h1>
 <p>[user-installed]</p>
 <h2 id="user-documentation">User documentation</h2>
-<p>VASP (Vienna Ab Initio Simulation Package) is a popular software package for "atomic scale materials modelling from first principles" (see the <a href="https://www.vasp.at/">VASP home page</a>). In general, it runs well on LUMI-C.</p>
-<p><strong>There is currently no version of VASP that can use the AMD GPUs in the Early Access Platform or LUMI-G.</strong></p>
+<p><a href="https://www.vasp.at/">VASP (Vienna Ab Initio Simulation Package)</a> is a popular software
+package for "atomic scale materials modelling from first principles". In
+general, it runs well on <a href="https://docs.lumi-supercomputer.eu/hardware/compute/lumic/">LUMI-C</a>.</p>
+<p><strong>There is currently no version of VASP that can use the AMD GPUs in the <a href="https://docs.lumi-supercomputer.eu/hardware/compute/eap/">GPU
+Early Access Platform</a> or <a href="https://docs.lumi-supercomputer.eu/hardware/compute/lumig/">LUMI-G</a>.</strong></p>
 <h3 id="installing-vasp">Installing VASP</h3>
-<p>We provide automatic installation scripts for several versions of VASP. The procedure in general is described on the 
-<a href="https://docs.lumi-supercomputer.eu/software/installing/easybuild/">EasyBuild page</a>. 
-The step by step procedure to install VASP 6.3.0 is:</p>
+<p>We provide automatic installation scripts for several versions of VASP. In
+general, the installation procedure is described on the <a href="https://docs.lumi-supercomputer.eu/software/installing/easybuild/">EasyBuild
+page</a>. The step by step procedure to install VASP
+6.3.2 is:</p>
 <ol>
-<li>Download the VASP source code "vasp.6.3.0.tgz" from the <a href="https://www.vasp.at/">VASP portal</a>.</li>
+<li>Download the VASP source code "vasp.6.3.2.tgz" from the <a href="https://www.vasp.at/">VASP portal</a>.</li>
 <li>Upload the file somewhere to your home directory on LUMI.</li>
-<li>Load the LUMI software environment: <code>module load LUMI/21.12</code>.</li>
+<li>Load the LUMI software environment: <code>module load LUMI/22.08</code>.</li>
 <li>Select the LUMI-C partition: <code>module load partition/C</code>.</li>
 <li>Load the EasyBuild module: <code>module load EasyBuild-user</code>.</li>
 </ol>
 <p>Then, you can run the install command:</p>
-<pre><code>eb --sourcepath=[directory where the VASP source is stored] VASP-6.3.0-cpeGNU-21.12.eb -r
-</code></pre>
-<p>Afterwards, you will have a module called "VASP/6.3.0-cpeGNU-21.12" installed in your home directory.</p>
-<pre><code>module load VASP/6.3.0-cpeGNU-21.12
-</code></pre>
-<p>The usual VASP binaries, <code>vasp_std</code>, <code>vasp_gam</code> etc will now be in your PATH. Launch VASP with e.g. <code>srun vasp_std</code>. Please note that you must do <code>module load LUMI/21.12 partition/C</code> to see the VASP module in the module system. The same applies to the SLURM batch scripts which you send to the compute nodes.</p>
-<p>You can see other versions of VASP that can be automatically installed by running the EasyBuild command</p>
-<pre><code>eb -S VASP
-</code></pre>
-<p>or checking the <a href="https://github.com/Lumi-supercomputer/LUMI-EasyBuild-contrib/tree/main/easybuild/easyconfigs/v/VASP">LUMI-EasyBuild-contrib</a> repository on GitHub directly.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$ eb --sourcepath<span class="o">=</span>&lt;directory-where-the-VASP-source-is-stored&gt; VASP-6.3.2-cpeGNU-22.08.eb -r
+</code></pre></div>
+<p>The installation process is quite slow. It will take about 20 minutes, but
+afterwards, you will have a module called "VASP/6.3.2-cpeGNU-22.08" installed
+in your home directory. Load the module to use it</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$ module load VASP/6.3.2-cpeGNU-22.08
+</code></pre></div>
+<p>The usual VASP binaries, <code>vasp_std</code>, <code>vasp_gam</code> etc. will now be in your
+<code>PATH</code>. Launch VASP via the <a href="https://docs.lumi-supercomputer.eu/runjobs/scheduled-jobs/slurm-quickstart/">Slurm scheduler</a>, e.g. <code>srun
+vasp_std</code>. Please note that you must do <code>module load LUMI/22.08 partition/C</code> to
+see the VASP module in the module system. The same applies to the Slurm batch
+scripts which you send to the compute nodes.</p>
+<p>You can see other versions of VASP that can be automatically installed in the
+same way by running the EasyBuild command</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$ eb -S VASP
+</code></pre></div>
+<p>or by checking the list further down this page 
+or by checking the
+<a href="https://github.com/Lumi-supercomputer/LUMI-EasyBuild-contrib/tree/main/easybuild/easyconfigs/v/VASP">LUMI-EasyBuild-contrib</a>
+repository on GitHub directly.</p>
+<p>We build the VASP executables with bindings to several external libraries
+activated: currently HDF5, Wannier90, DFTD4, and Libxc.</p>
 <h3 id="example-batch-scripts">Example batch scripts</h3>
-<p>A typical batch job using 4 compute nodes and MPI only:</p>
-<pre><code>#!/bin/bash
-#SBATCH -J GaAs512 
-#SBATCH -N 4
-#SBATCH --partition=small
-#SBATCH -t 00:30:00
-#SBATCH --mem=200G
-#SBATCH --exclusive --no-requeue
-#SBATCH -A project_XYZ
-#SBATCH --ntasks-per-node=128
-#SBATCH -c 1
-
-export OMP_NUM_THREADS=1
-ulimit -s unlimited
-
-module load LUMI/21.12 partition/C VASP/6.3.0-cpeGNU-21.12
-srun vasp_std
-</code></pre>
-<p>A typical batch job with MPI and 8 OpenMP threads per rank:</p>
-<pre><code>#!/bin/bash
-#SBATCH -J GaAs512 
-#SBATCH -N 4
-#SBATCH --partition=small
-#SBATCH -t 00:30:00
-#SBATCH --mem=200G
-#SBATCH --exclusive --no-requeue
-#SBATCH -A project_XYZ
-#SBATCH --ntasks-per-node=16
-#SBATCH -c 8
-
-export OMP_NUM_THREADS=8
-export OMP_PLACES=cores
-export OMP_PROC_BIND=close
-
-ulimit -s unlimited
-
-module load LUMI/21.12 partition/C VASP/6.3.0-cpeGNU-21.12
-srun vasp_std
-</code></pre>
-<h3 id="recommendations">Recommendations</h3>
-<p>!!! Warning
-    Due to the restrictive license conditions imposed by the VASP group, which forbids sharing of any kind of benchmark numbers with anyone (including other licensed users!), we get cannot give detailed recommendations on the best way to run VASP.</p>
-<p>In general, try increasing NCORE to 16-32, and NSIM to 32. OpenMP works best with many threads, eg. OMP_NUM_THREADS=8. It is best to run with all 128 procressor cores per compute node if you can, but reducing the number of cores per compute node does not decrease performance as much as you might expect. That can be useful when you are constrained by memory and need more available memory per MPI rank. If possible, use k-point parallelization up to the maxium number of k-points.</p>
+<p>A typical VASP <a href="https://docs.lumi-supercomputer.eu/runjobs/scheduled-jobs/batch-job/">batch job</a> using 4 compute nodes and MPI only:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">##!/bin/bash</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1">##SBATCH -J GaAs512 </span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1">##SBATCH -N 4</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1">##SBATCH --partition=small</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1">##SBATCH -t 00:30:00</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1">##SBATCH --mem=200G</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1">##SBATCH --exclusive --no-requeue</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1">##SBATCH -A project_XYZ</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1">##SBATCH --ntasks-per-node=128</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="c1">##SBATCH -c 1</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="nb">export</span> <span class="nv">OMP_NUM_THREADS</span><span class="o">=</span><span class="m">1</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>module load LUMI/22.08 partition/C
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>module load VASP/6.3.2-cpeGNU-22.08
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>srun vasp_std
+</code></pre></div>
+<p>A typical VASP batch job with MPI and 8 OpenMP threads per rank:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">##!/bin/bash</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1">##SBATCH -J GaAs512 </span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1">##SBATCH -N 4</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1">##SBATCH --partition=small</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1">##SBATCH -t 00:30:00</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1">##SBATCH --mem=200G</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1">##SBATCH --exclusive --no-requeue</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="c1">##SBATCH -A project_XYZ</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1">##SBATCH --ntasks-per-node=16</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1">##SBATCH -c 8</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="nb">export</span> <span class="nv">OMP_NUM_THREADS</span><span class="o">=</span><span class="m">8</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="nb">export</span> <span class="nv">OMP_PLACES</span><span class="o">=</span>cores
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="nb">export</span> <span class="nv">OMP_PROC_BIND</span><span class="o">=</span>close
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="nb">export</span> <span class="nv">OMP_STACKSIZE</span><span class="o">=</span>512m
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>module load LUMI/22.08 partition/C
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>module load VASP/6.3.2-cpeGNU-22.08
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>srun vasp_std
+</code></pre></div>
+<h3 id="tuning-recommendations">Tuning recommendations</h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Due to the restrictive license conditions imposed by the VASP group, which
+forbids sharing of any kind of benchmark numbers with anyone (including
+other licensed users!), we unfortunately cannot give detailed
+recommendations on the best way to run VASP.</p>
+</div>
+<ul>
+<li>In general, try increasing <code>NCORE</code> to 16-32, and <code>NSIM</code> to 32.</li>
+<li>OpenMP works best with many threads, eg. <code>OMP_NUM_THREADS=8</code>.</li>
+<li>It is best to run with all 128 processor cores per compute node if you can,
+  but reducing the number of cores per compute node does not decrease
+  performance as much as you might expect. That can be useful when you are
+  constrained by memory and need more available memory per MPI rank. It is
+  important to explicitly <a href="https://docs.lumi-supercomputer.eu/runjobs/scheduled-jobs/distribution-binding#slurm-binding-options">pin the MPI ranks to processor
+  cores</a> if you
+  run with less than 128 cores per node.</li>
+<li>If possible, use k-point parallelization <code>KPAR</code> up to the maxium number of
+  k-points. It is often a good choice to use 1 compute node per k-point.</li>
+</ul>
 <h2 id="user-installable-modules-and-easyconfigs">User-installable modules (and EasyConfigs)</h2>
-<p>Install with the EasyBuild-user module:</p>
-<pre><code>eb &lt;easyconfig&gt; -r
-
-</code></pre>
-<p>To access module help after installation and get reminded for which stacks and partitions the module is
+<p>Install with the EasyBuild-user module:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>eb &lt;easyconfig&gt; -r
+</code></pre></div>
+To access module help after installation and get reminded for which stacks and partitions the module is
 installed, use <code>module spider VASP/&lt;version&gt;</code>.</p>
 <p>EasyConfig:</p>
 <ul>
