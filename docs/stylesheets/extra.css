@@ -71,4 +71,69 @@
     visibility: visible;
     opacity:    75%;
 }
+/*
+** Make buttons for userdocs and techdocs.
+*/
+/* USerdocs */
+.lumi-software-button-userdoc {
+    padding:          3pt 3pt;
+    margin:           0pt 2pt;
+    background-color: hsla(207,100%,38%, 1);
+    color:            white;
+    font-weight:      bold;
+}
+.lumi-software-button-userdoc::before {
+    content: "U";
+}
+.lumi-software-button-userdoc-hover {
+    position: relative;
+}
+.lumi-software-button-userdoc-hover::before {
+    content: 'Specific user documentation available for this package';
+    visibility:       hidden;
+    width:            max-content;
+    padding:          10pt;
+    background-color: lightgrey;
+    color:            black;
+    font-weight:      normal;
+    position:         absolute;
+    z-index:          1;
+    left:             15pt;
+    top:              20pt;
+}
+.lumi-software-button-userdoc-hover:hover:before {
+    visibility: visible;
+    opacity:    75%;
+}
+/* Techdocs */
+.lumi-software-button-techdoc {
+    padding:          3pt 3pt;
+    margin:           0pt 2pt;
+    background-color: orange;
+    color:            white;
+    font-weight:      bold;
+}
+.lumi-software-button-techdoc::before {
+    content: "T";
+}
+.lumi-software-button-techdoc-hover {
+    position: relative;
+}
+.lumi-software-button-techdoc-hover::before {
+    content: 'Technical documentation available for this package';
+    visibility:       hidden;
+    width:            max-content;
+    padding:          10pt;
+    background-color: lightgrey;
+    color:            black;
+    font-weight:      normal;
+    position:         absolute;
+    z-index:          1;
+    left:             15pt;
+    top:              20pt;
+}
+.lumi-software-button-techdoc-hover:hover:before {
+    visibility: visible;
+    opacity:    75%;
+}
 
