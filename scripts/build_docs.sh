@@ -94,6 +94,8 @@ package_list="$gendoc/docs/index.md"
 
 echo -e "---\ntitle: Package overview\nhide:\n- navigation\n---\n" >$package_list
 echo -e "# Package list\n" >>$package_list
+echo -e "<span class='lumi-software-button-userdoc'></span>: Specific user documentation available\n" >> $package_list
+echo -e "<span class='lumi-software-button-techdoc'></span>: Technical documentation available\n"     >> $package_list
 
 #
 # Some initialisations
@@ -103,7 +105,7 @@ last_group='.'
 #
 # Loop over all packages
 #
-#for package_dir in $(/bin/ls -1 $prefix_stack/b/*/*.eb $prefix_contrib/g/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sort -uf)
+#for package_dir in $(/bin/ls -1 $prefix_stack/b/*/*.eb $prefix_contrib/q/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sort -uf)
 for package_dir in $(/bin/ls -1 $prefix_stack/*/*/*.eb $prefix_contrib/*/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sort -uf)
 do
 
@@ -118,14 +120,17 @@ do
     #
     # Check the nature of the package
     #
+    is_readme=0
+    is_user=0
+
     is_stack_package=0
     is_stack_readme=0
     is_stack_user=0
     is_stack_easyconfig=0
     if [ -d $prefix_stack/$package_dir ]
     then
-        [ -f $prefix_stack/$package_dir/README.md ]                      && is_stack_readme=1
-        [ -f $prefix_stack/$package_dir/$userinfo ]                      && is_stack_user=1
+        [ -f $prefix_stack/$package_dir/README.md ]                      && is_stack_readme=1     && is_readme=1
+        [ -f $prefix_stack/$package_dir/$userinfo ]                      && is_stack_user=1       && is_user=1  
         (( $(find $prefix_stack/$package_dir -name "*.eb" | wc -l) ))    && is_stack_easyconfig=1
         (( $is_stack_readme || $is_stack_user || $is_stack_easyconfig )) && is_stack_package=1
     fi
@@ -137,9 +142,9 @@ do
     is_contrib_easyconfig=0
     if [ -d $prefix_contrib/$package_dir ]
     then
-        [ -f $prefix_contrib/$package_dir/README.md ]                            && is_contrib_readme=1
-        [ -f $prefix_contrib/$package_dir/$userinfo ]                            && is_contrib_user=1
-        (( $(find $prefix_contrib/$package_dir -name "*.eb" | wc -l) ))          && is_contrib_easyconfig=1
+        [ -f $prefix_contrib/$package_dir/README.md ]                          && is_contrib_readme=1     && is_readme=1
+        [ -f $prefix_contrib/$package_dir/$userinfo ]                          && is_contrib_user=1       && is_user=1
+        (( $(find $prefix_contrib/$package_dir -name "*.eb" | wc -l) ))        && is_contrib_easyconfig=1
         (( $is_contrib_readme || $is_contrib_user || $is_contrib_easyconfig )) && is_contrib_package=1
     fi
     >&2 echo "$package: contrib package: $is_contrib_package, README: $is_contrib_readme, USER: $is_contrib_user, EB: $is_contrib_easyconfig."
@@ -368,7 +373,10 @@ do
     # Update the package list
     #
     [[ $group != $last_group ]] && echo -e "## $group\n" >>$package_list
-    echo -e "-   [$package](${package_file#$gendoc/docs/})\n"    >>$package_list
+    package_string="-   [$package](${package_file#$gendoc/docs/})"
+    (( is_user ))   && package_string="$package_string <span class='lumi-software-button-userdoc-hover'><span class='lumi-software-button-userdoc'></span></span>"
+    (( is_readme )) && package_string="$package_string <span class='lumi-software-button-techdoc-hover'><span class='lumi-software-button-techdoc'></span></span>"
+    echo -e "$package_string\n"                          >>$package_list
 
     #
     # Add a navigation item if needed.
