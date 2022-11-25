@@ -1050,6 +1050,7 @@ installed, use <code>module spider PETSc/&lt;version&gt;</code>.</p>
 <p>EasyConfig:</p>
 <ul>
 <li><a href="PETSc-3.17.4-cpeCray-22.08-GPU/">PETSc/3.17.4-cpeCray-22.08-GPU (EasyConfig: PETSc-3.17.4-cpeCray-22.08-GPU.eb)</a></li>
+<li><a href="PETSc-3.17.4-cpeGNU-22.08-minimal/">PETSc/3.17.4-cpeGNU-22.08-minimal (EasyConfig: PETSc-3.17.4-cpeGNU-22.08-minimal.eb)</a></li>
 <li><a href="PETSc-3.17.4-cpeGNU-22.08/">PETSc/3.17.4-cpeGNU-22.08 (EasyConfig: PETSc-3.17.4-cpeGNU-22.08.eb)</a></li>
 </ul>
 <h2 id="technical-documentation">Technical documentation</h2>
@@ -1069,7 +1070,8 @@ delivered in a ready-to-use form</p>
 </ul>
 <h4 id="version-317-from-cpe-2108-on">Version 3.17 from CPE 21.08 on</h4>
 <ul>
-<li>Dependencies: python (Cray), HDF5 (Cray), Boost, METIS, SCOTCH</li>
+<li>OpenMP enabled; Hypre, METIS, ParMETIS, SCOTCH, MUMPS, SuperLU_Dist, STRUMPACK; dependencies: python (Cray), HDF5 (Cray), Boost</li>
+<li><code>-minimal</code>: no OpenMP, dependencies: python (Cray), HDF5 (Cray), Boost, METIS, SCOTCH</li>
 </ul>
 
 
