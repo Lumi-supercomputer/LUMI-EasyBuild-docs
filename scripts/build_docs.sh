@@ -122,32 +122,37 @@ do
     #
     is_readme=0
     is_user=0
+    is_license=0
 
     is_stack_package=0
     is_stack_readme=0
     is_stack_user=0
+    is_stack_license=0
     is_stack_easyconfig=0
     if [ -d $prefix_stack/$package_dir ]
     then
         [ -f $prefix_stack/$package_dir/README.md ]                      && is_stack_readme=1     && is_readme=1
         [ -f $prefix_stack/$package_dir/$userinfo ]                      && is_stack_user=1       && is_user=1  
+        [ -f $prefix_stack/$package_dir/LICENSE.md ]                     && is_stack_license=1    && is_license=1
         (( $(find $prefix_stack/$package_dir -name "*.eb" | wc -l) ))    && is_stack_easyconfig=1
         (( $is_stack_readme || $is_stack_user || $is_stack_easyconfig )) && is_stack_package=1
     fi
-    >&2 echo "$package: stack package:   $is_stack_package, README: $is_stack_readme, USER: $is_stack_user, EB: $is_stack_easyconfig."
+    >&2 echo "$package: stack package:   $is_stack_package, README: $is_stack_readme, USER: $is_stack_user, LICENSE: $is_stack_license, EB: $is_stack_easyconfig."
 
     is_contrib_package=0
     is_contrib_readme=0
     is_contrib_user=0
+    is_contrib_license=0
     is_contrib_easyconfig=0
     if [ -d $prefix_contrib/$package_dir ]
     then
         [ -f $prefix_contrib/$package_dir/README.md ]                          && is_contrib_readme=1     && is_readme=1
         [ -f $prefix_contrib/$package_dir/$userinfo ]                          && is_contrib_user=1       && is_user=1
+        [ -f $prefix_contrib/$package_dir/LICENSE.md ]                         && is_contrib_license=1    && is_license=1
         (( $(find $prefix_contrib/$package_dir -name "*.eb" | wc -l) ))        && is_contrib_easyconfig=1
         (( $is_contrib_readme || $is_contrib_user || $is_contrib_easyconfig )) && is_contrib_package=1
     fi
-    >&2 echo "$package: contrib package: $is_contrib_package, README: $is_contrib_readme, USER: $is_contrib_user, EB: $is_contrib_easyconfig."
+    >&2 echo "$package: contrib package: $is_contrib_package, README: $is_contrib_readme, USER: $is_contrib_user, LICENSE: $is_contrib_license, EB: $is_contrib_easyconfig."
 
     #
     # Build the package file
@@ -165,6 +170,24 @@ do
     (( is_stack_package ))   && echostring="$echostring<span class='lumi-software-button-preinstalled-hover'><span class='lumi-software-button-preinstalled'></span></span>"
     (( is_contrib_package )) && echostring="$echostring<span class='lumi-software-button-userinstallable-hover'><span class='lumi-software-button-userinstallable'></span></span>"
     echo -e "$echostring\n"                                    >>$package_file
+
+    #
+    # - License (if present), priority to the information in the stack.
+    #
+    if (( is_license ))
+    then
+
+        echo -e "## License information\n"                                               >>$package_file
+
+        if (( is_stack_license ))
+        then
+            egrep -v "^# " "$prefix_stack/$package_dir/LICENSE.md" | sed -e 's|^#|##|'   >>$package_file
+        elif (( is_contrib_license ))
+        then
+            egrep -v "^# " "$prefix_contrib/$package_dir/LICENSE.md" | sed -e 's|^#|##|' >>$package_file
+        fi
+
+    fi
 
     #
     # - Software stack user information (if present)
