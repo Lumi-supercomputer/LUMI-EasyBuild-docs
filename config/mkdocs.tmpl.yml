@@ -89,7 +89,8 @@ markdown_extensions:
   # clickable details
   - pymdownx.details
   # tabbed contents
-  - pymdownx.tabbed
+  - pymdownx.tabbed:
+      alternate_style: true
   # code blocks with syntax highlighting, graphs
   - pymdownx.superfences:
         custom_fences:
