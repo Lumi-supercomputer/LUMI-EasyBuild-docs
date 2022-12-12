@@ -75,7 +75,7 @@ extra:
 
 markdown_extensions:
   - toc:
-      toc_depth: 3
+      toc_depth: 4
       permalink: false
       permalink_title: Anchor link to this section for reference
   # Nicer tables
