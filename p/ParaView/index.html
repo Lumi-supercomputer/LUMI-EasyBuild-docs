@@ -997,6 +997,67 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#user-documentation" class="md-nav__link">
+    User documentation
+  </a>
+  
+    <nav class="md-nav" aria-label="User documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#download-and-install-the-client" class="md-nav__link">
+    Download and install the client
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-the-server-on-lumi" class="md-nav__link">
+    Start the server on LUMI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup-the-ssh-tunnel" class="md-nav__link">
+    Setup the SSH tunnel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-to-the-server" class="md-nav__link">
+    Connect to the server
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#user-installable-modules-and-easyconfigs" class="md-nav__link">
     User-installable modules (and EasyConfigs)
   </a>
@@ -1015,6 +1076,19 @@
   <a href="#easybuild" class="md-nav__link">
     EasyBuild
   </a>
+  
+    <nav class="md-nav" aria-label="EasyBuild">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#version-5101-for-cpe-2208" class="md-nav__link">
+    Version 5.10.1 for CPE 22.08
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1041,9 +1115,339 @@
 <p><a href="../../">[package list]</a></p>
 <h1 id="paraview">ParaView</h1>
 <p><span class='lumi-software-button-userinstallable-hover'><span class='lumi-software-button-userinstallable'></span></span></p>
+<h2 id="user-documentation">User documentation</h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>ParaView should be part of the central software stack when the data
+analytics and visualization partition (LUMI-D) is available. For the
+time being, this partition is not available and ParaView is only available
+as a user-installable EasyBuild recipe. Due to the LUMI-D unavailability
+only software (CPU) rendering is available.</p>
+</div>
+<p>ParaView is an open-source, multi-platform data analysis and visualization
+application. ParaView users can quickly build visualizations to analyze their
+data using qualitative and quantitative techniques. The data exploration can be
+done interactively in 3D or programmatically using ParaView’s batch processing
+capabilities.</p>
+<p>ParaView was developed to analyze extremely large datasets using distributed
+memory computing resources. It can be run on supercomputers to analyze datasets
+of petascale size as well as on laptops for smaller data, has become an integral
+tool in many national laboratories, universities and industry, and has won
+several awards related to high performance computation.</p>
+<ul>
+<li><a href="https://www.paraview.org/">ParaView website</a></li>
+<li><a href="https://www.paraview.org/tutorials/">ParaView tutorials</a></li>
+<li><a href="https://docs.paraview.org/en/v5.10.1/index.html">ParaView documentation</a></li>
+</ul>
+<h3 id="installation">Installation</h3>
+<p>ParaView is available as a user-installable EasyBuild recipe. This recipe will 
+only compile the server components (<code>pvserver</code>, <code>pvbatch</code>, <code>pvpython</code>, ...).</p>
+<p>Compilation of ParaView takes a long time. We present two options: </p>
+<ul>
+<li>using 32 cores, on the login node, the entire compilation process takes more
+  or less 1 hour 10 minutes but will not consume billing units</li>
+<li>using 128 cores, on a compute node is slightly faster, the entire compilation 
+  process takes more or less 45 minutes but will use billing units 
+  (96 core-hours).</li>
+</ul>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">On a login node</label><label for="__tabbed_1_2">On the compute node</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>To compile on the login node, first prepare your environment:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>module load LUMI/22.08
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>module purge
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>module load partition/C
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>module load EasyBuild-user
+</code></pre></div>
+<p>This setup, prepare your environment to compile a ParaView installation
+optimized for the compute node (<code>partition/C</code>). By default, ParaView will be
+installed in <code>$HOME/EasyBuild</code> and will only be accessible by you. If you 
+want to do an installation available to all the members of your project, set 
+the <code>EBU_USER_PREFIX</code> environment variable:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">export</span> <span class="nv">EBU_USER_PREFIX</span><span class="o">=</span>/project/project_46XXXXXXX/EasyBuild
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>module load EasyBuild-user
+</code></pre></div>
+<p>where you have to change the <code>project_46XXXXXXX</code> value to your actual 
+project number. </p>
+<p>The last step is to install ParaView with the command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>eb --parallel<span class="o">=</span><span class="m">32</span> -r ParaView-5.10.1-cpeGNU-22.08.eb
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Below is a script to compile ParaView on a compute node. Copy the content of
+this script in a file named <code>build-paraview.sh</code>.</p>
+<div class="highlight"><span class="filename">build-paraview.sh</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># !!! CHANGE ME !!!</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nv">project</span><span class="o">=</span>project_46XXXXXXX
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1"># Un-comment this export to install in your project directory</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># By default installation is done in $HOME/EasyBuild</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1">#export EBU_USER_PREFIX=/project/${project}/EasyBuild</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>module load LUMI/22.08
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>module purge
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>module load partition/C
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>module load EasyBuild-user
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="c1"># Compute nodes do not have internet access</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="c1"># As a consequence we first download all the</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="c1"># sources on the login node</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>eb --stop<span class="o">=</span>fetch -r ParaView-5.10.1-cpeGNU-22.08.eb
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="nb">echo</span> <span class="s2">&quot;Submitting job&quot;</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>sbatch <span class="s">&lt;&lt;EOF</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="s">#!/bin/bash</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="s">#SBATCH --partition=small</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="s">#SBATCH --account=${project}</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="s">#SBATCH --job-name=paraview-build</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="s">#SBATCH --time=01:00:00</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="s">#SBATCH --nodes=1</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="s">#SBATCH --mem=0</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="s">#SBATCH --cpus-per-task=128</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="s">module load LUMI/22.08</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="s">module purge</span>
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="s">module load partition/C</span>
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="s">module load EasyBuild-user</span>
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>
+<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="s">eb --parallel \${SLURM_CPUS_PER_TASK} -r \</span>
+<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="s">  ParaView-5.10.1-cpeGNU-22.08.eb</span>
+<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>
+<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a><span class="s">EOF</span>
+<a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>
+<a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a><span class="nb">echo</span> <span class="s2">&quot;Done&quot;</span>
+</code></pre></div>
+<p>Next, make the script executable and execute it.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>chmod +x ./build-paraview.sh
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>./build-paraview.sh
+</code></pre></div>
+<p>A job will be submitted to a compute node. ParaView will be usable after 
+this job successfully complete.</p>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The instruction presented above load the <code>partition/C</code> module to generate
+ParaView binaries optimized for the compute node. These binaries should run
+without any problem on the login nodes. The default partition module on the 
+login nodes is <code>partition/L</code> so, loading ParaView module from a login node
+is done by loading the following modules:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>module load LUMI/22.08
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>module load partition/C
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>module load ParaView
+</code></pre></div>
+<p>while, from the compute node where <code>partition/C</code> is the default this is done
+by loading</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>module load LUMI/22.08
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>module load ParaView
+</code></pre></div>
+</div>
+<h3 id="usage">Usage</h3>
+<p>The intended usage of ParaView on LUMI is in a client-server configuration:</p>
+<ul>
+<li>the server runs on a login or a compute node on LUMI</li>
+<li>a matching client (same version) runs on your local machine</li>
+<li>all data processing and rendering are handled by the server</li>
+</ul>
+<h4 id="download-and-install-the-client">Download and install the client</h4>
+<p>The first step is to install the ParaView client with the same version as the
+server on your local machine. How to install the client is beyond the scope of 
+this documentation. Generally speaking, it boils down to running the installer 
+that you can download here:</p>
+<ul>
+<li><a href="https://www.paraview.org/paraview-downloads/download.php?submit=Download&amp;version=v5.10&amp;type=binary&amp;os=macOS&amp;downloadFile=ParaView-5.10.1-MPI-OSX11.0-Python3.9-arm64.pkg">5.10.1 client for MacOS (M1)</a></li>
+<li><a href="https://www.paraview.org/paraview-downloads/download.php?submit=Download&amp;version=v5.10&amp;type=binary&amp;os=macOS&amp;downloadFile=ParaView-5.10.1-MPI-OSX10.13-Python3.9-x86_64.pkg">5.10.1 client for MacOS (Intel)</a></li>
+<li><a href="https://www.paraview.org/paraview-downloads/download.php?submit=Download&amp;version=v5.10&amp;type=binary&amp;os=Windows&amp;downloadFile=ParaView-5.10.1-Windows-Python3.9-msvc2017-AMD64.exe">5.10.1 client for Windows</a></li>
+<li><a href="https://www.paraview.org/paraview-downloads/download.php?submit=Download&amp;version=v5.10&amp;type=binary&amp;os=Linux&amp;downloadFile=ParaView-5.10.1-MPI-Linux-Python3.9-x86_64.tar.gz">5.10.1 client for Linux</a></li>
+</ul>
+<h4 id="start-the-server-on-lumi">Start the server on LUMI</h4>
+<div class="admonition failure">
+<p class="admonition-title">Occasional failure on the small partition</p>
+<p>When submitting a job to the small partition, the MPI initialization may
+fail with a "<em>Adress already in use</em>" message. Workaround is to exclude 
+the bad node when submitting the job with the <code>--exclude=nid00XXXX</code> option, 
+where <code>nid00XXXX</code> is the node where the failure occurs. You can exclude
+multiple nodes with commas separated a list: <code>--exclude=nid00XXXX, nid00YYYY</code>.</p>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">On a compute node</label><label for="__tabbed_2_2">On a login node</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>One option to start a ParaView server on a compute node is use an 
+interactive session:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>module load LUMI/22.08
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>module load partition/C
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>module load ParaView
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>srun --partition=small --account=project_46XXXXXXX \
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>     --ntasks=8 --mem=16G --time=01:00:00 \
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>     --pty pvserver
+</code></pre></div>
+<p>Here we start a server on 8 processes and 16GB of memory. Don't forget to
+change the value <code>project_46XXXXXXX</code> to your project number. </p>
+<p>Another option is to start the server in a batch job. Here is an example
+job script:</p>
+<div class="highlight"><span class="filename">start-pvserver.job</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="c1">#SBATCH --job-name=paraview-server</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="c1">#SBATCH --account=project_46XXXXXXX</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1">#SBATCH --partition=small</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1">#SBATCH --ntasks=8 </span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="c1">#SBATCH --mem=16G</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1">#SBATCH --time=01:00:00</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>module load LUMI/22.08
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>module load ParaView
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>srun --unbuffered pvserver
+</code></pre></div>
+<p>You can start the batch job by submitting it with <code>sbatch</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a> $ sbatch start-pvserver.job
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Submitted batch job 123456
+</code></pre></div>
+<p>Then in order to gather the information necessary to create the SSH tunnel
+(see nect section) we look at the content of the output file.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a> $ squeue --me
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>  JOBID PARTITION     NAME     USER ST  TIME  NODES NODELIST(REASON)
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a> 123456     small paraview  lumiusr  R  0:10      1 nid002092
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a> $ cat slurm-123456.out
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>Waiting for client...
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>Connection URL: cs://nid002092:11111
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>Accepting connection(s): nid002092:11111
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>The ParaView server (<code>pvserver</code>) can be run on the login node but you will be
+limited to only one process: running the server on the login node <strong>is only 
+suitable for small dataset</strong>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>module load LUMI/22.08
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>module load partition/C
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>module load ParaView
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>pvserver --no-mpi
+</code></pre></div>
+<p>Once the server has started you will see a message looking like this:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Waiting for client...
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>Connection URL: cs://uan02:11111
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>Accepting connection(s): uan02:11111
+</code></pre></div>
+<p>This message is important because it provide the information necessary to
+create the SSH tunnel as described in the next section.</p>
+</div>
+</div>
+</div>
+<h4 id="setup-the-ssh-tunnel">Setup the SSH tunnel</h4>
+<p>Once the server is started, we need to create an SSH tunnel from your local 
+machine to the node where the server is running. Here we assume you have an
+entry for LUMI in your <code>.ssh/config</code> named <code>lumi</code>.</p>
+<p>To create the tunnel, you have to run a command <strong>on your local machine</strong> that 
+looks like:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>ssh -N -L &lt;port&gt;:&lt;host&gt;:&lt;port&gt; lumi
+</code></pre></div>
+<p>where <code>&lt;host&gt;</code> is the node on which the server is running, i.e., <code>uanXX</code> if you 
+started the server on a login node or <code>nid00XXXX</code> if it runs on a compute node.
+For example, if at server startup the output was</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Waiting for client...
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>Connection URL: cs://nid002211:11111
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>Accepting connection(s): nid002211:11111
+</code></pre></div>
+<p>then, the value of <code>&lt;port&gt;</code> is <code>11111</code> and the value of <code>&lt;host&gt;</code> is <code>nid002211</code>
+so that the command to create the SSH tunnel will be</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>ssh -N -L 11111:nid002211:11111 lumi
+</code></pre></div>
+<h4 id="connect-to-the-server">Connect to the server</h4>
+<div class="admonition failure">
+<p class="admonition-title">Potential connection failure</p>
+<p>Sometimes connection to the server fails when the server is executed from a
+login node. See the information 
+<a href="#login-node-workaround">at the end of this section</a>
+for more information and a workaround.</p>
+</div>
+<p>The last step is to connect the client running on your local machine to the 
+server running on LUMI. To this end, select <em>File</em> &#x2192; <em>Connect...</em>. You 
+should already have a configuration suitable configuration by default, i.e.,
+a configuration to connect to a server at address <code>cs://localhost:11111</code>. If 
+indeed this is the case, and that <code>11111</code> is the port you use, select this 
+configuration and click <em>Connect</em>. The instruction that follow are here in case
+you need to create a new configuration.</p>
+<p>First, go to <em>File</em> &#x2192; <em>Connect...</em> and click <em>Add Server</em>.</p>
+<figure>
+  <img 
+    src="files/paraview-step1.png"
+    width="900"
+    alt="ParaView connection step 1"
+  >
+</figure>
+
+<p>Choose a name for the configuration, for example, <em>LUMI</em>, then:</p>
+<ul>
+<li>for the server type choose <em>Client/Server</em></li>
+<li>for the host <em>localhost</em></li>
+<li>for the port, use the value provided at server startup. </li>
+</ul>
+<p>Next, click <em>Configure</em>. In the next dialog box, choose <em>Manual</em> for the startup
+type then click <em>Save</em>.</p>
+<figure>
+  <img 
+    src="files/paraview-step2.png"
+    width="450"
+    alt="ParaView connection step 2"
+  >
+</figure>
+
+<p>To connect, select the newly created configuration and click <em>Connect</em>.</p>
+<figure>
+  <img 
+    src="files/paraview-step3.png"
+    width="450"
+    alt="ParaView connection step 3"
+  >
+</figure>
+
+<p>The client should now be connected to the server and the server should print 
+<em>Client connected</em>. Another way to check if the connection is successful is 
+to look at the connection information visible from the menu <em>Help</em> &#x2192; 
+<em>About</em> and selecting the <em>Connection Information</em> tab.</p>
+<figure>
+  <img 
+    src="files/paraview-connect-info.png"
+    width="450"
+    alt="ParaView connection information"
+  >
+</figure>
+
+<p>Now that the server is connected, all data processing and rendering are handled
+by the server instead of the local client.</p>
+<p>Disconnecting the client from the server is done via <em>File</em> &#x2192; 
+<em>Disconnect...</em>. The server will exit when you disconnect, i.e., if you 
+submitted a job, it should end. However, we recommended you to check that this
+is indeed the case to avoid wasting your cpu-hours allocation. </p>
+<p><span id="login-node-workaround"></span></p>
+<div class="admonition failure">
+<p class="admonition-title">Potential connection failure</p>
+<p>When running the server on the login node, the client may fail to connect
+with the following error message:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Connection failed during handshake. vtkSocketCommunicator::GetVersion()
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>returns different values on the two connecting processes
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>(Current value: 100).
+</code></pre></div>
+<p>Contrary to what this message seems to indicate, it is not a version 
+mismatch problem. The problem is that the host name is not fully qualified 
+domain name (FQDN) of the login node. A workaround is to use a FQDN of the
+login node instead of <code>uanXX</code> when creating the SSH tunnel. The FQDN can be
+obtained with the <code>hostname -A</code> command. For example, for a server running 
+on <code>uan01</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a> $ hostname -A
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>ln01-nmn nid50823968 nid50823968 uan01.can
+</code></pre></div>
+<p>then, create the SSH tunnel using</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>ssh -N -L 11111:nid50823968:11111 lumi
+</code></pre></div>
+</div>
 <h2 id="user-installable-modules-and-easyconfigs">User-installable modules (and EasyConfigs)</h2>
 <p>Install with the EasyBuild-user module:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>eb &lt;easyconfig&gt; -r
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>eb &lt;easyconfig&gt; -r
 </code></pre></div>
 To access module help after installation and get reminded for which stacks and partitions the module is
 installed, use <code>module spider ParaView/&lt;version&gt;</code>.</p>
