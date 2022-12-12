@@ -75,7 +75,7 @@ extra:
 
 markdown_extensions:
   - toc:
-      toc_depth: 3
+      toc_depth: 4
       permalink: false
       permalink_title: Anchor link to this section for reference
   # Nicer tables
@@ -89,7 +89,8 @@ markdown_extensions:
   # clickable details
   - pymdownx.details
   # tabbed contents
-  - pymdownx.tabbed
+  - pymdownx.tabbed:
+      alternate_style: true
   # code blocks with syntax highlighting, graphs
   - pymdownx.superfences:
         custom_fences:
@@ -105,7 +106,7 @@ markdown_extensions:
   - pymdownx.snippets
   # Extension to make entering and styling keyboard key presses easier
   - pymdownx.keys
-  # Add support for inserint emoji via simple short names enclosed within colons.
+  # Add support for inserting emoji via simple short names enclosed within colons.
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
