@@ -106,54 +106,68 @@ last_group='.'
 #
 # Loop over all packages
 #
-#for package_dir in $(/bin/ls -1 $prefix_stack/b/*/*.eb $prefix_contrib/q/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sort -uf)
-for package_dir in $(/bin/ls -1 $prefix_stack/*/*/*.eb $prefix_contrib/*/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sort -uf)
+for package_dir in $(/bin/ls -1 $prefix_stack/a/*/*.eb $prefix_contrib/a/*/*.eb $prefix_contrib/__archive__/a/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sed -e 's|__archive__/||'| sort -uf)
+#for package_dir in $(/bin/ls -1 $prefix_stack/a/*/*.eb $prefix_stack/b/*/*.eb $prefix_contrib/a/*/*.eb $prefix_contrib/__archive__/a/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sed -e 's|__archive__/||'| sort -uf)
+#for package_dir in $(/bin/ls -1 $prefix_stack/*/*/*.eb $prefix_stack/__archive__*/*/*.eb $prefix_contrib/*/*/*.eb $prefix_contrib/__archive__*/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sed -e 's|__archive__/||'| sort -uf)
 do
 
 	>&2 echo "Processing $package_dir..." 
 
 	# Extract the first letter and the name of the package.
-	package=${package_dir##[0-9a-z]/}
-	group=${package_dir%%/$package}
+	package=${package_dir##[0-9a-z]/}   # Name of the package.
+	group=${package_dir%%/$package}     # A single letter or number, the first subdirectory in which the package subdirectory resides
 	
 	>&2 echo "Identified group $group, package $package"
 
     #
     # Check the nature of the package
     #
-    is_readme=0
-    is_user=0
-    is_license=0
+    is_readme=0    # Variable: Will be set to 1 if a README.md file is available
+    is_user=0      # Variable: Will be set to 1 if a USER.md file is available
+    is_license=0   # Variable: Will be set to 1 if a LICENSE.md file is available
 
-    is_stack_package=0
-    is_stack_readme=0
-    is_stack_user=0
-    is_stack_license=0
-    is_stack_easyconfig=0
+    is_stack_package=0              # Variable: Set to 1 if any information about this package is found in LUMI-SoftwareStack
+    is_stack_readme=0               # Variable: Set to 1 if a README file is found in LUMI-SoftwareStack for this package
+    is_stack_user=0                 # Variable: Set to 1 if a USER file is found in LUMI-SoftwareStack for this package
+    is_stack_license=0              # Variable: Set to 1 if a license file is found in LUMI-SoftwareStack for this package
+    is_stack_easyconfig=0           # Variable: Set to 1 if there are active EasyConfigs in LUMI-SoftwareStack for this package
+    is_stack_archived_easyconfig=0  # Variable: Set to 1 if there are archived EasyConfigs in LUMI-SoftwareStack for this package
     if [ -d $prefix_stack/$package_dir ]
     then
         [ -f $prefix_stack/$package_dir/README.md ]                      && is_stack_readme=1     && is_readme=1
         [ -f $prefix_stack/$package_dir/$userinfo ]                      && is_stack_user=1       && is_user=1  
         [ -f $prefix_stack/$package_dir/LICENSE.md ]                     && is_stack_license=1    && is_license=1
         (( $(find $prefix_stack/$package_dir -name "*.eb" | wc -l) ))    && is_stack_easyconfig=1
-        (( $is_stack_readme || $is_stack_user || $is_stack_easyconfig )) && is_stack_package=1
     fi
-    >&2 echo "$package: stack package:   $is_stack_package, README: $is_stack_readme, USER: $is_stack_user, LICENSE: $is_stack_license, EB: $is_stack_easyconfig."
+    if [ -d $prefix_stack/__archive__/$package_dir ]
+    then
+        (( $(find $prefix_stack/__archive__/$package_dir -name "*.eb" | wc -l) )) && is_stack_archived_easyconfig=1
+    fi
+    (( $is_stack_readme || $is_stack_user || $is_stack_easyconfig || $is_stack_archived_easyconfig  )) && is_stack_package=1
+    >&2 echo "$package: stack package:   $is_stack_package, README: $is_stack_readme, USER: $is_stack_user, LICENSE: $is_stack_license, EB: $is_stack_easyconfig, archived EB: $is_stack_archived_easyconfig."
 
-    is_contrib_package=0
-    is_contrib_readme=0
-    is_contrib_user=0
-    is_contrib_license=0
-    is_contrib_easyconfig=0
+    is_contrib_package=0              # Variable: Set to 1 if any information about this package is found in LUMI-EasyBuild-contrib
+    is_contrib_readme=0               # Variable: Set to 1 if a README file is found in LUMI-EasyBuild-contrib for this package
+    is_contrib_user=0                 # Variable: Set to 1 if a USER file is found in LUMI-EasyBuild-contrib for this package
+    is_contrib_license=0              # Variable: Set to 1 if a license file is found in LUMI-EasyBuild-contrib for this package
+    is_contrib_easyconfig=0           # Variable: Set to 1 if there are active EasyConfigs in LUMI-EasyBuild-contrib for this package
+    is_contrib_archived_easyconfig=0  # Variable: Set to 1 if there are archived EasyConfigs in LUMI-EasyBuild-contrib for this package
     if [ -d $prefix_contrib/$package_dir ]
     then
         [ -f $prefix_contrib/$package_dir/README.md ]                          && is_contrib_readme=1     && is_readme=1
         [ -f $prefix_contrib/$package_dir/$userinfo ]                          && is_contrib_user=1       && is_user=1
         [ -f $prefix_contrib/$package_dir/LICENSE.md ]                         && is_contrib_license=1    && is_license=1
         (( $(find $prefix_contrib/$package_dir -name "*.eb" | wc -l) ))        && is_contrib_easyconfig=1
-        (( $is_contrib_readme || $is_contrib_user || $is_contrib_easyconfig )) && is_contrib_package=1
     fi
-    >&2 echo "$package: contrib package: $is_contrib_package, README: $is_contrib_readme, USER: $is_contrib_user, LICENSE: $is_contrib_license, EB: $is_contrib_easyconfig."
+    if [ -d $prefix_contrib/__archive__/$package_dir ]
+    then
+        (( $(find $prefix_contrib/__archive__/$package_dir -name "*.eb" | wc -l) )) && is_contrib_archived_easyconfig=1
+    fi
+    (( $is_contrib_readme || $is_contrib_user || $is_contrib_easyconfig || $is_contrib_archived_easyconfig )) && is_contrib_package=1
+    >&2 echo "$package: contrib package: $is_contrib_package, README: $is_contrib_readme, USER: $is_contrib_user, LICENSE: $is_contrib_license, EB: $is_contrib_easyconfig, archived EB: $is_contrib_archived_easyconfig."
+
+    is_archived=0  # Variable: Set to 1 if the package is archived, i.e., no active easyconfigs in neither LUMI-SoftwareStack nor LUMI-EasyBuild-contrib
+    (( (! is_stack_easyconfig && ! is_contrib_easyconfig) && (is_stack_archived_easyconfig || is_contrib_archived_easyconfig) )) && is_archived=1
 
     #
     # Build the package file
@@ -168,8 +182,9 @@ do
     echo -e "[[package list]](../../index.md)\n"               >>$package_file
 	echo -e "# $package\n"                                     >>$package_file
     echostring=""
-    (( is_stack_package ))   && echostring="$echostring<span class='lumi-software-button-preinstalled-hover'><span class='lumi-software-button-preinstalled'></span></span>"
-    (( is_contrib_package )) && echostring="$echostring<span class='lumi-software-button-userinstallable-hover'><span class='lumi-software-button-userinstallable'></span></span>"
+    (( is_stack_easyconfig ))   && echostring="$echostring<span class='lumi-software-button-preinstalled-hover'><span class='lumi-software-button-preinstalled'></span></span>"
+    (( is_contrib_easyconfig )) && echostring="$echostring<span class='lumi-software-button-userinstallable-hover'><span class='lumi-software-button-userinstallable'></span></span>"
+    (( is_archived ))           && echostring="$echostring<span class='lumi-software-button-archivedapp-hover'><span class='lumi-software-button-archivedapp'></span></span>"
     echo -e "$echostring\n"                                    >>$package_file
 
     #
@@ -195,7 +210,7 @@ do
     #
     if (( is_stack_user ))
     then
-        if (( is_stack_contrib ))
+        if (( is_contrib_user ))
         then
             echo -e "## User documentation (central installation)\n"              >>$package_file
         else
@@ -220,7 +235,7 @@ do
     #
     if (( is_contrib_user ))
     then
-        if (( is_contrib_contrib ))
+        if (( is_stack_user ))
         then
             echo -e "## User documentation (user installation)\n"                   >>$package_file
         else
@@ -357,7 +372,7 @@ do
             # Add the module / easyconfig to the package file
             #
 
-            echo -e "-   [$package/$version (EasyConfig: $easyconfig)](${easyconfig/.eb/.md})" >>$package_file
+            echo -e "-   [EasyConfig $easyconfig, will build $package/$version](${easyconfig/.eb/.md})" >>$package_file
 
         done # for file in ...
 
@@ -369,8 +384,9 @@ do
     #
     if (( is_stack_readme ))
     then
-        if (( is_stack_contrib ))
+        if (( is_contrib_readme ))
         then
+            # We have two README files, one in the LUMI-SoftwareStack and one in LUMI-EasyBuild-contrib
             echo -e "## Technical documentation (central installation)\n"         >>$package_file
         else
             echo -e "## Technical documentation\n"                                >>$package_file
@@ -383,8 +399,9 @@ do
     #
     if (( is_contrib_readme ))
     then
-        if (( is_contrib_contrib ))
+        if (( is_stack_readme ))
         then
+            # We have two README files, one in the LUMI-SoftwareStack and one in LUMI-EasyBuild-contrib
             echo -e "## Technical documentation (user installation)\n"              >>$package_file
         else
             echo -e "## Technical documentation\n"                                  >>$package_file
@@ -398,8 +415,9 @@ do
     #
     [[ $group != $last_group ]] && echo -e "## $group\n" >>$package_list
     package_string="-   [$package](${package_file#$gendoc/docs/})"
-    (( is_user ))   && package_string="$package_string <span class='lumi-software-smallbutton-userdoc-hover'><span class='lumi-software-smallbutton-userdoc'></span></span>"
-    (( is_readme )) && package_string="$package_string <span class='lumi-software-smallbutton-techdoc-hover'><span class='lumi-software-smallbutton-techdoc'></span></span>"
+    (( is_user ))     && package_string="$package_string <span class='lumi-software-smallbutton-userdoc-hover'><span class='lumi-software-smallbutton-userdoc'></span></span>"
+    (( is_readme ))   && package_string="$package_string <span class='lumi-software-smallbutton-techdoc-hover'><span class='lumi-software-smallbutton-techdoc'></span></span>"
+    (( is_archived )) && package_string="$package_string <span class='lumi-software-smallbutton-archive-hover'><span class='lumi-software-smallbutton-archive'></span></span>"
     echo -e "$package_string\n"                          >>$package_list
 
     #
