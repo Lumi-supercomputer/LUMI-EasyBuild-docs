@@ -72,23 +72,23 @@
     opacity:    75%;
 }
 /*
-** Make buttons for userdocs and techdocs.
+** Make small buttons for userdocs, techdocs and archived.
 */
-/* USerdocs */
-.lumi-software-button-userdoc {
+/* Userdocs */
+.lumi-software-smallbutton-userdoc {
     padding:          3pt 3pt;
     margin:           0pt 2pt;
     background-color: hsla(207,100%,38%, 1);
     color:            white;
     font-weight:      bold;
 }
-.lumi-software-button-userdoc::before {
+.lumi-software-smallbutton-userdoc::before {
     content: "U";
 }
-.lumi-software-button-userdoc-hover {
+.lumi-software-smallbutton-userdoc-hover {
     position: relative;
 }
-.lumi-software-button-userdoc-hover::before {
+.lumi-software-smallbutton-userdoc-hover::before {
     content: 'Specific user documentation available for this package';
     visibility:       hidden;
     width:            max-content;
@@ -101,25 +101,25 @@
     left:             15pt;
     top:              20pt;
 }
-.lumi-software-button-userdoc-hover:hover:before {
+.lumi-software-smallbutton-userdoc-hover:hover:before {
     visibility: visible;
     opacity:    75%;
 }
 /* Techdocs */
-.lumi-software-button-techdoc {
+.lumi-software-smallbutton-techdoc {
     padding:          3pt 3pt;
     margin:           0pt 2pt;
     background-color: orange;
     color:            white;
     font-weight:      bold;
 }
-.lumi-software-button-techdoc::before {
+.lumi-software-smallbutton-techdoc::before {
     content: "T";
 }
-.lumi-software-button-techdoc-hover {
+.lumi-software-smallbutton-techdoc-hover {
     position: relative;
 }
-.lumi-software-button-techdoc-hover::before {
+.lumi-software-smallbutton-techdoc-hover::before {
     content: 'Technical documentation available for this package';
     visibility:       hidden;
     width:            max-content;
@@ -132,7 +132,38 @@
     left:             15pt;
     top:              20pt;
 }
-.lumi-software-button-techdoc-hover:hover:before {
+.lumi-software-smallbutton-techdoc-hover:hover:before {
+    visibility: visible;
+    opacity:    75%;
+}
+/* Archived */
+.lumi-software-smallbutton-archive {
+    padding:          3pt 3pt;
+    margin:           0pt 2pt;
+    background-color: rgb(177, 5, 5);
+    color:            white;
+    font-weight:      bold;
+}
+.lumi-software-smallbutton-archive::before {
+    content: "A";
+}
+.lumi-software-smallbutton-archive-hover {
+    position: relative;
+}
+.lumi-software-smallbutton-archive-hover::before {
+    content: 'Archived application, contact user support if you need this';
+    visibility:       hidden;
+    width:            max-content;
+    padding:          10pt;
+    background-color: lightgrey;
+    color:            black;
+    font-weight:      normal;
+    position:         absolute;
+    z-index:          1;
+    left:             15pt;
+    top:              20pt;
+}
+.lumi-software-smallbutton-archive-hover:hover:before {
     visibility: visible;
     opacity:    75%;
 }

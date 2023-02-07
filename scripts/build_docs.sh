@@ -94,8 +94,9 @@ package_list="$gendoc/docs/index.md"
 
 echo -e "---\ntitle: Package overview\nhide:\n- navigation\n---\n" >$package_list
 echo -e "# Package list\n" >>$package_list
-echo -e "<span class='lumi-software-button-userdoc'></span>: Specific user documentation available\n" >> $package_list
-echo -e "<span class='lumi-software-button-techdoc'></span>: Technical documentation available\n"     >> $package_list
+echo -e "<span class='lumi-software-smallbutton-userdoc'></span>: Specific user documentation available\n" >> $package_list
+echo -e "<span class='lumi-software-smallbutton-techdoc'></span>: Technical documentation available\n"     >> $package_list
+echo -e "<span class='lumi-software-smallbutton-archive'></span>: Archived application\n"                  >> $package_list
 
 #
 # Some initialisations
@@ -397,8 +398,8 @@ do
     #
     [[ $group != $last_group ]] && echo -e "## $group\n" >>$package_list
     package_string="-   [$package](${package_file#$gendoc/docs/})"
-    (( is_user ))   && package_string="$package_string <span class='lumi-software-button-userdoc-hover'><span class='lumi-software-button-userdoc'></span></span>"
-    (( is_readme )) && package_string="$package_string <span class='lumi-software-button-techdoc-hover'><span class='lumi-software-button-techdoc'></span></span>"
+    (( is_user ))   && package_string="$package_string <span class='lumi-software-smallbutton-userdoc-hover'><span class='lumi-software-smallbutton-userdoc'></span></span>"
+    (( is_readme )) && package_string="$package_string <span class='lumi-software-smallbutton-techdoc-hover'><span class='lumi-software-smallbutton-techdoc'></span></span>"
     echo -e "$package_string\n"                          >>$package_list
 
     #
