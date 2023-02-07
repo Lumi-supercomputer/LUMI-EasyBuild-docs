@@ -23,6 +23,14 @@ eb <easyconfig> -r\n
 To access module help after installation and get reminded for which stacks and partitions the module is\n\
 installed, use \`module spider <name>/<version>\`.\n\n\
 EasyConfig:\n"
+stack_archived_module_preamble="This software is archived in the\n\
+[LUMI-SoftwareStack](https://github.com/Lumi-supercomputer/LUMI-SoftwareStack) GitHub repository as\n\
+[easybuild/easyconfigs/\_\_archive\_\_/<file_with_prefix>](https://github.com/Lumi-supercomputer/LUMI-SoftwareStack/blob/main/easybuild/easyconfigs/__archive__/<file_with_prefix>).\n\
+The corresponding module would be <name>/<version>."
+contrib_archived_module_preamble="This software is archived in the\n\
+[LUMI-EasyBuild-contrib](https://github.com/Lumi-supercomputer/LUMI-EasyBuild-contrib) GitHub repository as\n\
+[easybuild/easyconfigs/\_\_archive\_\_/<file_with_prefix>](https://github.com/Lumi-supercomputer/LUMI-EasyBuild-contrib/blob/main/easybuild/easyconfigs/__archive__/<file_with_prefix>).\n\
+The corresponding module would be <name>/<version>."
 
 >&2 echo "Working in repo $repo in $repodir."
 
@@ -106,9 +114,9 @@ last_group='.'
 #
 # Loop over all packages
 #
-for package_dir in $(/bin/ls -1 $prefix_stack/a/*/*.eb $prefix_contrib/a/*/*.eb $prefix_contrib/__archive__/a/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sed -e 's|__archive__/||'| sort -uf)
+#for package_dir in $(/bin/ls -1 $prefix_stack/a/*/*.eb $prefix_contrib/a/*/*.eb $prefix_contrib/__archive__/a/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sed -e 's|__archive__/||'| sort -uf)
 #for package_dir in $(/bin/ls -1 $prefix_stack/a/*/*.eb $prefix_stack/b/*/*.eb $prefix_contrib/a/*/*.eb $prefix_contrib/__archive__/a/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sed -e 's|__archive__/||'| sort -uf)
-#for package_dir in $(/bin/ls -1 $prefix_stack/*/*/*.eb $prefix_stack/__archive__*/*/*.eb $prefix_contrib/*/*/*.eb $prefix_contrib/__archive__*/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sed -e 's|__archive__/||'| sort -uf)
+for package_dir in $(/bin/ls -1 $prefix_stack/*/*/*.eb $prefix_stack/__archive__/*/*/*.eb $prefix_contrib/*/*/*.eb $prefix_contrib/__archive__/*/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sed -e 's|__archive__/||'| sort -uf)
 do
 
 	>&2 echo "Processing $package_dir..." 
@@ -409,6 +417,158 @@ do
         egrep -v "^# " "$prefix_contrib/$package_dir/README.md" | sed -e 's|^#|##|' >>$package_file
     fi
 
+    #
+    # - Add a list of the archived EasyConfigs
+    #
+    if (( is_stack_archived_easyconfig || is_contrib_archived_easyconfig ))
+    then
+
+        #
+        # Title of the section
+        #
+
+        echo -e "## Archived EasyConfigs\n" >>$package_file
+
+        if (( is_archived))
+        then
+            # Text if the package is archived
+            echo -e "The EasyConfigs below are not directly available on the system for installation."  >>$package_file
+            echo -e "They are however still a useful source of information if you want to port the"     >>$package_file
+            echo -e "the install recip to the currently available environments on LUMI.\n"              >>$package_file
+        else
+            # Text if the package is still available in other configurations.
+            echo -e "The EasyConfigs below are additonal easyconfigs that are not directly available"   >>$package_file
+            echo -e "on the system for installation. Users are advised to use the newer ones and these" >>$package_file
+            echo -e "archived ones are unsupported. They are still provided as a source of information" >>$package_file
+            echo -e "should you need this, e.g., to understand the configuration that was used for"     >>$package_file
+            echo -e "earlier work on the system.\n"                                                     >>$package_file
+        fi
+
+    fi # end of block to add the title and introduction for the archived easyconfigs.
+
+
+    #
+    # - Archived EasyConfigs from LUMI-SoftwareStack
+    #
+    if (( is_stack_archived_easyconfig ))
+    then
+
+        prefix="$prefix_stack/__archive__/$package_dir"
+        >&2 echo "Checking for archived easyconfigs in $prefix..."
+
+        #
+        # Title of the section
+        #
+
+        echo -e "-   Archived EasyConfigs from [LUMI-SoftwareStack](https://github.com/lumi-supercomputer/LUMI-SoftwareStack/blob/main/easybuild/easyconfigs/__archive__/$package_dir) - previously centrally installed software" >>$package_file
+        
+        #
+        # List the modules / EasyConfigs.
+        #
+
+        for file in $(/bin/ls -1 $prefix/*.eb | sort -f)
+	    do
+
+            easyconfig="${file##$prefix/}"  # Extract the filename of the eacyconfig out of the $prefix/*.eb name.
+		    easyconfig_md="$gendoc/docs/$package_dir/${easyconfig/.eb/.md}" # Compute the location and name for the matching markdonw file.
+
+            work=${easyconfig%%.eb}      # Drop the .eb filename extension
+            version=${work##$package-}   # Drop the package name part from the extensionless easyconfig file name to compute the version.
+
+		    >&2 echo "Processing $package/$version, generating $easyconfig_md..."
+
+            file_with_prefix="$package_dir/$easyconfig"
+            work=${stack_archived_module_preamble//<file_with_prefix>/$file_with_prefix}
+            work=${work//<name>/$package}
+            work=${work//<version>/$version}
+
+            #
+            # Generate the easyconfig file for $package/$version
+            #
+
+            echo -e "---\ntitle: $package/$version ($easyconfig) - $package"     >$easyconfig_md
+            echo -e "hide:\n- navigation\n- toc\n---\n"                         >>$easyconfig_md
+            echo -e "[[$package]](index.md) [[package list]](../../index.md)\n" >>$easyconfig_md
+            echo -e "# $package/$version ($easyconfig)\n"                       >>$easyconfig_md
+            echo -e "$work\n"                                                   >>$easyconfig_md
+		    echo -e '``` python'                                                >>$easyconfig_md
+		    cat $file                                                           >>$easyconfig_md
+		    echo -e '\n```\n'                                                   >>$easyconfig_md
+            echo -e "[[$package]](index.md) [[package list]](../../index.md)"   >>$easyconfig_md
+            # Note the extra \n in front of the last ``` as otherwise files that do not end
+            # with a newline would cause trouble.
+
+            #
+            # Add the module / easyconfig to the package file
+            #
+
+            echo -e "    -   [EasyConfig $easyconfig, with module $package/$version](${easyconfig/.eb/.md})" >>$package_file
+
+        done # for file in ...
+
+    fi # end of if (( is_stack_archived_easyconfig ))
+
+
+    #
+    # - Archived EasyConfigs from LUMI-EasyBuild-contrib
+    #
+    if (( is_contrib_archived_easyconfig ))
+    then
+
+        prefix="$prefix_contrib/__archive__/$package_dir"
+        >&2 echo "Checking for archived easyconfigs in $prefix..."
+
+        #
+        # Title of the section
+        #
+
+        echo -e "-   Archived EasyConfigs from [LUMI-EasyBuild-contrib](https://github.com/lumi-supercomputer/LUMI-EasyBuild-contrib/blob/main/easybuild/easyconfigs/__archive__/$package_dir) - previously user-installable software" >>$package_file
+        
+        #
+        # List the modules / EasyConfigs.
+        #
+
+        for file in $(/bin/ls -1 $prefix/*.eb | sort -f)
+	    do
+
+            easyconfig="${file##$prefix/}"  # Extract the filename of the eacyconfig out of the $prefix/*.eb name.
+		    easyconfig_md="$gendoc/docs/$package_dir/${easyconfig/.eb/.md}" # Compute the location and name for the matching markdonw file.
+
+            work=${easyconfig%%.eb}      # Drop the .eb filename extension
+            version=${work##$package-}   # Drop the package name part from the extensionless easyconfig file name to compute the version.
+
+		    >&2 echo "Processing $package/$version, generating $easyconfig_md..."
+
+            file_with_prefix="$package_dir/$easyconfig"
+            work=${contrib_archived_module_preamble//<file_with_prefix>/$file_with_prefix}
+            work=${work//<name>/$package}
+            work=${work//<version>/$version}
+
+            #
+            # Generate the easyconfig file for $package/$version
+            #
+
+            echo -e "---\ntitle: $package/$version ($easyconfig) - $package"     >$easyconfig_md
+            echo -e "hide:\n- navigation\n- toc\n---\n"                         >>$easyconfig_md
+            echo -e "[[$package]](index.md) [[package list]](../../index.md)\n" >>$easyconfig_md
+            echo -e "# $package/$version ($easyconfig)\n"                       >>$easyconfig_md
+            echo -e "$work\n"                                                   >>$easyconfig_md
+		    echo -e '``` python'                                                >>$easyconfig_md
+		    cat $file                                                           >>$easyconfig_md
+		    echo -e '\n```\n'                                                   >>$easyconfig_md
+            echo -e "[[$package]](index.md) [[package list]](../../index.md)"   >>$easyconfig_md
+            # Note the extra \n in front of the last ``` as otherwise files that do not end
+            # with a newline would cause trouble.
+
+            #
+            # Add the module / easyconfig to the package file
+            #
+
+            echo -e "    -   [EasyConfig $easyconfig, with module $package/$version](${easyconfig/.eb/.md})" >>$package_file
+
+        done # for file in ...
+
+    fi # end of if (( is_contrib_archived_easyconfig ))
 
     #
     # Update the package list
