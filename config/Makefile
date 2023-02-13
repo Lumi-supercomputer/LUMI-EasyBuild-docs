@@ -1,6 +1,13 @@
 all: preview
 
 gendoc = ../docs-generated
+buildscript = ../scripts/build_docs.sh
+
+clean-gen:
+	/bin/rm -rf $(gendoc)
+
+rebuild-gen:
+	$(buildscript)
 
 build:
 	mkdocs build --config-file $(gendoc)/mkdocs.yml
@@ -14,5 +21,7 @@ deploy-upstream:
 check test:
 	mkdocs build --strict --config-file $(gendoc)/mkdocs.yml
 
-serve preview:
+serve preview: clean-gen rebuild-gen
 	mkdocs serve --config-file $(gendoc)/mkdocs.yml
+
+
