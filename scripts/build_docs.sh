@@ -31,6 +31,7 @@ contrib_archived_module_preamble="This software is archived in the\n\
 [LUMI-EasyBuild-contrib](https://github.com/Lumi-supercomputer/LUMI-EasyBuild-contrib) GitHub repository as\n\
 [easybuild/easyconfigs/\_\_archive\_\_/<file_with_prefix>](https://github.com/Lumi-supercomputer/LUMI-EasyBuild-contrib/blob/main/easybuild/easyconfigs/__archive__/<file_with_prefix>).\n\
 The corresponding module would be <name>/<version>."
+other_info_label="Issues"
 
 >&2 echo "Working in repo $repo in $repodir."
 
@@ -86,14 +87,21 @@ mkdir -p $gendoc/docs
 [[ -h $gendoc/docs/assets ]]      || create_link $repodir/docs/assets      $repodir/$gendoc/docs/assets
 [[ -h $gendoc/docs/stylesheets ]] || create_link $repodir/docs/stylesheets $repodir/$gendoc/docs/stylesheets
 
+for file in $(find docs -name "*.md" -d 1)
+do
+    [[ -h $gendoc/$file ]] || create_link $repodir/$file $repodir/$gendoc/$file
+done
+
 #
-# Where do we find the EasyConfig files?
+# Where do we find the EasyConfig files and other documentation?
 #
 prefix_stack="${repodir%%$repo}LUMI-SoftwareStack/easybuild/easyconfigs"
 prefix_contrib="${repodir%%$repo}LUMI-EasyBuild-contrib/easybuild/easyconfigs"
+prefix_other="$repodir/docs/other_packages"
 
->&2 echo "Software stack easyconfig directory: $prefix_stack"
->&2 echo "Contributed easyconfig directory: $prefix_contrib"
+>&2 echo "Software stack easyconfig directory:  $prefix_stack"
+>&2 echo "Contributed easyconfig directory:     $prefix_contrib"
+>&2 echo "Other packages information directory: $prefix_other"
 
 #
 # Set up the package list file
@@ -117,9 +125,12 @@ last_group='.'
 #for package_dir in $(/bin/ls -1 $prefix_stack/a/*/*.eb $prefix_contrib/a/*/*.eb $prefix_contrib/__archive__/a/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sed -e 's|__archive__/||'| sort -uf)
 #for package_dir in $(/bin/ls -1 $prefix_stack/a/*/*.eb $prefix_stack/b/*/*.eb $prefix_contrib/a/*/*.eb $prefix_contrib/__archive__/a/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sed -e 's|__archive__/||'| sort -uf)
 #for package_dir in $(/bin/ls -1 $prefix_stack/*/*/*.eb $prefix_stack/__archive__/*/*/*.eb $prefix_contrib/*/*/*.eb $prefix_contrib/__archive__/*/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sed -e 's|__archive__/||' | sort -uf)
-for package_dir in $(/bin/ls -1 $prefix_stack/*/*/*.eb $prefix_stack/__archive__/*/*/*.eb $prefix_stack/*/*/*.md \
-                                $prefix_contrib/*/*/*.eb $prefix_contrib/__archive__/*/*/*.eb $prefix_contrib/*/*/*.md \
-                     | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.[em][bd]|\1|' | sed -e 's|__archive__/||' | sort -uf)
+for package_dir in $(/bin/ls -1 $prefix_stack/*/*/*.eb $prefix_stack/__archive__/*/*/*.eb \
+                                $prefix_contrib/*/*/*.eb $prefix_contrib/__archive__/*/*/*.eb \
+                                $prefix_other/*/*/*.md \
+                     | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sed -e 's|__archive__/||' \
+                     | sed -e 's|.*/other_packages/\(.*/.*\)/.*\.md|\1|' \
+                     | sort -uf)
 do
 
 	>&2 echo "Processing $package_dir..." 
@@ -145,9 +156,9 @@ do
     is_stack_archived_easyconfig=0  # Variable: Set to 1 if there are archived EasyConfigs in LUMI-SoftwareStack for this package
     if [ -d $prefix_stack/$package_dir ]
     then
-        [ -f $prefix_stack/$package_dir/README.md ]                      && is_stack_readme=1     && is_readme=1
-        [ -f $prefix_stack/$package_dir/$userinfo ]                      && is_stack_user=1       && is_user=1  
-        [ -f $prefix_stack/$package_dir/LICENSE.md ]                     && is_stack_license=1    && is_license=1
+        [ -f $prefix_stack/$package_dir/README.md ]                      && is_stack_readme=1     && is_readme=$(($is_readme + 1))
+        [ -f $prefix_stack/$package_dir/$userinfo ]                      && is_stack_user=1       && is_user=$(($is_user + 1))  
+        [ -f $prefix_stack/$package_dir/LICENSE.md ]                     && is_stack_license=1    && is_license=$(($is_license + 1))
         (( $(find $prefix_stack/$package_dir -name "*.eb" | wc -l) ))    && is_stack_easyconfig=1
     fi
     if [ -d $prefix_stack/__archive__/$package_dir ]
@@ -165,9 +176,9 @@ do
     is_contrib_archived_easyconfig=0  # Variable: Set to 1 if there are archived EasyConfigs in LUMI-EasyBuild-contrib for this package
     if [ -d $prefix_contrib/$package_dir ]
     then
-        [ -f $prefix_contrib/$package_dir/README.md ]                          && is_contrib_readme=1     && is_readme=1
-        [ -f $prefix_contrib/$package_dir/$userinfo ]                          && is_contrib_user=1       && is_user=1
-        [ -f $prefix_contrib/$package_dir/LICENSE.md ]                         && is_contrib_license=1    && is_license=1
+        [ -f $prefix_contrib/$package_dir/README.md ]                          && is_contrib_readme=1     && is_readme=$(($is_readme + 1))
+        [ -f $prefix_contrib/$package_dir/$userinfo ]                          && is_contrib_user=1       && is_user=$(($is_user + 1))
+        [ -f $prefix_contrib/$package_dir/LICENSE.md ]                         && is_contrib_license=1    && is_license=$(($is_license + 1))
         (( $(find $prefix_contrib/$package_dir -name "*.eb" | wc -l) ))        && is_contrib_easyconfig=1
     fi
     if [ -d $prefix_contrib/__archive__/$package_dir ]
@@ -179,6 +190,20 @@ do
 
     is_archived=0  # Variable: Set to 1 if the package is archived, i.e., no active easyconfigs in neither LUMI-SoftwareStack nor LUMI-EasyBuild-contrib
     (( (! is_stack_easyconfig && ! is_contrib_easyconfig) && (is_stack_archived_easyconfig || is_contrib_archived_easyconfig) )) && is_archived=1
+
+    is_other_package=0              # Variable: Set to 1 if any information about this package is found in LUMI-EasyBuild-contrib
+    is_other_readme=0               # Variable: Set to 1 if a README file is found in LUMI-EasyBuild-contrib for this package
+    is_other_user=0                 # Variable: Set to 1 if a USER file is found in LUMI-EasyBuild-contrib for this package
+    is_other_license=0              # Variable: Set to 1 if a license file is found in LUMI-EasyBuild-contrib for this package
+    if [ -d $prefix_other/$package_dir ]
+    then
+        [ -f $prefix_other/$package_dir/README.md ]                          && is_other_readme=1     && is_readme=$(($is_readme + 1))
+        [ -f $prefix_other/$package_dir/$userinfo ]                          && is_other_user=1       && is_user=$(($is_user + 1))
+        [ -f $prefix_other/$package_dir/LICENSE.md ]                         && is_other_license=1    && is_license=$(($is_license + 1))
+    fi
+    (( $is_other_readme || $is_other_user )) && is_other_package=1
+    >&2 echo "$package: other package:   $is_other_package, README: $is_other_readme, USER: $is_other_user, LICENSE: $is_other_license."
+    >&2 echo "$package: Combined:           README: $is_readme, USER: $is_user, LICENSE: $is_license."
 
     #
     # Build the package file
@@ -199,7 +224,7 @@ do
     echo -e "$echostring\n"                                    >>$package_file
 
     #
-    # - License (if present), priority to the information in the stack.
+    # - License (if present), priority to the information in the stack, then contrib and finaly other_packages
     #
     if (( is_license ))
     then
@@ -212,6 +237,9 @@ do
         elif (( is_contrib_license ))
         then
             egrep -v "^# " "$prefix_contrib/$package_dir/LICENSE.md" | sed -e 's|^#|##|' >>$package_file
+        elif (( is_other_license ))
+        then
+            egrep -v "^# " "$prefix_other/$package_dir/LICENSE.md" | sed -e 's|^#|##|'   >>$package_file
         fi
 
     fi
@@ -221,11 +249,11 @@ do
     #
     if (( is_stack_user ))
     then
-        if (( is_contrib_user ))
+        if (( $is_user == 1 ))
         then
-            echo -e "## User documentation (central installation)\n"              >>$package_file
-        else
             echo -e "## User documentation\n"                                     >>$package_file
+        else
+            echo -e "## User documentation (central installation)\n"              >>$package_file
         fi
         egrep -v "^# " "$prefix_stack/$package_dir/$userinfo" | sed -e 's|^#|##|' >>$package_file
 
@@ -246,11 +274,11 @@ do
     #
     if (( is_contrib_user ))
     then
-        if (( is_stack_user ))
+        if (( $is_user == 1 ))
         then
-            echo -e "## User documentation (user installation)\n"                   >>$package_file
-        else
             echo -e "## User documentation\n"                                       >>$package_file
+        else
+            echo -e "## User documentation (user installation)\n"                   >>$package_file
         fi
         egrep -v "^# " "$prefix_contrib/$package_dir/$userinfo" | sed -e 's|^#|##|' >>$package_file
 
@@ -263,6 +291,31 @@ do
             # Note that using quotes below with the * does not work as it turns globbing off
             /bin/cp -r $prefix_contrib/$package_dir/files/* "$gendoc/docs/$package_dir/files/" || 
                 die "Failed to copy files from $prefix_contrib/$package_dir/files to $gendoc/docs/$package_dir/files."
+        fi
+    fi
+
+    #
+    # - Other_package user information (if present)
+    #
+    if (( is_other_user ))
+    then
+        if (( $is_user == 1 ))
+        then
+            echo -e "## User documentation\n"                                     >>$package_file
+        else
+            echo -e "## User documentation (non-EasyBuild)\n"                     >>$package_file
+        fi
+        egrep -v "^# " "$prefix_other/$package_dir/$userinfo" | sed -e 's|^#|##|' >>$package_file
+
+        # If there is a files subdirectory, copy the content to the files subdirectory in
+        # in the $gendoc tree.
+        if [ -d "$prefix_other/$package_dir/files" ]
+        then
+            >&2 echo "Subdirectory $prefix_other/$package_dir/files detected, copying data."
+            mkdir -p "$gendoc/docs/$package_dir/files" || die "Failed to create $gendoc/docs/$package_dir/files."
+            # Note that using quotes below with the * does not work as it turns globbing off
+            /bin/cp -r $prefix_other/$package_dir/files/* "$gendoc/docs/$package_dir/files/" || 
+                die "Failed to copy files from $prefix_other/$package_dir/files to $gendoc/docs/$package_dir/files."
         fi
     fi
 
@@ -389,18 +442,17 @@ do
 
     fi # end of if (( is_stack_easyconf ))
 
-
     #
     # - Software stack technical information (if present)
     #
     if (( is_stack_readme ))
     then
-        if (( is_contrib_readme ))
+        if (( $is_readme == 1 ))
         then
-            # We have two README files, one in the LUMI-SoftwareStack and one in LUMI-EasyBuild-contrib
-            echo -e "## Technical documentation (central installation)\n"         >>$package_file
-        else
             echo -e "## Technical documentation\n"                                >>$package_file
+        else
+            # We have two or more README files
+            echo -e "## Technical documentation (central installation)\n"         >>$package_file
         fi
         egrep -v "^# " "$prefix_stack/$package_dir/README.md" | sed -e 's|^#|##|' >>$package_file
     fi
@@ -410,14 +462,29 @@ do
     #
     if (( is_contrib_readme ))
     then
-        if (( is_stack_readme ))
+        if (( $is_readme == 1 ))
         then
-            # We have two README files, one in the LUMI-SoftwareStack and one in LUMI-EasyBuild-contrib
-            echo -e "## Technical documentation (user installation)\n"              >>$package_file
-        else
             echo -e "## Technical documentation\n"                                  >>$package_file
-        fi
+        else
+            # We have two or more README files
+            echo -e "## Technical documentation (user installation)\n"              >>$package_file
+       fi
         egrep -v "^# " "$prefix_contrib/$package_dir/README.md" | sed -e 's|^#|##|' >>$package_file
+    fi
+
+    #
+    # - Other package technical information (if present)
+    #
+    if (( is_other_readme ))
+    then
+        if (( $is_readme == 1 ))
+        then
+            echo -e "## Technical documentation\n"                                >>$package_file
+        else
+            # We have two or more README files
+            echo -e "## Technical documentation (non-EasyBuild)\n"                >>$package_file
+        fi
+        egrep -v "^# " "$prefix_other/$package_dir/README.md" | sed -e 's|^#|##|' >>$package_file
     fi
 
     #
@@ -592,3 +659,9 @@ do
     last_group=$group
 
 done
+
+#
+# Add a navigation item for the other information such as issues.
+#
+
+echo "- $other_info_label: known_issues.md"  >>$gendoc/mkdocs.yml
