@@ -9,16 +9,16 @@ clean-gen:
 rebuild-gen:
 	$(buildscript)
 
-build:
+build: clean-gen rebuild-gen
 	mkdocs build --config-file $(gendoc)/mkdocs.yml
 
-deploy-origin:
+deploy-origin: clean-gen rebuild-gen
 	mkdocs gh-deploy --force --remote-name origin --config-file $(gendoc)/mkdocs.yml
 
-deploy-upstream:
+deploy-upstream: clean-gen rebuild-gen
 	mkdocs gh-deploy --force --remote-name upstream --config-file $(gendoc)/mkdocs.yml
 
-check test:
+check test: clean-gen rebuild-gen
 	mkdocs build --strict --config-file $(gendoc)/mkdocs.yml
 
 serve preview: clean-gen rebuild-gen
