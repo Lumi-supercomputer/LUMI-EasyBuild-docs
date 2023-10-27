@@ -23,6 +23,17 @@ eb <easyconfig> -r\n
 To access module help after installation and get reminded for which stacks and partitions the module is\n\
 installed, use \`module spider <name>/<version>\`.\n\n\
 EasyConfig:\n"
+container_module_preamble="Install with the EasyBuild-user module in \`partition/container\`:\n\
+\`\`\`\`\n\
+module load LUMI partition/container EasyBuild-user
+eb <easyconfig>\n
+\`\`\`\`\n\
+The module will be available in all versions of the LUMI stack and in the CrayEnv stack.\n
+To access module help after installation use \`module spider <name>/<version>\`.\n\n\
+EasyConfig:\n"
+container_docker_preamble="Docker definition file \`<dockerfile>\`\n\
+for the container provided by the module \`<name>/<version>\`.\n\n\
+Docker file:\n"
 stack_archived_module_preamble="This software is archived in the\n\
 [LUMI-SoftwareStack](https://github.com/Lumi-supercomputer/LUMI-SoftwareStack) GitHub repository as\n\
 [easybuild/easyconfigs/\_\_archive\_\_/<file_with_prefix>](https://github.com/Lumi-supercomputer/LUMI-SoftwareStack/blob/main/easybuild/easyconfigs/__archive__/<file_with_prefix>).\n\
@@ -31,6 +42,10 @@ contrib_archived_module_preamble="This software is archived in the\n\
 [LUMI-EasyBuild-contrib](https://github.com/Lumi-supercomputer/LUMI-EasyBuild-contrib) GitHub repository as\n\
 [easybuild/easyconfigs/\_\_archive\_\_/<file_with_prefix>](https://github.com/Lumi-supercomputer/LUMI-EasyBuild-contrib/blob/main/easybuild/easyconfigs/__archive__/<file_with_prefix>).\n\
 The corresponding module would be <name>/<version>."
+container_archived_module_preamble="This software is archived in the\n\
+[LUMI-EasyBuild-container](https://github.com/Lumi-supercomputer/LUMI-EasyBuild-container) GitHub repository as\n\
+[easybuild/easyconfigs/\_\_archive\_\_/<file_with_prefix>](https://github.com/Lumi-supercomputer/LUMI-EasyBuild-contrib/blob/main/easybuild/easyconfigs/__archive__/<file_with_prefix>).\n\
+The corresponding module would be <name>/<version>. The containers are likely no longer available on LUMI though."
 other_info_label="Issues"
 
 >&2 echo "Working in repo $repo in $repodir."
@@ -97,6 +112,7 @@ done
 #
 prefix_stack="${repodir%%$repo}LUMI-SoftwareStack/easybuild/easyconfigs"
 prefix_contrib="${repodir%%$repo}LUMI-EasyBuild-contrib/easybuild/easyconfigs"
+prefix_container="${repodir%%$repo}LUMI-EasyBuild-containers/easybuild/easyconfigs"
 prefix_other="$repodir/docs/other_packages"
 
 >&2 echo "Software stack easyconfig directory:  $prefix_stack"
@@ -110,9 +126,10 @@ package_list="$gendoc/docs/index.md"
 
 echo -e "---\ntitle: Package overview\nhide:\n- navigation\n---\n" >$package_list
 echo -e "# Package list\n" >>$package_list
-echo -e "<span class='lumi-software-smallbutton-userdoc'></span>: Specific user documentation available\n" >> $package_list
-echo -e "<span class='lumi-software-smallbutton-techdoc'></span>: Technical documentation available\n"     >> $package_list
-echo -e "<span class='lumi-software-smallbutton-archive'></span>: Archived application\n"                  >> $package_list
+echo -e "<span class='lumi-software-smallbutton-userdoc'></span>: Specific user documentation available\n"                     >> $package_list
+echo -e "<span class='lumi-software-smallbutton-techdoc'></span>: Technical documentation available\n"                         >> $package_list
+echo -e "<span class='lumi-software-smallbutton-archive'></span>: Archived application\n"                                      >> $package_list
+echo -e "<span class='lumi-software-smallbutton-container'></span>: Singularity container to run using singularity commands\n" >> $package_list
 
 #
 # Some initialisations
@@ -125,8 +142,10 @@ last_group='.'
 #for package_dir in $(/bin/ls -1 $prefix_stack/a/*/*.eb $prefix_contrib/a/*/*.eb $prefix_contrib/__archive__/a/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sed -e 's|__archive__/||'| sort -uf)
 #for package_dir in $(/bin/ls -1 $prefix_stack/a/*/*.eb $prefix_stack/b/*/*.eb $prefix_contrib/a/*/*.eb $prefix_contrib/__archive__/a/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sed -e 's|__archive__/||'| sort -uf)
 #for package_dir in $(/bin/ls -1 $prefix_stack/*/*/*.eb $prefix_stack/__archive__/*/*/*.eb $prefix_contrib/*/*/*.eb $prefix_contrib/__archive__/*/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sed -e 's|__archive__/||' | sort -uf)
+#for package_dir in $(/bin/ls -1 $prefix_stack/p/*/*.eb $prefix_stack/__archive__/p/*/*.eb $prefix_contrib/p/*/*.eb $prefix_container/__archive__/p/*/*.eb $prefix_container/p/*/*.eb $prefix_contrib/__archive__/p/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sed -e 's|__archive__/||' | sort -uf)
 for package_dir in $(/bin/ls -1 $prefix_stack/*/*/*.eb $prefix_stack/__archive__/*/*/*.eb \
                                 $prefix_contrib/*/*/*.eb $prefix_contrib/__archive__/*/*/*.eb \
+                                $prefix_container/*/*/*.eb $prefix_container/__archive__/*/*/*.eb \
                                 $prefix_other/*/*/*.md \
                      | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sed -e 's|__archive__/||' \
                      | sed -e 's|.*/other_packages/\(.*/.*\)/.*\.md|\1|' \
@@ -147,6 +166,7 @@ do
     is_readme=0    # Variable: Will be set to 1 if a README.md file is available
     is_user=0      # Variable: Will be set to 1 if a USER.md file is available
     is_license=0   # Variable: Will be set to 1 if a LICENSE.md file is available
+    package_type=0 # Variable: Counts the number of ways the package is offered: pre-installed, userinstallable EasyBuild, singularity, instructions for own installation
 
     is_stack_package=0              # Variable: Set to 1 if any information about this package is found in LUMI-SoftwareStack
     is_stack_readme=0               # Variable: Set to 1 if a README file is found in LUMI-SoftwareStack for this package
@@ -160,6 +180,7 @@ do
         [ -f $prefix_stack/$package_dir/$userinfo ]                      && is_stack_user=1       && is_user=$(($is_user + 1))  
         [ -f $prefix_stack/$package_dir/LICENSE.md ]                     && is_stack_license=1    && is_license=$(($is_license + 1))
         (( $(find $prefix_stack/$package_dir -name "*.eb" | wc -l) ))    && is_stack_easyconfig=1
+        package_type=$((package_type+1))
     fi
     if [ -d $prefix_stack/__archive__/$package_dir ]
     then
@@ -180,6 +201,7 @@ do
         [ -f $prefix_contrib/$package_dir/$userinfo ]                          && is_contrib_user=1       && is_user=$(($is_user + 1))
         [ -f $prefix_contrib/$package_dir/LICENSE.md ]                         && is_contrib_license=1    && is_license=$(($is_license + 1))
         (( $(find $prefix_contrib/$package_dir -name "*.eb" | wc -l) ))        && is_contrib_easyconfig=1
+        package_type=$((package_type+1))
     fi
     if [ -d $prefix_contrib/__archive__/$package_dir ]
     then
@@ -188,18 +210,43 @@ do
     (( $is_contrib_readme || $is_contrib_user || $is_contrib_easyconfig || $is_contrib_archived_easyconfig )) && is_contrib_package=1
     >&2 echo "$package: contrib package: $is_contrib_package, README: $is_contrib_readme, USER: $is_contrib_user, LICENSE: $is_contrib_license, EB: $is_contrib_easyconfig, archived EB: $is_contrib_archived_easyconfig."
 
-    is_archived=0  # Variable: Set to 1 if the package is archived, i.e., no active easyconfigs in neither LUMI-SoftwareStack nor LUMI-EasyBuild-contrib
-    (( (! is_stack_easyconfig && ! is_contrib_easyconfig) && (is_stack_archived_easyconfig || is_contrib_archived_easyconfig) )) && is_archived=1
+    is_container_package=0              # Variable: Set to 1 if any information about this package is found in LUMI-EasyBuild-container
+    is_container_readme=0               # Variable: Set to 1 if a README file is found in LUMI-EasyBuild-container for this package
+    is_container_user=0                 # Variable: Set to 1 if a USER file is found in LUMI-EasyBuild-container for this package
+    is_container_license=0              # Variable: Set to 1 if a license file is found in LUMI-EasyBuild-container for this package
+    is_container_easyconfig=0           # Variable: Set to 1 if there are active EasyConfigs in LUMI-EasyBuild-container for this package
+    is_container_archived_easyconfig=0  # Variable: Set to 1 if there are archived EasyConfigs in LUMI-EasyBuild-container for this package
+    if [ -d $prefix_container/$package_dir ]
+    then
+        [ -f $prefix_container/$package_dir/README.md ]                          && is_container_readme=1     && is_readme=$(($is_readme + 1))
+        [ -f $prefix_container/$package_dir/$userinfo ]                          && is_container_user=1       && is_user=$(($is_user + 1))
+        [ -f $prefix_container/$package_dir/LICENSE.md ]                         && is_container_license=1    && is_license=$(($is_license + 1))
+        (( $(find $prefix_container/$package_dir -name "*.eb" | wc -l) ))        && is_container_easyconfig=1 
+        package_type=$((package_type+1))
+    fi
+    if [ -d $prefix_container/__archive__/$package_dir ]
+    then
+        (( $(find $prefix_container/__archive__/$package_dir -name "*.eb" | wc -l) )) && is_container_archived_easyconfig=1
+    fi
+    (( $is_container_readme || $is_container_user || $is_container_easyconfig || $is_container_archived_easyconfig )) && is_container_package=1
+    >&2 echo "$package: container package: $is_container_package, README: $is_container_readme, USER: $is_container_user, LICENSE: $is_container_license, EB: $is_container_easyconfig, archived EB: $is_container_archived_easyconfig."
 
-    is_other_package=0              # Variable: Set to 1 if any information about this package is found in LUMI-EasyBuild-contrib
-    is_other_readme=0               # Variable: Set to 1 if a README file is found in LUMI-EasyBuild-contrib for this package
-    is_other_user=0                 # Variable: Set to 1 if a USER file is found in LUMI-EasyBuild-contrib for this package
-    is_other_license=0              # Variable: Set to 1 if a license file is found in LUMI-EasyBuild-contrib for this package
+    is_archived=0  # Variable: Set to 1 if the package is archived, i.e., no active easyconfigs in neither LUMI-SoftwareStack nor LUMI-EasyBuild-contrib nor LUMI-EasyBuild-container
+    (( (! is_stack_easyconfig && ! is_contrib_easyconfig && ! is_container_easyconfig) && (is_stack_archived_easyconfig || is_contrib_archived_easyconfig || is_container_archived_easyconfig) )) && is_archived=1
+
+    #
+    # Now check for packages that are not offered via EasyBuild but for which we have build instructions in LUMI-EasyBuild-docs
+    #
+    is_other_package=0              # Variable: Set to 1 if any information about this package is found in LUMI-EasyBuild-docs
+    is_other_readme=0               # Variable: Set to 1 if a README file is found in LUMI-EasyBuild-docs for this package
+    is_other_user=0                 # Variable: Set to 1 if a USER file is found in LUMI-EasyBuild-docs for this package
+    is_other_license=0              # Variable: Set to 1 if a license file is found in LUMI-EasyBuild-docs for this package
     if [ -d $prefix_other/$package_dir ]
     then
         [ -f $prefix_other/$package_dir/README.md ]                          && is_other_readme=1     && is_readme=$(($is_readme + 1))
         [ -f $prefix_other/$package_dir/$userinfo ]                          && is_other_user=1       && is_user=$(($is_user + 1))
         [ -f $prefix_other/$package_dir/LICENSE.md ]                         && is_other_license=1    && is_license=$(($is_license + 1))
+        package_type=$((package_type+1))
     fi
     (( $is_other_readme || $is_other_user )) && is_other_package=1
     >&2 echo "$package: other package:   $is_other_package, README: $is_other_readme, USER: $is_other_user, LICENSE: $is_other_license."
@@ -218,9 +265,10 @@ do
     echo -e "[[package list]](../../index.md)\n"               >>$package_file
 	echo -e "# $package\n"                                     >>$package_file
     echostring=""
-    (( is_stack_easyconfig ))   && echostring="$echostring<span class='lumi-software-button-preinstalled-hover'><span class='lumi-software-button-preinstalled'></span></span>"
-    (( is_contrib_easyconfig )) && echostring="$echostring<span class='lumi-software-button-userinstallable-hover'><span class='lumi-software-button-userinstallable'></span></span>"
-    (( is_archived ))           && echostring="$echostring<span class='lumi-software-button-archivedapp-hover'><span class='lumi-software-button-archivedapp'></span></span>"
+    (( is_stack_easyconfig ))     && echostring="$echostring<span class='lumi-software-button-preinstalled-hover'><span class='lumi-software-button-preinstalled'></span></span>"
+    (( is_contrib_easyconfig ))   && echostring="$echostring<span class='lumi-software-button-userinstallable-hover'><span class='lumi-software-button-userinstallable'></span></span>"
+    (( is_container_easyconfig )) && echostring="$echostring<span class='lumi-software-button-container-hover'><span class='lumi-software-button-container'></span></span>"
+    (( is_archived ))             && echostring="$echostring<span class='lumi-software-button-archivedapp-hover'><span class='lumi-software-button-archivedapp'></span></span>"
     echo -e "$echostring\n"                                    >>$package_file
 
     #
@@ -237,6 +285,9 @@ do
         elif (( is_contrib_license ))
         then
             egrep -v "^# " "$prefix_contrib/$package_dir/LICENSE.md" | sed -e 's|^#|##|' >>$package_file
+         elif (( is_container_license ))
+        then
+            egrep -v "^# " "$prefix_contrib/$package_dir/LICENSE.md" | sed -e 's|^#|##|' >>$package_file
         elif (( is_other_license ))
         then
             egrep -v "^# " "$prefix_other/$package_dir/LICENSE.md" | sed -e 's|^#|##|'   >>$package_file
@@ -249,7 +300,7 @@ do
     #
     if (( is_stack_user ))
     then
-        if (( $is_user == 1 ))
+        if (( $package_type == 1 ))
         then
             echo -e "## User documentation\n"                                     >>$package_file
         else
@@ -274,7 +325,7 @@ do
     #
     if (( is_contrib_user ))
     then
-        if (( $is_user == 1 ))
+        if (( $package_type == 1 ))
         then
             echo -e "## User documentation\n"                                       >>$package_file
         else
@@ -295,15 +346,40 @@ do
     fi
 
     #
+    # - Container user information (if present)
+    #
+    if (( is_container_user ))
+    then
+        if (( $package_type == 1 ))
+        then
+            echo -e "## User documentation\n"                                         >>$package_file
+        else
+            echo -e "## User documentation (singularity container)\n"                 >>$package_file
+        fi
+        egrep -v "^# " "$prefix_container/$package_dir/$userinfo" | sed -e 's|^#|##|' >>$package_file
+
+        # If there is a files subdirectory, copy the content to the files subdirectory in
+        # in the $gendoc tree.
+        if [ -d "$prefix_container/$package_dir/files" ]
+        then
+            >&2 echo "Subdirectory $prefix_container/$package_dir/files detected, copying data."
+            mkdir -p "$gendoc/docs/$package_dir/files" || die "Failed to create $gendoc/docs/$package_dir/files."
+            # Note that using quotes below with the * does not work as it turns globbing off
+            /bin/cp -r $prefix_container/$package_dir/files/* "$gendoc/docs/$package_dir/files/" || 
+                die "Failed to copy files from $prefix_container/$package_dir/files to $gendoc/docs/$package_dir/files."
+        fi
+    fi
+
+    #
     # - Other_package user information (if present)
     #
     if (( is_other_user ))
     then
-        if (( $is_user == 1 ))
+        if (( $package_type == 1 ))
         then
             echo -e "## User documentation\n"                                     >>$package_file
         else
-            echo -e "## User documentation (non-EasyBuild)\n"                     >>$package_file
+            echo -e "## User documentation (manual installation)\n"               >>$package_file
         fi
         egrep -v "^# " "$prefix_other/$package_dir/$userinfo" | sed -e 's|^#|##|' >>$package_file
 
@@ -440,14 +516,107 @@ do
 
         done # for file in ...
 
-    fi # end of if (( is_stack_easyconf ))
+    fi # end of if (( is_contrib_easyconf ))
+
+    #
+    # - User-installable modules
+    #
+    if (( is_container_easyconfig ))
+    then
+
+        prefix="$prefix_container/$package_dir"
+
+        #
+        # Title of the section
+        #
+
+        echo -e "## Singularity containers with modules for binding and extras\n" >>$package_file
+        
+        work=${container_module_preamble/<name>/$package}
+        echo -e "$work\n"                                       >>$package_file
+
+        #
+        # List the modules / EasyConfigs.
+        #
+
+        for file in $(/bin/ls -1 $prefix/*.eb | sort -f)
+	    do
+
+            easyconfig="${file##$prefix/}"
+		    easyconfig_md="$gendoc/docs/$package_dir/${easyconfig/.eb/.md}"
+            easyconfig_docker_md="$gendoc/docs/$package_dir/${easyconfig/.eb/-docker.md}"
+
+            work=${easyconfig%%.eb}
+            version=${work##$package-}
+
+		    >&2 echo "Processing $package/$version, generating $easyconfig_md..."
+
+            work=${container_module_preamble/<name>/$package}
+            work=${work/<version>/$version}
+            work=${work/<easyconfig>/$easyconfig}
+
+            #
+            # Generate the easyconfig file for $package/$version
+            #
+
+            echo -e "---\ntitle: $package/$version ($easyconfig) - $package"     >$easyconfig_md
+            echo -e "hide:\n- navigation\n- toc\n---\n"                         >>$easyconfig_md
+            echo -e "[[$package]](index.md) [[package list]](../../index.md)\n" >>$easyconfig_md
+            echo -e "# $package/$version ($easyconfig)\n"                       >>$easyconfig_md
+            echo -e "$work\n"                                                   >>$easyconfig_md
+		    echo -e '``` python'                                                >>$easyconfig_md
+		    cat $file                                                           >>$easyconfig_md
+		    echo -e '\n```\n'                                                   >>$easyconfig_md
+            echo -e "[[$package]](index.md) [[package list]](../../index.md)"   >>$easyconfig_md
+            # Note the extra \n in front of the last ``` as otherwise files that do not end
+            # with a newline would cause trouble.
+
+            #
+            # Add the module / easyconfig to the package file
+            #
+
+            echo -e "-   [EasyConfig $easyconfig, will provide $package/$version](${easyconfig/.eb/.md})" >>$package_file
+
+            #
+            # Can we find a .docker file via the EasyConfig? If so, process.
+            #
+            docker_line=$(egrep -e '^local_docker[[:space:]]*=' $file | sed -e 's|[ \t]*=[ \t]*|=|')
+            local_docker=""
+            eval $docker_line
+
+            if [ -n $local_docker ]
+            then
+
+                work=${container_docker_preamble/<name>/$package}
+                work=${work/<version>/$version}
+                work=${work/<dockerfile>/$local_docker}
+
+                echo -e "---\ntitle: $local_docker for $package/$version - $package"  >$easyconfig_docker_md
+                echo -e "hide:\n- navigation\n- toc\n---\n"                          >>$easyconfig_docker_md
+                echo -e "[[$package]](index.md) [[package list]](../../index.md)\n"  >>$easyconfig_docker_md
+                echo -e "# $local_docker for $package/$version ($easyconfig)\n"      >>$easyconfig_docker_md
+                echo -e "$work\n"                                                    >>$easyconfig_docker_md
+                echo -e '``` docker'                                                 >>$easyconfig_docker_md
+                cat $prefix/$local_docker                                            >>$easyconfig_docker_md
+                echo -e '\n```\n'                                                    >>$easyconfig_docker_md
+                echo -e "[[$package]](index.md) [[package list]](../../index.md)"    >>$easyconfig_docker_md
+                # Note the extra \n in front of the last ``` as otherwise files that do not end
+                # with a newline would cause trouble.
+
+                echo -e " (with [docker definition](${easyconfig/.eb/-docker.md}))" >>$package_file
+
+            fi # if [ -n $local_docker ]
+
+        done # for file in ...
+
+    fi # end of if (( is_container_easyconf ))
 
     #
     # - Software stack technical information (if present)
     #
     if (( is_stack_readme ))
     then
-        if (( $is_readme == 1 ))
+        if (( $package_type == 1 ))
         then
             echo -e "## Technical documentation\n"                                >>$package_file
         else
@@ -462,14 +631,29 @@ do
     #
     if (( is_contrib_readme ))
     then
-        if (( $is_readme == 1 ))
+        if (( $package_type == 1 ))
         then
             echo -e "## Technical documentation\n"                                  >>$package_file
         else
             # We have two or more README files
-            echo -e "## Technical documentation (user installation)\n"              >>$package_file
+            echo -e "## Technical documentation (user EasyBuild installation)\n"    >>$package_file
        fi
         egrep -v "^# " "$prefix_contrib/$package_dir/README.md" | sed -e 's|^#|##|' >>$package_file
+    fi
+
+    #
+    # - Container technical information (if present)
+    #
+    if (( is_container_readme ))
+    then
+        if (( $package_type == 1 ))
+        then
+            echo -e "## Technical documentation\n"                                    >>$package_file
+        else
+            # We have two or more README files
+            echo -e "## Technical documentation (singularity container)\n"            >>$package_file
+       fi
+        egrep -v "^# " "$prefix_container/$package_dir/README.md" | sed -e 's|^#|##|' >>$package_file
     fi
 
     #
@@ -477,7 +661,7 @@ do
     #
     if (( is_other_readme ))
     then
-        if (( $is_readme == 1 ))
+        if (( $package_type == 1 ))
         then
             echo -e "## Technical documentation\n"                                >>$package_file
         else
@@ -490,7 +674,7 @@ do
     #
     # - Add a list of the archived EasyConfigs
     #
-    if (( is_stack_archived_easyconfig || is_contrib_archived_easyconfig ))
+    if (( is_stack_archived_easyconfig || is_contrib_archived_easyconfig || is_container_archived_easyconfig ))
     then
 
         #
@@ -641,13 +825,105 @@ do
     fi # end of if (( is_contrib_archived_easyconfig ))
 
     #
+    # - Archived EasyConfigs from LUMI-EasyBuild-container
+    #
+    if (( is_container_archived_easyconfig ))
+    then
+
+        prefix="$prefix_container/__archive__/$package_dir"
+        >&2 echo "Checking for archived easyconfigs in $prefix..."
+
+        #
+        # Title of the section
+        #
+
+        echo -e "-   Archived EasyConfigs from [LUMI-EasyBuild-containers](https://github.com/lumi-supercomputer/LUMI-EasyBuild-containers/blob/main/easybuild/easyconfigs/__archive__/$package_dir) - previously available singularity containerised software" >>$package_file
+        
+        #
+        # List the modules / EasyConfigs.
+        #
+
+        for file in $(/bin/ls -1 $prefix/*.eb | sort -f)
+	    do
+
+            easyconfig="${file##$prefix/}"  # Extract the filename of the eacyconfig out of the $prefix/*.eb name.
+		    easyconfig_md="$gendoc/docs/$package_dir/${easyconfig/.eb/.md}" # Compute the location and name for the matching markdonw file.
+
+            work=${easyconfig%%.eb}      # Drop the .eb filename extension
+            version=${work##$package-}   # Drop the package name part from the extensionless easyconfig file name to compute the version.
+
+		    >&2 echo "Processing $package/$version, generating $easyconfig_md..."
+
+            file_with_prefix="$package_dir/$easyconfig"
+            work=${container_archived_module_preamble//<file_with_prefix>/$file_with_prefix}
+            work=${work//<name>/$package}
+            work=${work//<version>/$version}
+
+            #
+            # Generate the easyconfig file for $package/$version
+            #
+
+            echo -e "---\ntitle: $package/$version ($easyconfig) - $package"     >$easyconfig_md
+            echo -e "hide:\n- navigation\n- toc\n---\n"                         >>$easyconfig_md
+            echo -e "[[$package]](index.md) [[package list]](../../index.md)\n" >>$easyconfig_md
+            echo -e "# $package/$version ($easyconfig)\n"                       >>$easyconfig_md
+            echo -e "$work\n"                                                   >>$easyconfig_md
+		    echo -e '``` python'                                                >>$easyconfig_md
+		    cat $file                                                           >>$easyconfig_md
+		    echo -e '\n```\n'                                                   >>$easyconfig_md
+            echo -e "[[$package]](index.md) [[package list]](../../index.md)"   >>$easyconfig_md
+            # Note the extra \n in front of the last ``` as otherwise files that do not end
+            # with a newline would cause trouble.
+
+            #
+            # Add the module / easyconfig to the package file
+            #
+
+            echo -e "    -   [EasyConfig $easyconfig, with module $package/$version](${easyconfig/.eb/.md})" >>$package_file
+
+            #
+            # Can we find a .docker file via the EasyConfig? If so, process.
+            #
+            docker_line=$(egrep -e '^local_docker[[:space:]]*=' $file | sed -e 's|[ \t]*=[ \t]*|=|')
+            local_docker=""
+            eval $docker_line
+
+            if [ -n $local_docker ]
+            then
+
+                work=${container_docker_preamble/<name>/$package}
+                work=${work/<version>/$version}
+                work=${work/<dockerfile>/$local_docker}
+
+                echo -e "---\ntitle: $local_docker for $package/$version - $package"  >$easyconfig_docker_md
+                echo -e "hide:\n- navigation\n- toc\n---\n"                          >>$easyconfig_docker_md
+                echo -e "[[$package]](index.md) [[package list]](../../index.md)\n"  >>$easyconfig_docker_md
+                echo -e "# $local_docker for $package/$version ($easyconfig)\n"      >>$easyconfig_docker_md
+                echo -e "$work\n"                                                    >>$easyconfig_docker_md
+                echo -e '``` docker'                                                 >>$easyconfig_docker_md
+                cat $prefix/$local_docker                                            >>$easyconfig_docker_md
+                echo -e '\n```\n'                                                    >>$easyconfig_docker_md
+                echo -e "[[$package]](index.md) [[package list]](../../index.md)"    >>$easyconfig_docker_md
+                # Note the extra \n in front of the last ``` as otherwise files that do not end
+                # with a newline would cause trouble.
+
+                echo -e " (with [docker definition](${easyconfig/.eb/-docker.md}))" >>$package_file
+
+            fi # if [ -n $local_docker ]
+
+        done # for file in ...
+
+    fi # end of if (( is_container_archived_easyconfig ))
+
+    #
     # Update the package list
     #
     [[ $group != $last_group ]] && echo -e "## $group\n" >>$package_list
     package_string="-   [$package](${package_file#$gendoc/docs/})"
-    (( is_user ))     && package_string="$package_string <span class='lumi-software-smallbutton-userdoc-hover'><span class='lumi-software-smallbutton-userdoc'></span></span>"
-    (( is_readme ))   && package_string="$package_string <span class='lumi-software-smallbutton-techdoc-hover'><span class='lumi-software-smallbutton-techdoc'></span></span>"
-    (( is_archived )) && package_string="$package_string <span class='lumi-software-smallbutton-archive-hover'><span class='lumi-software-smallbutton-archive'></span></span>"
+    (( is_user ))              && package_string="$package_string <span class='lumi-software-smallbutton-userdoc-hover'><span class='lumi-software-smallbutton-userdoc'></span></span>"
+    (( is_readme ))            && package_string="$package_string <span class='lumi-software-smallbutton-techdoc-hover'><span class='lumi-software-smallbutton-techdoc'></span></span>"
+    (( is_archived ))          && package_string="$package_string <span class='lumi-software-smallbutton-archive-hover'><span class='lumi-software-smallbutton-archive'></span></span>"
+    (( is_container_package )) && package_string="$package_string <span class='lumi-software-smallbutton-container-hover'><span class='lumi-software-smallbutton-container'></span></span>"
     echo -e "$package_string\n"                          >>$package_list
 
     #

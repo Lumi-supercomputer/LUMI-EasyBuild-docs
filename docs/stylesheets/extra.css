@@ -45,6 +45,37 @@
     opacity:    75%;
 }
 
+.lumi-software-button-container {
+    padding:          10pt 15pt;
+    margin:           0pt 5pt;
+    background-color: #970292;
+    color:            white;
+    font-weight:      bold;
+}
+.lumi-software-button-container::before {
+    content: 'singularity container';
+}
+.lumi-software-button-container-hover {
+    position: relative;
+}
+.lumi-software-button-container-hover::before {
+    content:          'This software is available as a singularity container with user-installable module for bindings and extras';
+    visibility:       hidden;
+    width:            max-content;
+    padding:          10pt;
+    background-color: lightgrey;
+    color:            black;
+    font-weight:      normal;
+    position:         absolute;
+    z-index:          1;
+    left:             15pt;
+    top:              20pt;
+}
+.lumi-software-button-container-hover:hover:before {
+    visibility: visible;
+    opacity:    75%;
+}
+
 .lumi-software-button-preinstalled {
     padding:          10pt 15pt;
     margin:           0pt 5pt;
@@ -202,6 +233,37 @@
     top:              20pt;
 }
 .lumi-software-smallbutton-archive-hover:hover:before {
+    visibility: visible;
+    opacity:    75%;
+}
+/* Container */
+.lumi-software-smallbutton-container {
+    padding:          3pt 3pt;
+    margin:           0pt 2pt;
+    background-color: #970292;
+    color:            white;
+    font-weight:      bold;
+}
+.lumi-software-smallbutton-container::before {
+    content: "C";
+}
+.lumi-software-smallbutton-container-hover {
+    position: relative;
+}
+.lumi-software-smallbutton-container-hover::before {
+    content: 'This software is available as a singularity container with user-installable module for bindings and extras';
+    visibility:       hidden;
+    width:            max-content;
+    padding:          10pt;
+    background-color: lightgrey;
+    color:            black;
+    font-weight:      normal;
+    position:         absolute;
+    z-index:          1;
+    left:             15pt;
+    top:              20pt;
+}
+.lumi-software-smallbutton-container-hover:hover:before {
     visibility: visible;
     opacity:    75%;
 }
