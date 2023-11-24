@@ -1,7 +1,12 @@
 ---
 # documentation: https://help.github.com/en/articles/workflow-syntax-for-github-actions
-name: main branch manual deploy the LUMI Software Library
-on:  workflow_dispatch
+name: tag-based manual deploy of the LUMI Software Library
+on:  
+  workflow_dispatch:
+    inputs:
+      use_tag:
+        description: 'Tag in LUMI-SoftwareStack etc.'
+        required: true
 permissions:
   contents: write # to fetch code (actions/checkout) + deploy docs to GitHub Pages (gh-pages branch)
 jobs:
@@ -18,18 +23,21 @@ jobs:
         with:
           repository: ${{ github.repository_owner }}/LUMI-SoftwareStack
           path: LUMI-SoftwareStack
+          fetch-tags: ${{ input.use_tag }}
 
       - name: checkout LUMI-EasyBuild-contrib
         uses: actions/checkout@v4
         with:
           repository: ${{ github.repository_owner }}/LUMI-EasyBuild-contrib
           path: LUMI-EasyBuild-contrib
+          fetch-tags: ${{ input.use_tag }}
 
       - name: checkout LUMI-EasyBuild-containers
         uses: actions/checkout@v4
         with:
           repository: ${{ github.repository_owner }}/LUMI-EasyBuild-containers
           path: LUMI-EasyBuild-containers
+          fetch-tags: ${{ input.use_tag }}
 
       - name: set up Python
         uses: actions/setup-python@v4
