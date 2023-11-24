@@ -34,7 +34,8 @@ jobs:
       - name: Check working directory
         run: |
           echo "INFO: Value of PWD is $PWD"
-          echo -e "Output of ls: $((ls -l))"
+          echo -e "Output of ls: $(ls -l)"
+          find . -name "requirements.txt"
 
       - name: set up Python
         uses: actions/setup-python@v4
@@ -43,16 +44,19 @@ jobs:
 
       - name: install mkdocs
         run: |
-            pip install -r LUMI-EasyBuild-docs/requirements.txt
-            mkdocs --version
+          echo "INFO: Value of PWD is $PWD"
+          pip install -r LUMI-EasyBuild-docs/requirements.txt
+          mkdocs --version
 
       - name: build docs
         # We do a build first to ensure that building works as expected.
         # We don't use --strict as we do want to ignore some warnings.
         run: |
+          echo "INFO: Value of PWD is $PWD"
           cd LUMI-EasyBuild-docs/config && make build
 
       - name: deploy docs
         run: |
+          echo "INFO: Value of PWD is $PWD"
           cd LUMI-EasyBuild-docs/config && make deploy-origin
 
