@@ -19,27 +19,40 @@ jobs:
           repository: ${{ github.repository_owner }}/LUMI-SoftwareStack
           path: LUMI-SoftwareStack
 
+      - name: checkout LUMI-EasyBuild-contrib
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository_owner }}/LUMI-EasyBuild-contrib
+          path: LUMI-EasyBuild-contrib
+
+      - name: checkout LUMI-EasyBuild-containers
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository_owner }}/LUMI-EasyBuild-containers
+          path: LUMI-EasyBuild-containers
+
       - name: Check working directory
         run: |
           echo "INFO: Value of PWD is $PWD"
-          eho -e "Output of ls: $((ls -l))"
+          echo -e "Output of ls: $((ls -l))"
 
-#      - name: set up Python
-#        uses: actions/setup-python@v4
-#        with:
-#          python-version: '3.10'
+      - name: set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
-#      - name: install mkdocs
-#        run: |
-#            pip install -r requirements.txt
-#            mkdocs --version
+      - name: install mkdocs
+        run: |
+            pip install -r requirements.txt
+            mkdocs --version
 
-#      - name: build docs
-#        # We do a build first to ensure that building works as expected.
-#        # We don't use --strict as we do want to ignore some warnings.
-#        # run: mkdocs build --strict
-#        run: mkdocs build
+      - name: build docs
+        # We do a build first to ensure that building works as expected.
+        # We don't use --strict as we do want to ignore some warnings.
+        run: |
+          cd LUMI-EasyBuild-docs/config && make build
 
-#      - name: deploy docs
-#        run: mkdocs gh-deploy --force
+      - name: deploy docs
+        run: |
+          cd LUMI-EasyBuild-docs/config && make deploy-origin
 
