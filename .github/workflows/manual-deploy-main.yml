@@ -45,7 +45,7 @@ jobs:
       - name: install mkdocs
         run: |
           echo "INFO: Value of PWD is $PWD"
-          pip install -r LUMI-EasyBuild-docs/requirements.txt
+          pip install -r LUMI-EasyBuild-docs/config/requirements.txt
           mkdocs --version
 
       - name: build docs
