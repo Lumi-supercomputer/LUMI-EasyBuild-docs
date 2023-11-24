@@ -31,12 +31,6 @@ jobs:
           repository: ${{ github.repository_owner }}/LUMI-EasyBuild-containers
           path: LUMI-EasyBuild-containers
 
-      - name: Check working directory
-        run: |
-          echo "INFO: Value of PWD is $PWD"
-          echo -e "Output of ls: $(ls -l)"
-          find . -name "requirements.txt"
-
       - name: set up Python
         uses: actions/setup-python@v4
         with:
@@ -44,19 +38,24 @@ jobs:
 
       - name: install mkdocs
         run: |
-          echo "INFO: Value of PWD is $PWD"
           pip install -r LUMI-EasyBuild-docs/config/requirements.txt
           mkdocs --version
+
+      - name: Check for known_issues.md
+        run: |
+          find . -name known_issues.md
 
       - name: build docs
         # We do a build first to ensure that building works as expected.
         # We don't use --strict as we do want to ignore some warnings.
         run: |
-          echo "INFO: Value of PWD is $PWD"
           cd LUMI-EasyBuild-docs/config && make build
+
+      - name: Check for known_issues.*
+        run: |
+          find . -name "known_issues*"
 
       - name: deploy docs
         run: |
-          echo "INFO: Value of PWD is $PWD"
           cd LUMI-EasyBuild-docs/config && make deploy-origin
 
