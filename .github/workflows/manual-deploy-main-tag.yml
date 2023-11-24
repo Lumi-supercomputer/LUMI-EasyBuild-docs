@@ -44,8 +44,9 @@ jobs:
 
       - name: Checkout specific tags.
         run: |
-          cd $GITHUB_WORKSPACE/LUMI-SoftwareStack        && git checkout tags/${{ inputs.use_tag }} -b work
-          cd $GITHUB_WORKSPACE/LUMI-EasyBuild-contrib    && git checkout tags/${{ inputs.use_tag }} -b work
+          git config --global advice.detachedHead false
+          cd $GITHUB_WORKSPACE/LUMI-SoftwareStack        && git checkout tags/${{ inputs.use_tag }}
+          cd $GITHUB_WORKSPACE/LUMI-EasyBuild-contrib    && git checkout tags/${{ inputs.use_tag }}
           cd $GITHUB_WORKSPACE/LUMI-EasyBuild-containers && git checkout tags/${{ inputs.use_tag }}
 
       - name: set up Python
