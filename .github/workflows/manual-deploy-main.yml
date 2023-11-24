@@ -43,7 +43,7 @@ jobs:
 
       - name: install mkdocs
         run: |
-            pip install -r requirements.txt
+            pip install -r LUMI-EasyBuild-docs/requirements.txt
             mkdocs --version
 
       - name: build docs
