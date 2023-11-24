@@ -87,7 +87,7 @@ mkdir -p $gendoc/docs
 [[ -h $gendoc/docs/assets ]]      || create_link $repodir/docs/assets      $repodir/$gendoc/docs/assets
 [[ -h $gendoc/docs/stylesheets ]] || create_link $repodir/docs/stylesheets $repodir/$gendoc/docs/stylesheets
 
-for file in $(find docs -name "*.md" -depth 1)
+for file in $(find docs -maxdepth 1 -name "*.md")
 do
     [[ -h $gendoc/$file ]] || create_link $repodir/$file $repodir/$gendoc/$file
 done
