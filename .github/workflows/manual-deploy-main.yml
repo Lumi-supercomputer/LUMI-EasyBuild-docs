@@ -16,7 +16,7 @@ jobs:
       - name: checkout LUMI-SoftwareStack
         uses: actions/checkout@v4
         with:
-          repository: LUMI-SoftwareStack
+          repository: ${{ github.repository_owner }}/LUMI-SoftwareStack
           path: LUMI-SoftwareStack
 
       - name: Check working directory
