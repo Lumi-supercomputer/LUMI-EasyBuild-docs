@@ -23,21 +23,27 @@ jobs:
         with:
           repository: ${{ github.repository_owner }}/LUMI-SoftwareStack
           path: LUMI-SoftwareStack
-          fetch-tags: ${{ input.use_tag }}
+          fetch-tags: true
 
       - name: checkout LUMI-EasyBuild-contrib
         uses: actions/checkout@v4
         with:
           repository: ${{ github.repository_owner }}/LUMI-EasyBuild-contrib
           path: LUMI-EasyBuild-contrib
-          fetch-tags: ${{ input.use_tag }}
+          fetch-tags: true
 
       - name: checkout LUMI-EasyBuild-containers
         uses: actions/checkout@v4
         with:
           repository: ${{ github.repository_owner }}/LUMI-EasyBuild-containers
           path: LUMI-EasyBuild-containers
-          fetch-tags: ${{ input.use_tag }}
+          fetch-tags: true
+
+      - name: Checkout specific tags.
+        run: |
+          cd $GITHUB_WORKSPACE/LUMI-SoftwareStack        && git checkout tags/${{ input.use_tag }} -b main
+          cd $GITHUB_WORKSPACE/LUMI-EasyBuild-contrib    && git checkout tags/${{ input.use_tag }} -b main
+          cd $GITHUB_WORKSPACE/LUMI-EasyBuild-containers && git checkout tags/${{ input.use_tag }} -b main
 
       - name: set up Python
         uses: actions/setup-python@v4
