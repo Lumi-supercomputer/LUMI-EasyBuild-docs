@@ -102,8 +102,10 @@ mkdir -p $gendoc/docs
 [[ -h $gendoc/docs/assets ]]      || create_link $repodir/docs/assets      $repodir/$gendoc/docs/assets
 [[ -h $gendoc/docs/stylesheets ]] || create_link $repodir/docs/stylesheets $repodir/$gendoc/docs/stylesheets
 
-for file in $(find docs -name "*.md" -d 1)
+echo "Searching for files in repo doc."
+for file in $(find docs -maxdepth 1 -name "*.md")
 do
+    echo "Found file $file."
     [[ -h $gendoc/$file ]] || create_link $repodir/$file $repodir/$gendoc/$file
 done
 
