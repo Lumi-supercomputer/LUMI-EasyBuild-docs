@@ -1,7 +1,7 @@
 all: preview
 
-gendoc = ../docs-generated
-buildscript = ../scripts/build_docs.sh
+gendoc = docs-generated
+buildscript = scripts/build_docs.sh
 
 clean-gen:
 	/bin/rm -rf $(gendoc)

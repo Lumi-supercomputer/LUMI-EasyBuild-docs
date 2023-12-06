@@ -63,9 +63,9 @@ jobs:
         # We do a build first to ensure that building works as expected.
         # We don't use --strict as we do want to ignore some warnings.
         run: |
-          cd LUMI-EasyBuild-docs/config && make build
+          cd LUMI-EasyBuild-docs && make build
 
       - name: deploy docs
         run: |
-          cd LUMI-EasyBuild-docs/config && make deploy-origin
+          cd LUMI-EasyBuild-docs && make deploy-origin
 
