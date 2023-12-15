@@ -1,3 +1,7 @@
+#
+# Note: call as "make serve" or "make preview" to get the "Last processed" line,
+# or "make serve TAG=<mytag>"etc. to get the line "RElease: <mytag>" instead.
+#
 all: preview
 
 gendoc = docs-generated
