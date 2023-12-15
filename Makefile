@@ -7,7 +7,7 @@ clean-gen:
 	/bin/rm -rf $(gendoc)
 
 rebuild-gen:
-	$(buildscript)
+	$(buildscript) $(TAG)
 
 build: clean-gen rebuild-gen
 	mkdocs build --config-file $(gendoc)/mkdocs.yml
