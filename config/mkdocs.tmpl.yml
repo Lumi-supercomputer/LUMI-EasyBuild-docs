@@ -36,6 +36,8 @@ theme:
     - search.suggest
     # Enable code annotation globally
     - content.code.annotate
+    # Enable copy from code boxes
+    - content.code.copy
 
   palette:
     scheme: default
