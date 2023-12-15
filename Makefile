@@ -1,3 +1,7 @@
+#
+# Note: call as "make serve" or "make preview" to get the "Last processed" line,
+# or "make serve TAG=<mytag>"etc. to get the line "RElease: <mytag>" instead.
+#
 all: preview
 
 gendoc = docs-generated
@@ -7,7 +11,7 @@ clean-gen:
 	/bin/rm -rf $(gendoc)
 
 rebuild-gen:
-	$(buildscript)
+	$(buildscript) $(TAG)
 
 build: clean-gen rebuild-gen
 	mkdocs build --config-file $(gendoc)/mkdocs.yml

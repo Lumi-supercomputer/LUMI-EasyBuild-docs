@@ -47,6 +47,7 @@ container_archived_module_preamble="This software is archived in the\n\
 [easybuild/easyconfigs/\_\_archive\_\_/<file_with_prefix>](https://github.com/Lumi-supercomputer/LUMI-EasyBuild-contrib/blob/main/easybuild/easyconfigs/__archive__/<file_with_prefix>).\n\
 The corresponding module would be <name>/<version>. The containers are likely no longer available on LUMI though."
 other_info_label="Issues"
+whatsnew_label="New"
 
 >&2 echo "Working in repo $repo in $repodir."
 
@@ -127,7 +128,13 @@ prefix_other="$repodir/docs/other_packages"
 package_list="$gendoc/docs/index.md"
 
 echo -e "---\ntitle: Package overview\nhide:\n- navigation\n---\n" >$package_list
-echo -e "# Package list\n" >>$package_list
+echo -e "# Package list\n"                                                                                                     >> $package_list
+if (( $# == 1 ))
+then
+    echo -e "Lumi software stack release: $1\n"                                                                                >> $package_list
+else
+    echo -e "Last processed: $(date -u)\n"                                                                                     >> $package_list
+fi
 echo -e "<span class='lumi-software-smallbutton-userdoc'></span>: Specific user documentation available\n"                     >> $package_list
 echo -e "<span class='lumi-software-smallbutton-techdoc'></span>: Technical documentation available\n"                         >> $package_list
 echo -e "<span class='lumi-software-smallbutton-archive'></span>: Archived application\n"                                      >> $package_list
@@ -971,7 +978,8 @@ do
 done
 
 #
-# Add a navigation item for the other information such as issues.
+# Add a navigation items for the other information such as issues and what's new.
 #
 
 echo "- $other_info_label: known_issues.md"  >>$gendoc/mkdocs.yml
+echo "- $whatsnew_label: whats_new.md"  >>$gendoc/mkdocs.yml
