@@ -128,7 +128,13 @@ prefix_other="$repodir/docs/other_packages"
 package_list="$gendoc/docs/index.md"
 
 echo -e "---\ntitle: Package overview\nhide:\n- navigation\n---\n" >$package_list
-echo -e "# Package list\n" >>$package_list
+echo -e "# Package list\n"                                                                                                     >> $package_list
+if (( $# == 1 ))
+then
+    echo -e "Lumi software stack release: $1\n"                                                                                >> $package_list
+else
+    echo -e "Last processed: $(date -u)\n"                                                                                     >> $package_list
+fi
 echo -e "<span class='lumi-software-smallbutton-userdoc'></span>: Specific user documentation available\n"                     >> $package_list
 echo -e "<span class='lumi-software-smallbutton-techdoc'></span>: Technical documentation available\n"                         >> $package_list
 echo -e "<span class='lumi-software-smallbutton-archive'></span>: Archived application\n"                                      >> $package_list
