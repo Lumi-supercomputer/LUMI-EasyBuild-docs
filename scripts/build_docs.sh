@@ -47,6 +47,7 @@ container_archived_module_preamble="This software is archived in the\n\
 [easybuild/easyconfigs/\_\_archive\_\_/<file_with_prefix>](https://github.com/Lumi-supercomputer/LUMI-EasyBuild-contrib/blob/main/easybuild/easyconfigs/__archive__/<file_with_prefix>).\n\
 The corresponding module would be <name>/<version>. The containers are likely no longer available on LUMI though."
 other_info_label="Issues"
+whatsnew_label="New"
 
 >&2 echo "Working in repo $repo in $repodir."
 
@@ -971,7 +972,8 @@ do
 done
 
 #
-# Add a navigation item for the other information such as issues.
+# Add a navigation items for the other information such as issues and what's new.
 #
 
 echo "- $other_info_label: known_issues.md"  >>$gendoc/mkdocs.yml
+echo "- $whatsnew_label: whats_new.md"  >>$gendoc/mkdocs.yml
