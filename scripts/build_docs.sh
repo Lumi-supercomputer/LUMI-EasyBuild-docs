@@ -49,6 +49,20 @@ The corresponding module would be <name>/<version>. The containers are likely no
 other_info_label="Issues"
 whatsnew_label="New"
 
+#
+# Search priorities
+# These seem to be multipliers: multiply the number of occurences on a page with this factor
+# to get the actual priority of a page.
+#
+# EasyConfigs are excluded from the search to avoid building a too large and impractical
+# search index. (Alternative: give them a very low priority such as 0.01, but this still
+# creates a large search database.) 
+#
+search_packagelist='0.5'
+#search_new='1'     # Hard-coded in whats_new.md
+#search_issues='2'  # Hard-coded in known_issues.md
+search_package='10'
+
 >&2 echo "Working in repo $repo in $repodir."
 
 #
@@ -127,7 +141,9 @@ prefix_other="$repodir/docs/other_packages"
 #
 package_list="$gendoc/docs/index.md"
 
-echo -e "---\ntitle: Package overview\nhide:\n- navigation\n---\n" >$package_list
+echo -e "---\ntitle: Package overview"                                                                                          >$package_list
+echo -e "search:\n  boost: ${search_packagelist}"                                                                              >>$package_list
+echo -e "hide:\n- navigation\n---\n"                                                                                           >>$package_list
 echo -e "# Package list\n"                                                                                                     >> $package_list
 if (( $# == 1 ))
 then
@@ -270,9 +286,11 @@ do
     mkdir -p $gendoc/docs/$package_dir
     package_file="$gendoc/docs/$package_dir/index.md"
 
-	echo -e "---\ntitle: $package\nhide:\n- navigation\n---\n"  >$package_file
-    echo -e "[[package list]](../../index.md)\n"               >>$package_file
-	echo -e "# $package\n"                                     >>$package_file
+	echo -e "---\ntitle: $package"                 >$package_file
+    echo -e "search:\n  boost: ${search_package}" >>$package_file
+	echo -e "hide:\n- navigation\n---\n"          >>$package_file
+    echo -e "[[package list]](../../index.md)\n"  >>$package_file
+	echo -e "# $package\n"                        >>$package_file
     echostring=""
     (( is_stack_easyconfig ))     && echostring="$echostring<span class='lumi-software-button-preinstalled-hover'><span class='lumi-software-button-preinstalled'></span></span>"
     (( is_contrib_easyconfig ))   && echostring="$echostring<span class='lumi-software-button-userinstallable-hover'><span class='lumi-software-button-userinstallable'></span></span>"
@@ -464,6 +482,7 @@ do
             #
 
             echo -e "---\ntitle: $package/$version ($easyconfig) - $package"     >$easyconfig_md
+            echo -e "search:\n  exclude: true"                                  >>$easyconfig_md
             echo -e "hide:\n- navigation\n- toc\n---\n"                         >>$easyconfig_md
             echo -e "[[$package]](index.md) [[package list]](../../index.md)\n" >>$easyconfig_md
             echo -e "# $package/$version ($easyconfig)\n"                       >>$easyconfig_md
@@ -482,6 +501,9 @@ do
             echo -e "-   [$package/$version (EasyConfig: $easyconfig)](${easyconfig/.eb/.md})" >>$package_file
 
         done # for file in ...
+
+        # Add empty lines at the end of the section
+        printf "\n\n"  >>$package_file
 
     fi # end of if (( is_stack_easyconf ))
 
@@ -526,6 +548,7 @@ do
             #
 
             echo -e "---\ntitle: $package/$version ($easyconfig) - $package"     >$easyconfig_md
+            echo -e "search:\n  exclude: true"                                  >>$easyconfig_md
             echo -e "hide:\n- navigation\n- toc\n---\n"                         >>$easyconfig_md
             echo -e "[[$package]](index.md) [[package list]](../../index.md)\n" >>$easyconfig_md
             echo -e "# $package/$version ($easyconfig)\n"                       >>$easyconfig_md
@@ -544,6 +567,9 @@ do
             echo -e "-   [EasyConfig $easyconfig, will build $package/$version](${easyconfig/.eb/.md})" >>$package_file
 
         done # for file in ...
+
+        # Add empty lines at the end of the section
+        printf "\n\n"  >>$package_file
 
     fi # end of if (( is_contrib_easyconf ))
 
@@ -589,6 +615,7 @@ do
             #
 
             echo -e "---\ntitle: $package/$version ($easyconfig) - $package"     >$easyconfig_md
+            echo -e "search:\n  exclude: true"                                  >>$easyconfig_md
             echo -e "hide:\n- navigation\n- toc\n---\n"                         >>$easyconfig_md
             echo -e "[[$package]](index.md) [[package list]](../../index.md)\n" >>$easyconfig_md
             echo -e "# $package/$version ($easyconfig)\n"                       >>$easyconfig_md
@@ -621,6 +648,7 @@ do
                 work=${work/<dockerfile>/$local_docker}
 
                 echo -e "---\ntitle: $local_docker for $package/$version - $package"  >$easyconfig_docker_md
+                echo -e "search:\n  exclude: true"                                   >>$easyconfig_docker_md
                 echo -e "hide:\n- navigation\n- toc\n---\n"                          >>$easyconfig_docker_md
                 echo -e "[[$package]](index.md) [[package list]](../../index.md)\n"  >>$easyconfig_docker_md
                 echo -e "# $local_docker for $package/$version ($easyconfig)\n"      >>$easyconfig_docker_md
@@ -635,6 +663,9 @@ do
                 echo -e " (with [docker definition](${easyconfig/.eb/-docker.md}))" >>$package_file
 
             fi # if [ -n $local_docker ]
+
+            # Add empty lines at the end of the section
+            printf "\n\n"  >>$package_file
 
         done # for file in ...
 
@@ -782,6 +813,7 @@ do
             #
 
             echo -e "---\ntitle: $package/$version ($easyconfig) - $package"     >$easyconfig_md
+            echo -e "search:\n  exclude: true"                                  >>$easyconfig_md
             echo -e "hide:\n- navigation\n- toc\n---\n"                         >>$easyconfig_md
             echo -e "[[$package]](index.md) [[package list]](../../index.md)\n" >>$easyconfig_md
             echo -e "# $package/$version ($easyconfig)\n"                       >>$easyconfig_md
@@ -844,6 +876,7 @@ do
             #
 
             echo -e "---\ntitle: $package/$version ($easyconfig) - $package"     >$easyconfig_md
+            echo -e "search:\n  exclude: true"                                  >>$easyconfig_md
             echo -e "hide:\n- navigation\n- toc\n---\n"                         >>$easyconfig_md
             echo -e "[[$package]](index.md) [[package list]](../../index.md)\n" >>$easyconfig_md
             echo -e "# $package/$version ($easyconfig)\n"                       >>$easyconfig_md
@@ -905,6 +938,7 @@ do
             #
 
             echo -e "---\ntitle: $package/$version ($easyconfig) - $package"     >$easyconfig_md
+            echo -e "search:\n  exclude: true"                                  >>$easyconfig_md
             echo -e "hide:\n- navigation\n- toc\n---\n"                         >>$easyconfig_md
             echo -e "[[$package]](index.md) [[package list]](../../index.md)\n" >>$easyconfig_md
             echo -e "# $package/$version ($easyconfig)\n"                       >>$easyconfig_md
@@ -937,6 +971,7 @@ do
                 work=${work/<dockerfile>/$local_docker}
 
                 echo -e "---\ntitle: $local_docker for $package/$version - $package"  >$easyconfig_docker_md
+                echo -e "search:\n  exclude: true"                                   >>$easyconfig_docker_md
                 echo -e "hide:\n- navigation\n- toc\n---\n"                          >>$easyconfig_docker_md
                 echo -e "[[$package]](index.md) [[package list]](../../index.md)\n"  >>$easyconfig_docker_md
                 echo -e "# $local_docker for $package/$version ($easyconfig)\n"      >>$easyconfig_docker_md

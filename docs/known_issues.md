@@ -1,5 +1,7 @@
 ---
 title: Known issues with the LUMI software stacks
+search:
+  boost: 2
 hide:
 - navigation
 ---
