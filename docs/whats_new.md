@@ -8,6 +8,15 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20240110
+
+-   Improved search in the LUMI Software Library, though for performance reasons we've 
+    chosen not to search the EasyConfigs themselves too.
+-   Some software brought to 23.09, such as [R](r/R/index.md), 
+    [GDAL](g/GDAL/index.md), [GEOS](g/GEOS/index.md) and dependencies
+-   [KaHIP](k/KaHIP/index.md)
+-   [AdaptiveCpp](a/AdaptiveCpp/index.md)
+
 ## Release 20231215
 
 -   [rocm/5.6.1](r/rocm/index.md) and [amd/5.6.1](a/amd/index.md) 
