@@ -1,5 +1,5 @@
 ---
-title: Known issues with the LUMI software stacks
+title: What's new in the LUMI software stack
 search:
   boost: 1
 hide:
@@ -16,6 +16,11 @@ hide:
     [GDAL](g/GDAL/index.md), [GEOS](g/GEOS/index.md) and dependencies
 -   [KaHIP](k/KaHIP/index.md)
 -   [AdaptiveCpp](a/AdaptiveCpp/index.md)
+-   [Boost](b/Boost/index.md) for cpeCray/23.09.
+  
+    Note that a workaround was needed for Boost to avoid a linker problem. See the
+    technical documentation on the [Boost page](b/Boost/index.md) to find out what we
+    did if you also run into link problems.
 
 ## Release 20231215
 
