@@ -8,6 +8,13 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20240116
+
+-   New package: [DL_POLY_4](d/DL_POLY_4/index.md): dl-poly in a basic configuration
+-   New package: [QUDA](q/QUDA/index.md)
+-   Updates to [Rust](r/Rust/index.md), [HyperQueue](h/HyperQueue/index.md),
+    [PETSc](p/PETSc/index.md), [ELPA](e/ELPA/index.md).
+
 ## Release 20240110
 
 -   Improved search in the LUMI Software Library, though for performance reasons we've 
