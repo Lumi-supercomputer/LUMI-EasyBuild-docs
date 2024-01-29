@@ -574,7 +574,7 @@ do
     fi # end of if (( is_contrib_easyconf ))
 
     #
-    # - User-installable modules
+    # - Container modules
     #
     if (( is_container_easyconfig ))
     then
@@ -640,7 +640,7 @@ do
             local_docker=""
             eval $docker_line
 
-            if [ -n $local_docker ]
+            if [ -n "$local_docker" ]
             then
 
                 work=${container_docker_preamble/<name>/$package}
