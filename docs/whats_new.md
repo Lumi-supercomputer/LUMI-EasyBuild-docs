@@ -8,6 +8,12 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20240129
+
+-   New package: [Magma](m/magma/index.md) for cpeGNU, cpeCray and cpeAMD.
+-   Updated EasyConfig for [openFOAM](o/OpenFOAM/index.md)
+
+
 ## Release 20240116
 
 -   New package: [DL_POLY_4](d/DL_POLY_4/index.md): dl-poly in a basic configuration
