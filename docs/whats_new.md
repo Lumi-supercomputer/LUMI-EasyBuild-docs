@@ -12,6 +12,7 @@ hide:
 
 -   New package: [Magma](m/magma/index.md) for cpeGNU, cpeCray and cpeAMD.
 -   Updated EasyConfig for [openFOAM](o/OpenFOAM/index.md)
+-   ROCm 5.7.1 container, and re-generated versions of the other ROCm containers.
 
 
 ## Release 20240116
