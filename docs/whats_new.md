@@ -8,6 +8,15 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20240207
+
+-   [SCOTCH 7](s/SCOTCH/index.md) for cpeCray
+-   Updated documentation for [HyperQueue](h/HyperQueue/index.md), 
+    [GROMACS](g/GROMACS/index.md), [CP2K](c/CP2K/index.md)
+-   New [PyTorch 2.2.0 container with flash-attention](p/PyTorch/index.md) 
+    and new snapshots of the other containers.
+
+
 ## Release 20240129
 
 -   New package: [Magma](m/magma/index.md) for cpeGNU, cpeCray and cpeAMD.
