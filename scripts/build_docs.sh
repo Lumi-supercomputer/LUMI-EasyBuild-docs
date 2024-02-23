@@ -96,6 +96,50 @@ create_link () {
 }
 
 #
+# Print a string and indent.
+#
+
+indent() {
+
+    # The first call to perl is a trick to remove trailing newlines.
+    # The second call to perl adds the indentation to all but the first line.
+    echo -e "$2$1" | perl -pe 'chomp if eof' | perl -pe "s|\n|\n$2|" 
+
+}
+
+#
+# Extract docs
+#
+extract_docs() {
+
+    #egrep '#DOC' $1 | sed -e 's|#DOC *||' | tr '\n' ' '
+    egrep '#DOC' $1 | sed -e 's|#DOC *||'
+
+}
+
+#
+# Print the EasyConfig docs (if any)
+add_easyconfig_docs () {
+
+    # Input parameters:
+    # $1: The (path to) the EasyConfig file
+    # $2: The file to print to
+    # $3: The indent.
+
+    doccomment="$(extract_docs $1)"
+    if [ -n "$doccomment" ]
+    then
+
+        # Add the documentation text with 4 spaces of indent.
+        indent "$doccomment" "$3" >>$2
+        # Then add a newline and empty line
+        printf "\n\n"             >>$2
+
+    fi
+
+}
+
+#
 # Make sure the working directory exists.
 #
 mkdir -p $gendoc || die "Failed to create the working directory $repodir/$gendoc."
@@ -168,9 +212,13 @@ last_group='.'
 #for package_dir in $(/bin/ls -1 $prefix_stack/a/*/*.eb $prefix_stack/b/*/*.eb $prefix_contrib/a/*/*.eb $prefix_contrib/__archive__/a/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sed -e 's|__archive__/||'| sort -uf)
 #for package_dir in $(/bin/ls -1 $prefix_stack/*/*/*.eb $prefix_stack/__archive__/*/*/*.eb $prefix_contrib/*/*/*.eb $prefix_contrib/__archive__/*/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sed -e 's|__archive__/||' | sort -uf)
 #for package_dir in $(/bin/ls -1 $prefix_stack/p/*/*.eb $prefix_stack/__archive__/p/*/*.eb $prefix_contrib/p/*/*.eb $prefix_container/__archive__/p/*/*.eb $prefix_container/p/*/*.eb $prefix_contrib/__archive__/p/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sed -e 's|__archive__/||' | sort -uf)
-for package_dir in $(/bin/ls -1 $prefix_stack/*/*/*.eb $prefix_stack/__archive__/*/*/*.eb \
-                                $prefix_contrib/*/*/*.eb $prefix_contrib/__archive__/*/*/*.eb \
-                                $prefix_container/*/*/*.eb $prefix_container/__archive__/*/*/*.eb \
+#for package_dir in $(/bin/ls -1 $prefix_stack/*/*/*.eb $prefix_stack/__archive__/*/*/*.eb \
+#                                $prefix_contrib/*/*/*.eb $prefix_contrib/__archive__/*/*/*.eb \
+#                                $prefix_container/*/*/*.eb $prefix_container/__archive__/*/*/*.eb \
+#                                $prefix_other/*/*/*.md \
+for package_dir in $(/bin/ls -1 $prefix_stack/p/*/*.eb $prefix_stack/__archive__/p/*/*.eb \
+                                $prefix_contrib/p/*/*.eb $prefix_contrib/__archive__/p/*/*.eb \
+                                $prefix_container/p/*/*.eb $prefix_container/__archive__/p/*/*.eb \
                                 $prefix_other/*/*/*.md \
                      | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sed -e 's|__archive__/||' \
                      | sed -e 's|.*/other_packages/\(.*/.*\)/.*\.md|\1|' \
@@ -500,6 +548,16 @@ do
 
             echo -e "-   [$package/$version (EasyConfig: $easyconfig)](${easyconfig/.eb/.md})" >>$package_file
 
+            #
+            # Add an empty line
+            #
+            echo >>$package_file
+
+            #
+            # Are there any #DOC lines to add?
+            #
+            add_easyconfig_docs $file $package_file "    "
+
         done # for file in ...
 
         # Add empty lines at the end of the section
@@ -565,6 +623,16 @@ do
             #
 
             echo -e "-   [EasyConfig $easyconfig, will build $package/$version](${easyconfig/.eb/.md})" >>$package_file
+
+            #
+            # Add an empty line
+            #
+            echo >>$package_file
+
+            #
+            # Are there any #DOC lines to add?
+            #
+            add_easyconfig_docs $file $package_file "    "
 
         done # for file in ...
 
@@ -660,12 +728,19 @@ do
                 # Note the extra \n in front of the last ``` as otherwise files that do not end
                 # with a newline would cause trouble.
 
-                echo -e " (with [docker definition](${easyconfig/.eb/-docker.md}))" >>$package_file
+                echo -e "    (with [docker definition](${easyconfig/.eb/-docker.md}))" >>$package_file
 
             fi # if [ -n $local_docker ]
 
-            # Add empty lines at the end of the section
-            printf "\n\n"  >>$package_file
+            #
+            # Add an empty line
+            #
+            echo >>$package_file
+
+            #
+            # Are there any #DOC lines to add?
+            #
+            add_easyconfig_docs $file $package_file "    "
 
         done # for file in ...
 
@@ -831,6 +906,16 @@ do
 
             echo -e "    -   [EasyConfig $easyconfig, with module $package/$version](${easyconfig/.eb/.md})" >>$package_file
 
+            #
+            # Add an empty line
+            #
+            echo >>$package_file
+
+            #
+            # Are there any #DOC lines to add?
+            #
+            add_easyconfig_docs $file $package_file "        "
+
         done # for file in ...
 
     fi # end of if (( is_stack_archived_easyconfig ))
@@ -893,6 +978,16 @@ do
             #
 
             echo -e "    -   [EasyConfig $easyconfig, with module $package/$version](${easyconfig/.eb/.md})" >>$package_file
+
+            #
+            # Add an empty line
+            #
+            echo >>$package_file
+
+            #
+            # Are there any #DOC lines to add?
+            #
+            add_easyconfig_docs $file $package_file "        "
 
         done # for file in ...
 
@@ -986,6 +1081,16 @@ do
                 echo -e " (with [docker definition](${easyconfig/.eb/-docker.md}))" >>$package_file
 
             fi # if [ -n $local_docker ]
+
+            #
+            # Add an empty line
+            #
+            echo >>$package_file
+
+            #
+            # Are there any #DOC lines to add?
+            #
+            add_easyconfig_docs $file $package_file "        "
 
         done # for file in ...
 
