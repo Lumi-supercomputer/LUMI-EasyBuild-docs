@@ -119,10 +119,11 @@ extract_docs() {
 
 #
 # Print the EasyConfig docs (if any)
+#
 add_easyconfig_docs () {
 
     # Input parameters:
-    # $1: The (path to) the EasyConfig file
+    # $1: The (path to the) EasyConfig file
     # $2: The file to print to
     # $3: The indent.
 
@@ -136,6 +137,103 @@ add_easyconfig_docs () {
         printf "\n\n"             >>$2
 
     fi
+
+}
+
+#
+# Create a markdown document for an EasyConfig.
+#
+easyconfig_to_md () {
+
+    # Input arguments:
+    # - $1: The (path to the) EasyConfig file
+    # - $2: The (path to the) markdown file. This file will be created or overwritten.
+    # - $3: The preamble to be used
+
+    local work
+    local easyconfig
+    local package
+    local package_group
+    local version
+    local preamble
+
+    easyconfig="${1##*/}"        # Remove everything up to and including the last /
+    work="${1%/$easyconfig}"     # work is the relative path to $easyconfig
+    package="${work##*/}"        # Extract the last part of that path, the package name.
+    work="${work%/$package}"     # Now also remove the package name from the path.
+    package_group="${work##*/}"  # Extract again the last part of the path.
+    work="${easyconfig%%.eb}"    # work is $easyconfig without the extension,
+    version="${work##$package-}" # so we can remove the package name part to get the version
+
+    preamble="${3//<name>/$package}"                 # Substitute the package in the preamble
+    preamble="${preamble//<version>/$version}"       # Substitute the version in the preamble
+    preamble="${preamble//<easyconfig>/$easyconfig}" # Substitute the easyconfig in the preamble
+    preamble="${preamble//<file_with_prefix>/$package_group/$package/$easyconfig}"
+    
+    #
+    # Generate the easyconfig file for $package/$version
+    #
+
+    echo -e "---\ntitle: $package/$version ($easyconfig) - $package"     >$2
+    echo -e "search:\n  exclude: true"                                  >>$2
+    echo -e "hide:\n- navigation\n- toc\n---\n"                         >>$2
+    echo -e "[[$package]](index.md) [[package list]](../../index.md)\n" >>$2
+    echo -e "# $package/$version ($easyconfig)\n"                       >>$2
+    echo -e "$preamble\n"                                               >>$2
+    echo -e '``` python'                                                >>$2
+    cat $1                                                              >>$2
+    echo -e '\n```\n'                                                   >>$2
+    echo -e "[[$package]](index.md) [[package list]](../../index.md)"   >>$2
+    # Note the extra \n in front of the last ``` as otherwise files that do not end
+    # with a newline would cause trouble.
+
+}
+
+#
+# Create a markdown document for an EasyConfig.
+#
+dockerfile_to_md () {
+
+    # Input arguments:
+    # - $1: The (path to the) EasyConfig file
+    # - $2: The dockerfile, without path
+    # - $3: The (path to the) markdown file. This file will be created or overwritten.
+    # - $4: The preamble to be used
+
+    local work
+    local easyconfig
+    local prefix
+    local package
+    local package_group
+    local version
+    local preamble
+
+    easyconfig="${1##*/}"        # Remove everything up to and including the last /
+    prefix="${1%/$easyconfig}"   # prefix is the relative path to $easyconfig
+    package="${prefix##*/}"      # Extract the last part of that path, the package name.
+    work="${prefix%/$package}"   # Now also remove the package name from the path.
+    package_group="${work##*/}"  # Extract again the last part of the path.
+    work="${easyconfig%%.eb}"    # work is $easyconfig without the extension,
+    version="${work##$package-}" # so we can remove the package name part to get the version
+
+    preamble="${4//<name>/$package}"                 # Substitute the package in the preamble
+    preamble="${preamble//<version>/$version}"       # Substitute the version in the preamble
+    preamble="${preamble//<easyconfig>/$easyconfig}" # Substitute the easyconfig in the preamble
+    preamble="${preamble//<file_with_prefix>/$package_group/$package/$easyconfig}"
+    preamble="${preamble//<dockerfile>/$2}"          # Substitute the dockerfile in the preamble 
+
+    echo -e "---\ntitle: $2 for $package/$version - $package"            >$3
+    echo -e "search:\n  exclude: true"                                  >>$3
+    echo -e "hide:\n- navigation\n- toc\n---\n"                         >>$3
+    echo -e "[[$package]](index.md) [[package list]](../../index.md)\n" >>$3
+    echo -e "# $2 for $package/$version ($easyconfig)\n"                >>$3
+    echo -e "$preamble\n"                                               >>$3
+    echo -e '``` docker'                                                >>$3
+    cat $prefix/$2                                                      >>$3
+    echo -e '\n```\n'                                                   >>$3
+    echo -e "[[$package]](index.md) [[package list]](../../index.md)"   >>$3
+    # Note the extra \n in front of the last ``` as otherwise files that do not end
+    # with a newline would cause trouble.
 
 }
 
@@ -208,17 +306,11 @@ last_group='.'
 #
 # Loop over all packages
 #
-#for package_dir in $(/bin/ls -1 $prefix_stack/a/*/*.eb $prefix_contrib/a/*/*.eb $prefix_contrib/__archive__/a/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sed -e 's|__archive__/||'| sort -uf)
-#for package_dir in $(/bin/ls -1 $prefix_stack/a/*/*.eb $prefix_stack/b/*/*.eb $prefix_contrib/a/*/*.eb $prefix_contrib/__archive__/a/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sed -e 's|__archive__/||'| sort -uf)
-#for package_dir in $(/bin/ls -1 $prefix_stack/*/*/*.eb $prefix_stack/__archive__/*/*/*.eb $prefix_contrib/*/*/*.eb $prefix_contrib/__archive__/*/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sed -e 's|__archive__/||' | sort -uf)
-#for package_dir in $(/bin/ls -1 $prefix_stack/p/*/*.eb $prefix_stack/__archive__/p/*/*.eb $prefix_contrib/p/*/*.eb $prefix_container/__archive__/p/*/*.eb $prefix_container/p/*/*.eb $prefix_contrib/__archive__/p/*/*.eb | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sed -e 's|__archive__/||' | sort -uf)
-#for package_dir in $(/bin/ls -1 $prefix_stack/*/*/*.eb $prefix_stack/__archive__/*/*/*.eb \
-#                                $prefix_contrib/*/*/*.eb $prefix_contrib/__archive__/*/*/*.eb \
-#                                $prefix_container/*/*/*.eb $prefix_container/__archive__/*/*/*.eb \
-#                                $prefix_other/*/*/*.md \
-for package_dir in $(/bin/ls -1 $prefix_stack/p/*/*.eb $prefix_stack/__archive__/p/*/*.eb \
-                                $prefix_contrib/p/*/*.eb $prefix_contrib/__archive__/p/*/*.eb \
-                                $prefix_container/p/*/*.eb $prefix_container/__archive__/p/*/*.eb \
+# Below: Letter p and all special packages as then we have a bit of everything to test.
+#for package_dir in $(/bin/ls -1 $prefix_stack/p/*/*.eb $prefix_stack/__archive__/p/*/*.eb $prefix_contrib/p/*/*.eb $prefix_contrib/__archive__/p/*/*.eb $prefix_container/p/*/*.eb $prefix_container/__archive__/p/*/*.eb $prefix_other/*/*/*.md | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sed -e 's|__archive__/||' sed -e 's|.*/other_packages/\(.*/.*\)/.*\.md|\1|' | sort -uf)
+for package_dir in $(/bin/ls -1 $prefix_stack/*/*/*.eb $prefix_stack/__archive__/*/*/*.eb \
+                                $prefix_contrib/*/*/*.eb $prefix_contrib/__archive__/*/*/*.eb \
+                                $prefix_container/*/*/*.eb $prefix_container/__archive__/*/*/*.eb \
                                 $prefix_other/*/*/*.md \
                      | sed -e 's|.*/easyconfigs/\(.*/.*\)/.*\.eb|\1|' | sed -e 's|__archive__/||' \
                      | sed -e 's|.*/other_packages/\(.*/.*\)/.*\.md|\1|' \
@@ -522,40 +614,18 @@ do
 
 		    >&2 echo "Processing $package/$version, generating $easyconfig_md..."
 
-            work=${stack_module_preamble/<name>/$package}
-            work=${work/<version>/$version}
-
             #
             # Generate the easyconfig file for $package/$version
             #
 
-            echo -e "---\ntitle: $package/$version ($easyconfig) - $package"     >$easyconfig_md
-            echo -e "search:\n  exclude: true"                                  >>$easyconfig_md
-            echo -e "hide:\n- navigation\n- toc\n---\n"                         >>$easyconfig_md
-            echo -e "[[$package]](index.md) [[package list]](../../index.md)\n" >>$easyconfig_md
-            echo -e "# $package/$version ($easyconfig)\n"                       >>$easyconfig_md
-            echo -e "$work\n"                                                   >>$easyconfig_md
-		    echo -e '``` python'                                                >>$easyconfig_md
-		    cat $file                                                           >>$easyconfig_md
-		    echo -e '\n```\n'                                                   >>$easyconfig_md
-            echo -e "[[$package]](index.md) [[package list]](../../index.md)"   >>$easyconfig_md
-            # Note the extra \n in front of the last ``` as otherwise files that do not end
-            # with a newline would cause trouble.
+            easyconfig_to_md "$file" "$easyconfig_md" "$stack_module_preamble"
 
             #
-            # Add the module / easyconfig to the package file
+            # Add the module / easyconfig to the package file:
             #
-
-            echo -e "-   [$package/$version (EasyConfig: $easyconfig)](${easyconfig/.eb/.md})" >>$package_file
-
-            #
-            # Add an empty line
-            #
-            echo >>$package_file
-
-            #
-            # Are there any #DOC lines to add?
-            #
+            # - Link to the EasyConfig page
+            echo -e "-   [$package/$version (EasyConfig: $easyconfig)](${easyconfig/.eb/.md})\n" >>$package_file
+            # - #DOC lines, if any
             add_easyconfig_docs $file $package_file "    "
 
         done # for file in ...
@@ -597,41 +667,17 @@ do
 
 		    >&2 echo "Processing $package/$version, generating $easyconfig_md..."
 
-            work=${contrib_module_preamble/<name>/$package}
-            work=${work/<version>/$version}
-            work=${work/<easyconfig>/$easyconfig}
-
             #
             # Generate the easyconfig file for $package/$version
             #
-
-            echo -e "---\ntitle: $package/$version ($easyconfig) - $package"     >$easyconfig_md
-            echo -e "search:\n  exclude: true"                                  >>$easyconfig_md
-            echo -e "hide:\n- navigation\n- toc\n---\n"                         >>$easyconfig_md
-            echo -e "[[$package]](index.md) [[package list]](../../index.md)\n" >>$easyconfig_md
-            echo -e "# $package/$version ($easyconfig)\n"                       >>$easyconfig_md
-            echo -e "$work\n"                                                   >>$easyconfig_md
-		    echo -e '``` python'                                                >>$easyconfig_md
-		    cat $file                                                           >>$easyconfig_md
-		    echo -e '\n```\n'                                                   >>$easyconfig_md
-            echo -e "[[$package]](index.md) [[package list]](../../index.md)"   >>$easyconfig_md
-            # Note the extra \n in front of the last ``` as otherwise files that do not end
-            # with a newline would cause trouble.
+            easyconfig_to_md "$file" "$easyconfig_md" "$contrib_module_preamble"
 
             #
             # Add the module / easyconfig to the package file
             #
-
-            echo -e "-   [EasyConfig $easyconfig, will build $package/$version](${easyconfig/.eb/.md})" >>$package_file
-
-            #
-            # Add an empty line
-            #
-            echo >>$package_file
-
-            #
-            # Are there any #DOC lines to add?
-            #
+            # - Link to the EasyConfig page
+            echo -e "-   [EasyConfig $easyconfig, will build $package/$version](${easyconfig/.eb/.md})\n" >>$package_file
+            # - #DOC lines, if any
             add_easyconfig_docs $file $package_file "    "
 
         done # for file in ...
@@ -674,26 +720,11 @@ do
 
 		    >&2 echo "Processing $package/$version, generating $easyconfig_md..."
 
-            work=${container_module_preamble/<name>/$package}
-            work=${work/<version>/$version}
-            work=${work/<easyconfig>/$easyconfig}
-
             #
             # Generate the easyconfig file for $package/$version
             #
 
-            echo -e "---\ntitle: $package/$version ($easyconfig) - $package"     >$easyconfig_md
-            echo -e "search:\n  exclude: true"                                  >>$easyconfig_md
-            echo -e "hide:\n- navigation\n- toc\n---\n"                         >>$easyconfig_md
-            echo -e "[[$package]](index.md) [[package list]](../../index.md)\n" >>$easyconfig_md
-            echo -e "# $package/$version ($easyconfig)\n"                       >>$easyconfig_md
-            echo -e "$work\n"                                                   >>$easyconfig_md
-		    echo -e '``` python'                                                >>$easyconfig_md
-		    cat $file                                                           >>$easyconfig_md
-		    echo -e '\n```\n'                                                   >>$easyconfig_md
-            echo -e "[[$package]](index.md) [[package list]](../../index.md)"   >>$easyconfig_md
-            # Note the extra \n in front of the last ``` as otherwise files that do not end
-            # with a newline would cause trouble.
+            easyconfig_to_md "$file" "$easyconfig_md" "$container_module_preamble"
 
             #
             # Add the module / easyconfig to the package file
@@ -711,23 +742,10 @@ do
             if [ -n "$local_docker" ]
             then
 
-                work=${container_docker_preamble/<name>/$package}
-                work=${work/<version>/$version}
-                work=${work/<dockerfile>/$local_docker}
+                # Generate the markdown version of the dockerfile
+                dockerfile_to_md "$file" "$local_docker" "$easyconfig_docker_md" "$container_docker_preamble"
 
-                echo -e "---\ntitle: $local_docker for $package/$version - $package"  >$easyconfig_docker_md
-                echo -e "search:\n  exclude: true"                                   >>$easyconfig_docker_md
-                echo -e "hide:\n- navigation\n- toc\n---\n"                          >>$easyconfig_docker_md
-                echo -e "[[$package]](index.md) [[package list]](../../index.md)\n"  >>$easyconfig_docker_md
-                echo -e "# $local_docker for $package/$version ($easyconfig)\n"      >>$easyconfig_docker_md
-                echo -e "$work\n"                                                    >>$easyconfig_docker_md
-                echo -e '``` docker'                                                 >>$easyconfig_docker_md
-                cat $prefix/$local_docker                                            >>$easyconfig_docker_md
-                echo -e '\n```\n'                                                    >>$easyconfig_docker_md
-                echo -e "[[$package]](index.md) [[package list]](../../index.md)"    >>$easyconfig_docker_md
-                # Note the extra \n in front of the last ``` as otherwise files that do not end
-                # with a newline would cause trouble.
-
+                # And add a link to it in the list of EasyConfigs.
                 echo -e "    (with [docker definition](${easyconfig/.eb/-docker.md}))" >>$package_file
 
             fi # if [ -n $local_docker ]
@@ -878,42 +896,18 @@ do
 
 		    >&2 echo "Processing $package/$version, generating $easyconfig_md..."
 
-            file_with_prefix="$package_dir/$easyconfig"
-            work=${stack_archived_module_preamble//<file_with_prefix>/$file_with_prefix}
-            work=${work//<name>/$package}
-            work=${work//<version>/$version}
-
             #
             # Generate the easyconfig file for $package/$version
             #
 
-            echo -e "---\ntitle: $package/$version ($easyconfig) - $package"     >$easyconfig_md
-            echo -e "search:\n  exclude: true"                                  >>$easyconfig_md
-            echo -e "hide:\n- navigation\n- toc\n---\n"                         >>$easyconfig_md
-            echo -e "[[$package]](index.md) [[package list]](../../index.md)\n" >>$easyconfig_md
-            echo -e "# $package/$version ($easyconfig)\n"                       >>$easyconfig_md
-            echo -e "$work\n"                                                   >>$easyconfig_md
-		    echo -e '``` python'                                                >>$easyconfig_md
-		    cat $file                                                           >>$easyconfig_md
-		    echo -e '\n```\n'                                                   >>$easyconfig_md
-            echo -e "[[$package]](index.md) [[package list]](../../index.md)"   >>$easyconfig_md
-            # Note the extra \n in front of the last ``` as otherwise files that do not end
-            # with a newline would cause trouble.
+            easyconfig_to_md "$file" "$easyconfig_md" "$stack_archived_module_preamble"
 
             #
             # Add the module / easyconfig to the package file
             #
-
-            echo -e "    -   [EasyConfig $easyconfig, with module $package/$version](${easyconfig/.eb/.md})" >>$package_file
-
-            #
-            # Add an empty line
-            #
-            echo >>$package_file
-
-            #
-            # Are there any #DOC lines to add?
-            #
+            # - Link to the EasyConfig page
+            echo -e "    -   [EasyConfig $easyconfig, with module $package/$version](${easyconfig/.eb/.md})\n" >>$package_file
+            # - #DOC lines, if any
             add_easyconfig_docs $file $package_file "        "
 
         done # for file in ...
@@ -951,42 +945,18 @@ do
 
 		    >&2 echo "Processing $package/$version, generating $easyconfig_md..."
 
-            file_with_prefix="$package_dir/$easyconfig"
-            work=${contrib_archived_module_preamble//<file_with_prefix>/$file_with_prefix}
-            work=${work//<name>/$package}
-            work=${work//<version>/$version}
-
             #
             # Generate the easyconfig file for $package/$version
             #
 
-            echo -e "---\ntitle: $package/$version ($easyconfig) - $package"     >$easyconfig_md
-            echo -e "search:\n  exclude: true"                                  >>$easyconfig_md
-            echo -e "hide:\n- navigation\n- toc\n---\n"                         >>$easyconfig_md
-            echo -e "[[$package]](index.md) [[package list]](../../index.md)\n" >>$easyconfig_md
-            echo -e "# $package/$version ($easyconfig)\n"                       >>$easyconfig_md
-            echo -e "$work\n"                                                   >>$easyconfig_md
-		    echo -e '``` python'                                                >>$easyconfig_md
-		    cat $file                                                           >>$easyconfig_md
-		    echo -e '\n```\n'                                                   >>$easyconfig_md
-            echo -e "[[$package]](index.md) [[package list]](../../index.md)"   >>$easyconfig_md
-            # Note the extra \n in front of the last ``` as otherwise files that do not end
-            # with a newline would cause trouble.
+            easyconfig_to_md "$file" "$easyconfig_md" "$contrib_archived_module_preamble"
 
             #
             # Add the module / easyconfig to the package file
             #
-
-            echo -e "    -   [EasyConfig $easyconfig, with module $package/$version](${easyconfig/.eb/.md})" >>$package_file
-
-            #
-            # Add an empty line
-            #
-            echo >>$package_file
-
-            #
-            # Are there any #DOC lines to add?
-            #
+            # - Link to the EasyConfig page
+            echo -e "    -   [EasyConfig $easyconfig, with module $package/$version](${easyconfig/.eb/.md})\n" >>$package_file
+            # - #DOC lines, if any
             add_easyconfig_docs $file $package_file "        "
 
         done # for file in ...
@@ -1023,27 +993,11 @@ do
 
 		    >&2 echo "Processing $package/$version, generating $easyconfig_md..."
 
-            file_with_prefix="$package_dir/$easyconfig"
-            work=${container_archived_module_preamble//<file_with_prefix>/$file_with_prefix}
-            work=${work//<name>/$package}
-            work=${work//<version>/$version}
-
             #
             # Generate the easyconfig file for $package/$version
             #
 
-            echo -e "---\ntitle: $package/$version ($easyconfig) - $package"     >$easyconfig_md
-            echo -e "search:\n  exclude: true"                                  >>$easyconfig_md
-            echo -e "hide:\n- navigation\n- toc\n---\n"                         >>$easyconfig_md
-            echo -e "[[$package]](index.md) [[package list]](../../index.md)\n" >>$easyconfig_md
-            echo -e "# $package/$version ($easyconfig)\n"                       >>$easyconfig_md
-            echo -e "$work\n"                                                   >>$easyconfig_md
-		    echo -e '``` python'                                                >>$easyconfig_md
-		    cat $file                                                           >>$easyconfig_md
-		    echo -e '\n```\n'                                                   >>$easyconfig_md
-            echo -e "[[$package]](index.md) [[package list]](../../index.md)"   >>$easyconfig_md
-            # Note the extra \n in front of the last ``` as otherwise files that do not end
-            # with a newline would cause trouble.
+            easyconfig_to_md "$file" "$easyconfig_md" "$container_archived_module_preamble"
 
             #
             # Add the module / easyconfig to the package file
@@ -1061,23 +1015,10 @@ do
             if [ -n $local_docker ]
             then
 
-                work=${container_docker_preamble/<name>/$package}
-                work=${work/<version>/$version}
-                work=${work/<dockerfile>/$local_docker}
+                # Generate a markdown page for the dockerfile
+                dockerfile_to_md "$file" "$local_docker" "${easyconfig_docker_md}2" "$container_docker_preamble"
 
-                echo -e "---\ntitle: $local_docker for $package/$version - $package"  >$easyconfig_docker_md
-                echo -e "search:\n  exclude: true"                                   >>$easyconfig_docker_md
-                echo -e "hide:\n- navigation\n- toc\n---\n"                          >>$easyconfig_docker_md
-                echo -e "[[$package]](index.md) [[package list]](../../index.md)\n"  >>$easyconfig_docker_md
-                echo -e "# $local_docker for $package/$version ($easyconfig)\n"      >>$easyconfig_docker_md
-                echo -e "$work\n"                                                    >>$easyconfig_docker_md
-                echo -e '``` docker'                                                 >>$easyconfig_docker_md
-                cat $prefix/$local_docker                                            >>$easyconfig_docker_md
-                echo -e '\n```\n'                                                    >>$easyconfig_docker_md
-                echo -e "[[$package]](index.md) [[package list]](../../index.md)"    >>$easyconfig_docker_md
-                # Note the extra \n in front of the last ``` as otherwise files that do not end
-                # with a newline would cause trouble.
-
+                # And add a link to it in the list of EasyConfigs.
                 echo -e " (with [docker definition](${easyconfig/.eb/-docker.md}))" >>$package_file
 
             fi # if [ -n $local_docker ]
