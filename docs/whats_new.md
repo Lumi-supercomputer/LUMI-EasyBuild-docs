@@ -11,7 +11,7 @@ hide:
 ## Release 20240301
 
 -   [VASP](v/VASP/index.md): VASP 6.4.2 for cpeGNU/23.09.
--   Bug fixes in the [rocm containers](r/rocm/index.md)
+-   Fixes for the binding issues in the [rocm containers](r/rocm/index.md)
 -   New documentation feature: We can now add some documentation to individual EasyConfigs
     to make it more clear which EasyConfig offers what features. See, e.g., 
     [PyTorch](p/PyTorch/index.md).
