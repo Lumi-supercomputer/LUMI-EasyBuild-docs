@@ -8,6 +8,11 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20240308
+
+-   [JAX](c/jax/index.md): Containers made available through EasyBuild-generated modules
+-   [Quantum ESPRESSO](q/QuantumESPRESSO/index.md): EasyConfigs for' LUMI/23.09'.
+
 ## Release 20240301
 
 -   [VASP](v/VASP/index.md): VASP 6.4.2 for cpeGNU/23.09.
