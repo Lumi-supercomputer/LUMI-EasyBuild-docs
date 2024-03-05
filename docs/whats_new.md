@@ -10,8 +10,17 @@ hide:
 
 ## Release 20240308
 
+-   EasyBuild module for `LUMI/23.09` now also loads 
+    [EasyBuild-tools](e/EasyBuild-tools/index.md) with extra tools that might be needed 
+    for some EasyConfigs.
 -   [JAX](c/jax/index.md): Containers made available through EasyBuild-generated modules
--   [Quantum ESPRESSO](q/QuantumESPRESSO/index.md): EasyConfigs for' LUMI/23.09'.
+-   Improved documentation for the [PyTorch containers](p/PyTorch/index.md), 
+    and initial steps to offer containers that support a Python virtual environment for 
+    adding packages out-of-the-box.
+-   [Quantum ESPRESSO](q/QuantumESPRESSO/index.md) and
+    [NAMD 2.14](n/NAMD/index.md): EasyConfigs for `LUMI/23.09`.
+-   New EasyConfig for a GPU-enabled [PETSc](p/PETSc/index.md) with the Cray toolchain  
+
 
 ## Release 20240301
 
