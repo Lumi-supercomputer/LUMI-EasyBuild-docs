@@ -43,9 +43,11 @@ jobs:
       - name: Checkout specific tags.
         run: |
           git config --global advice.detachedHead false
-          cd $GITHUB_WORKSPACE/LUMI-SoftwareStack        && git checkout tags/${{ github.event.ref }}
-          cd $GITHUB_WORKSPACE/LUMI-EasyBuild-contrib    && git checkout tags/${{ github.event.ref }}
-          cd $GITHUB_WORKSPACE/LUMI-EasyBuild-containers && git checkout tags/${{ github.event.ref }}
+          tag=${{ github.event.ref }}
+          tag=${tag##*tags/}
+          cd $GITHUB_WORKSPACE/LUMI-SoftwareStack        && git checkout tags/$tag
+          cd $GITHUB_WORKSPACE/LUMI-EasyBuild-contrib    && git checkout tags/$tag
+          cd $GITHUB_WORKSPACE/LUMI-EasyBuild-containers && git checkout tags/$tag
 
       - name: set up Python
         uses: actions/setup-python@v4
@@ -61,9 +63,13 @@ jobs:
         # We do a build first to ensure that building works as expected.
         # We don't use --strict as we do want to ignore some warnings.
         run: |
-          cd LUMI-EasyBuild-docs && make build TAG=${{ github.event.ref }}
+          tag=${{ github.event.ref }}
+          tag=${tag##*tags/}
+          cd LUMI-EasyBuild-docs && make build TAG=$tag
 
       - name: deploy docs
         run: |
-          cd LUMI-EasyBuild-docs && make deploy-origin TAG=${{ github.event.ref }}
+          tag=${{ github.event.ref }}
+          tag=${tag##*tags/}
+          cd LUMI-EasyBuild-docs && make deploy-origin TAG=$tag
 
