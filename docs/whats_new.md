@@ -10,15 +10,23 @@ hide:
 
 ## Release 20240308
 
+-   `rocm/5.4.6` module in `CrayEnv` and `LUMI/23.09 partition/G` as we notice too
+    much problems with `rocm/5.6.1` on the current driver version. ROCm 5.4.x is the last
+    supported ROCm version on the driver that we have, but that does not mean that 
+    5.4.x will always work correctly with the HPE Cray PE as that one is mostly tested
+    with ROCm 5.2 on the current OS version of LUMI and ROCm 5.5 on SUSE 15 SP5.
 -   EasyBuild module for `LUMI/23.09` now also loads 
     [EasyBuild-tools](e/EasyBuild-tools/index.md) with extra tools that might be needed 
     for some EasyConfigs.
--   [JAX](c/jax/index.md): Containers made available through EasyBuild-generated modules
+-   [JAX](j/jax/index.md): Containers made available through EasyBuild-generated modules
 -   Improved documentation for the [PyTorch containers](p/PyTorch/index.md), 
     and initial steps to offer containers that support a Python virtual environment for 
     adding packages out-of-the-box.
--   [Quantum ESPRESSO](q/QuantumESPRESSO/index.md) and
+-   [Quantum ESPRESSO](q/QuantumESPRESSO/index.md),
+    [GROMACS 2024.1](g/GROMACS/index.md) and
     [NAMD 2.14](n/NAMD/index.md): EasyConfigs for `LUMI/23.09`.
+    An initial effort to compile [NAMD 3.0b6](n/NAMD/index.md) with GPU support is also included.
+    Due to the beta nature of this package, problems are to be expected.
 -   New EasyConfig for a GPU-enabled [PETSc](p/PETSc/index.md) with the Cray toolchain  
 
 
