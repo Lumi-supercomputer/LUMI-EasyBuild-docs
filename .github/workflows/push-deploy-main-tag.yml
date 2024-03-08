@@ -1,6 +1,6 @@
 ---
 # documentation: https://help.github.com/en/articles/workflow-syntax-for-github-actions
-name: tag-based manual deploy of the LUMI Software Library
+name: tag-based on pupsh automatic deploy of the LUMI Software Library
 on:  
   push:
     tags:
