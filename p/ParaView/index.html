@@ -1,0 +1,1985 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for the LUMI software library">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.11">
+    
+    
+      
+        <title>ParaView - LUMI Software Library</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fad675c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.356b1318.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+  
+      
+
+    
+
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document.body.addEventListener("click", function(ev) {
+        if (ev.target instanceof HTMLElement) {
+          var el = ev.target.closest("a[href^=http]")
+          if (el)
+            ga("send", "event", "outbound", "click", el.href)
+        }
+      })
+    })
+  </script>
+
+    
+    
+
+  
+  
+  
+    
+  
+
+  
+  
+
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="LUMI Software Library - ParaView" />
+  <meta property="og:description" content="Documentation for the LUMI software library" />
+  <meta property="og:url" content="None" />
+  <meta property="og:image" content="assets/images/banner.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1080" />
+  <meta property="og:image:height" content="568" />
+
+  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@LUMIhpc" />
+  <meta name="twitter:creator" content="@LUMIhpc" />
+  <meta name="twitter:title" content="LUMI Software Library - ParaView" />
+  <meta name="twitter:description" content="Documentation for the LUMI software library" />
+  <meta name="twitter:image" content="assets/images/banner.png" />
+
+  <style>
+    [data-md-color-primary="lumi"] {
+      --md-primary-fg-color: hsla(0, 0%, 100%, 1);
+      --md-primary-fg-color--light: hsla(0, 0%, 100%, 0.7);
+      --md-primary-fg-color--dark: hsla(0, 0%, 0%, 0.07);
+      --md-primary-bg-color: hsla(0, 0%, 0%, 0.87);
+      --md-primary-bg-color--light: hsla(0, 0%, 0%, 0.54);
+      --md-button-bg-color: hsla(207,100%,28%, 1);
+      --md-button-bg-color--light: hsla(207,100%,38%, 1);
+      --md-typeset-a-color: hsla(207,100%,28%, 1);
+    }
+    
+    [data-md-color-accent="lumi"] {
+      --md-accent-fg-color: hsla(0,0%,0%, 1);
+      --md-accent-fg-color--transparent: hsla(0,0%,0%, 0.1);
+      --md-accent-bg-color: hsla(0, 0%, 100%, 1);
+      --md-accent-bg-color--light: hsla(0, 0%, 100%, 0.7);
+    }
+  </style>
+
+  
+
+
+  
+  
+
+    <link
+      rel="stylesheet"
+      href="../../assets/stylesheets/extra-a8af0af3d0.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../assets/stylesheets/overrides-5193e6f6df.css"
+    />
+    <link
+      rel="stylesheet"
+      id="typekit-fonts-css"
+      href="https://use.typekit.net/nlo5lta.css?ver=5.5.3"
+      type="text/css" media="all"
+    />
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="lumi" data-md-color-accent="lumi">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#paraview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="LUMI Software Library" class="md-header__button md-logo" aria-label="LUMI Software Library" data-md-component="logo">
+      
+  
+  <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 723 212" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="Layer-2" serif:id="Layer 2">
+        <g transform="matrix(1,0,0,1,0,175.883)">
+            <path d="M0,-140.304L0,0L102.89,0L102.89,-24.599L26.658,-24.599L26.658,-140.304L0,-140.304Z" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,257.262,35.5793)">
+            <path d="M0,140.304C-17.585,140.304 -32.083,135.347 -43.588,125.338C-55,115.423 -60.799,103.357 -60.799,89.14L-60.799,0L-34.328,0L-34.328,81.563C-34.328,92.413 -31.054,100.645 -24.319,105.976C-17.866,111.12 -9.728,113.74 0,113.74C9.728,113.74 17.865,111.12 24.319,105.976C31.054,100.645 34.328,92.413 34.328,81.563L34.328,0L60.799,0L60.799,89.14C60.799,103.357 55.093,115.329 43.588,125.338C32.083,135.347 17.585,140.304 0,140.304" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,550.374,119.668)">
+            <path d="M0,-27.874L-43.588,20.671L-87.176,-27.874L-87.176,56.215L-113.74,56.215L-113.74,-84.089L-105.695,-84.089L-43.588,-13.47L18.614,-84.089L26.658,-84.089L26.658,56.215L0.094,56.215L0,-27.874Z" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <rect x="695.604" y="35.486" width="26.658" height="140.397" style="fill:rgb(29,29,27);"/>
+        <g transform="matrix(-1,0,0,1,722.262,-203.194)">
+            <rect x="0" y="203.194" width="722.262" height="8.175" style="fill:rgb(29,29,27);"/>
+        </g>
+        <g transform="matrix(-1,0,0,1,722.262,203.194)">
+            <rect x="0" y="0" width="722.262" height="8.175" style="fill:rgb(29,29,27);"/>
+        </g>
+    </g>
+</svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LUMI Software Library
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ParaView
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#a" class="md-tabs__link">
+        
+  
+    
+  
+  a
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#b" class="md-tabs__link">
+        
+  
+    
+  
+  b
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#c" class="md-tabs__link">
+        
+  
+    
+  
+  c
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#d" class="md-tabs__link">
+        
+  
+    
+  
+  d
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#e" class="md-tabs__link">
+        
+  
+    
+  
+  e
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#f" class="md-tabs__link">
+        
+  
+    
+  
+  f
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#g" class="md-tabs__link">
+        
+  
+    
+  
+  g
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#h" class="md-tabs__link">
+        
+  
+    
+  
+  h
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#i" class="md-tabs__link">
+        
+  
+    
+  
+  i
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#j" class="md-tabs__link">
+        
+  
+    
+  
+  j
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#k" class="md-tabs__link">
+        
+  
+    
+  
+  k
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#l" class="md-tabs__link">
+        
+  
+    
+  
+  l
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#m" class="md-tabs__link">
+        
+  
+    
+  
+  m
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#n" class="md-tabs__link">
+        
+  
+    
+  
+  n
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#o" class="md-tabs__link">
+        
+  
+    
+  
+  o
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#p" class="md-tabs__link">
+        
+  
+    
+  
+  p
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#q" class="md-tabs__link">
+        
+  
+    
+  
+  q
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#r" class="md-tabs__link">
+        
+  
+    
+  
+  r
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#s" class="md-tabs__link">
+        
+  
+    
+  
+  s
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#t" class="md-tabs__link">
+        
+  
+    
+  
+  t
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#u" class="md-tabs__link">
+        
+  
+    
+  
+  u
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#v" class="md-tabs__link">
+        
+  
+    
+  
+  v
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#w" class="md-tabs__link">
+        
+  
+    
+  
+  w
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#x" class="md-tabs__link">
+        
+  
+    
+  
+  x
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#y" class="md-tabs__link">
+        
+  
+    
+  
+  y
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#z" class="md-tabs__link">
+        
+  
+    
+  
+  z
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../known_issues/" class="md-tabs__link">
+        
+  
+    
+  
+  Issues
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../whats_new/" class="md-tabs__link">
+        
+  
+    
+  
+  New
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LUMI Software Library" class="md-nav__button md-logo" aria-label="LUMI Software Library" data-md-component="logo">
+      
+  
+  <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 723 212" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="Layer-2" serif:id="Layer 2">
+        <g transform="matrix(1,0,0,1,0,175.883)">
+            <path d="M0,-140.304L0,0L102.89,0L102.89,-24.599L26.658,-24.599L26.658,-140.304L0,-140.304Z" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,257.262,35.5793)">
+            <path d="M0,140.304C-17.585,140.304 -32.083,135.347 -43.588,125.338C-55,115.423 -60.799,103.357 -60.799,89.14L-60.799,0L-34.328,0L-34.328,81.563C-34.328,92.413 -31.054,100.645 -24.319,105.976C-17.866,111.12 -9.728,113.74 0,113.74C9.728,113.74 17.865,111.12 24.319,105.976C31.054,100.645 34.328,92.413 34.328,81.563L34.328,0L60.799,0L60.799,89.14C60.799,103.357 55.093,115.329 43.588,125.338C32.083,135.347 17.585,140.304 0,140.304" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,550.374,119.668)">
+            <path d="M0,-27.874L-43.588,20.671L-87.176,-27.874L-87.176,56.215L-113.74,56.215L-113.74,-84.089L-105.695,-84.089L-43.588,-13.47L18.614,-84.089L26.658,-84.089L26.658,56.215L0.094,56.215L0,-27.874Z" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <rect x="695.604" y="35.486" width="26.658" height="140.397" style="fill:rgb(29,29,27);"/>
+        <g transform="matrix(-1,0,0,1,722.262,-203.194)">
+            <rect x="0" y="203.194" width="722.262" height="8.175" style="fill:rgb(29,29,27);"/>
+        </g>
+        <g transform="matrix(-1,0,0,1,722.262,203.194)">
+            <rect x="0" y="0" width="722.262" height="8.175" style="fill:rgb(29,29,27);"/>
+        </g>
+    </g>
+</svg>
+
+    </a>
+    LUMI Software Library
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#a" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    a
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#b" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    b
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#c" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    c
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#d" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    d
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#e" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    e
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#f" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    f
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#g" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    g
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#h" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    h
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#i" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    i
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#j" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    j
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#k" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    k
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#l" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    l
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#m" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    m
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#n" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    n
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#o" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    o
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#p" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    p
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#q" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    q
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#r" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    r
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#s" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    s
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#t" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    t
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#u" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    u
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#v" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    v
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#w" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    w
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#x" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    x
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#y" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    y
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#z" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    z
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../known_issues/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Issues
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../whats_new/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    New
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#license-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      License information
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      User documentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="User documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#download-and-install-the-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download and install the client
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-the-server-on-lumi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start the server on LUMI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup-the-ssh-tunnel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup the SSH tunnel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-to-the-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connect to the server
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-installable-modules-and-easyconfigs" class="md-nav__link">
+    <span class="md-ellipsis">
+      User-installable modules (and EasyConfigs)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technical-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Technical documentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Technical documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#easybuild" class="md-nav__link">
+    <span class="md-ellipsis">
+      EasyBuild
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EasyBuild">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#version-5101-for-cpe-2208" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version 5.10.1 for CPE 22.08
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<p><a href="../../">[package list]</a></p>
+<h1 id="paraview">ParaView</h1>
+<p><span class='lumi-software-button-userinstallable-hover'><span class='lumi-software-button-userinstallable'></span></span></p>
+<h2 id="license-information">License information</h2>
+<p>ParaView is distributed under the
+<a href="https://opensource.org/licenses/BSD-3-Clause">3-Clause BSD License</a>.
+Some packages leveraged by ParaView have different licenses.
+The exact licensr formulation for Paraview and those packages can
+be found on the 
+<a href="https://www.paraview.org/license/">"ParaView License" page of the ParaView web site</a>.</p>
+<h2 id="user-documentation">User documentation</h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>ParaView should be part of the central software stack when the data
+analytics and visualization partition (LUMI-D) is available. For the
+time being, this partition is not available and ParaView is only available
+as a user-installable EasyBuild recipe. Due to the LUMI-D unavailability
+only software (CPU) rendering is available.</p>
+</div>
+<p>ParaView is an open-source, multi-platform data analysis and visualization
+application. ParaView users can quickly build visualizations to analyze their
+data using qualitative and quantitative techniques. The data exploration can be
+done interactively in 3D or programmatically using ParaView’s batch processing
+capabilities.</p>
+<p>ParaView was developed to analyze extremely large datasets using distributed
+memory computing resources. It can be run on supercomputers to analyze datasets
+of petascale size as well as on laptops for smaller data, has become an integral
+tool in many national laboratories, universities and industry, and has won
+several awards related to high performance computation.</p>
+<ul>
+<li><a href="https://www.paraview.org/">ParaView website</a></li>
+<li><a href="https://www.paraview.org/tutorials/">ParaView tutorials</a></li>
+<li><a href="https://docs.paraview.org/en/v5.10.1/index.html">ParaView documentation</a></li>
+</ul>
+<h3 id="installation">Installation</h3>
+<p>ParaView is available as a user-installable EasyBuild recipe. This recipe will 
+only compile the server components (<code>pvserver</code>, <code>pvbatch</code>, <code>pvpython</code>, ...).</p>
+<p>Compilation of ParaView takes a long time. We present two options: </p>
+<ul>
+<li>using 32 cores, on the login node, the entire compilation process takes more
+  or less 1 hour 10 minutes but will not consume billing units</li>
+<li>using 128 cores, on a compute node is slightly faster, the entire compilation 
+  process takes more or less 45 minutes but will use billing units 
+  (96 core-hours).</li>
+</ul>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">On a login node</label><label for="__tabbed_1_2">On the compute node</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>To compile on the login node, first prepare your environment:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>module<span class="w"> </span>load<span class="w"> </span>LUMI/22.08
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>module<span class="w"> </span>purge
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>module<span class="w"> </span>load<span class="w"> </span>partition/C
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>module<span class="w"> </span>load<span class="w"> </span>EasyBuild-user
+</code></pre></div>
+<p>This setup, prepare your environment to compile a ParaView installation
+optimized for the compute node (<code>partition/C</code>). By default, ParaView will be
+installed in <code>$HOME/EasyBuild</code> and will only be accessible by you. If you 
+want to do an installation available to all the members of your project, set 
+the <code>EBU_USER_PREFIX</code> environment variable:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">EBU_USER_PREFIX</span><span class="o">=</span>/project/project_46XXXXXXX/EasyBuild
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>module<span class="w"> </span>load<span class="w"> </span>EasyBuild-user
+</code></pre></div>
+<p>where you have to change the <code>project_46XXXXXXX</code> value to your actual 
+project number. </p>
+<p>The last step is to install ParaView with the command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>eb<span class="w"> </span>--parallel<span class="o">=</span><span class="m">32</span><span class="w"> </span>-r<span class="w"> </span>ParaView-5.10.1-cpeGNU-22.08.eb
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Below is a script to compile ParaView on a compute node. Copy the content of
+this script in a file named <code>build-paraview.sh</code>.</p>
+<div class="highlight"><span class="filename">build-paraview.sh</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># !!! CHANGE ME !!!</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nv">project</span><span class="o">=</span>project_46XXXXXXX
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1"># Un-comment this export to install in your project directory</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># By default installation is done in $HOME/EasyBuild</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1">#export EBU_USER_PREFIX=/project/${project}/EasyBuild</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>module<span class="w"> </span>load<span class="w"> </span>LUMI/22.08
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>module<span class="w"> </span>purge
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>module<span class="w"> </span>load<span class="w"> </span>partition/C
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>module<span class="w"> </span>load<span class="w"> </span>EasyBuild-user
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="c1"># Compute nodes do not have internet access</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="c1"># As a consequence we first download all the</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="c1"># sources on the login node</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>eb<span class="w"> </span>--stop<span class="o">=</span>fetch<span class="w"> </span>-r<span class="w"> </span>ParaView-5.10.1-cpeGNU-22.08.eb
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Submitting job&quot;</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>sbatch<span class="w"> </span><span class="s">&lt;&lt;EOF</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="s">#!/bin/bash</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="s">#SBATCH --partition=small</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="s">#SBATCH --account=${project}</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="s">#SBATCH --job-name=paraview-build</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="s">#SBATCH --time=01:00:00</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="s">#SBATCH --nodes=1</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="s">#SBATCH --mem=0</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="s">#SBATCH --cpus-per-task=128</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="s">module load LUMI/22.08</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="s">module purge</span>
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="s">module load partition/C</span>
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="s">module load EasyBuild-user</span>
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>
+<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="s">eb --parallel \${SLURM_CPUS_PER_TASK} -r \</span>
+<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="s">  ParaView-5.10.1-cpeGNU-22.08.eb</span>
+<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>
+<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a><span class="s">EOF</span>
+<a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>
+<a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Done&quot;</span>
+</code></pre></div>
+<p>Next, make the script executable and execute it.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>chmod +x ./build-paraview.sh
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>./build-paraview.sh
+</code></pre></div>
+<p>A job will be submitted to a compute node. ParaView will be usable after 
+this job successfully complete.</p>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The instruction presented above load the <code>partition/C</code> module to generate
+ParaView binaries optimized for the compute node. These binaries should run
+without any problem on the login nodes. The default partition module on the 
+login nodes is <code>partition/L</code> so, loading ParaView module from a login node
+is done by loading the following modules:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>module load LUMI/22.08
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>module load partition/C
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>module load ParaView
+</code></pre></div>
+<p>while, from the compute node where <code>partition/C</code> is the default this is done
+by loading</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>module load LUMI/22.08
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>module load ParaView
+</code></pre></div>
+</div>
+<h3 id="usage">Usage</h3>
+<p>The intended usage of ParaView on LUMI is in a client-server configuration:</p>
+<ul>
+<li>the server runs on a login or a compute node on LUMI</li>
+<li>a matching client (same version) runs on your local machine</li>
+<li>all data processing and rendering are handled by the server</li>
+</ul>
+<h4 id="download-and-install-the-client">Download and install the client</h4>
+<p>The first step is to install the ParaView client with the same version as the
+server on your local machine. How to install the client is beyond the scope of 
+this documentation. Generally speaking, it boils down to running the installer 
+that you can download here:</p>
+<ul>
+<li><a href="https://www.paraview.org/paraview-downloads/download.php?submit=Download&amp;version=v5.10&amp;type=binary&amp;os=macOS&amp;downloadFile=ParaView-5.10.1-MPI-OSX11.0-Python3.9-arm64.pkg">5.10.1 client for MacOS (M1)</a></li>
+<li><a href="https://www.paraview.org/paraview-downloads/download.php?submit=Download&amp;version=v5.10&amp;type=binary&amp;os=macOS&amp;downloadFile=ParaView-5.10.1-MPI-OSX10.13-Python3.9-x86_64.pkg">5.10.1 client for MacOS (Intel)</a></li>
+<li><a href="https://www.paraview.org/paraview-downloads/download.php?submit=Download&amp;version=v5.10&amp;type=binary&amp;os=Windows&amp;downloadFile=ParaView-5.10.1-Windows-Python3.9-msvc2017-AMD64.exe">5.10.1 client for Windows</a></li>
+<li><a href="https://www.paraview.org/paraview-downloads/download.php?submit=Download&amp;version=v5.10&amp;type=binary&amp;os=Linux&amp;downloadFile=ParaView-5.10.1-MPI-Linux-Python3.9-x86_64.tar.gz">5.10.1 client for Linux</a></li>
+</ul>
+<h4 id="start-the-server-on-lumi">Start the server on LUMI</h4>
+<div class="admonition failure">
+<p class="admonition-title">Occasional failure on the small partition</p>
+<p>When submitting a job to the small partition, the MPI initialization may
+fail with a "<em>Adress already in use</em>" message. Workaround is to exclude 
+the bad node when submitting the job with the <code>--exclude=nid00XXXX</code> option, 
+where <code>nid00XXXX</code> is the node where the failure occurs. You can exclude
+multiple nodes with commas separated a list: <code>--exclude=nid00XXXX, nid00YYYY</code>.</p>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">On a compute node</label><label for="__tabbed_2_2">On a login node</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>One option to start a ParaView server on a compute node is use an 
+interactive session:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>module load LUMI/22.08
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>module load partition/C
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>module load ParaView
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>srun --partition=small --account=project_46XXXXXXX \
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>     --ntasks=8 --mem=16G --time=01:00:00 \
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>     --pty pvserver
+</code></pre></div>
+<p>Here we start a server on 8 processes and 16GB of memory. Don't forget to
+change the value <code>project_46XXXXXXX</code> to your project number. </p>
+<p>Another option is to start the server in a batch job. Here is an example
+job script:</p>
+<div class="highlight"><span class="filename">start-pvserver.job</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="c1">#SBATCH --job-name=paraview-server</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="c1">#SBATCH --account=project_46XXXXXXX</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1">#SBATCH --partition=small</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1">#SBATCH --ntasks=8 </span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="c1">#SBATCH --mem=16G</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1">#SBATCH --time=01:00:00</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>module<span class="w"> </span>load<span class="w"> </span>LUMI/22.08
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>module<span class="w"> </span>load<span class="w"> </span>ParaView
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>srun<span class="w"> </span>--unbuffered<span class="w"> </span>pvserver
+</code></pre></div>
+<p>You can start the batch job by submitting it with <code>sbatch</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a> $ sbatch start-pvserver.job
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Submitted batch job 123456
+</code></pre></div>
+<p>Then in order to gather the information necessary to create the SSH tunnel
+(see nect section) we look at the content of the output file.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a> $ squeue --me
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>  JOBID PARTITION     NAME     USER ST  TIME  NODES NODELIST(REASON)
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a> 123456     small paraview  lumiusr  R  0:10      1 nid002092
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a> $ cat slurm-123456.out
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>Waiting for client...
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>Connection URL: cs://nid002092:11111
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>Accepting connection(s): nid002092:11111
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>The ParaView server (<code>pvserver</code>) can be run on the login node but you will be
+limited to only one process: running the server on the login node <strong>is only 
+suitable for small dataset</strong>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>module load LUMI/22.08
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>module load partition/C
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>module load ParaView
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>pvserver --no-mpi
+</code></pre></div>
+<p>Once the server has started you will see a message looking like this:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Waiting for client...
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>Connection URL: cs://uan02:11111
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>Accepting connection(s): uan02:11111
+</code></pre></div>
+<p>This message is important because it provide the information necessary to
+create the SSH tunnel as described in the next section.</p>
+</div>
+</div>
+</div>
+<h4 id="setup-the-ssh-tunnel">Setup the SSH tunnel</h4>
+<p>Once the server is started, we need to create an SSH tunnel from your local 
+machine to the node where the server is running. Here we assume you have an
+entry for LUMI in your <code>.ssh/config</code> named <code>lumi</code>.</p>
+<p>To create the tunnel, you have to run a command <strong>on your local machine</strong> that 
+looks like:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>ssh -N -L &lt;port&gt;:&lt;host&gt;:&lt;port&gt; lumi
+</code></pre></div>
+<p>where <code>&lt;host&gt;</code> is the node on which the server is running, i.e., <code>uanXX</code> if you 
+started the server on a login node or <code>nid00XXXX</code> if it runs on a compute node.
+For example, if at server startup the output was</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Waiting for client...
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>Connection URL: cs://nid002211:11111
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>Accepting connection(s): nid002211:11111
+</code></pre></div>
+<p>then, the value of <code>&lt;port&gt;</code> is <code>11111</code> and the value of <code>&lt;host&gt;</code> is <code>nid002211</code>
+so that the command to create the SSH tunnel will be</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>ssh -N -L 11111:nid002211:11111 lumi
+</code></pre></div>
+<h4 id="connect-to-the-server">Connect to the server</h4>
+<div class="admonition failure">
+<p class="admonition-title">Potential connection failure</p>
+<p>Sometimes connection to the server fails when the server is executed from a
+login node. See the information 
+<a href="#login-node-workaround">at the end of this section</a>
+for more information and a workaround.</p>
+</div>
+<p>The last step is to connect the client running on your local machine to the 
+server running on LUMI. To this end, select <em>File</em> &#x2192; <em>Connect...</em>. You 
+should already have a configuration suitable configuration by default, i.e.,
+a configuration to connect to a server at address <code>cs://localhost:11111</code>. If 
+indeed this is the case, and that <code>11111</code> is the port you use, select this 
+configuration and click <em>Connect</em>. The instruction that follow are here in case
+you need to create a new configuration.</p>
+<p>First, go to <em>File</em> &#x2192; <em>Connect...</em> and click <em>Add Server</em>.</p>
+<figure>
+  <img 
+    src="files/paraview-step1.png"
+    width="900"
+    alt="ParaView connection step 1"
+  >
+</figure>
+
+<p>Choose a name for the configuration, for example, <em>LUMI</em>, then:</p>
+<ul>
+<li>for the server type choose <em>Client/Server</em></li>
+<li>for the host <em>localhost</em></li>
+<li>for the port, use the value provided at server startup. </li>
+</ul>
+<p>Next, click <em>Configure</em>. In the next dialog box, choose <em>Manual</em> for the startup
+type then click <em>Save</em>.</p>
+<figure>
+  <img 
+    src="files/paraview-step2.png"
+    width="450"
+    alt="ParaView connection step 2"
+  >
+</figure>
+
+<p>To connect, select the newly created configuration and click <em>Connect</em>.</p>
+<figure>
+  <img 
+    src="files/paraview-step3.png"
+    width="450"
+    alt="ParaView connection step 3"
+  >
+</figure>
+
+<p>The client should now be connected to the server and the server should print 
+<em>Client connected</em>. Another way to check if the connection is successful is 
+to look at the connection information visible from the menu <em>Help</em> &#x2192; 
+<em>About</em> and selecting the <em>Connection Information</em> tab.</p>
+<figure>
+  <img 
+    src="files/paraview-connect-info.png"
+    width="450"
+    alt="ParaView connection information"
+  >
+</figure>
+
+<p>Now that the server is connected, all data processing and rendering are handled
+by the server instead of the local client.</p>
+<p>Disconnecting the client from the server is done via <em>File</em> &#x2192; 
+<em>Disconnect...</em>. The server will exit when you disconnect, i.e., if you 
+submitted a job, it should end. However, we recommended you to check that this
+is indeed the case to avoid wasting your cpu-hours allocation. </p>
+<p><span id="login-node-workaround"></span></p>
+<div class="admonition failure">
+<p class="admonition-title">Potential connection failure</p>
+<p>When running the server on the login node, the client may fail to connect
+with the following error message:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Connection failed during handshake. vtkSocketCommunicator::GetVersion()
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>returns different values on the two connecting processes
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>(Current value: 100).
+</code></pre></div>
+<p>Contrary to what this message seems to indicate, it is not a version 
+mismatch problem. The problem is that the host name is not fully qualified 
+domain name (FQDN) of the login node. A workaround is to use a FQDN of the
+login node instead of <code>uanXX</code> when creating the SSH tunnel. The FQDN can be
+obtained with the <code>hostname -A</code> command. For example, for a server running 
+on <code>uan01</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a> $ hostname -A
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>ln01-nmn nid50823968 nid50823968 uan01.can
+</code></pre></div>
+<p>then, create the SSH tunnel using</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>ssh -N -L 11111:nid50823968:11111 lumi
+</code></pre></div>
+</div>
+<h2 id="user-installable-modules-and-easyconfigs">User-installable modules (and EasyConfigs)</h2>
+<p>Install with the EasyBuild-user module:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>eb &lt;easyconfig&gt; -r
+</code></pre></div>
+To access module help after installation and get reminded for which stacks and partitions the module is
+installed, use <code>module spider ParaView/&lt;version&gt;</code>.</p>
+<p>EasyConfig:</p>
+<ul>
+<li><a href="ParaView-5.10.1-cpeGNU-22.08/">EasyConfig ParaView-5.10.1-cpeGNU-22.08.eb, will build ParaView/5.10.1-cpeGNU-22.08</a></li>
+</ul>
+<h2 id="technical-documentation">Technical documentation</h2>
+<ul>
+<li>
+<p><a href="https://www.paraview.org/">ParaView web site</a></p>
+<ul>
+<li><a href="https://docs.paraview.org/en/latest/">ParaView Documentation</a></li>
+</ul>
+</li>
+<li>
+<p><a href="https://gitlab.kitware.com/paraview/paraview">ParaView Git repository</a></p>
+</li>
+</ul>
+<h3 id="easybuild">EasyBuild</h3>
+<ul>
+<li>
+<p><a href="https://github.com/easybuilders/easybuild-easyconfigs/tree/develop/easybuild/easyconfigs/p/ParaView">ParaView support in the EasyBuilders repository</a></p>
+</li>
+<li>
+<p><a href="https://github.com/eth-cscs/production/tree/master/easybuild/easyconfigs/p/ParaView">ParaView support in the CSCS repository</a></p>
+</li>
+</ul>
+<h4 id="version-5101-for-cpe-2208">Version 5.10.1 for CPE 22.08</h4>
+<p>Created from scratch for LUMI. Some remarks about the build configuration:</p>
+<ul>
+<li>Need <code>CMAKE_SHARED_LINKER_FLAGS=-lpthread</code> to prevent build failure of protobuf</li>
+<li>Built with FFmpeg support as it's available in the central software stack.
+    However, the build fails due to API changes in version 5.x of FFmpeg. Created
+    a patch based of this VTK <a href="https://gitlab.kitware.com/vtk/vtk/-/commit/34276346ac379fecbd615322f18de837bd2c9ea2">pull request</a>.</li>
+</ul>
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        
+
+
+
+
+<footer class="md-footer">
+
+  
+  
+
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+
+      
+    <div class="md-footer-copyright">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" 
+             style="border-width:0" 
+             src="https://i.creativecommons.org/l/by/4.0/80x15.png"
+        />
+      </a>
+      This work is licensed under a&nbsp;
+      <a rel="license" 
+         href="http://creativecommons.org/licenses/by/4.0/"
+      >
+        Creative Commons Attribution 4.0 International License
+      </a>
+    </div>
+
+      
+      <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://www.youtube.com/channel/UCb31KOJ6Wqu0sRpIRi_k8Mw" target="_blank" rel="noopener" title="LUMI on YouTube" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://www.linkedin.com/company/lumi-supercomputer" target="_blank" rel="noopener" title="LUMI on LinkedIn" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://twitter.com/LUMIhpc" target="_blank" rel="noopener" title="LUMI on Twitter" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+</div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "toc.follow", "search.suggest", "content.code.annotate", "content.code.copy"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6c14ae12.min.js"></script>
+      
+    
+  </body>
+</html>
