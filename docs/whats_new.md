@@ -8,6 +8,23 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20240329
+
+-   A new [PyTorch container](p/PyTorch/index.md)
+-   Much extended documentation for the [PyTorch container](p/PyTorch/index.md)
+    and [rocm container](r/rocm/index.md)
+-   The `proot` command is now included in [`systools/23.09`](s/systools/index.md)
+    available in LUMI/23.09 and CrayEnv. This is useful for using so-called
+    "unprivileged `proot` builds" in SingularityCE.
+
+
+## Release 20240322
+
+-   [CP2K 2024.1](c/CP2K/index.md) with GPU support for LUMI/23.09
+-   Improvement to a [PETSc](p/PETSc/index.md) EasyConfig
+-   [ROCm container for 5.6.0](r/rocm/index.md)
+
+
 ## Release 20240308
 
 -   `rocm/5.4.6` module in `CrayEnv` and `LUMI/23.09 partition/G` as we notice too
