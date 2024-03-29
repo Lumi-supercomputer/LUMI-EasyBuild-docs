@@ -448,16 +448,16 @@ do
 
         if (( is_stack_license ))
         then
-            egrep -v "^# " "$prefix_stack/$package_dir/LICENSE.md" | sed -e 's|^#|##|'   >>$package_file
+            egrep -v "^# " "$prefix_stack/$package_dir/LICENSE.md" | sed -e 's|^##|###|'   >>$package_file
         elif (( is_contrib_license ))
         then
-            egrep -v "^# " "$prefix_contrib/$package_dir/LICENSE.md" | sed -e 's|^#|##|' >>$package_file
+            egrep -v "^# " "$prefix_contrib/$package_dir/LICENSE.md" | sed -e 's|^##|###|' >>$package_file
          elif (( is_container_license ))
         then
-            egrep -v "^# " "$prefix_contrib/$package_dir/LICENSE.md" | sed -e 's|^#|##|' >>$package_file
+            egrep -v "^# " "$prefix_contrib/$package_dir/LICENSE.md" | sed -e 's|^##|###|' >>$package_file
         elif (( is_other_license ))
         then
-            egrep -v "^# " "$prefix_other/$package_dir/LICENSE.md" | sed -e 's|^#|##|'   >>$package_file
+            egrep -v "^# " "$prefix_other/$package_dir/LICENSE.md" | sed -e 's|^##|###|'   >>$package_file
         fi
 
         # Make sure there is an empty line at the end of the text added by this block to avoid
@@ -477,7 +477,7 @@ do
         else
             echo -e "## User documentation (central installation)\n"              >>$package_file
         fi
-        egrep -v "^# " "$prefix_stack/$package_dir/$userinfo" | sed -e 's|^#|##|' >>$package_file
+        egrep -v "^# " "$prefix_stack/$package_dir/$userinfo" | sed -e 's|^##|###|' >>$package_file
 
         # Make sure there is an empty line at the end of the text added by this block to avoid
         # wrong formatting of subsequent text.
@@ -506,7 +506,7 @@ do
         else
             echo -e "## User documentation (user installation)\n"                   >>$package_file
         fi
-        egrep -v "^# " "$prefix_contrib/$package_dir/$userinfo" | sed -e 's|^#|##|' >>$package_file
+        egrep -v "^# " "$prefix_contrib/$package_dir/$userinfo" | sed -e 's|^##|###|' >>$package_file
 
         # Make sure there is an empty line at the end of the text added by this block to avoid
         # wrong formatting of subsequent text.
@@ -535,7 +535,7 @@ do
         else
             echo -e "## User documentation (singularity container)\n"                 >>$package_file
         fi
-        egrep -v "^# " "$prefix_container/$package_dir/$userinfo" | sed -e 's|^#|##|' >>$package_file
+        egrep -v "^# " "$prefix_container/$package_dir/$userinfo" | sed -e 's|^##|###|' >>$package_file
 
         # Make sure there is an empty line at the end of the text added by this block to avoid
         # wrong formatting of subsequent text.
@@ -560,15 +560,15 @@ do
     then
         if (( $package_type == 1 ))
         then
-            echo -e "## User documentation\n"                                     >>$package_file
+            echo -e "## User documentation\n"                                       >>$package_file
         else
-            echo -e "## User documentation (manual installation)\n"               >>$package_file
+            echo -e "## User documentation (manual installation)\n"                 >>$package_file
         fi
-        egrep -v "^# " "$prefix_other/$package_dir/$userinfo" | sed -e 's|^#|##|' >>$package_file
+        egrep -v "^# " "$prefix_other/$package_dir/$userinfo" | sed -e 's|^##|###|' >>$package_file
 
         # Make sure there is an empty line at the end of the text added by this block to avoid
         # wrong formatting of subsequent text.
-        printf "\n\n"                                                             >>$package_file
+        printf "\n\n"                                                               >>$package_file
 
         # If there is a files subdirectory, copy the content to the files subdirectory in
         # in the $gendoc tree.
@@ -650,7 +650,7 @@ do
         echo -e "## User-installable modules (and EasyConfigs)\n" >>$package_file
         
         work=${contrib_module_preamble/<name>/$package}
-        echo -e "$work\n"                                       >>$package_file
+        echo -e "$work\n"                                         >>$package_file
 
         #
         # List the modules / EasyConfigs.
@@ -789,15 +789,15 @@ do
     then
         if (( $package_type == 1 ))
         then
-            echo -e "## Technical documentation\n"                                  >>$package_file
+            echo -e "## Technical documentation\n"                                    >>$package_file
         else
             # We have two or more README files
-            echo -e "## Technical documentation (user EasyBuild installation)\n"    >>$package_file
+            echo -e "## Technical documentation (user EasyBuild installation)\n"      >>$package_file
        fi
-        egrep -v "^# " "$prefix_contrib/$package_dir/README.md" | sed -e 's|^#|##|' >>$package_file
+        egrep -v "^# " "$prefix_contrib/$package_dir/README.md" | sed -e 's|^##|###|' >>$package_file
         # Make sure there is an empty line at the end of the text added by this block to avoid
         # wrong formatting of subsequent text.
-        printf "\n\n"                                                             >>$package_file
+        printf "\n\n"                                                                 >>$package_file
     fi
 
     #
@@ -807,15 +807,15 @@ do
     then
         if (( $package_type == 1 ))
         then
-            echo -e "## Technical documentation\n"                                    >>$package_file
+            echo -e "## Technical documentation\n"                                      >>$package_file
         else
             # We have two or more README files
-            echo -e "## Technical documentation (singularity container)\n"            >>$package_file
+            echo -e "## Technical documentation (singularity container)\n"              >>$package_file
        fi
-        egrep -v "^# " "$prefix_container/$package_dir/README.md" | sed -e 's|^#|##|' >>$package_file
+        egrep -v "^# " "$prefix_container/$package_dir/README.md" | sed -e 's|^##|###|' >>$package_file
         # Make sure there is an empty line at the end of the text added by this block to avoid
         # wrong formatting of subsequent text.
-        printf "\n\n"                                                             >>$package_file
+        printf "\n\n"                                                                   >>$package_file
     fi
 
     #
@@ -825,15 +825,15 @@ do
     then
         if (( $package_type == 1 ))
         then
-            echo -e "## Technical documentation\n"                                >>$package_file
+            echo -e "## Technical documentation\n"                                  >>$package_file
         else
             # We have two or more README files
-            echo -e "## Technical documentation (non-EasyBuild)\n"                >>$package_file
+            echo -e "## Technical documentation (non-EasyBuild)\n"                  >>$package_file
         fi
-        egrep -v "^# " "$prefix_other/$package_dir/README.md" | sed -e 's|^#|##|' >>$package_file
+        egrep -v "^# " "$prefix_other/$package_dir/README.md" | sed -e 's|^##|###|' >>$package_file
         # Make sure there is an empty line at the end of the text added by this block to avoid
         # wrong formatting of subsequent text.
-        printf "\n\n"                                                             >>$package_file
+        printf "\n\n"                                                               >>$package_file
     fi
 
     #

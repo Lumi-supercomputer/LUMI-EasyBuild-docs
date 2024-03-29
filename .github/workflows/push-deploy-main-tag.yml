@@ -1,0 +1,75 @@
+---
+# documentation: https://help.github.com/en/articles/workflow-syntax-for-github-actions
+name: tag-based on push automatic deploy of the LUMI Software Library
+on:  
+  push:
+    tags:
+      - '*'
+permissions:
+  contents: write # to fetch code (actions/checkout) + deploy docs to GitHub Pages (gh-pages branch)
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout # actions/checkout: See https://github.com/actions/checkout
+        uses: actions/checkout@v4
+        with:
+          path: LUMI-EasyBuild-docs
+
+      - name: checkout LUMI-SoftwareStack
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository_owner }}/LUMI-SoftwareStack
+          path: LUMI-SoftwareStack
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: checkout LUMI-EasyBuild-contrib
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository_owner }}/LUMI-EasyBuild-contrib
+          path: LUMI-EasyBuild-contrib
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: checkout LUMI-EasyBuild-containers
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository_owner }}/LUMI-EasyBuild-containers
+          path: LUMI-EasyBuild-containers
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Checkout specific tags.
+        run: |
+          git config --global advice.detachedHead false
+          tag=${{ github.event.ref }}
+          tag=${tag##*tags/}
+          cd $GITHUB_WORKSPACE/LUMI-SoftwareStack        && git checkout tags/$tag
+          cd $GITHUB_WORKSPACE/LUMI-EasyBuild-contrib    && git checkout tags/$tag
+          cd $GITHUB_WORKSPACE/LUMI-EasyBuild-containers && git checkout tags/$tag
+
+      - name: set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: install mkdocs
+        run: |
+          pip install -r LUMI-EasyBuild-docs/config/requirements.txt
+          mkdocs --version
+
+      - name: build docs
+        # We do a build first to ensure that building works as expected.
+        # We don't use --strict as we do want to ignore some warnings.
+        run: |
+          tag=${{ github.event.ref }}
+          tag=${tag##*tags/}
+          cd LUMI-EasyBuild-docs && make build TAG=$tag
+
+      - name: deploy docs
+        run: |
+          tag=${{ github.event.ref }}
+          tag=${tag##*tags/}
+          cd LUMI-EasyBuild-docs && make deploy-origin TAG=$tag
+
