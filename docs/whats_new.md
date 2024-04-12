@@ -8,6 +8,15 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20240412
+
+-   [singularity-bindings](s/singularity-bindings/index.md) EasyConfig to be used while 23.09 is 
+    the system default version of the HPE Cray Programming Environment, and improved
+    documentation for this module.
+-   [lumi-training-tools](l/lumi-training-tools/index.md) EasyConfig to install software
+    used in the course notes and exercises of the Amsterdam course given by LUST in
+    May 2024. 
+
 ## Release 20240329
 
 -   A new [PyTorch container](p/PyTorch/index.md)
