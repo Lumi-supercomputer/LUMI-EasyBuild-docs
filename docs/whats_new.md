@@ -8,6 +8,22 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20240517
+
+-   [OpenFOAM.org 10](o/OpenFOAM/index.md) EasyConfig for the GNU compilers in 23.09.
+-   Improved EasyConfig for [GROMACS 2024.01 on GPU](g/GROMACS/index.md),
+    using ROCm 5.4.6 which is a better choice on the LUMI AMD GPU driver at this
+    moment.
+-   JSC PerfTools [Score-P 8.4](/s/Score-P/index.md), which also requires 
+    [Scalasca 2.6.1](s/Scalasca/index.md), 
+    [libbfd 2.42](l/libbfd/index.md),
+    [OTF2 3.0.3](o/OTF2/index.md),
+    [OPARI2 2.0.8](o/OPARI2/index.md),
+    [CubeLib 4.8.2](c/CubeLib/index.md) and
+    [CubeWriter 4.8.2](c/CubeWriter/index.md).
+    Currently only LUMI-C is supported.
+
+
 ## Release 20240412
 
 -   [singularity-bindings](s/singularity-bindings/index.md) EasyConfig to be used while 23.09 is 
@@ -16,6 +32,7 @@ hide:
 -   [lumi-training-tools](l/lumi-training-tools/index.md) EasyConfig to install software
     used in the course notes and exercises of the Amsterdam course given by LUST in
     May 2024. 
+
 
 ## Release 20240329
 
