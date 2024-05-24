@@ -8,13 +8,25 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20240524
+
+-   Improved [lumi-tools](l/lumi-tools/index.md) with bug fixes to `lumi-ldap-userinfo`
+    and `lumi-ldap-projectinfo` and the new `lumi-ldap-projectlist` command for LUST.
+-   Support for [Score-P](s/Score-P/index.md) on LUMI-G with `cpeCray` and `cpeAMD`,
+    though with some restrictions mentioned in 
+    [the documentation in the LUMI Software Library](s/Score-P/index.md#user-documentation-user-installation)
+-   [PyTorch](p/PyTorch/index.md): 
+    [Additional containers](p/PyTorch/index.md#singularity-containers-with-modules-for-binding-and-extras), 
+    including one with vLLM
+
+
 ## Release 20240517
 
 -   [OpenFOAM.org 10](o/OpenFOAM/index.md) EasyConfig for the GNU compilers in 23.09.
 -   Improved EasyConfig for [GROMACS 2024.01 on GPU](g/GROMACS/index.md),
     using ROCm 5.4.6 which is a better choice on the LUMI AMD GPU driver at this
     moment.
--   JSC PerfTools [Score-P 8.4](/s/Score-P/index.md), which also requires 
+-   JSC PerfTools [Score-P 8.4](s/Score-P/index.md), which also requires 
     [Scalasca 2.6.1](s/Scalasca/index.md), 
     [libbfd 2.42](l/libbfd/index.md),
     [OTF2 3.0.3](o/OTF2/index.md),
