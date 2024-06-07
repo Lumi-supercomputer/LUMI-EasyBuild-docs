@@ -8,6 +8,23 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20240607
+
+-   EasyBuild-user module enhanced to enable running EasyBuild in a container to install
+    software outside of the container. This feature is mostly meant for LUST and some 
+    projects that get test versions of compilers.
+-   Warnings when using `LUMI/22.08` and `LUMI/22.12` as their end-of-life is approaching
+    fast and they will not be supportable after the August 2024 system update.
+
+    LUST will do its best to keep `LUMI/23.09` running after the update, but even there 
+    recompilation may be required, or switching to newer compilers. However, helping users
+    who are already on 23.09 will have a higher priority than helping those who postponed
+    using the newer toolchain.
+
+-   Security fixes to the processing behind the LUMI Software Library and corrections to
+    the fortune messages shown at login.
+
+
 ## Release 20240524
 
 -   Improved [lumi-tools](l/lumi-tools/index.md) with bug fixes to `lumi-ldap-userinfo`
