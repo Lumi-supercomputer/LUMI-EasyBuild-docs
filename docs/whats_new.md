@@ -13,6 +13,7 @@ hide:
 -   `LUMI/23.09` is now the default version of the `LUMI` module.
 -   Some updated EasyConfigs for the containers for 
     [PyTorch](p/PyTorch/index.md) and [TensorFlow](t/TensorFlow/index.md).
+-   Updated EasyConfig for [Siesta](s/Siesta/index.md)
 
 
 ## Release 20240607
