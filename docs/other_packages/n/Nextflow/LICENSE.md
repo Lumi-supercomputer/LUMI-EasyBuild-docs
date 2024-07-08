@@ -6,9 +6,9 @@ a copy of which can also be found in the
 [COPYING file in the Nextflow GitHub repository](https://github.com/nextflow-io/nextflow/blob/master/COPYING).
 
 More copyright notices for software used by Nextflow can be found in the
-[NOTICE file in the Nextflow GitHub repository](https://github.com/nextflow-io/nextflow).
+[NOTICE file in the Nextflow GitHub repository](https://github.com/nextflow-io/nextflow/blob/master/NOTICE).
 
-Note that Nexflow should be cited in your papers if you use Nexflow in your research,
+Note that Nextflow should be cited in your papers if you use Nextflow in your research,
 with more information available in the 
 ["Citations" section of the README file in the Nextflow GitHub](https://github.com/nextflow-io/nextflow#citations).
 
