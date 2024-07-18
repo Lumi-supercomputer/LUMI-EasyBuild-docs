@@ -8,6 +8,33 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20240718
+
+-   [`cotainr`](c/cotainr/index.md) has been updated in `CrayEnv` to the latest
+    version with the images used during the AI course of May 2024, and has been
+    made available in `LUMI/23.09`.
+    The examples used in the AI course in Copenhagen should now work again
+    even without specifying a specific version of the `LUMI` stack though we 
+    do discourage that behaviour.
+
+    `cotainr` in the future will be available in `CrayEnv` as it really needs nothing
+    from the `LUMI` stacks, and some versions will be available in some `LUMI` stacks.
+    The latest version will usually be available in the latest `LUMI` stack, but as
+    we only change the default version when that stack is sufficiently populated, the
+    default version of the `LUMI` stack may not always contain the latest version of
+    `cotainr` or any other software package.
+
+-   [`lumi-container-wrapper`](l/lumi-container-wrapper/index.md) is now available in
+    `LUMI/23.09`.
+
+-   An EasyConfig for [GPAW on GPU](g/GPAW/index.md). This is currently not containerised
+    so only suitable to run on a moderate number of MPI ranks as otherwise starting GPAW
+    could put a very high stress on the file system.
+
+-   Some minor improvements to the [OpenFOAM documentation](o/OpenFOAM/index.md)
+    after issues reported on other sides that turned out not to affect our EasyConfigs.
+
+
 ## Release 20240709
 
 -   `LUMI/23.09` is now the default version of the `LUMI` module.
