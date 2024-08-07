@@ -8,6 +8,17 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 2024807
+
+-   A fix for problems with [buildtools-python](b/buildtools-python/index.md)
+    in the version for Cray Python in LUMI/23.09.
+
+-   New package: [Yambo](y/Yambo/index.md) (CPU-only)
+
+-   [QuEST](q/QuEST/index.md) for LUMI/23.09
+
+-   Warning for the upcoming system maintenance in the message-of-the-day.
+
 ## Release 20240718
 
 -   [`cotainr`](c/cotainr/index.md) has been updated in `CrayEnv` to the latest
