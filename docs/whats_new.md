@@ -8,7 +8,15 @@ hide:
 
 # What's new in the LUMI software stack
 
-## Release 2024807
+## Release 20240909
+
+-   The first fixes to be able to use old programming environments again, at
+    least to run on LUMI.
+
+-   See the [user update after the august-september 2024 maintenance](https://lumi-supercomputer.github.io/LUMI-training-materials/User-Updates/Update-202409/).
+
+
+## Release 20240807
 
 -   A fix for problems with [buildtools-python](b/buildtools-python/index.md)
     in the version for Cray Python in LUMI/23.09.
