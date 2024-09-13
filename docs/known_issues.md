@@ -8,7 +8,7 @@ hide:
 
 # Known issues with the LUMI software stacks
 
-## Issues with 22.12 and 23.03.
+## All versions
 
 -   Some SUSE-provided tools may not work when the `ncurses` module is loaded.
 
@@ -26,8 +26,4 @@ hide:
 
     which forces `gdb` to use the `libncursesw` from the system and keeps it happy.
 
-
-## Issues with older versions of the LUMI stack
-
-This documentation was not yet developed when those older stacks were build.
 

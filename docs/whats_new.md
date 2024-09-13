@@ -8,7 +8,33 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20240916
+
+-   See the [user update after the august-september 2024 maintenance](https://lumi-supercomputer.github.io/LUMI-training-materials/User-Updates/Update-202409/)
+    for a more complete list of changes.
+
+-   New software stacks for the 23.12 and 24.03 versions are provided.
+
+    -   `LUMI/24.03` is our preferred software stack and the only one we can fully support.
+        We already provide a lot of user-installable EasyConfigs for this stack.
+
+    -   `LUMI/23.12` is offered as-is. We do not intend to develop much software on top of it
+        as it will likely be rather short-lived and as we do not receive upstream support for 
+        this stack as it does not officially support ROCm 6.0. As most software versions are 
+        the same as in 23.09, it should be easy to update build recipes and give you some
+        bug fixes in the GNU and CCE compilers. The AMD compilers in both cpeAOCC and
+        cpeAMD though are much newer versions with all consequences this has...
+
+-   Several build recipes for `LUMI/23.09` have been revised to try to work around problems.
+    Note however that the preferred solution is to move to `LUMI/24.03`.
+
+-   Several old build recipes that we know do not work properly anymore, have been archived.
+
+
 ## Release 20240909
+
+-   Internal release only as the system was down much longer than expected due to 
+    a power delivery issue.
 
 -   The first fixes to be able to use old programming environments again, at
     least to run on LUMI.
