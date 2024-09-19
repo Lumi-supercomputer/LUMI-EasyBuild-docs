@@ -8,6 +8,17 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20240920
+
+-   [lumi-container-wrapper](l/lumi-container-wrapper/index.md) updated with an openSUSE
+    LEAP 15.5 image and installed in CrayEnv, LUMI/23.12 and LUMI/24.03.
+
+-   Updated EasyConfigs for [R](r/R/index.md) for LUMI/2024.03
+
+-   [Score-P](s/Score-P/index.md) for LUMI/2024.03, cpeAOCC version missing due to
+    instrumentation issues. 
+
+
 ## Release 20240916
 
 -   See the [user update after the august-september 2024 maintenance](https://lumi-supercomputer.github.io/LUMI-training-materials/User-Updates/Update-202409/)
