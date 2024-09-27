@@ -8,6 +8,16 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20240927
+
+-   Modules to load the local CSC and quantum computing stacks (`Local-CSC` and `Local-quantum`)
+
+-   Framework to stop indexing the Spack modules and avoid indexing the modules from the local
+    stacks unless explicitly requested.
+
+    Do `module help ModuleFullSpider/on` for more information. 
+
+
 ## Release 20240920
 
 -   [lumi-container-wrapper](l/lumi-container-wrapper/index.md) updated with an openSUSE
