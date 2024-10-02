@@ -8,6 +8,15 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20241002
+
+-   Extra configuration for [Score-P](s/Score-P/index.md).
+
+-   Configurations of [GROMACS](g/GROMACS/index.md) with [PLUMED](p/PLUMED/index.md).
+
+-   Deprecation warnings for old Spack modules.
+
+
 ## Release 20240927
 
 -   Modules to load the local CSC and quantum computing stacks (`Local-CSC` and `Local-quantum`)
