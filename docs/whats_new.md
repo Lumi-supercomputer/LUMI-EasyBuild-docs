@@ -8,6 +8,23 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20241024
+
+-   Fix for `htop` on `LUMI/24.03` so that it is now in [systools/24.03](s/systools/index.md).
+
+-   [cotainr](c/cotainr/index.md) in `LUMI/24.03` to avoid user confusion as many users
+    expect to find the most recent cotainr in the most recent LUMI stack.
+
+-   [hpcat](h/hpcat/index.md) experimental tool to study bindings (Cray compiler only)
+
+-   Updated [singularity-bindings](s/singularity-bindings/index.md)
+
+-   [ELPA](e/ELPA/index.md) for cpeCray and ROCm 6 (some performance degradation observed)
+
+-   Fixes for double linking of LibSci in some [PETSc](p/PETSc/index.md) EasyConfigs
+
+-   [GROMACS+PLUMED](g/GROMACS/index.md) for CPU with full Python support for Cray Python.
+
 ## Release 20241004
 
 -   [ROCm 6.2.2 in LUMI/24.03 partition/G](r/rocm/index.md). Note that this module does
