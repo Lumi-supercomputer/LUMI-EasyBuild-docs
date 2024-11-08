@@ -8,6 +8,16 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20241112
+
+-   Updated version of [`cotainr`](c/cotainr/index.md) with some bug fixes and minor enhancements.
+    The [on-line documentation of cotainr](https://cotainr.readthedocs.io/en/2024.10.0/)
+    has also been updated to reflect the changes on LUMI after the September 2024 maintenance
+    period.
+-   A correction to one of the [CP2K with PLUMED](c/CP2K/index.md) recipes.
+-   [GPAW](g/GPAW/index.md) recipes for 24.03.
+-   Python support for [Amber with AmberTools](a/Amber/index.md)
+
 ## Release 20241024
 
 -   Fix for `htop` on `LUMI/24.03` so that it is now in [systools/24.03](s/systools/index.md).
