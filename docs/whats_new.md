@@ -8,6 +8,19 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20250115
+
+-   Inclusion of the [HPE HPC Affinity Tracker tool (`hpcat`)](https://github.com/HewlettPackard/hpcat)
+    in the [lumi-CPEtools modules](l/lumi-CPEtools/index.md) modules for `LUMI/24.03`.
+-   Updated EasyBuild container module recipes for
+    [jax](j/jax/index.md), [mpi4py](m/mpi4py/index.md), [PyTorch](p/PyTorch/index.md),
+    [rocm](r/rocm/index.md) and [TensorFlow](t/TensorFlow/index.md).
+-   EasyConfig for [AdaptiveCpp](a/AdaptiveCpp/index.md) 24.10.0 in `LUMI/24.03`.
+-   Corrections to some EasyConfigs for 
+    [CP2K](c/CP2K/index.md), [LAMMPS](l/LAMMPS/index.md) and
+    [libxsmm](l/libxsmm/index.md).
+
+
 ## Release 20241129
 
 -   Removing the last update of [`cotainr`](c/cotainr/index.md) as it contains an annoying bug.
