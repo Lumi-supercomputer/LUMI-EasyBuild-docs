@@ -19,6 +19,8 @@ hide:
 -   Update to the [VASP](v/VASP/index.md/#tuning-recommendations) documentation, documenting why the STOPCAR
     `LABORT` option should not be used on LUMI and is not turned on in our build
     recipes.
+-   Some improvements to the warnings given when loading containers with ROCm versions
+    other than the current system version.
 
 
 ## Release 20250115
