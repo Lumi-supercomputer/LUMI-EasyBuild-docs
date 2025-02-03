@@ -8,6 +8,21 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20250203
+
+-   User-installable [feh](f/feh/index.md) image viewer, with dependencies
+    [Imlib2](i/Imlib2/index.md) and [libexif](l/libexif/index.md)
+-   User-installable [singularity-AI-bindings](s/singularity-AI-bindings/index.md)
+    module as used in the February 2025 AI training. Please check the documentation as this
+    module is meant for some very specific AI software containers and not for just any such
+    container!
+-   Update to the [VASP](v/VASP/index.md/#tuning-recommendations) documentation, documenting why the STOPCAR
+    `LABORT` option should not be used on LUMI and is not turned on in our build
+    recipes.
+-   Some improvements to the warnings given when loading containers with ROCm versions
+    other than the current system version.
+
+
 ## Release 20250115
 
 -   Inclusion of the [HPE HPC Affinity Tracker tool (`hpcat`)](https://github.com/HewlettPackard/hpcat)
