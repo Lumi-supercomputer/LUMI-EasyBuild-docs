@@ -33,6 +33,8 @@ To access module help after installation use \`module spider <name>/<version>\`.
 EasyConfig:\n"
 container_docker_preamble="Docker definition file \`<dockerfile>\`\n\
 for the container provided by the module \`<name>/<version>\`.\n\n\
+Note that the majority of these definition files cannot be used as they are,\n\
+as they require access to specially set-up servers providing licensed components needed during the build.\n\n\
 Docker file:\n"
 stack_archived_module_preamble="This software is archived in the\n\
 [LUMI-SoftwareStack](https://github.com/Lumi-supercomputer/LUMI-SoftwareStack) GitHub repository as\n\
@@ -986,7 +988,8 @@ do
 	    do
 
             easyconfig="${file##$prefix/}"  # Extract the filename of the eacyconfig out of the $prefix/*.eb name.
-		    easyconfig_md="$gendoc/docs/$package_dir/${easyconfig/.eb/.md}" # Compute the location and name for the matching markdonw file.
+		    easyconfig_md="$gendoc/docs/$package_dir/${easyconfig/.eb/.md}" # Compute the location and name for the matching markdown file.
+            easyconfig_docker_md="$gendoc/docs/$package_dir/${easyconfig/.eb/-docker.md}" # Compute the location and name for the markdown file for the matching Docker definition. 
 
             work=${easyconfig%%.eb}      # Drop the .eb filename extension
             version=${work##$package-}   # Drop the package name part from the extensionless easyconfig file name to compute the version.
@@ -1012,11 +1015,11 @@ do
             local_docker=""
             eval $docker_line
 
-            if [ -n $local_docker ]
+            if [ -n "$local_docker" ]
             then
 
                 # Generate a markdown page for the dockerfile
-                dockerfile_to_md "$file" "$local_docker" "${easyconfig_docker_md}2" "$container_docker_preamble"
+                dockerfile_to_md "$file" "$local_docker" "$easyconfig_docker_md" "$container_docker_preamble"
 
                 # And add a link to it in the list of EasyConfigs.
                 echo -e " (with [docker definition](${easyconfig/.eb/-docker.md}))" >>$package_file
