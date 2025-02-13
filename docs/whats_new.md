@@ -8,6 +8,12 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20250214
+
+-   EasyConfig for [Elk 10.3.12](e/Elk/index.md) contributed by Johan Hellsvik (KTH).
+-   EasyConfigs for [VASP 6.5.0](v/VASP/index.md) and dependencies.
+
+
 ## Release 20250203
 
 -   User-installable [feh](f/feh/index.md) image viewer, with dependencies
