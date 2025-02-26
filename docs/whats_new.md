@@ -8,6 +8,17 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20250227
+
+-   Replaced PLUMED 2.9.2 with [PLUMED 2.9.3](p/PLUMED/index.md#user-installable-modules-and-easyconfigs),
+    with updated EasyConfigs for [GROMACS](g/GROMACS/index.md#user-installable-modules-and-easyconfigs) and 
+    for one of the [CP2K](c/CP2K/index.md) variants.
+-   A bugfix in one of the [PETSc](p/PETSc/index.md) build recipes.
+-   Spack modules are no longer automatically included in the output
+    of module spider, to speed up the generation of the Lmod cache
+    and make the output of `module spider` less confusing.
+
+
 ## Release 20250214
 
 -   EasyConfig for [Elk 10.3.12](e/Elk/index.md) contributed by Johan Hellsvik (KTH).
