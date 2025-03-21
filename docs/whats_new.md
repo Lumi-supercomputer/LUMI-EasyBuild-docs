@@ -8,6 +8,18 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20250321
+
+-   The [`PRoot`](p/PRoot/index.md) module now provides the `proot` command for `partition/container` in
+    the LUMI software stacks. Its main use case is to enable the developement of EasyConfigs that modify
+    an existing container and install it together with a module file for bindings etc. in 
+    `partition/container`. This will, e.g., be used in upcoming recipes for containers with more recent
+    or experimental versions of the HPE Cray Programming Environment.
+-   [Kokkos](k/Kokkos/index.md) and [Kokkos-kernels](k/Kokkos-kernels/index.md) for 
+    cpeGNU and cpeAMD.
+-   Modified build recipe for [PETSc](p/PETSc/index.md), now using an external build of Kokkos.
+
+
 ## Release 20250227
 
 -   Replaced PLUMED 2.9.2 with [PLUMED 2.9.3](p/PLUMED/index.md#user-installable-modules-and-easyconfigs),
