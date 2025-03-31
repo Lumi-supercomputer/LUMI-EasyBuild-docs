@@ -8,6 +8,12 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20250331
+
+-   [GROMACS 2025.1](g/GROMACS/index.md) EasyConfigs
+-   [STRUMNPACK 7.0.1](s/STRUMPACK/index.md) EasyConfig ported to 24.03  
+
+
 ## Release 20250321
 
 -   The [`PRoot`](p/PRoot/index.md) module now provides the `proot` command for `partition/container` in
