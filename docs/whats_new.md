@@ -12,7 +12,9 @@ hide:
 
 -   [GROMACS 2025.1](g/GROMACS/index.md) EasyConfigs
 -   [STRUMNPACK 7.0.1](s/STRUMPACK/index.md) EasyConfig ported to 24.03  
-
+-   [libxc](l/libxc/index.md) packages come without a checksum for now 
+    as it appears those change over time 
+    ([libxc GitLab issue #511](https://gitlab.com/libxc/libxc/-/issues/511)).
 
 ## Release 20250321
 
