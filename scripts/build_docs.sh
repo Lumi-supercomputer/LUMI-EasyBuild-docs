@@ -53,7 +53,7 @@ whatsnew_label="New"
 
 #
 # Search priorities
-# These seem to be multipliers: multiply the number of occurences on a page with this factor
+# These seem to be multipliers: multiply the number of occurrences on a page with this factor
 # to get the actual priority of a page.
 #
 # EasyConfigs are excluded from the search to avoid building a too large and impractical
@@ -333,7 +333,7 @@ do
     is_readme=0    # Variable: Will be set to 1 if a README.md file is available
     is_user=0      # Variable: Will be set to 1 if a USER.md file is available
     is_license=0   # Variable: Will be set to 1 if a LICENSE.md file is available
-    package_type=0 # Variable: Counts the number of ways the package is offered: pre-installed, userinstallable EasyBuild, singularity, instructions for own installation
+    package_type=0 # Variable: Counts the number of ways the package is offered: pre-installed, user-installable EasyBuild, singularity, instructions for own installation
 
     is_stack_package=0              # Variable: Set to 1 if any information about this package is found in LUMI-SoftwareStack
     is_stack_readme=0               # Variable: Set to 1 if a README file is found in LUMI-SoftwareStack for this package
@@ -441,7 +441,7 @@ do
     echo -e "$echostring\n"                                    >>$package_file
 
     #
-    # - License (if present), priority to the information in the stack, then contrib and finaly other_packages
+    # - License (if present), priority to the information in the stack, then contrib and finally other_packages
     #
     if (( is_license ))
     then
@@ -855,10 +855,10 @@ do
             # Text if the package is archived
             echo -e "The EasyConfigs below are not directly available on the system for installation."  >>$package_file
             echo -e "They are however still a useful source of information if you want to port the"     >>$package_file
-            echo -e "the install recip to the currently available environments on LUMI.\n"              >>$package_file
+            echo -e "the install recipe to the currently available environments on LUMI.\n"             >>$package_file
         else
             # Text if the package is still available in other configurations.
-            echo -e "The EasyConfigs below are additonal easyconfigs that are not directly available"   >>$package_file
+            echo -e "The EasyConfigs below are additional easyconfigs that are not directly available"  >>$package_file
             echo -e "on the system for installation. Users are advised to use the newer ones and these" >>$package_file
             echo -e "archived ones are unsupported. They are still provided as a source of information" >>$package_file
             echo -e "should you need this, e.g., to understand the configuration that was used for"     >>$package_file
