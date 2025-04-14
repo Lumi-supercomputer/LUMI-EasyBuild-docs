@@ -8,6 +8,18 @@ hide:
 
 # What's new in the LUMI software stack
 
+### Release 20250415
+
+-   Updated containers for [PyTorch](p/PyTorch/index.md) and [jax](j/jax/index.md).
+
+    The PyTorch 2.6 container modules now also provide wrappers similar to the CSC 
+    modules.
+    
+-   [ESMF](e/ESMF/index.md) with support for MPI and PIO
+-   [OpenFOAM 12](o/OpenFOAM/index.md) with [ParMETIS](p/ParMETIS/index.md)
+-   [fpocket](f/fpocket/index.md)
+
+
 ## Release 20250331
 
 -   [GROMACS 2025.1](g/GROMACS/index.md) EasyConfigs
