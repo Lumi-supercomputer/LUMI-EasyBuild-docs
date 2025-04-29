@@ -8,7 +8,19 @@ hide:
 
 # What's new in the LUMI software stack
 
-### Release 20250415
+## Release 20250429
+
+-   [Vampir](v/Vampir/index.md) has been upgraded to version 10.6.1. 
+    The [VampirServer](v/VampirServer/index.md) recipes will be ported on request.
+-   [systools](s/systools/index.md) update to `systools/24.03-1`, which now
+    also includes `pbzip2`, a parallel implementation of bzip2 compression.
+
+    Note that `pbzip2` is unmaintained software, so we cannot guarantee that we
+    can keep offering this tool.
+
+-   [GROMACS 2024.3](g/GROMACS/index.md) with CP2K QM/MM support.
+
+## Release 20250415
 
 -   Updated containers for [PyTorch](p/PyTorch/index.md) and [jax](j/jax/index.md).
 
