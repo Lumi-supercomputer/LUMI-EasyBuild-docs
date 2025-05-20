@@ -8,6 +8,31 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20250521
+
+-   [Score-P 9.0](s/Score-P/index.md) and a bugfix release of
+    [Scalasca](s/Scalasca/index.md).
+
+-   As `htop` was broken in `systools/24.03-1`, this module is replaced with
+    [`systools/24.03-2`](s/systools/index.md) which still contains `pbzip2`
+
+-   Software stack for LUMI-D, provided in `partition/D`.
+    Some packages take a lot of time to compile. Yet because so many different
+    configurations are possible and full testing is not possible with the size
+    of LUST, they are offered as user-installable packages. Some base packages
+    are pre-installed though in a standard configuration that should fit most
+    work on LUMI.
+
+    Visualisation packages include [ParaView](p/ParaView/index.md), 
+    [VisIt](v/VisIt/index.md) and the [VTK libraries](v/VTK/index.md).
+
+    As we have no upstream support for most of these tools, they can only be offered
+    "as-is" with no guarantee that we can solve all issues. Often one may be better
+    served by containerised visualisation software, but there are cases where those cannot
+    be used and we want to focus on those use cases. So these packages are not meant to
+    be a replacement of the packages offered in the LUMI web interface.
+
+
 ## Release 20250429
 
 -   [Vampir](v/Vampir/index.md) has been upgraded to version 10.6.1. 
