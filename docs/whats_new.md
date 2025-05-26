@@ -8,6 +8,26 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20250526
+
+-   Containers with the Cray Programming Environment version 24.11 and 25.03: 
+    [ccpe](c/ccpe/index.md).
+
+    Note that these containers are only meant for users who understand very well
+    how the programming environment works and how environments and modules work
+    on an HPC system. They are not meant for beginners. Features and support are 
+    limited. 25.03 is also not fully functional on the GPU nodes as it requires
+    ROCm(tm) 6.3 which is not supported by the current driver.
+
+-   The remark on the availability of GPU support in
+    [QuantumESPRESSO](q/QuantumESPRESSO/index.md) has been updated in the 
+    documentation page.
+
+-   Corrected the name of a [TensorFlow](t/TensorFlow/index.md) EasyConfig.
+
+-   Some bugfixes in the visibility of modules.
+
+
 ## Release 20250521
 
 -   [Score-P 9.0](s/Score-P/index.md) and a bugfix release of
