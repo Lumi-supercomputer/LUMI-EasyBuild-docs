@@ -23,6 +23,8 @@ hide:
     [QuantumESPRESSO](q/QuantumESPRESSO/index.md) has been updated in the 
     documentation page.
 
+-   Corrected the name of a [TensorFlow](t/TensorFlow/index.md) EasyConfig.
+
 -   Some bugfixes in the visibility of modules.
 
 
