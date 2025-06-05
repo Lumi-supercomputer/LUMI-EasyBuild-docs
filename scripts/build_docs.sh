@@ -456,7 +456,7 @@ do
             egrep -v "^# " "$prefix_contrib/$package_dir/LICENSE.md" | sed -e 's|^##|###|' >>$package_file
          elif (( is_container_license ))
         then
-            egrep -v "^# " "$prefix_contrib/$package_dir/LICENSE.md" | sed -e 's|^##|###|' >>$package_file
+            egrep -v "^# " "$prefix_container/$package_dir/LICENSE.md" | sed -e 's|^##|###|' >>$package_file
         elif (( is_other_license ))
         then
             egrep -v "^# " "$prefix_other/$package_dir/LICENSE.md" | sed -e 's|^##|###|'   >>$package_file
