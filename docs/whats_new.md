@@ -8,6 +8,12 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 202507XX
+
+-   Update of the [HPE HPC Affinity Tracker tool (`hpcat`)](https://github.com/HewlettPackard/hpcat)
+    in the [lumi-CPEtools modules](l/lumi-CPEtools/index.md) modules for `LUMI/24.03`.
+
+
 ## Release 20250526
 
 -   Containers with the Cray Programming Environment version 24.11 and 25.03: 
