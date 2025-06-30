@@ -8,10 +8,17 @@ hide:
 
 # What's new in the LUMI software stack
 
-## Release 202507XX
+## Release 20250630
 
 -   Update of the [HPE HPC Affinity Tracker tool (`hpcat`)](https://github.com/HewlettPackard/hpcat)
     in the [lumi-CPEtools modules](l/lumi-CPEtools/index.md) modules for `LUMI/24.03`.
+
+-   Recipe for [GPAW 25.1.0](g/GPAW/index.md) for LUMI-C built with [libvdwxc](l/libvdwxc/index.md).
+
+-   [magma](m/magma/index.md) and [CuPy](c/CuPy/index.md) built with ROCm 6.2.2, for the developer
+    version of GPAW with ROCm GPU support (no EasyConfig for the developer version though).
+
+-   The [SEACAS Exodus library](s/seacas-exodus/index.md) compiled with the GNU compilers.
 
 
 ## Release 20250526
