@@ -8,6 +8,20 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20250724
+
+-   New version (0.4.2) of [lumi-container-wrapper](l/lumi-container-wrapper/index.md).
+-   Updated EasyConfigs for the [ccpe](c/ccpe/index.md) containers. Re-installation is recommended, and 
+    please install from the directory `/appl/local/containers/LUMI-EasyBuild-containers/easybuild/easyconfigs/c/ccpe`
+    to ensure that EasyBuild does not use the older cached EasyConfig file. 
+-   Version 9.2 of [Score-P](s/Score-P/index.md).
+
+## Release 202560707
+
+-   New contributed EasyConfigs: [MicroHH](m/MicroHH/index.md), [WRF-SFIRE](w/WRF-SFIRE/index.md) and
+    matching version of [WPS](w/WPS/index.md).
+
+
 ## Release 20250630
 
 -   Update of the [HPE HPC Affinity Tracker tool (`hpcat`)](https://github.com/HewlettPackard/hpcat)
