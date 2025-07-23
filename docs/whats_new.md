@@ -15,6 +15,7 @@ hide:
     please install from the directory `/appl/local/containers/LUMI-EasyBuild-containers/easybuild/easyconfigs/c/ccpe`
     to ensure that EasyBuild does not use the older cached EasyConfig file. 
 -   Version 9.2 of [Score-P](s/Score-P/index.md).
+-   [Celerity](c/Celerity/index.md), a C++ library fro programming on clusters with accelerator nodes.
 
 ## Release 202560707
 
