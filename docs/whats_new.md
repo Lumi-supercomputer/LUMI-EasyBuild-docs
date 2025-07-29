@@ -8,6 +8,29 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20250729
+
+-   Improved documentation for [lumi-container-wrapper](l/lumi-container-wrapper/index.md)
+    clearly mentioning the license restrictions when using packages from the regular 
+    Anaconda repositories. Warnings have also been added to the modules.
+
+-   Improvements to the [ccpe containers](c/ccpe/index.md). Users of the `-B-` versions
+    will have had most of those improvements already, while users of the `-C-` versions
+    need to re-install. Please re-install from within the 
+    `/appl/local/containers/LUMI-EasyBuild-containers/easybuild/easyconfigs/c/ccpe`
+    subdirectory to avoid accidentally re-installing an older version.
+
+-   Two new [PyTorch](p/PyTorch/index.md) containers, including one for PyTorch 2.7. 
+    There were also some improvements to the scripts provided for all PyTorch 2.6 and
+    2.7 containers to bring their behaviour closer to that of the CSC-provided
+    `pytorch` modules.
+
+-   Improved [JAX](j/jax/index.md) containers. These containers now support some 
+    CSC-style scripts and have a pre-defined virtual environment with tools to pack
+    the Python installation in the virtual environment in a filesystem-friendly way
+    similar to the [PyTorch](p/PyTorch/index.md) containers.
+
+
 ## Release 20250724
 
 -   New version (0.4.2) of [lumi-container-wrapper](l/lumi-container-wrapper/index.md).
