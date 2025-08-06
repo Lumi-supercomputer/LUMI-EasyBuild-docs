@@ -8,6 +8,19 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20250806
+
+-   [VASP 6.5.1](v/VASP/index.md) recipe (contributed by a user).
+
+-   Improvements to the [ccpe containers](c/ccpe/index.md): Better procedure to
+    run with the containers.
+   
+    USe of the `ccpe-srun` script requires re-installing the container module.
+    Please re-install from within the 
+    `/appl/local/containers/LUMI-EasyBuild-containers/easybuild/easyconfigs/c/ccpe`
+    subdirectory to avoid accidentally re-installing an older version.
+
+
 ## Release 20250729
 
 -   Improved documentation for [lumi-container-wrapper](l/lumi-container-wrapper/index.md)
