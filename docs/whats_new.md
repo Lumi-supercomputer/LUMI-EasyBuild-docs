@@ -8,6 +8,17 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20250916
+
+-   New Pytorch container based on [PyTorch 2.7.1](p/PyTorch/index.md) with AITER.
+    The container is still a bit experimental and a step towards trying to get
+    newer versions of vLLM to work on LUMI.
+-   Two new recipes for [NAMD on GPU](n/NAMD/index.md): One more efficient but
+    limited to a single node, and one with MPI support.
+-   New [ELPA](e/ELPA/index.md) recipe.
+-   Slight improvement to the documentation of [Open MPI](o/OpenMPI/index.md).
+
+
 ## Release 20250909
 
 -   Documentation improvements  and Lustre support for MPI I/O for the 
