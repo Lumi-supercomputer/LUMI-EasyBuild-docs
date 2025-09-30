@@ -8,6 +8,27 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20250930
+
+-   [OpenFOAM.com v2506](o/OpenFOAM/index.md) build recipe and clean-up of the 
+    recipes for OpenFOAM.org version 12 and 13, with builds of the main release
+    and latest patch version of each, deprecating the older EasyConfigs.
+
+    The update also includes a fix for the [SZ EasyConfigs](s/SZ/index.md) as
+    the sources have recently been moved to a different repository.
+
+-   [Open MPI 5 with ROCm support for SlingShot](o/OpenMPI/index.md). 
+  
+    Note that is is an entirely experimental version offered for people with thorough
+    knowledge of Open MPI 5. Cray MPICH remains our recommended MPI implementation
+    and the one for which we do build software.
+
+-   A fix for an issue with one of the [Charm++ EasyConfigs](c/Charm++/index.md)
+    used in the [NAMD builds](n/NAMD/index.md).
+
+-   The [GROMACS documentation](g/GROMACS/index.md) has been updated.
+
+
 ## Release 20250916
 
 -   New Pytorch container based on [PyTorch 2.7.1](p/PyTorch/index.md) with AITER.
