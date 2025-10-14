@@ -8,6 +8,16 @@ hide:
 
 # What's new in the LUMI software stack
 
+
+## Release 20251015
+
+-   [Chapel](c/Chapel/index.md), for now in a version only for CPU.
+
+-   Update to the [Alphafold](a/Alphafold/index.md) license information as
+    version 2 had some restrictions that not every user may realise, but version 3
+    is unsupportable by LUST due to the license restrictions.
+
+
 ## Release 20250930
 
 -   [OpenFOAM.com v2506](o/OpenFOAM/index.md) build recipe and clean-up of the 
