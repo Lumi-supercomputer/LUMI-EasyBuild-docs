@@ -9,9 +9,7 @@ hide:
 # What's new in the LUMI software stack
 
 
-## Release 20251015
-
--   [Chapel](c/Chapel/index.md), for now in a version only for CPU.
+## Release 20251117
 
 -   Update to the [Alphafold](a/Alphafold/index.md) license information as
     version 2 had some restrictions that not every user may realise, but version 3
