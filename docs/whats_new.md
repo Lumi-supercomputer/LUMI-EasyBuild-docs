@@ -8,6 +8,23 @@ hide:
 
 # What's new in the LUMI software stack
 
+
+## Release 20251117
+
+-   Update to the [Alphafold](a/Alphafold/index.md) license information as
+    version 2 had some restrictions that not every user may realise, but version 3
+    is unsupportable by LUST due to the license restrictions.
+
+-   [QuantumESPRESSO 7.4.1](q/QuantumESPRESSO/index.md) CPU-only
+
+-   A small fix for the [GROMACS 2025.1](g/GROMACS/index.md) recipe.
+
+-   Recipes for [dlb](d/dlb/index.md) and [Extrae](e/Extrae/index.md)
+    contributed by the developers of those packages.
+
+-   [Score-P 9.3](s/Score-P/index.md), contributed by the developers of the package.
+
+
 ## Release 20250930
 
 -   [OpenFOAM.com v2506](o/OpenFOAM/index.md) build recipe and clean-up of the 
