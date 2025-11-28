@@ -8,6 +8,18 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20251130
+
+-   Various minor documentation corrections, including one to 
+    one of the [PyTorch](p/PyTorch/index.md) recipes which showed wrong
+    versions of some components.
+
+-   Preparations for rolling out EasyBuild 5 in future software stacks, including
+    switching to a patched MesonNinja EasyBlock in the EasyBuild module itself
+    rather than in the location for custom EasyBlocks.
+
+-   Improvements to the fortune text shown at login.
+
 
 ## Release 20251117
 
