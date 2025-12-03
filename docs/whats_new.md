@@ -8,6 +8,12 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20251203
+
+-   Update of the message-of-the-day and messages for the LUMI and cpe modules
+    indicating what is expected after the January 2026 system update.
+
+
 ## Release 20251130
 
 -   Various minor documentation corrections, including one to 
