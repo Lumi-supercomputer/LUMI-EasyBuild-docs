@@ -1,5 +1,8 @@
 #! /usr/bin/env bash
 #
+# bash >= 4.3 needed, so the system bash on macOS is not enough and, e.g., homebrew
+# bash is needed.
+#
 # This is a script to build the markdown pages for the documentation
 # of the software stack.
 #
@@ -10,6 +13,9 @@ cd $(dirname $0)
 cd ..
 repodir=$PWD
 repo=${PWD##*/}
+
+# Versions for which the "ccpe container only" label should be used
+ccpeonly=('24.11', '25.03')
 
 gendoc='docs-generated'
 userinfo='USER.md'
@@ -50,6 +56,7 @@ container_archived_module_preamble="This software is archived in the\n\
 The corresponding module would be <name>/<version>. The containers are likely no longer available on LUMI though."
 other_info_label="Issues"
 whatsnew_label="New"
+ccpeonly_button='([ccpe](../../c/ccpe/index.md) container only)'
 
 #
 # Search priorities
@@ -67,9 +74,14 @@ search_package='10'
 
 >&2 echo "Working in repo $repo in $repodir."
 
+####################################################################################################
+####################################################################################################
 #
 # Some functions and variables for this section
 #
+####################################################################################################
+####################################################################################################
+
 
 function die () {
 
@@ -78,8 +90,9 @@ function die () {
 
 }
 
+####################################################################################################
 #
-# create_link
+# Helper function: create_link
 #
 # Links a file but first tests if the target already exists to avoid error messages.
 #
@@ -97,8 +110,9 @@ create_link () {
 
 }
 
+####################################################################################################
 #
-# Print a string and indent.
+# Helper function: Print a string and indent.
 #
 
 indent() {
@@ -109,8 +123,9 @@ indent() {
 
 }
 
+####################################################################################################
 #
-# Extract docs
+# Helper function: Extract #DOC lines and omit the #DOC tags.
 #
 extract_docs() {
 
@@ -119,6 +134,40 @@ extract_docs() {
 
 }
 
+
+####################################################################################################
+#
+# Helper function: Extract the LUMI software stack version from an EasyConfig file
+#
+# The function takes two arguments:
+#   - Name of the EasyConfig file (including the path to it)
+#   - Name of the variable to store the result
+#
+
+function get_lumi_stack() {
+
+    local name="$1"
+    local -n lumistack=$2
+    local line
+
+    case "$name" in
+        # For cpeXXX packages, we can extract the lumi stack number from the toolchain used
+        *-cpeGNU-*)  lumistack=$(echo $name | sed 's/.*cpeGNU-\([0-9]\{2\}\.[0-9]\{2\}\).*/\1/') ;;
+        *-cpeCray-*) lumistack=$(echo $name | sed 's/.*cpeCray-\([0-9]\{2\}\.[0-9]\{2\}\).*/\1/') ;;
+        *-cpeAOCC-*) lumistack=$(echo $name | sed 's/.*cpeAOCC-\([0-9]\{2\}\.[0-9]\{2\}\).*/\1/') ;;
+        *-cpeAMD-*)  lumistack=$(echo $name | sed 's/.*cpeAMD-\([0-9]\{2\}\.[0-9]\{2\}\).*/\1/') ;;
+        # For other packages, we check if there is a #LUMISTACK line in the EasyConfig and use that one
+        *)           if line=$(egrep '^#LUMISTACK' $name)  
+                     then lumistack=$(egrep '^#LUMISTACK' $name | sed 's/.*\([0-9]\{2\}\.[0-9]\{2\}\).*/\1/') 
+                     else lumistack='unknown' 
+                     fi
+                     ;;
+    esac
+
+}
+
+
+####################################################################################################
 #
 # Print the EasyConfig docs (if any)
 #
@@ -142,6 +191,7 @@ add_easyconfig_docs () {
 
 }
 
+####################################################################################################
 #
 # Create a markdown document for an EasyConfig.
 #
@@ -191,6 +241,7 @@ easyconfig_to_md () {
 
 }
 
+####################################################################################################
 #
 # Create a markdown document for an EasyConfig.
 #
@@ -238,6 +289,15 @@ dockerfile_to_md () {
     # with a newline would cause trouble.
 
 }
+
+
+####################################################################################################
+####################################################################################################
+#
+# MAIN PROGRAM
+#
+####################################################################################################
+####################################################################################################
 
 #
 # Make sure the working directory exists.
@@ -625,8 +685,14 @@ do
             #
             # Add the module / easyconfig to the package file:
             #
+            # - Check if the label 'ccpe container only' is needed.
+            get_lumi_stack $file lumi_stack_version
+            if [[ " ${ccpeonly[*]} " =~ " $lumi_stack_version " ]]
+            then ccpe_label="$ccpeonly_button "
+            else ccpe_label=''
+            fi
             # - Link to the EasyConfig page
-            echo -e "-   [$package/$version (EasyConfig: $easyconfig)](${easyconfig/.eb/.md})\n" >>$package_file
+            echo -e "-   $ccpe_label[$package/$version (EasyConfig: $easyconfig)](${easyconfig/.eb/.md})\n" >>$package_file
             # - #DOC lines, if any
             add_easyconfig_docs $file $package_file "    "
 
@@ -677,8 +743,14 @@ do
             #
             # Add the module / easyconfig to the package file
             #
+            # - Check if the label 'ccpe container only' is needed.
+            get_lumi_stack $file lumi_stack_version
+            if [[ " ${ccpeonly[*]} " =~ " $lumi_stack_version " ]]
+            then ccpe_label="$ccpeonly_button "
+            else ccpe_label=''
+            fi
             # - Link to the EasyConfig page
-            echo -e "-   [EasyConfig $easyconfig, will build $package/$version](${easyconfig/.eb/.md})\n" >>$package_file
+            echo -e "-   $ccpe_label[EasyConfig $easyconfig, will build $package/$version](${easyconfig/.eb/.md})\n" >>$package_file
             # - #DOC lines, if any
             add_easyconfig_docs $file $package_file "    "
 
