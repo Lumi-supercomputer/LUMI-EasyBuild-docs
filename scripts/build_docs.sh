@@ -56,7 +56,7 @@ container_archived_module_preamble="This software is archived in the\n\
 The corresponding module would be <name>/<version>. The containers are likely no longer available on LUMI though."
 other_info_label="Issues"
 whatsnew_label="New"
-ccpeonly_button='([ccpe](../../c/ccpe/index.md) container only)'
+ccpeonly_button="<span class='lumi-software-inlinelabel-ccpe-hover'><span class='lumi-software-inlinelabel-ccpe'>[ccpe container only](../../c/ccpe/index.md)</span></span> "
 
 #
 # Search priorities
