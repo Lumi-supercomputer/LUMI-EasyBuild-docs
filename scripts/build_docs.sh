@@ -15,7 +15,7 @@ repodir=$PWD
 repo=${PWD##*/}
 
 # Versions for which the "ccpe container only" label should be used
-ccpeonly=('24.11', '25.03')
+ccpeonly=('24.11' '25.03')  # Don't use comma's!
 
 gendoc='docs-generated'
 userinfo='USER.md'
