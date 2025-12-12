@@ -12,6 +12,8 @@ hide:
 
 -   [VeloxChem](v/VeloxChem/index.md) and dependencies
 
+-   Additional warnings about deprecated modules.
+
 -   A number of 24.11 EasyConfigs for the ccpe container now documented in the
     LUMI Software Library.
 
