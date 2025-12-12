@@ -8,6 +8,22 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20251212
+
+-   [VeloxChem](v/VeloxChem/index.md) and dependencies
+
+-   Additional warnings about deprecated modules.
+
+-   A number of 24.11 EasyConfigs for the ccpe container now documented in the
+    LUMI Software Library.
+
+-   A number of 25.03 EasyConfigs for the ccpe container now documented in the
+    LUMI Software Library. 
+
+    This is at the same time a preview of the software stack that can be 
+    expected after the January 2026 system update.
+
+
 ## Release 20251203
 
 -   Update of the message-of-the-day and messages for the LUMI and cpe modules
