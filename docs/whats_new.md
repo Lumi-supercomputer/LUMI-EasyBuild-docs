@@ -8,6 +8,21 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20260121
+
+-   First fixes for the modified ROCm version after the January 2026 system update
+    have been implemented.
+
+!!! Note "Inconsistent state"
+    <span style="color:DarkRed">
+    The software available on the system may not completely correspond to what the
+    LUMI Software Library claims. This is because after an update, the system is made
+    available to users again as soon as the basic system software and programming
+    environment are installed, but before all application software stacks can be 
+    installed.
+    </span>
+
+
 ## Release 20251212
 
 -   [VeloxChem](v/VeloxChem/index.md) and dependencies
