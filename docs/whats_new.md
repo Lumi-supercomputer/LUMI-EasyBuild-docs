@@ -8,6 +8,23 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20260123
+
+-   Official release of the 25.03 software stack. The LUMI Software Library should
+    now be a lot more consistent with what is on the system. A number of EasyBuild
+    recipes though isn't functioning anymore but have not yet been archived as we
+    are looking for solutions.
+
+-   Some additional warnings in modules about software that doesn't work anymore.
+
+-   EasyConfigs for several configurations of [Score-P](s/Score-P/index.md) and
+    [Scalasca](s/Scalasca/index.md).
+
+-   EasyBuild recipes for modules for containers based on ROCm(tm) before 6.1
+    have been removed as these containers are not supported on the current
+    GPU driver.
+
+
 ## Release 20260121
 
 -   First fixes for the modified ROCm version after the January 2026 system update
