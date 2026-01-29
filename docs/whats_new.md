@@ -8,6 +8,19 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20260130
+
+-   [lumi-container-wrapper](l/lumi-container-wrapper/index.md) is now also available
+    in 25.03.
+
+-   Fix to the `htop` command in the [systools](s/systools/index.md) module
+
+-   Fix for an infinite loop in LMOD when loading a different version of the LUMI
+    stack with a toolchain loaded in another version of the stack.
+
+-   Various minor other fixes to user-installable packages.
+
+
 ## Release 20260123
 
 -   Official release of the 25.03 software stack. The LUMI Software Library should
