@@ -8,6 +8,17 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20260202
+
+-   Fixes to [GROMACS](g/GROMACS/index.md) recipes in 24.03 and new recipes for
+    CPU-only versions for 25.03.
+
+    Versions form 23.09 have been archived as we expect MPI issues with most of them.
+
+-   Fix for EasyBuild 4.8.2 so that some old EasyConfigs may build again, without 
+    guarantee that they will also run properly.
+
+
 ## Release 20260130
 
 -   [lumi-container-wrapper](l/lumi-container-wrapper/index.md) is now also available
