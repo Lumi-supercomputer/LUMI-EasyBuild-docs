@@ -8,6 +8,37 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20260211
+
+-   Additional [METIS](m/METIS/index.md) and [ParMETIS](p/ParMETIS/index.md) modules with clearer
+    naming. They will replace the old naming in the next software stack.
+
+-   Additional [ROCm(tm)](r/rocm/index.md) versions: 
+
+    -   Version 6.2.4 as an alternative version for 25.03 as that version of the Cray Programming
+        Environment was really tested with ROCm 6.2 and as we have seen one user code where this
+        solved issues.
+
+    -   Version 6.4.4 is available in CrayEnv and will be used in the 25.09 LUMI stack.
+
+    -   Version 6.1.3 is available as a user-installable module and may potentially solve issues
+        in 24.03 as it is the closest version to what 24.03 was designed for that still works on
+        the current GPU driver.
+
+    -   Version 7.0.3 is offered as a user-installable module. There are no compatible Cray 
+        Programming Libraries at the moment. There is no compatible MPI implementation on 
+        LUMI and RCCL is also broken. It is basically useful to experiment with a single
+        process and mostly on a single GPU.
+
+-   Many additional user-installable EasyConfigs, including recipes for
+    [Amber](a/Amber/index.md), [CP2K](c/CP2K/index.md) for GPU,
+    [GROMACS 2026](g/GROMACS/index.md) including a new HIP version,
+    [hipfort](h/hipfort/index.md), [LAMMPS](l/LAMMPS/index.md),
+    [VASP](v/VASP/index.md), [WRF-SFIRE](w/WRF-SFIRE/index.md),
+    [WPS](w/WPS/index.md) for use with WRF-SFIRE 
+    and some dependencies for VeloxChem.
+
+
 ## Release 20260202
 
 -   Fixes to [GROMACS](g/GROMACS/index.md) recipes in 24.03 and new recipes for
