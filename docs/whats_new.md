@@ -21,9 +21,10 @@ hide:
 
     -   Version 6.4.4 is available in CrayEnv and will be used in the 25.09 LUMI stack.
 
-    -   Version 6.1.3 is available as a user-installable module and may potentially solve issues
-        in 24.03 as it is the closest version to what 24.03 was designed for that still works on
-        the current GPU driver.
+    -   Version 6.1.3 is available as a user-installable module and intended for some very 
+        specialised use with the 23.09 stack as it is the only version of ROCm(tm) compatible
+        with the current driver and based on LLVM 17, the version used by the Cray compilers
+        in 23.09.
 
     -   Version 7.0.3 is offered as a user-installable module. There are no compatible Cray 
         Programming Libraries at the moment. There is no compatible MPI implementation on 
