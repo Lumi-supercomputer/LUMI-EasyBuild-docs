@@ -108,6 +108,9 @@ markdown_extensions:
   - pymdownx.snippets
   # Extension to make entering and styling keyboard key presses easier
   - pymdownx.keys
+  # Smart symbols for TM etc, and automatic processing of 1st 2nd.
+  # Beware for side effects as fractions such as 1/2 are also processed!
+  - pymdownx.smartsymbols
   # Add support for inserting emoji via simple short names enclosed within colons.
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
