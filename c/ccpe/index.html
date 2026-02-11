@@ -1,0 +1,3724 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for the LUMI software library">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>ccpe - LUMI Software Library</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+  
+      
+
+    
+
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document.body.addEventListener("click", function(ev) {
+        if (ev.target instanceof HTMLElement) {
+          var el = ev.target.closest("a[href^=http]")
+          if (el)
+            ga("send", "event", "outbound", "click", el.href)
+        }
+      })
+    })
+  </script>
+
+    
+
+  
+  
+  
+    
+  
+
+  
+  
+
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="LUMI Software Library - ccpe" />
+  <meta property="og:description" content="Documentation for the LUMI software library" />
+  <meta property="og:url" content="None" />
+  <meta property="og:image" content="assets/images/banner.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1080" />
+  <meta property="og:image:height" content="568" />
+
+  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@LUMIhpc" />
+  <meta name="twitter:creator" content="@LUMIhpc" />
+  <meta name="twitter:title" content="LUMI Software Library - ccpe" />
+  <meta name="twitter:description" content="Documentation for the LUMI software library" />
+  <meta name="twitter:image" content="assets/images/banner.png" />
+
+  <style>
+    [data-md-color-primary="lumi"] {
+      --md-primary-fg-color: hsla(0, 0%, 100%, 1);
+      --md-primary-fg-color--light: hsla(0, 0%, 100%, 0.7);
+      --md-primary-fg-color--dark: hsla(0, 0%, 0%, 0.07);
+      --md-primary-bg-color: hsla(0, 0%, 0%, 0.87);
+      --md-primary-bg-color--light: hsla(0, 0%, 0%, 0.54);
+      --md-button-bg-color: hsla(207,100%,28%, 1);
+      --md-button-bg-color--light: hsla(207,100%,38%, 1);
+      --md-typeset-a-color: hsla(207,100%,28%, 1);
+    }
+    
+    [data-md-color-accent="lumi"] {
+      --md-accent-fg-color: hsla(0,0%,0%, 1);
+      --md-accent-fg-color--transparent: hsla(0,0%,0%, 0.1);
+      --md-accent-bg-color: hsla(0, 0%, 100%, 1);
+      --md-accent-bg-color--light: hsla(0, 0%, 100%, 0.7);
+    }
+  </style>
+
+  
+
+
+  
+  
+
+    <link
+      rel="stylesheet"
+      href="../../assets/stylesheets/extra-a8af0af3d0.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../assets/stylesheets/overrides-5193e6f6df.css"
+    />
+    <link
+      rel="stylesheet"
+      id="typekit-fonts-css"
+      href="https://use.typekit.net/nlo5lta.css?ver=5.5.3"
+      type="text/css" media="all"
+    />
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="lumi" data-md-color-accent="lumi">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ccpe" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="LUMI Software Library" class="md-header__button md-logo" aria-label="LUMI Software Library" data-md-component="logo">
+      
+  
+  <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 723 212" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="Layer-2" serif:id="Layer 2">
+        <g transform="matrix(1,0,0,1,0,175.883)">
+            <path d="M0,-140.304L0,0L102.89,0L102.89,-24.599L26.658,-24.599L26.658,-140.304L0,-140.304Z" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,257.262,35.5793)">
+            <path d="M0,140.304C-17.585,140.304 -32.083,135.347 -43.588,125.338C-55,115.423 -60.799,103.357 -60.799,89.14L-60.799,0L-34.328,0L-34.328,81.563C-34.328,92.413 -31.054,100.645 -24.319,105.976C-17.866,111.12 -9.728,113.74 0,113.74C9.728,113.74 17.865,111.12 24.319,105.976C31.054,100.645 34.328,92.413 34.328,81.563L34.328,0L60.799,0L60.799,89.14C60.799,103.357 55.093,115.329 43.588,125.338C32.083,135.347 17.585,140.304 0,140.304" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,550.374,119.668)">
+            <path d="M0,-27.874L-43.588,20.671L-87.176,-27.874L-87.176,56.215L-113.74,56.215L-113.74,-84.089L-105.695,-84.089L-43.588,-13.47L18.614,-84.089L26.658,-84.089L26.658,56.215L0.094,56.215L0,-27.874Z" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <rect x="695.604" y="35.486" width="26.658" height="140.397" style="fill:rgb(29,29,27);"/>
+        <g transform="matrix(-1,0,0,1,722.262,-203.194)">
+            <rect x="0" y="203.194" width="722.262" height="8.175" style="fill:rgb(29,29,27);"/>
+        </g>
+        <g transform="matrix(-1,0,0,1,722.262,203.194)">
+            <rect x="0" y="0" width="722.262" height="8.175" style="fill:rgb(29,29,27);"/>
+        </g>
+    </g>
+</svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LUMI Software Library
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ccpe
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#a" class="md-tabs__link">
+        
+  
+  
+    
+  
+  a
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#b" class="md-tabs__link">
+        
+  
+  
+    
+  
+  b
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#c" class="md-tabs__link">
+        
+  
+  
+    
+  
+  c
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#d" class="md-tabs__link">
+        
+  
+  
+    
+  
+  d
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#e" class="md-tabs__link">
+        
+  
+  
+    
+  
+  e
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#f" class="md-tabs__link">
+        
+  
+  
+    
+  
+  f
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#g" class="md-tabs__link">
+        
+  
+  
+    
+  
+  g
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#h" class="md-tabs__link">
+        
+  
+  
+    
+  
+  h
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#I/ICU" class="md-tabs__link">
+        
+  
+  
+    
+  
+  I/ICU
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#i" class="md-tabs__link">
+        
+  
+  
+    
+  
+  i
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#j" class="md-tabs__link">
+        
+  
+  
+    
+  
+  j
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#k" class="md-tabs__link">
+        
+  
+  
+    
+  
+  k
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#l" class="md-tabs__link">
+        
+  
+  
+    
+  
+  l
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#m" class="md-tabs__link">
+        
+  
+  
+    
+  
+  m
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#n" class="md-tabs__link">
+        
+  
+  
+    
+  
+  n
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#o" class="md-tabs__link">
+        
+  
+  
+    
+  
+  o
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#p" class="md-tabs__link">
+        
+  
+  
+    
+  
+  p
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#q" class="md-tabs__link">
+        
+  
+  
+    
+  
+  q
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#r" class="md-tabs__link">
+        
+  
+  
+    
+  
+  r
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#s" class="md-tabs__link">
+        
+  
+  
+    
+  
+  s
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#t" class="md-tabs__link">
+        
+  
+  
+    
+  
+  t
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#u" class="md-tabs__link">
+        
+  
+  
+    
+  
+  u
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#v" class="md-tabs__link">
+        
+  
+  
+    
+  
+  v
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#w" class="md-tabs__link">
+        
+  
+  
+    
+  
+  w
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#x" class="md-tabs__link">
+        
+  
+  
+    
+  
+  x
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#y" class="md-tabs__link">
+        
+  
+  
+    
+  
+  y
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#z" class="md-tabs__link">
+        
+  
+  
+    
+  
+  z
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../known_issues/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Issues
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../whats_new/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  New
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LUMI Software Library" class="md-nav__button md-logo" aria-label="LUMI Software Library" data-md-component="logo">
+      
+  
+  <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 723 212" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="Layer-2" serif:id="Layer 2">
+        <g transform="matrix(1,0,0,1,0,175.883)">
+            <path d="M0,-140.304L0,0L102.89,0L102.89,-24.599L26.658,-24.599L26.658,-140.304L0,-140.304Z" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,257.262,35.5793)">
+            <path d="M0,140.304C-17.585,140.304 -32.083,135.347 -43.588,125.338C-55,115.423 -60.799,103.357 -60.799,89.14L-60.799,0L-34.328,0L-34.328,81.563C-34.328,92.413 -31.054,100.645 -24.319,105.976C-17.866,111.12 -9.728,113.74 0,113.74C9.728,113.74 17.865,111.12 24.319,105.976C31.054,100.645 34.328,92.413 34.328,81.563L34.328,0L60.799,0L60.799,89.14C60.799,103.357 55.093,115.329 43.588,125.338C32.083,135.347 17.585,140.304 0,140.304" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,550.374,119.668)">
+            <path d="M0,-27.874L-43.588,20.671L-87.176,-27.874L-87.176,56.215L-113.74,56.215L-113.74,-84.089L-105.695,-84.089L-43.588,-13.47L18.614,-84.089L26.658,-84.089L26.658,56.215L0.094,56.215L0,-27.874Z" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <rect x="695.604" y="35.486" width="26.658" height="140.397" style="fill:rgb(29,29,27);"/>
+        <g transform="matrix(-1,0,0,1,722.262,-203.194)">
+            <rect x="0" y="203.194" width="722.262" height="8.175" style="fill:rgb(29,29,27);"/>
+        </g>
+        <g transform="matrix(-1,0,0,1,722.262,203.194)">
+            <rect x="0" y="0" width="722.262" height="8.175" style="fill:rgb(29,29,27);"/>
+        </g>
+    </g>
+</svg>
+
+    </a>
+    LUMI Software Library
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#a" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    a
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#b" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    b
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#c" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    c
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#d" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    d
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#e" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    e
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#f" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    f
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#g" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    g
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#h" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    h
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#I/ICU" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I/ICU
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#i" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    i
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#j" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    j
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#k" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#l" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    l
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#m" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    m
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#n" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    n
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#o" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    o
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#p" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    p
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#q" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    q
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#r" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    r
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#s" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    s
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#t" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    t
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#u" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    u
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#v" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#w" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    w
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#x" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    x
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#y" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    y
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#z" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    z
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../known_issues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Issues
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../whats_new/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#license-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        License information
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="User documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#where-to-get-the-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where to get the containers?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-enable-the-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to enable the containers?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-the-easybuild-recipes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing the EasyBuild recipes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-get-a-proper-environment-in-the-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to get a proper environment in the container?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#launching-jobs-a-tale-of-two-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Launching jobs: A tale of two environments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#job-script-template-to-run-the-batch-script-in-the-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Job script template to run the batch script in the container
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-restrictions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known restrictions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#singularity-containers-with-modules-for-binding-and-extras" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Singularity containers with modules for binding and extras
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technical-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technical documentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Technical documentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#which-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Which approach?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-bind-mounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managing bind mounts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-tale-of-two-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A tale of two environments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wrapper-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wrapper scripts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lmod-caches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lmod caches
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initialisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initialisation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#knowing-we-are-in-the-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Knowing we are in the container
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-recognise-if-an-environment-is-compatible-with-the-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to recognise if an environment is compatible with the container?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-slurm-to-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting Slurm to work
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#starting-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Starting jobs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#easybuild" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EasyBuild
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EasyBuild">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#versions-2411-rocm-62-lumi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versions 24.11-*-rocm-6.2-LUMI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versions-2503-rocm-63-sp5-lumi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versions 25.03-*-rocm-6.3-SP5-LUMI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+<p><a href="../../">[package list]</a></p>
+<h1 id="ccpe">ccpe</h1>
+<p><span class='lumi-software-button-container-hover'><span class='lumi-software-button-container'></span></span></p>
+<h2 id="license-information">License information</h2>
+<p>These containers contain proprietary software and can only be used by LUMI users
+on LUMI. You cannot take these containers to another system. Doing so will be
+considered a severe violation of the conditions of use, as you should respect
+software licenses, and can lead to permanent termination of your access to LUMI.</p>
+<p>The use of the containers is also covered by the
+<a href="https://downloads.hpe.com/pub/softlib2/software1/doc/p1796552785/v113125/eula-en.html">HPE End User License Agreement - Enterprise Version</a>.
+Please read this document carefully!</p>
+<h2 id="user-documentation">User documentation</h2>
+<div class="admonition warning">
+<p class="admonition-title">Not working at the moment</p>
+<p>The container EasyConfigs are not fully functional as several modifications
+are needed after the January 2026 update. As the 25.03 and 25.09 programming
+environments are now on the system, repair does not have a high priority.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">These containers are beta software</p>
+<p>They are made available by HPE without guarantee of suitability for your
+purpose, as a way for users to test programming environments that are not
+(yet) on the system. </p>
+<p>LUST together with HPE have made modules and implemented changes to the 
+containers to adapt them to LUMI and integrate somewhat in the regular 
+environment.</p>
+<p>However, working with these containers is different from working with a 
+programming environment that is installed natively on the system and requires
+a good insight in how containers work. So they are not for every user, and
+LUST can only offer very limited support. These containers are only for 
+users who are very experienced with the Cray Programming Environment and also
+understand how singularity containers work.</p>
+<p>The container only offers <code>PrgEnv-cray</code> and <code>PrgEnv-gnu</code>. 
+With some imports from the system, we also offer <code>PrgEnv-amd</code>, but it
+may not be entirely as intended by the version of the PE as we may be 
+using a different version of ROCm. The container does contain some
+elements of <code>PrgEnv-nvidia</code> but that is obviously not functional on LUMI.
+<code>PrgEnv-aocc</code> is not available.</p>
+<p>HPE has a community Slack channel for feedback and questions at
+<a href="https://slack/hpdev.io/">slack.hpdev.io</a>, channel <code>#hpe-cray-programming-environment</code>,
+but bear in mind that this is mostly a community channel, monitored
+by some developers, but those developers don't have time to answer each and
+every question themselves. It is a low volume channel and in no means
+a support channel for inexperienced users.</p>
+<p>LUST cannot really offer much support, though we are interested in learning about 
+issues as this is useful feedback for HPE. These containers are really 
+meant for experienced users who want to experiment with a newer version before 
+it becomes available on LUMI.</p>
+</div>
+<h3 id="where-to-get-the-containers">Where to get the containers?</h3>
+<p>The CPE containers are made available in <code>/appl/local/containers/easybuild-sif-images</code>.</p>
+<p>Note the licensing conditions though. These containers should only be used on LUMI.</p>
+<h3 id="how-to-enable-the-containers">How to enable the containers?</h3>
+<p>We recommend using our EasyBuild modules to run the HPE CPE containers
+as these modules do create a lot of bind mounts to provide all necessary
+parts from the system to the container.</p>
+<p>All modules provide a number of environment variables to make life easier:</p>
+<ul>
+<li>
+<p>Outside (and brought into) the container, <code>SIF</code> and <code>SIFCCPE</code> point to the container file,
+    which is very handy to use with the <code>singularity</code> command.</p>
+</li>
+<li>
+<p>Inside the container, <code>INITCCPE</code> contains the commands to fully initialise
+    the CPE in the container. Use as <code>eval $INITCCPE</code>.</p>
+<p>This is not needed when using <code>singularity run</code> or the corresponding wrapper script.</p>
+</li>
+<li>
+<p>Outside (and brought into) the container, <code>EXPORTCCPE</code> is a list of environment
+    variables set by the <code>ccpe</code> modules that we want to bring in the container or
+    in a job script, even if we otherwise want to start the job script with a clean
+    environment.</p>
+</li>
+<li>
+<p>Outside (and brought into) the container, <code>SWITCHTOCCPE</code> is an environment variable
+    containing a large block of code that is used at the start of the job script to
+    switch to executing the job script in the container.</p>
+</li>
+</ul>
+<p>The module also provides access to four wrapper scripts to start the container.
+Note though that those wrapper scripts only function properly when the module
+is loaded. They do not take care of the bindings themselves and in that sense
+are certainly different from the wrapper scripts provided by Tykky/lumi-container-wrapper.
+All these scripts do however purge all modules before going into the container,
+as modules from the system PE are not valid in the container, and fully clear Lmod.
+Currently, the following scripts are provided:</p>
+<ul>
+<li>
+<p><code>ccpe-shell</code> to start a shell in the container. The arguments of <code>ccpe-shell</code>
+    are simply added to the <code>singularity shell $SIF</code>.</p>
+</li>
+<li>
+<p><code>ccpe-exec</code> to run a command in the container. The arguments of <code>ccpe-exec</code> 
+    are simply added to the <code>singularity exec $SIF</code> command.</p>
+</li>
+<li>
+<p><code>ccpe-run</code> to run the container. The arguments of <code>ccpe-run</code>
+    are simply added to the <code>singularity run $SIF</code> command.</p>
+</li>
+<li>
+<p><code>ccpe-singularity</code> will clean up the environment for the singularity, then
+    call <code>singularity</code> passing all arguments to <code>singularity</code>. So with this 
+    command, you still need to specify the container also (e.g., using the 
+    <code>SIF</code> or <code>SIFCCPE</code> environment variable), but can specify options for 
+    the singularity subcommand also.</p>
+</li>
+</ul>
+<h3 id="installing-the-easybuild-recipes">Installing the EasyBuild recipes</h3>
+<p>To install the container module, chose the appropriate EasyConfig from this page,
+and make sure you have a properly set up environment as explained in the 
+LUMI documentation in the "Installing software"section, 
+<a href="https://docs.lumi-supercomputer.eu/software/installing/easybuild/">"EasyBuild"</a>.
+In particular, it is important to set a proper location using <code>EBU_USER_PREFIX</code>,
+as your home directory will quickly fill up if you install in the default 
+location. To install the container, use</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>module load LUMI/24.03 partition/container EasyBuild-user
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>eb &lt;name_of_easyconfig&gt;
+</code></pre></div>
+<p>e.g., </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>module<span class="w"> </span>load<span class="w"> </span>LUMI/24.03<span class="w"> </span>partition/container
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>eb<span class="w"> </span>ccpe-25.03-B-rocm-6.3-SP5-LUMI.eb
+</code></pre></div>
+<p>Any more recent version of the LUMI stack on the system will also work for the installation.</p>
+<p>After that, the module installed by the EasyConfig (in the example,
+<code>ccpe/25.03-B-rocm-6.3-SP5-LUMI</code>) will be available in all versions of the <code>LUMI</code> stack on
+the system and in <code>CrayEnv</code>. So, e.g.,</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module load CrayEnv ccpe/25.03-B-rocm-6.3-SP5-LUMI
+</code></pre></div>
+<p>is enough to gain access to the container and all its tools explained on this page.</p>
+<h3 id="how-to-get-a-proper-environment-in-the-container">How to get a proper environment in the container?</h3>
+<p>Unfortunately, there seems to be no way to properly (re-)initialise the shell 
+or environment in the container directly through <code>singularity shell</code> or 
+<code>singularity exec</code>.</p>
+<p>The following strategies can be used:</p>
+<ul>
+<li>
+<p>In the container, the environment variable <code>INITCCPE</code> contains the necessary
+    commands to get a working Lmod environment again, but then with the relevant
+    CPE modules for the container. Run as</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>eval $INITCCPE
+</code></pre></div>
+</li>
+<li>
+<p>Alternatively, sourcing <code>/etc/bash.bashrc</code> will also properly set up Lmod.</p>
+</li>
+</ul>
+<p>Cases that do give you a properly initiated shell, are <code>singularity exec bash -i</code> 
+and <code>singularity run</code>. These commands do source <code>/etc/bash.bashrc</code> but do not 
+read <code>/etc/profile</code>. But the latter shouldn't matter too much as that is usually
+used to set environment variables, and those that are typically set in that file
+and the files it calls, now come from the regular environment on LUMI and are
+fine for the container, or are overwritten anyway
+by the files sourced by <code>/etc/bash.bashrc</code>.</p>
+<h3 id="launching-jobs-a-tale-of-two-environments">Launching jobs: A tale of two environments</h3>
+<p>The problem with running jobs, is that they have to deal with two incompatible
+environments:</p>
+<ol>
+<li>
+<p>The environment outside the container that does not know about the HPE Cray
+    PE modules of the PE version in the container, and may not know about some other
+    modules depending on how <code>/appl/lumi</code> is set up (as this may point to a totally
+    separate software stack specific for the container but mounted on <code>/appl/lumi</code>
+    so that it behaves just as the regular stacks on the system).</p>
+</li>
+<li>
+<p>The environment inside the container that does not know about the HPE Cray PE
+    modules installed in the system, and may not know about some other 
+    modules depending on how <code>/appl/lumi</code> is set up.</p>
+</li>
+</ol>
+<p>This is important, because unloading a module in Lmod requires access to the correct
+module file, as unloading is done by "executing the module file in reverse": The module
+file is executed, but each action that changes the environment, is reversed. Even a
+<code>module purge</code> will not work correctly without the proper modules available. Environment
+variables set by the modules may remain set. This is also why the module provides the
+<code>ccpe-*</code> wrapper scripts for singularity: These scripts are meant to be executed in 
+an environment that is valid outside the container, and clean up that environment before
+starting commands in the container so that the container initialisation can start from 
+a clean inherited environment.</p>
+<details class="example">
+<summary>See how broken the job environment can be...</summary>
+<p><em>This example is developed running a container for the 24.11 programming environment
+on LUMI in March 2025 with the 24.03 programming environment as the default.</em></p>
+<p>The 24.03 environment comes with <code>cce/17.0.1</code> while the 24.11 environment comes with
+<code>cce/18.0.1</code>. When loading the module, it sets the environment variable 'CRAY_CC_VERSION'
+to the version of the CCE compiler.</p>
+<p>Start up the container:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ccpe-run
+</code></pre></div>
+<p>Check the version of the module tool:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>module<span class="w"> </span>--version
+</code></pre></div>
+<p>which returns version 8.7.37:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Modules based on Lua: Version 8.7.37  [branch: release/cpe-24.11] 2024-09-24 16:53 +00:00
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    by Robert McLay mclay@tacc.utexas.edu    
+</code></pre></div>
+<p>and list the modules:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>module<span class="w"> </span>list
+</code></pre></div>
+<p>returns</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Currently Loaded Modules:
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>1) craype-x86-rome                                 6) cce/18.0.1           11) PrgEnv-cray/8.6.0
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>2) libfabric/1.15.2.0                              7) craype/2.7.33        12) ModuleLabel/label (S)
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>3) craype-network-ofi                              8) cray-dsmml/0.3.0     13) lumi-tools/24.05  (S)
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>4) perftools-base/24.11.0                          9) cray-mpich/8.1.31    14) init-lumi/0.2     (S)
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>5) xpmem/2.9.6-1.1_20240510205610__g087dc11fc19d  10) cray-libsci/24.11.0
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>Where:
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>S:  Module is Sticky, requires --force to unload or purge
+</code></pre></div>
+<p>so we start with the Cray programming environment loaded.</p>
+<p>Now use an interactive <code>srun</code> session to start a session on the compute node.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>srun<span class="w"> </span>-n1<span class="w"> </span>-c1<span class="w"> </span>-t10:00<span class="w"> </span>-psmall<span class="w"> </span>-A&lt;my_account&gt;<span class="w"> </span>--pty<span class="w"> </span>bash
+</code></pre></div>
+<p>Let's check the version of the module tool again:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>module<span class="w"> </span>--version
+</code></pre></div>
+<p>now returns version 8.7.32: </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Modules based on Lua: Version 8.7.32  2023-08-28 12:42 -05:00
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    by Robert McLay mclay@tacc.utexas.edu
+</code></pre></div>
+<p>as we are no longer in the container but in a regular LUMI environment. </p>
+<p>Trying</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>module<span class="w"> </span>list
+</code></pre></div>
+<p>returns</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Currently Loaded Modules:
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>6) craype-x86-rome                                 6) cce/18.0.1           11) PrgEnv-cray/8.6.0
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>7) libfabric/1.15.2.0                              7) craype/2.7.33        12) ModuleLabel/label (S)
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>8) craype-network-ofi                              8) cray-dsmml/0.3.0     13) lumi-tools/24.05  (S)
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>9) perftools-base/24.11.0                          9) cray-mpich/8.1.31    14) init-lumi/0.2     (S)
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>10) xpmem/2.9.6-1.1_20240510205610__g087dc11fc19d  10) cray-libsci/24.11.0
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>Where:
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>S:  Module is Sticky, requires --force to unload or purge
+</code></pre></div>
+<p>so the modules we were using in the container.</p>
+<p>The environment variable <code>CRAY_CC_VERSION</code> is also set:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$CRAY_CC_VERSION</span>
+</code></pre></div>
+<p>returns <code>18.0.1</code>.</p>
+<p>Now do a</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>module<span class="w"> </span>purge
+</code></pre></div>
+<p>which shows the perfectly normal output</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>The following modules were not unloaded:
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>(Use &quot;module --force purge&quot; to unload all):
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>1) ModuleLabel/label   2) lumi-tools/24.05   3) init-lumi/0.2
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>The following sticky modules could not be reloaded:
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>1) lumi-tools
+</code></pre></div>
+<p>and </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>module<span class="w"> </span>list
+</code></pre></div>
+<p>now shows</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>Currently Loaded Modules:
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>1) ModuleLabel/label (S)   2) lumi-tools/24.05 (S)   3) init-lumi/0.2 (S)
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>Where:
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>S:  Module is Sticky, requires --force to unload or purge
+</code></pre></div>
+<p>but </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$CRAY_CC_VERSION</span>
+</code></pre></div>
+<p>still return <code>18.0.1</code>, so even though it appears that the <code>cce/18.0.1</code> module has been unloaded,
+not all (if any) environment variables set by the module, have been correctly unset. </p>
+<p>We can now load the <code>cce</code> module again:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>module<span class="w"> </span>load<span class="w"> </span>cce
+</code></pre></div>
+<p>and now</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>module<span class="w"> </span>list<span class="w"> </span>cce
+</code></pre></div>
+<p>returns</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>Currently Loaded Modules Matching: cce
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>1) cce/17.0.1
+</code></pre></div>
+<p>so it appears we have the <code>cce</code> module from the system. This went well in this case. And in fact,</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>module<span class="w"> </span>list
+</code></pre></div>
+<p>which returns</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>Currently Loaded Modules:
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>1) ModuleLabel/label (S)   4) craype/2.7.31.11     7) craype-network-ofi   10) PrgEnv-cray/8.5.0
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>2) lumi-tools/24.05  (S)   5) cray-dsmml/0.3.0     8) cray-mpich/8.1.29    11) cce/17.0.1
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>3) init-lumi/0.2     (S)   6) libfabric/1.15.2.0   9) cray-libsci/24.03.0
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>Where:
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>S:  Module is Sticky, requires --force to unload or purge
+</code></pre></div>
+<p>suggests that some other modules, like <code>cray-mpich</code> and <code>cray-libsci</code> have also been reloaded.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$CRAY_CC_VERSION</span>
+</code></pre></div>
+<p>returns <code>17.0.1</code> as expected, and after</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>module<span class="w"> </span>purge
+</code></pre></div>
+<p>we now note that</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$CRAY_CC_VERSION</span>
+</code></pre></div>
+<p>returns nothing and is reset.</p>
+<p>However, it is clear that we are now in an environment where we cannot use what we prepared in the
+container.</p>
+</details>
+<h3 id="job-script-template-to-run-the-batch-script-in-the-container">Job script template to run the batch script in the container</h3>
+<p>To make writing job scripts easier, some common code has been put in an
+environment variable that can be executed via the <code>eval</code> function of bash.</p>
+<p>This job script will start with as clean an environment as possible, except when called
+from a correctly initialised container with passing of the full environment:</p>
+<!-- One space indent needed as this goes through a too simple script that will
+     replace a # in the first column. -->
+
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-28-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-28-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-28-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-28-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-28-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-28-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-28-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-28-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-28-10">10</a></span>
+<span class="normal"><a href="#__codelineno-28-11">11</a></span>
+<span class="normal"><a href="#__codelineno-28-12">12</a></span>
+<span class="normal"><a href="#__codelineno-28-13">13</a></span>
+<span class="normal"><a href="#__codelineno-28-14">14</a></span>
+<span class="normal"><a href="#__codelineno-28-15">15</a></span>
+<span class="normal"><a href="#__codelineno-28-16">16</a></span>
+<span class="normal"><a href="#__codelineno-28-17">17</a></span>
+<span class="normal"><a href="#__codelineno-28-18">18</a></span>
+<span class="normal"><a href="#__codelineno-28-19">19</a></span>
+<span class="normal"><a href="#__codelineno-28-20">20</a></span>
+<span class="normal"><a href="#__codelineno-28-21">21</a></span>
+<span class="normal"><a href="#__codelineno-28-22">22</a></span>
+<span class="normal"><a href="#__codelineno-28-23">23</a></span>
+<span class="normal"><a href="#__codelineno-28-24">24</a></span>
+<span class="normal"><a href="#__codelineno-28-25">25</a></span>
+<span class="normal"><a href="#__codelineno-28-26">26</a></span>
+<span class="normal"><a href="#__codelineno-28-27">27</a></span>
+<span class="normal"><a href="#__codelineno-28-28">28</a></span>
+<span class="normal"><a href="#__codelineno-28-29">29</a></span>
+<span class="normal"><a href="#__codelineno-28-30">30</a></span>
+<span class="normal"><a href="#__codelineno-28-31">31</a></span>
+<span class="normal"><a href="#__codelineno-28-32">32</a></span>
+<span class="normal"><a href="#__codelineno-28-33">33</a></span>
+<span class="normal"><a href="#__codelineno-28-34">34</a></span>
+<span class="normal"><a href="#__codelineno-28-35">35</a></span>
+<span class="normal"><a href="#__codelineno-28-36">36</a></span>
+<span class="normal"><a href="#__codelineno-28-37">37</a></span>
+<span class="normal"><a href="#__codelineno-28-38">38</a></span>
+<span class="normal"><a href="#__codelineno-28-39">39</a></span>
+<span class="normal"><a href="#__codelineno-28-40">40</a></span>
+<span class="normal"><a href="#__codelineno-28-41">41</a></span>
+<span class="normal"><a href="#__codelineno-28-42">42</a></span>
+<span class="normal"><a href="#__codelineno-28-43">43</a></span>
+<span class="normal"><a href="#__codelineno-28-44">44</a></span>
+<span class="normal"><a href="#__codelineno-28-45">45</a></span>
+<span class="normal"><a href="#__codelineno-28-46">46</a></span>
+<span class="normal"><a href="#__codelineno-28-47">47</a></span>
+<span class="normal"><a href="#__codelineno-28-48">48</a></span>
+<span class="normal"><a href="#__codelineno-28-49">49</a></span>
+<span class="normal"><a href="#__codelineno-28-50">50</a></span>
+<span class="normal"><a href="#__codelineno-28-51">51</a></span>
+<span class="normal"><a href="#__codelineno-28-52">52</a></span>
+<span class="normal"><a href="#__codelineno-28-53">53</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2"></a><span class="c1">#</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3"></a><span class="c1"># This test script should be submitted with sbatch from within a CPE 24.11 container.</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4"></a><span class="c1"># It shows very strange behaviour as the `module load` of some modules fails to show</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5"></a><span class="c1"># those in `module list` and also fails to change variables that should be changed.</span>
+<a id="__codelineno-28-6" name="__codelineno-28-6"></a><span class="c1">#</span>
+<a id="__codelineno-28-7" name="__codelineno-28-7"></a><span class="c1">#SBATCH -J example-jobscript</span>
+<a id="__codelineno-28-8" name="__codelineno-28-8"></a><span class="c1">#SBATCH -p standard</span>
+<a id="__codelineno-28-9" name="__codelineno-28-9"></a><span class="c1">#SBATCH -N 2</span>
+<a id="__codelineno-28-10" name="__codelineno-28-10"></a><span class="c1">#SBATCH -n 32</span>
+<a id="__codelineno-28-11" name="__codelineno-28-11"></a><span class="c1">#SBATCH -c 8</span>
+<a id="__codelineno-28-12" name="__codelineno-28-12"></a><span class="c1">#SBATCH -t 5:00</span>
+<a id="__codelineno-28-13" name="__codelineno-28-13"></a><span class="c1">#SBATCH -o %x-%j.md</span>
+<a id="__codelineno-28-14" name="__codelineno-28-14"></a><span class="c1"># And add line for account</span>
+<a id="__codelineno-28-15" name="__codelineno-28-15"></a>
+<a id="__codelineno-28-16" name="__codelineno-28-16"></a><span class="c1">################################################################################</span>
+<a id="__codelineno-28-17" name="__codelineno-28-17"></a><span class="c1">#</span>
+<a id="__codelineno-28-18" name="__codelineno-28-18"></a><span class="c1"># Always start with this block.</span>
+<a id="__codelineno-28-19" name="__codelineno-28-19"></a><span class="c1"># Its function is to restart the execution of the job script in the container</span>
+<a id="__codelineno-28-20" name="__codelineno-28-20"></a><span class="c1"># so that you can write a regular job script as if you are working in the</span>
+<a id="__codelineno-28-21" name="__codelineno-28-21"></a><span class="c1"># version of the Cray PE in the container.</span>
+<a id="__codelineno-28-22" name="__codelineno-28-22"></a><span class="c1">#</span>
+<a id="__codelineno-28-23" name="__codelineno-28-23"></a>
+<a id="__codelineno-28-24" name="__codelineno-28-24"></a><span class="c1">#</span>
+<a id="__codelineno-28-25" name="__codelineno-28-25"></a><span class="c1"># Ensure that the environment variable SWITCHTOCCPE and with it </span>
+<a id="__codelineno-28-26" name="__codelineno-28-26"></a><span class="c1">#</span>
+<a id="__codelineno-28-27" name="__codelineno-28-27"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SWITCHTOCCPE</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-28-28" name="__codelineno-28-28"></a><span class="k">then</span>
+<a id="__codelineno-28-29" name="__codelineno-28-29"></a><span class="w">    </span>module<span class="w"> </span>load<span class="w"> </span>CrayEnv<span class="w"> </span>ccpe/25.03-B-rocm-6.3-SP5-LUMI<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">exit</span>
+<a id="__codelineno-28-30" name="__codelineno-28-30"></a><span class="k">fi</span>
+<a id="__codelineno-28-31" name="__codelineno-28-31"></a>
+<a id="__codelineno-28-32" name="__codelineno-28-32"></a><span class="c1">#</span>
+<a id="__codelineno-28-33" name="__codelineno-28-33"></a><span class="c1"># Now switch to the container and clean up environments when needed and possible.</span>
+<a id="__codelineno-28-34" name="__codelineno-28-34"></a><span class="c1">#</span>
+<a id="__codelineno-28-35" name="__codelineno-28-35"></a><span class="nb">eval</span><span class="w"> </span><span class="nv">$SWITCHTOCCPE</span>
+<a id="__codelineno-28-36" name="__codelineno-28-36"></a>
+<a id="__codelineno-28-37" name="__codelineno-28-37"></a><span class="c1">################################################################################</span>
+<a id="__codelineno-28-38" name="__codelineno-28-38"></a><span class="c1">#</span>
+<a id="__codelineno-28-39" name="__codelineno-28-39"></a><span class="c1"># Here you have the container environment and can simply work as you would </span>
+<a id="__codelineno-28-40" name="__codelineno-28-40"></a><span class="c1"># normally do:  Build your environment and start commands. But you&#39;ll still </span>
+<a id="__codelineno-28-41" name="__codelineno-28-41"></a><span class="c1"># have to be careful with srun as whatever you start with srun will not </span>
+<a id="__codelineno-28-42" name="__codelineno-28-42"></a><span class="c1"># automatically run in the container.</span>
+<a id="__codelineno-28-43" name="__codelineno-28-43"></a><span class="c1">#</span>
+<a id="__codelineno-28-44" name="__codelineno-28-44"></a>
+<a id="__codelineno-28-45" name="__codelineno-28-45"></a><span class="c1"># Always reconstruct the environment and don&#39;t rely on something inherited from</span>
+<a id="__codelineno-28-46" name="__codelineno-28-46"></a><span class="c1"># the calling shell as this will be wrong if the job script is not launched from</span>
+<a id="__codelineno-28-47" name="__codelineno-28-47"></a><span class="c1"># within the container.</span>
+<a id="__codelineno-28-48" name="__codelineno-28-48"></a>module<span class="w"> </span>load<span class="w"> </span>LUMI/25.03<span class="w"> </span>partition/C
+<a id="__codelineno-28-49" name="__codelineno-28-49"></a>module<span class="w"> </span>load<span class="w"> </span>lumi-CPEtools/1.2-cpeCray-25.03-hpcat-0.9
+<a id="__codelineno-28-50" name="__codelineno-28-50"></a>
+<a id="__codelineno-28-51" name="__codelineno-28-51"></a><span class="c1"># We also need a little trick with srun.</span>
+<a id="__codelineno-28-52" name="__codelineno-28-52"></a><span class="c1"># Template: ccpe-srun &lt;srun arguments&gt; singularity exec $SIFCCPE &lt;command&gt;</span>
+<a id="__codelineno-28-53" name="__codelineno-28-53"></a>ccpe-srun<span class="w"> </span>singularity<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="nv">$SIFCCPE</span><span class="w"> </span>hybrid_check
+</code></pre></div></td></tr></table></div>
+<p>What this job script does:</p>
+<ul>
+<li>
+<p>The body of the job script (lines after <code>eval $SWITCHTOCCPE</code>) will always run in the container.</p>
+<p>This is where you would insert your code that you want to run in the container.</p>
+</li>
+<li>
+<p>The environment in the container after <code>eval $SWITCHTOCCPE</code>:</p>
+<ul>
+<li>
+<p>When launching this batch script from within the container:</p>
+<ul>
+<li>
+<p>When launched without <code>--export</code> flag, the body will run in the environment of the calling container.</p>
+<p>It does require that the job is started from a properly initialised container with active Lmod though,
+as that currently sets the environment variable to detect if the container is properly initialised. </p>
+<p>If you started the calling container with <code>ccpe-run</code>, there is no issue though. In other cases, you 
+may have to execute <code>eval $INITCCPE</code>. But in general, if you were able to load Cray PE modules before
+calling <code>sbatch</code>, you should be OK.</p>
+</li>
+<li>
+<p>When launched using <code>sbatch --export=$EXPORTCCPE</code>, the body will run in a clean container environment,
+    but will not need to re-load the container module.</p>
+</li>
+<li>
+<p>Behaviour with <code>--export=none</code>: As the container cannot be located, </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SWITCHTOCCPE</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="k">then</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">    </span>module<span class="w"> </span>load<span class="w"> </span>CrayEnv<span class="w"> </span>ccpe/25.03-B-rocm-6.3-SP5-LUMI<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">exit</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="k">fi</span>
+</code></pre></div>
+<p>will first try to load the container module, and if successful, proceed creating a clean environment.</p>
+<p><strong>Note that you need to adapt that line to the module you are actually using!</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p>When launching this batch script from a regular system shell:</p>
+<ul>
+<li>
+<p>When launched using <code>sbatch --export=$EXPORTCCPE</code>, the body will run in a clean container environment.</p>
+</li>
+<li>
+<p>When launched without <code>--export</code> flag, <code>eval $SWITCHTOCCPE</code> will first try to clean the system
+    environment (and may fail during that phase if it cannot find the modules that you had loaded
+    when calling <code>sbatch</code>.)</p>
+<p>If the <code>ccpe</code> module was not loaded when calling the job script, the block </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SWITCHTOCCPE</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="k">then</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="w">    </span>module<span class="w"> </span>load<span class="w"> </span>CrayEnv<span class="w"> </span>ccpe/25.03-B-rocm-6.3-SP5-LUMI<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">exit</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="k">fi</span>
+</code></pre></div>
+<p>will try to take care of that. If the module can be loaded, the script will proceed with building
+a clean container environment.</p>
+<p><strong>Note that you need to adapt that line to the module you are actually using!</strong></p>
+</li>
+<li>
+<p>Behaviour with <code>--export=none</code>: As the container cannot be located, </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SWITCHTOCCPE</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="k">then</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="w">    </span>module<span class="w"> </span>load<span class="w"> </span>CrayEnv<span class="w"> </span>ccpe/25.03-B-rocm-6.3-SP5-LUMI<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">exit</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="k">fi</span>
+</code></pre></div>
+<p>will first try to load the container module, and if successful, proceed creating a clean environment.</p>
+<p><strong>Note that you need to adapt that line to the module you are actually using!</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>So in all cases you get a clean environment (which is the only logical thing to get) <em>except</em>
+if <code>sbatch</code> was already called from within the container without <code>--export</code> flag.</p>
+</li>
+<li>
+<p>To run the actual command, there we do not use <code>srun</code> but the function <code>ccpe-srun</code> defined in the 
+    container, and we must also ensure that we start the command in the singularity container.</p>
+<p>The reason why we need <code>ccpe-srun</code> is that <code>PATH</code> and <code>LD_LIBRARY_PATH</code> are not passed to the
+container, but overwritten by values set in the initialisation routines of the container. The
+solution is to enforce the values of the calling environment via 
+<code>SINGULARITYENV_PATH</code> and <code>SINGULARITYENV_LD_LIBRARY_PATH</code>. <code>ccpe-srun</code> is just a very small
+bash funtion:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="k">function</span><span class="w"> </span>ccpe-srun<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w">    </span><span class="nv">SINGULARITYENV_PATH</span><span class="o">=</span><span class="nv">$PATH</span><span class="w"> </span><span class="nv">SINGULARITYENV_LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$LD_LIBRARY_PATH</span><span class="w"> </span>srun<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span><span class="w"> </span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="o">}</span>
+</code></pre></div>
+<p>so instead of using <code>cpe-srun</code> in the above example, one could also have used</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="nv">SINGULARITYENV_PATH</span><span class="o">=</span><span class="nv">$PATH</span><span class="w"> </span><span class="nv">SINGULARITYENV_LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$LD_LIBRARY_PATH</span><span class="w"> </span>srun<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="w">  </span>singularity<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="nv">$SIFCCPE</span><span class="w"> </span>hybrid_check
+</code></pre></div>
+<p>or</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">SINGULARITYENV_PATH</span><span class="o">=</span><span class="nv">$PATH</span><span class="w"> </span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">SINGULARITYENV_LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$LD_LIBRARY_PATH</span><span class="w"> </span>
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>srun<span class="w"> </span>singularity<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="nv">$SIFCCPE</span><span class="w"> </span>hybrid_check
+</code></pre></div>
+</li>
+</ul>
+<p>For technical information about how all this works under the hood (and it may 
+be important to understand this to always use the template correctly), check the
+<a href="#starting-jobs">subsection "Starting jobs"</a> in the 
+<a href="#technical-documentation">"Technical documentation"</a> section of this page.</p>
+<h3 id="known-restrictions">Known restrictions</h3>
+<ul>
+<li>
+<p><code>PrgEnv-aocc</code> is not provided by the container. The ROCm version is taken from the
+    system and may not be the optimal one for the version of the PE.</p>
+</li>
+<li>
+<p><code>salloc</code> does not work in the container.</p>
+<p>Workaround: Use <code>salloc</code> outside the container, then go into the container with 
+<code>ccpe-run</code>.</p>
+</li>
+</ul>
+<h2 id="singularity-containers-with-modules-for-binding-and-extras">Singularity containers with modules for binding and extras</h2>
+<p>Install with the EasyBuild-user module in <code>partition/container</code>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>module load LUMI partition/container EasyBuild-user
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>eb &lt;easyconfig&gt;
+</code></pre></div>
+The module will be available in all versions of the LUMI stack and in the CrayEnv stack.</p>
+<p>To access module help after installation use <code>module spider ccpe/&lt;version&gt;</code>.</p>
+<p>EasyConfig:</p>
+<ul>
+<li>
+<p><a href="ccpe-24.11-B-rocm-6.2-LUMI/">EasyConfig ccpe-24.11-B-rocm-6.2-LUMI.eb, will provide ccpe/24.11-B-rocm-6.2-LUMI</a></p>
+<p>This module provides a modified version of the CPE container as it comes from HPE.
+The goal is to integrate it better with the current LUMI environment. Changes to the
+container are also made through this EasyConfig, so you may use it as a template to
+adapt the CPE containers to your needs.</p>
+<p>This B-rocm version bind mounts the actual ROCm installation from a SquashFS file
+provided on LUMI which should give better compile performance than when simply
+mounting a directory from one of the LUMI parallel file systems with the ROCm
+installation. Some libraries  on the OS side may not be the best version, so in 
+case of trouble, switch to the C-rocm version.</p>
+<p>This container can be installed in <code>partition/container</code> via LUMI/24.03 or more recent
+LUMI stacks, after which the module will be available in CrayEnv and all versions of the
+LUMI stack.</p>
+</li>
+<li>
+<p><a href="ccpe-24.11-C-rocm-6.2-LUMI/">EasyConfig ccpe-24.11-C-rocm-6.2-LUMI.eb, will provide ccpe/24.11-C-rocm-6.2-LUMI</a></p>
+<p>This module provides a modified version of the CPE container as it comes from HPE.
+The goal is to integrate it better with the current LUMI environment. Changes to the
+container are also made through this EasyConfig, so you may use it as a template to
+adapt the CPE containers to your needs.</p>
+<p>This C-rocm version also integrates ROCm in the container and installs it using the 
+SUSE zypper install tool, guaranteeing that all dependencies are also present in
+the right version. As such, it is the most robust variant of the containers with 
+ROCm. However, installing ROCm with the unprivileged build process is extremely slow, 
+so expect long build times (over one and a half hour on a compute node),
+rendering this approach rather inefficient. The assembly of the container may also
+run out-of-memory on the login nodes as the memory available to a single user is
+restricted to 96GB.</p>
+<p>This container can be installed in <code>partition/container</code> via LUMI/24.03 or more recent
+LUMI stacks, after which the module will be available in CrayEnv and all versions of the
+LUMI stack.</p>
+</li>
+<li>
+<p><a href="ccpe-25.03-B-rocm-6.3-SP5-LUMI/">EasyConfig ccpe-25.03-B-rocm-6.3-SP5-LUMI.eb, will provide ccpe/25.03-B-rocm-6.3-SP5-LUMI</a></p>
+<p>This module provides a modified version of the CPE container as it comes from HPE.
+The goal is to integrate it better with the current LUMI environment. Changes to the
+container are also made through this EasyConfig, so you may use it as a template to
+adapt the CPE containers to your needs.</p>
+<p>This B-rocm version bind mounts the actual ROCm installation from a SquashFS file
+provided on LUMI which should give better compile performance than when simply
+mounting a directory from one of the LUMI parallel file systems with the ROCm
+installation. Some libraries  on the OS side may not be the best version, so in 
+case of trouble, switch to the C-rocm version.</p>
+<p>This container can be installed in <code>partition/container</code> via LUMI/24.03 or more recent
+LUMI stacks, after which the module will be available in CrayEnv and all versions of the
+LUMI stack.</p>
+</li>
+<li>
+<p><a href="ccpe-25.03-C-rocm-6.3-SP5-LUMI/">EasyConfig ccpe-25.03-C-rocm-6.3-SP5-LUMI.eb, will provide ccpe/25.03-C-rocm-6.3-SP5-LUMI</a></p>
+<p>This module provides a modified version of the CPE container as it comes from HPE.
+The goal is to integrate it better with the current LUMI environment. Changes to the
+container are also made through this EasyConfig, so you may use it as a template to
+adapt the CPE containers to your needs.</p>
+<p>This C-rocm version also integrates ROCm in the container and installs it using the 
+SUSE zypper install tool, guaranteeing that all dependencies are also present in
+the right version. As such, it is the most robust variant of the containers with 
+ROCm. However, installing ROCm with the unprivileged build process is extremely slow, 
+so expect long build times (over one and a half hour on a compute node),
+rendering this approach rather inefficient. The assembly of the container may also
+run out-of-memory on the login nodes as the memory available to a single user is
+restricted to 96GB.</p>
+<p>This container can be installed in <code>partition/container</code> via LUMI/24.03 or more recent
+LUMI stacks, after which the module will be available in CrayEnv and all versions of the
+LUMI stack.</p>
+</li>
+<li>
+<p><a href="ccpe-25.09-noRocm-SP6-LUMI/">EasyConfig ccpe-25.09-noRocm-SP6-LUMI.eb, will provide ccpe/25.09-noRocm-SP6-LUMI</a></p>
+<p>This module provides a modified version of the CPE container as it comes from HPE.
+The goal is to integrate it better with the current LUMI environment. Changes to the
+container are also made through this EasyConfig, so you may use it as a template to
+adapt the CPE containers to your needs.</p>
+<p>This C-rocm version also integrates ROCm in the container and installs it using the 
+SUSE zypper install tool, guaranteeing that all dependencies are also present in
+the right version. As such, it is the most robust variant of the containers with 
+ROCm. However, installing ROCm with the unprivileged build process is extremely slow, 
+so expect long build times (over one and a half hour on a compute node),
+rendering this approach rather inefficient. The assembly of the container may also
+run out-of-memory on the login nodes as the memory available to a single user is
+restricted to 96GB.</p>
+<p>This container can be installed in <code>partition/container</code> via LUMI/24.03 or more recent
+LUMI stacks, after which the module will be available in CrayEnv and all versions of the
+LUMI stack.</p>
+</li>
+</ul>
+<h2 id="technical-documentation">Technical documentation</h2>
+<p>These containers should not be spread outside LUMI, and some even contain unofficial
+versions and should not be spread to more users than needed. So do not spread without
+explicit agreement with HPE.</p>
+<h3 id="issues">Issues</h3>
+<h4 id="which-approach">Which approach?</h4>
+<ol>
+<li>
+<p>One can do as much as possible outside the container, injecting any change via bind
+    mounts. This makes for very easy debugging, as one can simply change those injected
+    files without rebuilding the container.</p>
+<p>As we shall see below, some minimal components have to be injected though to get Slurm
+to work.</p>
+</li>
+<li>
+<p>Create a custom container, implementing modifications and additions as much as possible
+    in the container.</p>
+<p>This also enables us to install a lot of extra software in the container, and give users
+an easy way to build a fully customised version. </p>
+<p>It also greatly simplifies the list of bind mounts.</p>
+<p>Debugging is a bit easier, but if we store copies from the files installed in the container
+also outside the container, it is still easy to temporarily inject them and experiment
+with changes.</p>
+</li>
+</ol>
+<p>The first approach also enables us to make the standard container available on a place 
+accessible to all users, without the need for them to store a copy in their project.
+On the other hand, having a local copy protects against changes that admins may make,
+and the size of the container is small compared to the size of a dataset one can expect
+for users who use LUMI to solve bigger problems.</p>
+<h4 id="managing-bind-mounts">Managing bind mounts</h4>
+<p>It is not hard to build a module that sets the <code>SINGULARITY_BIND</code> environment variable
+with all necessary bind mounts. Moreover, that environment variable is also made available
+in the container so can be further propagated easily to a job script.</p>
+<h4 id="a-tale-of-two-environments">A tale of two environments</h4>
+<p>On the system and inside the container, the module view is different. On the system,
+one sees all modules form the programming environments installed on the system, and modules
+in the LUST-installed stacks and possibly other local stacks.</p>
+<p>In the container, one sees a different set of programming environment modules, and depending
+on which software stacks are mounted, a different set of software stack modules.</p>
+<p>This matters because Lmod can only fully unload a module if it has access to the module file.
+Unloading is done by executing the module file while reversing the effect of commands that 
+make changes in the environment. If you execute a <code>module purge</code> or <code>module --force purge</code>
+on a list of modules for which not all module files are available, they will still appear as
+unloaded, but environment variables set by these modules will not be unset, and worse, directories
+will not be correctly removed from PATH-style environment variables. Lmod will not warn for that:
+It is a feature that any unload operation always succeeds, even if it could not be done correctly.</p>
+<p>This may be troublesome for the programming environment. As so much data is communicated to the 
+compiler wrappers via environment variables, they may be mislead and do unintended operations
+like trying to link in libraries that should not be linked in.</p>
+<p>This has implication on how we go into containers - one should clean up the system environment
+before entering in the container - and on Lmod: One should not use the same cache for both environments.
+It also complicates starting jobs.</p>
+<p>All these elements will be discussed below.</p>
+<h4 id="wrapper-scripts">Wrapper scripts</h4>
+<p>The EasyBuild-installed modules do provide some wrapper scripts that make some tasks 
+easier. They try to deal with the two environments problem by first purging the system
+environment before calling the singularity command.</p>
+<h5 id="singularity-shell-wrapper-script-ccpe-shell"><code>singularity shell</code> wrapper script <code>ccpe-shell</code></h5>
+<p>This is a convenience wrapper script and is not useful if you want to pass arguments 
+to singularity (rather than to the shell it starts).</p>
+<p>The script does a clean-up of the modules in your environment and then cleans up Lmod 
+completely, as the environment outside the container is not compatible with the environment 
+in the container and as the loaded modules are needed to correctly unload them. It 
+does save the environment variables set by the <code>ccpe</code> module to restore them after 
+the <code>module --force purge</code> operation as otherwise the container wouldn't function properly 
+anymore. </p>
+<p>To make sure that <code>/etc/profile</code> would execute properly if it were called, the script 
+also unsets <code>PROFILEREAD</code>, as the environment generated by the system <code>/etc/profile</code> 
+may not be the ideal one for the container.</p>
+<h5 id="singularity-exec-wrapper-script-ccpe-exec"><code>singularity exec</code> wrapper script <code>ccpe-exec</code></h5>
+<p>This is a convenience wrapper script and is not useful if you want to pass arguments 
+to singularity rather than to the command you start.</p>
+<p>It performs the same functions as <code>ccpe-shell</code>, but passes its arguments to the
+<code>singularity exec $SIFCCPE</code> command.</p>
+<h5 id="singularity-run-wrapper-script-ccpe-run"><code>singularity run</code> wrapper script <code>ccpe-run</code></h5>
+<p>This is a convenience wrapper script and is not useful if you want to pass arguments 
+to singularity (rather than to the command it tries to run, if given).</p>
+<p>It performs the same functions as <code>ccpe-shell</code>, but passes its arguments to the
+<code>singularity run $SIFCCPE</code> command.</p>
+<h5 id="singularity-wrapper-script-ccpe-singularity"><code>singularity</code> wrapper script <code>ccpe-singularity</code></h5>
+<p>This wrapper only cleans up the environment and then calls <code>singularity</code> passing all
+arguments of the wrapper unmodified to the <code>singularity</code> command. So you also need
+to pass the name of the container image, but can now call any singularity command
+with all singularity command-specific options in a clean environment.</p>
+<h4 id="lmod-caches">Lmod caches</h4>
+<p>As the environment in the container is not compatible with the environment outside, 
+we cannot use the regular user Lmod cache, or it may get corrupted, certainly if a 
+user is working both in and out of the container at the same time.</p>
+<p>Possible solutions/workarounds:</p>
+<ol>
+<li>
+<p>Work with <code>LMOD_IGNORE_CACHE=1</code> in the container. 
+    As the whole of <code>/appl/lumi</code> is mounted in the containers by our EasyConfigs, this 
+    will slow down module searches in Lmod considerably.</p>
+</li>
+<li>
+<p>Modify <code>/opt/cray/pe/lmod/lmod/libexec/myGlobals.lua</code>: Look for the line with <code>usrCacheDir</code> 
+    and define a unique directory for it, e.g., <code>.cache/lmod/ccpe-{version}{versionsuffix}</code>
+    or any other container-specific version string.</p>
+<p>This procedure is very easy in the approach where we do as much as possible work inside
+the container. All one need is a <code>sed</code> command in the <code>%post</code> section of the build process.</p>
+<p>When trying to do everything as much as possible outside the container, the solution is 
+to use a <code>singularity exec</code> to copy the file from the container to the system, edit that file
+(both can be done in a <code>postinstallcmds</code> in EasyBuild), and then bind mount that file to 
+the container.</p>
+</li>
+</ol>
+<h4 id="initialisation">Initialisation</h4>
+<p>We need two types of initialisation of the CPE container:</p>
+<ul>
+<li>
+<p>When first going into the container, an environment fully compatible with the container
+    needs to be set up.</p>
+</li>
+<li>
+<p>When starting Slurm jobs from within the container that should also run in the container, 
+    then we really would like an option to propagate that environment.</p>
+<p>This requires some care when writing the job script, but the module defines an environment
+variable that can be <code>eval</code>'ed to properly initialise the environment in the job script
+and run the job script itself in a container. </p>
+</li>
+</ul>
+<p>Also, a full initialisation cannot be done entirely in the container:</p>
+<ul>
+<li>
+<p>Singularity will pass the environment from the calling process. This includes also the Lmod
+    data structures and all variables set by the currently loaded modules.</p>
+<p>While it is easy to reset the Lmod data structures, it is not possible to properly reset all other
+environment variables that are set by those modules. This can only be done by unloading the modules
+(which executes the module script while reverting the effect of all commands that set something
+in the environment). As the regular CPE modules from the system are not available in the container,
+the unloading cannot be done in the container but has to be done before calling singularity.</p>
+</li>
+<li>
+<p>When running an interactive shell in the container, you then want to construct a proper environment
+    in the container. Singularity may source <code>/etc/bash.bashrc</code> which in turn may or may not source
+    other initialisation scripts such as <code>/etc/bash.bashrc.local</code>.</p>
+<p>It looks like if you call <code>singularity exec</code> or <code>singularity shell</code>, there is no automatic initialisation
+taking place though. So we create an environment variable in the container, <code>INITCCPE</code>, that will
+at least take care of initialising Lmod properly.  </p>
+</li>
+</ul>
+<p>Initialisation is influenced by the following scripts:</p>
+<ul>
+<li>
+<p>Scripts in <code>/singularity.d/env</code>: Used at the start of <code>singularity shell</code>, <code>singularity exec</code>,
+    <code>singularity run</code>.</p>
+<p>What one can do in these scripts, is limited though. It is a good place to set environment
+variables that should be available in the container.</p>
+</li>
+<li>
+<p>What happens with <code>profile</code>, <code>bash.bashrc</code>, <code>profile.local</code> and <code>bash.bashrc.local</code>, depends 
+    also on which Linux variant, et., is being used.</p>
+<p>For the CPE containers:</p>
+<ul>
+<li>
+<p>In SUSE, one is advised to only use <code>profile.local</code> and <code>bash.bashrc.local</code> for site-specific
+    changes and to not change <code>profile</code> and <code>bash.bashrc</code>.</p>
+</li>
+<li>
+<p><code>/etc/profile</code> will source the scripts in <code>/etc/profile.d</code> and then source <code>/etc/profile/local</code>
+    if that script exists. The script does not exist in the CPE containers though.</p>
+</li>
+</ul>
+<p>However, neither of those is called when a shell is started with <code>singularity shell</code> or
+<code>singlarity exec</code>. As can be seen from files in <code>/.singularity.d/actions</code>, <code>singularity 
+exec</code> simply execs the command in a restricted shell (<code>/bin/sh</code>) while <code>singularity shell</code>
+starts bash with the <code>--norc</code> option.</p>
+<p><code>singularity run</code> as defined for the CPE container however does source <code>/etc/bash.bashrc</code>
+and hence <code>/etc/bash.bashrc.local</code> and the <code>~/.bashrc</code> file from the user. However,
+after reading <code>~/.bashrc</code>, there is still some code somewhere that resets the <code>PS1</code>
+environment variable to either the value of <code>SINGULARITYENV_PS1</code> or <code>Singlarity&gt;</code>.
+Somehow, before calling <code>~/.bashrc</code>, <code>PROMPT_COMMAND</code> is set to something like
+<code>PS1=&lt;prompt from singularity&gt; ; unset PROMPT_COMMAND</code>. Now if PROMPT_COMMAND is
+set, it is executed before showing the prompt defined by <code>PS1</code> and this hence resets
+the prompt that is set in., e.g., <code>~/.bashrc</code>.</p>
+</li>
+</ul>
+<p>As currently we have no proper solution to fully initialise the container from the 
+regular Linux scripts when using <code>singularity shell</code> or <code>singularity exec</code>, 
+the modules define the <code>INITCCPE</code> environment variable which 
+contains the commands to execute to initialise Lmod in the container. 
+Use <code>eval $INITCCPE</code> for that purpose.</p>
+<p>Our EasyBuild modules do provide a <code>/etc/bash.bashrc.local</code> file that does the same 
+initialisations as <code>eval $INITCCPE</code>. So calling <code>source /etc/bash.bashrc</code> is also an option 
+to initialise Lmod in the container.</p>
+<h4 id="knowing-we-are-in-the-container">Knowing we are in the container</h4>
+<p>There are different solutions for that purpose in job scripts:</p>
+<ul>
+<li>
+<p>Check if the directory <code>/.singularity.d</code> exists</p>
+</li>
+<li>
+<p>Singularity sets a number of environment variables, e.g., <code>SINGULARITY_CONTAINER</code>, 
+    and one can check for those.</p>
+</li>
+<li>
+<p>Specifically for the CPE containers, one could also check for one of the environment
+    variables set by the <code>ccpe</code> modules.</p>
+</li>
+</ul>
+<p>During interactive use:</p>
+<ul>
+<li>
+<p>Singularity will set the prompt to <code>Singularity&gt;</code></p>
+<p>It does so in a dirty way by putting the command to set the prompt in the environment
+variable <code>PROMPT_COMMAND</code> and then unset that environment variable as part of the command.
+As a consequence, in those cases where <code>~/.bashrc</code> is read, any prompt defined in that script
+may be reset with the singularity one if you do not explicitly unset <code>PROMPT_COMMAND</code>.</p>
+</li>
+<li>
+<p>It is possible to overwrite the default singularity prompt by setting <code>SINGULARITYENV_PS1</code>.</p>
+</li>
+<li>
+<p>One can define a suitable prompt in <code>~/.bashrc</code>, at least for <code>singularity run</code>, and use any of
+    the tricks given above to detect if one <code>~/.bashrc</code> is executing in the container.</p>
+</li>
+</ul>
+<h4 id="how-to-recognise-if-an-environment-is-compatible-with-the-container">How to recognise if an environment is compatible with the container?</h4>
+<p>There is no easy way to see this from the PE modules that are loaded as these modules do not set
+environment variables that point at the release of the PE, except that in recent version, the PE
+release is part of the version number for LibSci and perftools.</p>
+<p>Current solution: Set and environment variable: <code>CCPE_VERSION={version}{versionsuffix}}</code> 
+(or some other unique version for the container)
+after a proper initialisation of the environment in the container.</p>
+<p>This is important as we do not want to clear an environment that is compatible with 
+the container when we start a job or jog step, and only want to do so if it is not. </p>
+<p>When starting Slurm jobs from
+within the container, this is important as one can then set the necessary 
+environment variables in the calling container already, mimicking the behaviour
+that users are used to from running jobs outside containers. Moreover, we need to
+be able to set up an environment in the job script that is then properly inherited
+when using <code>srun</code> to create job steps as otherwise, each MPI rank would also have 
+to first create a proper environment.</p>
+<h4 id="getting-slurm-to-work">Getting Slurm to work</h4>
+<div class="admonition note">
+<p class="admonition-title">The container images that LUST provides have been prepared for Slurm support.</p>
+<p>The container images that LUST provides as base images, have been modified in two
+crucial places to enable Slurm support by only bind mounting other files and directories.
+The text below is relevant though if you want to download your own image from the HPE
+support site and derive from our EasyConfigs to use (on, e.g., a different system for
+which you happen to be licensed to use the containers).</p>
+</div>
+<p>Bind mounting the Slurm commands and libraries and some other libraries and work directories
+that they use, is not enough to get Slurm working properly in the container. The container
+needs to know the <code>slurm</code> user with the correct user- and groupid. The <code>slurm</code> user has
+to be known in <code>/etc/passwd</code> and <code>/etc/group</code> in the container.</p>
+<p>We know only one way to accomplish this: Rebuilding the container and using the <code>%files</code>
+section in the definition file to copy those two files from LUMI:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>Bootstrap: localimage
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>From: cpe-24.11.sif
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a>
+<a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a>%files
+<a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a>
+<a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a>    /etc/group
+<a id="__codelineno-36-8" name="__codelineno-36-8" href="#__codelineno-36-8"></a>    /etc/passwd
+</code></pre></div>
+<p>Approaches that try to modify these files in the <code>%post</code> phase, don't work. At that
+moment you're running a script in singularity, and you don't see the real files,
+but virtual ones with information about your userid and groups added to those
+files. Any edit will fail or be discarded, depending on how you do it.</p>
+<p>Bind-mounting those files from the system also does not work, as singularity then assumes that
+those files contain all groups and userid, and will not add the lines for 
+userid and groups of the user that is running the container to the virtual
+copies.</p>
+<p>We have adapted the base images that we provide so that the <code>-raw</code> modules below
+that only rely on bind mounts and environment variables set through the module,
+can still support running Slurm commands inside the container. However, if a user
+wants to adapt those scripts for another container downloaded from the HPE web site,
+or even the same container if they are licensed to use it elsewhere and want to build
+on our work, they will have to rebuild that image with the above definition file.</p>
+<p>And of course, if they would like to use it on a different system, things can be different,
+as, e.g., the numeric user and group id for the Slurm user may be different. 
+Forget about portability of containers if you need to use these tricks...</p>
+<h4 id="starting-jobs">Starting jobs</h4>
+<p>The problem with running jobs, is that they have to deal with two incompatible
+environments, as discussed before.</p>
+<p>We'd like to run the job script in the container to be able to construct an environment
+compatible with the container, but Slurm will of course start a job batch script or regular
+job step in a regular system shell. So we will need to call singularity at the right point.</p>
+<p>In total there are six scenarios that we take into account for jobs launched with <code>sbatch</code>:</p>
+<ol>
+<li>
+<p>Jobs can be launched from within the container:</p>
+<ol>
+<li>
+<p>Using <code>sbatch</code> without <code>--export</code>: LUMI uses the default behaviour of Slurm, which is 
+    inheriting the full environment. As we like to run the batch script also in a container,
+    we'd also like to inherit that environment in the container that the job will start up.</p>
+<p>This is also the behaviour that we want when starting job steps with <code>srun</code> from within
+the container.</p>
+</li>
+<li>
+<p>Using <code>sbatch</code> with <code>--export=$EXPORTCCPE</code>: The environment variable <code>EXPORTCCPE</code> contains
+    the names of all environment variables set by the <code>ccpe</code> module and that are essential to 
+    be able to run the container. So with this way of starting, the batch script will start
+    with a clean environment with  no system modules loaded, yet the essential environment variables
+    needed to start the container in the batch script will still be there.</p>
+</li>
+<li>
+<p>Using <code>sbatch</code> with <code>--export=NONE</code>: The batch script will start in a clean system environment,
+    unaware of the CPE container from which it was started.</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Jobs can be launched from the system:</p>
+<ol>
+<li>
+<p>Using <code>sbatch</code> without <code>--export</code>: Now the batch script will run in the system environment
+    and that environment has to be cleaned up before starting the singularity container.</p>
+<p>That clean-up is no different from the clean-up the wrapper scripts do.</p>
+<p>Note that one cannot be sure that the environment variables from the <code>ccpe</code> moudle will be 
+set as the batch script can be launched without them.</p>
+</li>
+<li>
+<p>Using <code>sbatch</code> with <code>--export=$EXPORTCCPE</code>: Not really different from when launching from within
+    the container. If the <code>ccpe</code> module is not loaded and EXPORTCCPE is undefined, this may behave a 
+    little strange...</p>
+</li>
+<li>
+<p>Using <code>sbatch</code> with <code>--export=NONE</code>: The batch script will start in a clean system environment.</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>The steps that we take to start a job and execute the job script in the container:</p>
+<ol>
+<li>
+<p>One should first ensure that the necessary environment variables to find back the container, do the
+    proper bindings, etc., are defined. So one my have to load the container module if those variables are
+    not present. This code should not be executed in the container as it would fail to find the module
+    anyway.</p>
+</li>
+<li>
+<p>Except in one case, we now have a system environment with just some default module loaded, or 
+    other modules also loaded.</p>
+<p>Clear that environment in a similar way as we do for the wrappers.</p>
+</li>
+<li>
+<p>Restart the job script in the singularity container, but skip the code for the previous two steps.</p>
+</li>
+<li>
+<p>Ensure that the container is properly initialised if we did not inherit a valid container environment.</p>
+</li>
+<li>
+<p>Execute the remainder of the job script in the container.</p>
+</li>
+</ol>
+<p>Possible code to accomplish this is:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-37-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-37-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-37-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-37-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-37-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-37-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-37-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-37-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-37-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-37-10">10</a></span>
+<span class="normal"><a href="#__codelineno-37-11">11</a></span>
+<span class="normal"><a href="#__codelineno-37-12">12</a></span>
+<span class="normal"><a href="#__codelineno-37-13">13</a></span>
+<span class="normal"><a href="#__codelineno-37-14">14</a></span>
+<span class="normal"><a href="#__codelineno-37-15">15</a></span>
+<span class="normal"><a href="#__codelineno-37-16">16</a></span>
+<span class="normal"><a href="#__codelineno-37-17">17</a></span>
+<span class="normal"><a href="#__codelineno-37-18">18</a></span>
+<span class="normal"><a href="#__codelineno-37-19">19</a></span>
+<span class="normal"><a href="#__codelineno-37-20">20</a></span>
+<span class="normal"><a href="#__codelineno-37-21">21</a></span>
+<span class="normal"><a href="#__codelineno-37-22">22</a></span>
+<span class="normal"><a href="#__codelineno-37-23">23</a></span>
+<span class="normal"><a href="#__codelineno-37-24">24</a></span>
+<span class="normal"><a href="#__codelineno-37-25">25</a></span>
+<span class="normal"><a href="#__codelineno-37-26">26</a></span>
+<span class="normal"><a href="#__codelineno-37-27">27</a></span>
+<span class="normal"><a href="#__codelineno-37-28">28</a></span>
+<span class="normal"><a href="#__codelineno-37-29">29</a></span>
+<span class="normal"><a href="#__codelineno-37-30">30</a></span>
+<span class="normal"><a href="#__codelineno-37-31">31</a></span>
+<span class="normal"><a href="#__codelineno-37-32">32</a></span>
+<span class="normal"><a href="#__codelineno-37-33">33</a></span>
+<span class="normal"><a href="#__codelineno-37-34">34</a></span>
+<span class="normal"><a href="#__codelineno-37-35">35</a></span>
+<span class="normal"><a href="#__codelineno-37-36">36</a></span>
+<span class="normal"><a href="#__codelineno-37-37">37</a></span>
+<span class="normal"><a href="#__codelineno-37-38">38</a></span>
+<span class="normal"><a href="#__codelineno-37-39">39</a></span>
+<span class="normal"><a href="#__codelineno-37-40">40</a></span>
+<span class="normal"><a href="#__codelineno-37-41">41</a></span>
+<span class="normal"><a href="#__codelineno-37-42">42</a></span>
+<span class="normal"><a href="#__codelineno-37-43">43</a></span>
+<span class="normal"><a href="#__codelineno-37-44">44</a></span>
+<span class="normal"><a href="#__codelineno-37-45">45</a></span>
+<span class="normal"><a href="#__codelineno-37-46">46</a></span>
+<span class="normal"><a href="#__codelineno-37-47">47</a></span>
+<span class="normal"><a href="#__codelineno-37-48">48</a></span>
+<span class="normal"><a href="#__codelineno-37-49">49</a></span>
+<span class="normal"><a href="#__codelineno-37-50">50</a></span>
+<span class="normal"><a href="#__codelineno-37-51">51</a></span>
+<span class="normal"><a href="#__codelineno-37-52">52</a></span>
+<span class="normal"><a href="#__codelineno-37-53">53</a></span>
+<span class="normal"><a href="#__codelineno-37-54">54</a></span>
+<span class="normal"><a href="#__codelineno-37-55">55</a></span>
+<span class="normal"><a href="#__codelineno-37-56">56</a></span>
+<span class="normal"><a href="#__codelineno-37-57">57</a></span>
+<span class="normal"><a href="#__codelineno-37-58">58</a></span>
+<span class="normal"><a href="#__codelineno-37-59">59</a></span>
+<span class="normal"><a href="#__codelineno-37-60">60</a></span>
+<span class="normal"><a href="#__codelineno-37-61">61</a></span>
+<span class="normal"><a href="#__codelineno-37-62">62</a></span>
+<span class="normal"><a href="#__codelineno-37-63">63</a></span>
+<span class="normal"><a href="#__codelineno-37-64">64</a></span>
+<span class="normal"><a href="#__codelineno-37-65">65</a></span>
+<span class="normal"><a href="#__codelineno-37-66">66</a></span>
+<span class="normal"><a href="#__codelineno-37-67">67</a></span>
+<span class="normal"><a href="#__codelineno-37-68">68</a></span>
+<span class="normal"><a href="#__codelineno-37-69">69</a></span>
+<span class="normal"><a href="#__codelineno-37-70">70</a></span>
+<span class="normal"><a href="#__codelineno-37-71">71</a></span>
+<span class="normal"><a href="#__codelineno-37-72">72</a></span>
+<span class="normal"><a href="#__codelineno-37-73">73</a></span>
+<span class="normal"><a href="#__codelineno-37-74">74</a></span>
+<span class="normal"><a href="#__codelineno-37-75">75</a></span>
+<span class="normal"><a href="#__codelineno-37-76">76</a></span>
+<span class="normal"><a href="#__codelineno-37-77">77</a></span>
+<span class="normal"><a href="#__codelineno-37-78">78</a></span>
+<span class="normal"><a href="#__codelineno-37-79">79</a></span>
+<span class="normal"><a href="#__codelineno-37-80">80</a></span>
+<span class="normal"><a href="#__codelineno-37-81">81</a></span>
+<span class="normal"><a href="#__codelineno-37-82">82</a></span>
+<span class="normal"><a href="#__codelineno-37-83">83</a></span>
+<span class="normal"><a href="#__codelineno-37-84">84</a></span>
+<span class="normal"><a href="#__codelineno-37-85">85</a></span>
+<span class="normal"><a href="#__codelineno-37-86">86</a></span>
+<span class="normal"><a href="#__codelineno-37-87">87</a></span>
+<span class="normal"><a href="#__codelineno-37-88">88</a></span>
+<span class="normal"><a href="#__codelineno-37-89">89</a></span>
+<span class="normal"><a href="#__codelineno-37-90">90</a></span>
+<span class="normal"><a href="#__codelineno-37-91">91</a></span>
+<span class="normal"><a href="#__codelineno-37-92">92</a></span>
+<span class="normal"><a href="#__codelineno-37-93">93</a></span>
+<span class="normal"><a href="#__codelineno-37-94">94</a></span>
+<span class="normal"><a href="#__codelineno-37-95">95</a></span>
+<span class="normal"><a href="#__codelineno-37-96">96</a></span>
+<span class="normal"><a href="#__codelineno-37-97">97</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2"></a><span class="c1">#SBATCH -J jobscript-template</span>
+<a id="__codelineno-37-3" name="__codelineno-37-3"></a>…
+<a id="__codelineno-37-4" name="__codelineno-37-4"></a>
+<a id="__codelineno-37-5" name="__codelineno-37-5"></a><span class="c1">#</span>
+<a id="__codelineno-37-6" name="__codelineno-37-6"></a><span class="c1"># Step 1: Make sure the container environment variables are set.</span>
+<a id="__codelineno-37-7" name="__codelineno-37-7"></a><span class="c1"># </span>
+<a id="__codelineno-37-8" name="__codelineno-37-8"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SWITCHTOCCPE</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-37-9" name="__codelineno-37-9"></a><span class="k">then</span>
+<a id="__codelineno-37-10" name="__codelineno-37-10"></a><span class="w">    </span>module<span class="w"> </span>load<span class="w"> </span>CrayEnv<span class="w"> </span>ccpe/25.03-B-rocm-6.3-SP5-LUMI<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">exit</span>
+<a id="__codelineno-37-11" name="__codelineno-37-11"></a><span class="k">fi</span>
+<a id="__codelineno-37-12" name="__codelineno-37-12"></a>
+<a id="__codelineno-37-13" name="__codelineno-37-13"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;/.singularity.d&quot;</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-37-14" name="__codelineno-37-14"></a><span class="k">then</span>
+<a id="__codelineno-37-15" name="__codelineno-37-15"></a>
+<a id="__codelineno-37-16" name="__codelineno-37-16"></a><span class="w">    </span><span class="c1">#</span>
+<a id="__codelineno-37-17" name="__codelineno-37-17"></a><span class="w">    </span><span class="c1"># Clear the system environment</span>
+<a id="__codelineno-37-18" name="__codelineno-37-18"></a><span class="w">    </span><span class="c1">#</span>
+<a id="__codelineno-37-19" name="__codelineno-37-19"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CCPE_VERSION</span><span class="s2">&quot;</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="s2">&quot;{local_ccpe_version}&quot;</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-37-20" name="__codelineno-37-20"></a><span class="w">    </span><span class="k">then</span>
+<a id="__codelineno-37-21" name="__codelineno-37-21"></a>
+<a id="__codelineno-37-22" name="__codelineno-37-22"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span>var<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="si">${</span><span class="p">{EXPORTCCPE//,/ </span><span class="si">}</span><span class="o">}</span>
+<a id="__codelineno-37-23" name="__codelineno-37-23"></a><span class="w">        </span><span class="k">do</span>
+<a id="__codelineno-37-24" name="__codelineno-37-24"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-v<span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="o">]</span><span class="w"> </span>
+<a id="__codelineno-37-25" name="__codelineno-37-25"></a><span class="w">            </span><span class="k">then</span>
+<a id="__codelineno-37-26" name="__codelineno-37-26"></a><span class="w">                </span><span class="nb">eval</span><span class="w"> </span><span class="k">$(</span><span class="nb">declare</span><span class="w"> </span>-p<span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;s/</span><span class="nv">$var</span><span class="s2">/save_</span><span class="nv">$var</span><span class="s2">/&quot;</span><span class="k">)</span>
+<a id="__codelineno-37-27" name="__codelineno-37-27"></a><span class="w">            </span><span class="k">fi</span>
+<a id="__codelineno-37-28" name="__codelineno-37-28"></a><span class="w">        </span><span class="k">done</span>
+<a id="__codelineno-37-29" name="__codelineno-37-29"></a>
+<a id="__codelineno-37-30" name="__codelineno-37-30"></a><span class="w">        </span>module<span class="w"> </span>--force<span class="w"> </span>purge
+<a id="__codelineno-37-31" name="__codelineno-37-31"></a><span class="w">        </span><span class="nb">eval</span><span class="w"> </span><span class="k">$(</span><span class="nv">$LMOD_DIR</span>/clearLMOD_cmd<span class="w"> </span>--shell<span class="w"> </span>bash<span class="w"> </span>--full<span class="w"> </span>--quiet<span class="k">)</span>
+<a id="__codelineno-37-32" name="__codelineno-37-32"></a><span class="w">        </span><span class="nb">unset</span><span class="w"> </span>LUMI_INIT_FIRST_LOAD
+<a id="__codelineno-37-33" name="__codelineno-37-33"></a><span class="w">        </span><span class="nb">unset</span><span class="w"> </span>PROFILEREAD
+<a id="__codelineno-37-34" name="__codelineno-37-34"></a>
+<a id="__codelineno-37-35" name="__codelineno-37-35"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span>var<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="si">${</span><span class="p">{save_EXPORTCCPE//,/ </span><span class="si">}</span><span class="o">}</span>
+<a id="__codelineno-37-36" name="__codelineno-37-36"></a><span class="w">        </span><span class="k">do</span>
+<a id="__codelineno-37-37" name="__codelineno-37-37"></a><span class="w">            </span><span class="nv">varname</span><span class="o">=</span><span class="s2">&quot;save_</span><span class="nv">$var</span><span class="s2">&quot;</span>
+<a id="__codelineno-37-38" name="__codelineno-37-38"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-v<span class="w"> </span><span class="nv">$varname</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-37-39" name="__codelineno-37-39"></a><span class="w">            </span><span class="k">then</span>
+<a id="__codelineno-37-40" name="__codelineno-37-40"></a><span class="w">                </span><span class="nb">eval</span><span class="w"> </span><span class="k">$(</span><span class="nb">declare</span><span class="w"> </span>-p<span class="w"> </span><span class="nv">$varname</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;s/save_</span><span class="nv">$var</span><span class="s2">/</span><span class="nv">$var</span><span class="s2">/&quot;</span><span class="k">)</span>
+<a id="__codelineno-37-41" name="__codelineno-37-41"></a><span class="w">                </span><span class="nb">unset</span><span class="w"> </span><span class="nv">$varname</span>
+<a id="__codelineno-37-42" name="__codelineno-37-42"></a><span class="w">            </span><span class="k">fi</span>
+<a id="__codelineno-37-43" name="__codelineno-37-43"></a><span class="w">        </span><span class="k">done</span>
+<a id="__codelineno-37-44" name="__codelineno-37-44"></a>
+<a id="__codelineno-37-45" name="__codelineno-37-45"></a><span class="w">    </span><span class="k">fi</span>
+<a id="__codelineno-37-46" name="__codelineno-37-46"></a>
+<a id="__codelineno-37-47" name="__codelineno-37-47"></a><span class="w">    </span><span class="c1"># </span>
+<a id="__codelineno-37-48" name="__codelineno-37-48"></a><span class="w">    </span><span class="c1"># Restart the job script in the container</span>
+<a id="__codelineno-37-49" name="__codelineno-37-49"></a><span class="w">    </span><span class="c1">#</span>
+<a id="__codelineno-37-50" name="__codelineno-37-50"></a><span class="w">    </span><span class="nb">exec</span><span class="w"> </span>singularity<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SIFCCPE</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$0</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+<a id="__codelineno-37-51" name="__codelineno-37-51"></a>
+<a id="__codelineno-37-52" name="__codelineno-37-52"></a><span class="k">fi</span>
+<a id="__codelineno-37-53" name="__codelineno-37-53"></a>
+<a id="__codelineno-37-54" name="__codelineno-37-54"></a><span class="c1">#</span>
+<a id="__codelineno-37-55" name="__codelineno-37-55"></a><span class="c1"># Ensure that the container is properly initialised, if this is not yet the case</span>
+<a id="__codelineno-37-56" name="__codelineno-37-56"></a><span class="c1">#</span>
+<a id="__codelineno-37-57" name="__codelineno-37-57"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CCPE_VERSION</span><span class="s2">&quot;</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="s2">&quot;{local_ccpe_version}&quot;</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-37-58" name="__codelineno-37-58"></a><span class="k">then</span>
+<a id="__codelineno-37-59" name="__codelineno-37-59"></a>
+<a id="__codelineno-37-60" name="__codelineno-37-60"></a><span class="w">    </span><span class="nv">lmod_dir</span><span class="o">=</span><span class="s2">&quot;/opt/cray/pe/lmod/lmod&quot;</span>
+<a id="__codelineno-37-61" name="__codelineno-37-61"></a>
+<a id="__codelineno-37-62" name="__codelineno-37-62"></a><span class="w">    </span><span class="nb">source</span><span class="w"> </span>/etc/cray-pe.d/cray-pe-configuration.sh
+<a id="__codelineno-37-63" name="__codelineno-37-63"></a>
+<a id="__codelineno-37-64" name="__codelineno-37-64"></a><span class="w">    </span><span class="nb">source</span><span class="w"> </span><span class="nv">$lmod_dir</span>/init/profile
+<a id="__codelineno-37-65" name="__codelineno-37-65"></a>
+<a id="__codelineno-37-66" name="__codelineno-37-66"></a><span class="w">    </span><span class="nv">mod_paths</span><span class="o">=</span><span class="s2">&quot;/opt/cray/pe/lmod/modulefiles/core /opt/cray/pe/lmod/modulefiles/craype-targets/default </span><span class="nv">$mpaths</span><span class="s2"> /opt/cray/modulefiles /opt/modulefiles&quot;</span>
+<a id="__codelineno-37-67" name="__codelineno-37-67"></a><span class="w">    </span><span class="nv">MODULEPATH</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<a id="__codelineno-37-68" name="__codelineno-37-68"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span>p<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="nv">$mod_paths</span><span class="k">)</span>
+<a id="__codelineno-37-69" name="__codelineno-37-69"></a><span class="w">    </span><span class="k">do</span><span class="w"> </span>
+<a id="__codelineno-37-70" name="__codelineno-37-70"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-d<span class="w"> </span><span class="nv">$p</span><span class="w"> </span><span class="o">]</span><span class="w"> </span>
+<a id="__codelineno-37-71" name="__codelineno-37-71"></a><span class="w">        </span><span class="k">then</span>
+<a id="__codelineno-37-72" name="__codelineno-37-72"></a><span class="w">            </span><span class="nv">MODULEPATH</span><span class="o">=</span><span class="nv">$MODULEPATH</span>:<span class="nv">$p</span>
+<a id="__codelineno-37-73" name="__codelineno-37-73"></a><span class="w">        </span><span class="k">fi</span>
+<a id="__codelineno-37-74" name="__codelineno-37-74"></a><span class="w">    </span><span class="k">done</span>
+<a id="__codelineno-37-75" name="__codelineno-37-75"></a><span class="w">    </span><span class="nb">export</span><span class="w"> </span><span class="nv">MODULEPATH</span><span class="o">=</span><span class="si">${</span><span class="p">{MODULEPATH/:/</span><span class="si">}</span><span class="o">}</span>
+<a id="__codelineno-37-76" name="__codelineno-37-76"></a>
+<a id="__codelineno-37-77" name="__codelineno-37-77"></a><span class="w">    </span><span class="nv">LMOD_SYSTEM_DEFAULT_MODULES</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="p">{init_module_list</span><span class="k">:-</span><span class="nv">PrgEnv</span><span class="p">-</span><span class="nv">$default_prgenv</span><span class="si">}</span><span class="o">}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-E<span class="w"> </span><span class="s2">&quot;s_[[:space:]]+_:_g&quot;</span><span class="k">)</span><span class="w"> </span><span class="p">;</span>
+<a id="__codelineno-37-78" name="__codelineno-37-78"></a><span class="w">    </span><span class="nb">export</span><span class="w"> </span>LMOD_SYSTEM_DEFAULT_MODULES
+<a id="__codelineno-37-79" name="__codelineno-37-79"></a><span class="w">    </span><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;source </span><span class="nv">$BASH_ENV</span><span class="s2"> &amp;&amp; module --initial_load --no_redirect restore&quot;</span>
+<a id="__codelineno-37-80" name="__codelineno-37-80"></a><span class="w">    </span><span class="nb">unset</span><span class="w"> </span>lmod_dir
+<a id="__codelineno-37-81" name="__codelineno-37-81"></a>
+<a id="__codelineno-37-82" name="__codelineno-37-82"></a><span class="w">    </span><span class="nb">export</span><span class="w"> </span><span class="nv">CCPE_VERSION</span><span class="o">=</span><span class="s2">&quot;{local_ccpe_version}&quot;</span>
+<a id="__codelineno-37-83" name="__codelineno-37-83"></a>
+<a id="__codelineno-37-84" name="__codelineno-37-84"></a><span class="k">fi</span>
+<a id="__codelineno-37-85" name="__codelineno-37-85"></a><span class="k">function</span><span class="w"> </span>clear-lmod<span class="o">()</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-d<span class="w"> </span><span class="nv">$HOME</span>/.cache/lmod<span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>/bin/rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$HOME</span>/.cache/lmod<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="p">;</span>
+<a id="__codelineno-37-86" name="__codelineno-37-86"></a><span class="k">function</span><span class="w"> </span>ccpe-srun<span class="o">()</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="nv">SINGULARITYENV_PATH</span><span class="o">=</span><span class="nv">$PATH</span><span class="w"> </span><span class="nv">SINGULARITYENV_LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$LD_LIBRARY_PATH</span><span class="w"> </span>srun<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="p">;</span>
+<a id="__codelineno-37-87" name="__codelineno-37-87"></a>
+<a id="__codelineno-37-88" name="__codelineno-37-88"></a><span class="nb">unset</span><span class="w"> </span>SLURM_EXPORT_ENV<span class="w"> </span><span class="p">;</span>
+<a id="__codelineno-37-89" name="__codelineno-37-89"></a>
+<a id="__codelineno-37-90" name="__codelineno-37-90"></a><span class="c1"># </span>
+<a id="__codelineno-37-91" name="__codelineno-37-91"></a><span class="c1"># From here on, the user can insert the code that runs in the container.</span>
+<a id="__codelineno-37-92" name="__codelineno-37-92"></a><span class="c1">#</span>
+<a id="__codelineno-37-93" name="__codelineno-37-93"></a>
+<a id="__codelineno-37-94" name="__codelineno-37-94"></a>module<span class="w"> </span>load<span class="w"> </span>LUMI/25.03<span class="w"> </span>partition/C
+<a id="__codelineno-37-95" name="__codelineno-37-95"></a>module<span class="w"> </span>load<span class="w"> </span>lumi-CPEtools/1.2-cpeCray-25.03-hpcat-0.9
+<a id="__codelineno-37-96" name="__codelineno-37-96"></a>
+<a id="__codelineno-37-97" name="__codelineno-37-97"></a>ccpe-srun<span class="w"> </span>…<span class="w"> </span>singularity<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="nv">$SIFCCPE</span><span class="w"> </span>&lt;command&gt;<span class="w"> </span>
+</code></pre></div></td></tr></table></div>
+<p>This is of course way to complicated to expose to users, but line 57-86 is 
+put in the environment variable <code>INITCCPE</code> so that code can be replaced with
+<code>eval $INITCCPE</code>, and then the whole block from line 13 till (and including)
+line 88 is put in the environment variable <code>SWITCHTOCCPE</code> so that block can
+be replaced with <code>eval $SWITCHTOCCPE</code></p>
+<p>So basically, all that a user needs is</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-38-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-38-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-38-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-38-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-38-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-38-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-38-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-38-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-38-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-38-10">10</a></span>
+<span class="normal"><a href="#__codelineno-38-11">11</a></span>
+<span class="normal"><a href="#__codelineno-38-12">12</a></span>
+<span class="normal"><a href="#__codelineno-38-13">13</a></span>
+<span class="normal"><a href="#__codelineno-38-14">14</a></span>
+<span class="normal"><a href="#__codelineno-38-15">15</a></span>
+<span class="normal"><a href="#__codelineno-38-16">16</a></span>
+<span class="normal"><a href="#__codelineno-38-17">17</a></span>
+<span class="normal"><a href="#__codelineno-38-18">18</a></span>
+<span class="normal"><a href="#__codelineno-38-19">19</a></span>
+<span class="normal"><a href="#__codelineno-38-20">20</a></span>
+<span class="normal"><a href="#__codelineno-38-21">21</a></span>
+<span class="normal"><a href="#__codelineno-38-22">22</a></span>
+<span class="normal"><a href="#__codelineno-38-23">23</a></span>
+<span class="normal"><a href="#__codelineno-38-24">24</a></span>
+<span class="normal"><a href="#__codelineno-38-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2"></a><span class="c1">#SBATCH -J jobscript-template</span>
+<a id="__codelineno-38-3" name="__codelineno-38-3"></a>…
+<a id="__codelineno-38-4" name="__codelineno-38-4"></a>
+<a id="__codelineno-38-5" name="__codelineno-38-5"></a><span class="c1">#</span>
+<a id="__codelineno-38-6" name="__codelineno-38-6"></a><span class="c1"># Step 1: Make sure the container environment variables are set.</span>
+<a id="__codelineno-38-7" name="__codelineno-38-7"></a><span class="c1"># </span>
+<a id="__codelineno-38-8" name="__codelineno-38-8"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SWITCHTOCCPE</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-38-9" name="__codelineno-38-9"></a><span class="k">then</span>
+<a id="__codelineno-38-10" name="__codelineno-38-10"></a><span class="w">    </span>module<span class="w"> </span>load<span class="w"> </span>CrayEnv<span class="w"> </span>ccpe/25.03-B-rocm-6.3-SP5-LUMI<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">exit</span>
+<a id="__codelineno-38-11" name="__codelineno-38-11"></a><span class="k">fi</span>
+<a id="__codelineno-38-12" name="__codelineno-38-12"></a>
+<a id="__codelineno-38-13" name="__codelineno-38-13"></a><span class="c1">#</span>
+<a id="__codelineno-38-14" name="__codelineno-38-14"></a><span class="c1"># Steps 2-4: Clean up, switch to executing in the container and ensure a proper </span>
+<a id="__codelineno-38-15" name="__codelineno-38-15"></a><span class="c1"># container environment.</span>
+<a id="__codelineno-38-16" name="__codelineno-38-16"></a><span class="c1">#</span>
+<a id="__codelineno-38-17" name="__codelineno-38-17"></a><span class="nb">eval</span><span class="w"> </span><span class="nv">$SWITCHTOCCPE</span>
+<a id="__codelineno-38-18" name="__codelineno-38-18"></a>
+<a id="__codelineno-38-19" name="__codelineno-38-19"></a><span class="c1"># </span>
+<a id="__codelineno-38-20" name="__codelineno-38-20"></a><span class="c1"># From here on, the user can insert the code that runs in the container.</span>
+<a id="__codelineno-38-21" name="__codelineno-38-21"></a><span class="c1">#</span>
+<a id="__codelineno-38-22" name="__codelineno-38-22"></a>
+<a id="__codelineno-38-23" name="__codelineno-38-23"></a>module<span class="w"> </span>list
+<a id="__codelineno-38-24" name="__codelineno-38-24"></a>
+<a id="__codelineno-38-25" name="__codelineno-38-25"></a>ccpe-srun<span class="w"> </span>…<span class="w"> </span>singularity<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="nv">$SIFCCPE</span><span class="w"> </span>&lt;command&gt;<span class="w"> </span>
+</code></pre></div></td></tr></table></div>
+<p>Let us analyse the code a bit more:</p>
+<p>The block from line 13 till 53 in the extended version is only executed when not in the 
+context of the container, so the first time the batch script runs. 
+If it does not detect an environment from the container (the test on line 19,
+with <code>{local_ccpe_version}</code> replaced with the actual version string for
+the container as determined by the EasyConfig that generates this script)
+then:</p>
+<ul>
+<li>
+<p>It first saves some environment variables set by the CCPE modules that should not be erased.</p>
+<p>This needed some clever bash trickery to avoid that environment variables get expanded.</p>
+</li>
+<li>
+<p>Next, it purges all currently loaded modules which hopefully are from the system environment 
+    as otherwise variables may not be unset,</p>
+</li>
+<li>
+<p>Next it clears Lmod to that all Lmod data structures are removed. Lmod does
+    come with its own command to do that which is what we call here in the special
+    way required by Lmod (as the command basically generates a sequence of bash
+    commands that do the work).</p>
+</li>
+<li>
+<p>Next it restores the environment variables from the <code>ccpe</code> module as they have been erased by
+    the <code>module purge</code>.</p>
+</li>
+</ul>
+<p>Finally, on line 50, it restarts the batch script with all its arguments in the container. 
+This causes the batch script to execute again from the start, 
+but as <code>SWITCHTOCCPE</code> should be defined when we get here, and
+since we will now be in the container, all code discussed so far will be skipped.</p>
+<p>The code between line 54 and 86 is already executed in the container. 
+So if the code detects that there is already a valid environment for the container
+(where we again simply test for the value of <code>CCPE_VERSION</code>), nothing more is done,
+but if there is no proper environment, the remaining part of this routine basically
+runs the code used on LUMI to initialise Lmod with the proper modules from the HPE
+Cray Programming Environment, but now in the container. As it is done in the container, 
+you will get the programming environment from the container.</p>
+<p>On line 88, the script unsets <code>SLURM_EXPORT_ENV</code>. This environment variable would be 
+set by Slurm if <code>--export</code> was used to submit the batch job, but we do not want this to
+propagate to job steps started with <code>srun</code> in the container, as there we want the full
+environment that the user builds in the job script to be propagated.</p>
+<p>The other interesting bit is line 90 in the long script or 25 in the shortened user 
+version of the script, where we want to start a job step running in a container. 
+<code>srun</code> wills start a command outside the container, but with a copy of the environment
+inherited from the container. So we need to call <code>singularity</code> to get in the container again.
+As the <code>singularity</code> command is in a standard system directory, it will be found also
+with the environment from the container active instead of the environment of the system.
+It in turn will then pass that environment to the container it starts, except for 
+some variables that are re-initialised in the container. These re-initialised variables
+include <code>PATH</code> and <code>LD_LIBRARY_PATH</code>, so even though it will appear as if all modules
+are still correctly loaded, the value of those 2 environment variables is no longer 
+correct. The solution is to inject the correct values into the container through the
+<code>SINGULARITYENV_PATH</code> and <code>SINGULARITYENV_LD_LIBRARY_PATH</code> environment variables and 
+this is precisely what the bash function <code>ccpe-run</code> does:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="k">function</span><span class="w"> </span>ccpe-srun<span class="o">()</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="nv">SINGULARITYENV_PATH</span><span class="o">=</span><span class="nv">$PATH</span><span class="w"> </span><span class="nv">SINGULARITYENV_LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$LD_LIBRARY_PATH</span><span class="w"> </span>srun<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="p">;</span>
+</code></pre></div>
+<p>Alternatively, instead of using <code>ccpe-run</code>, one can simply use </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="nv">SINGULARITYENV_PATH</span><span class="o">=</span><span class="nv">$PATH</span><span class="w"> </span><span class="nv">SINGULARITYENV_LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$LD_LIBRARY_PATH</span><span class="w"> </span>srun<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="w">    </span>singularity<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="nv">$SIFCCPE</span><span class="w"> </span>hybrid_check
+</code></pre></div>
+<p>or</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">SINGULARITYENV_PATH</span><span class="o">=</span><span class="nv">$PATH</span><span class="w"> </span>
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">SINGULARITYENV_LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$LD_LIBRARY_PATH</span><span class="w"> </span>
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a>srun<span class="w"> </span>singularity<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="nv">$SIFCCPE</span><span class="w"> </span>hybrid_check
+</code></pre></div>
+<div class="admonition remark">
+<p class="admonition-title">The <code>salloc</code> command does not yet work in a container</p>
+<p>Currently, we haven't found a way yet to get the <code>salloc</code> command to work
+properly when started in the container. The workaround is to use <code>salloc</code>
+outside the container, then go in the container.</p>
+</div>
+<h3 id="easybuild">EasyBuild</h3>
+<h4 id="versions-2411-rocm-62-lumi">Versions 24.11-*-rocm-6.2-LUMI</h4>
+<p>The <code>-LUMI</code> versions (currently the only ones offered) are built specifically to
+support a <code>LUMI</code> software stack based on the version of the CPE in the container.</p>
+<p>Two different ways are currently offered</p>
+<ul>
+<li>
+<p><code>24.11-B-rocm-6.2-LUMI</code> bind mounts a SquashFS file with ROCm 6.2.4 to the container.
+    This keeps the size of the container small and makes it easier to adapt the container
+    to the needs of a specific project.</p>
+</li>
+<li>
+<p><code>24.11-C-rocm-6.2-LUMI</code> installs ROCm from the AMD site using the SUSE <code>zypper</code> tool.
+    It is a slow approach with build times easily exceeding an hour and
+    a half. However, using <code>zypper</code> enables users to change the ROCm version themselves 
+    more easily, and also ensures that all OS dependencies are available in the proper version.</p>
+</li>
+</ul>
+<p>An alternative is to install the ROCm installation from a compressed tar file that LUST could
+provide, but though that may be a faster build process, it does not guarantee that all 
+OS dependencies are available in the proper version.</p>
+<p>Our advise is to start with the <code>-B-rocm</code> version and if there are issues that may come from
+library compatibility versions, switch to the <code>-C-rocm</code> versions.</p>
+<p>For the <code>24.11-B-rocm-6.2-LUMI</code> version, the ROCm SquashFS file and corresponding bzip2-compressed tar files
+were obtained from a ROCm installation in another container. To repeat the trick as 
+a user with a different version of ROCm, 
+you will have to modify either the bind mount source (<code>-B-rocm</code>) or the location of
+the compressed tar file (<code>-C-rocm</code> variant) as these are in a location managed by LUST.</p>
+<ul>
+<li>
+<p>The <code>rocm</code>, <code>amd</code> and <code>amd-mixed</code> module files are copied from the system (in <code>%files</code>) and 
+    and then edited through <code>sed</code> in <code>%post</code> to change the version to 6.2.4.</p>
+</li>
+<li>
+<p>The <code>rocm*.pc</code> files in <code>/usr/lib64/pkgconfig</code> are copied from the system ((in <code>%files</code>) and 
+    and then edited through <code>sed</code> in <code>%post</code> to change the version to 6.2.4.</p>
+</li>
+<li>
+<p>Also in <code>%post</code>, a symbolic link for <code>/opt/rocm</code> is created pointing to <code>/opt/rocm-6.2.4</code> 
+    through <code>/etc/alternatives</code>.</p>
+</li>
+</ul>
+<p>We made several modifications to the container so that we can install 
+a LUMI software stack almost the way we would do so without a container. 
+Several of the files that we inject in the container, also have copies in the
+installation directory of the container, subdirectory
+<code>config</code>, which may be useful to experiment with changes and overwrite the versions in
+the container.</p>
+<p>Some elements of the EasyBuild recipes and modifications to the container:</p>
+<ul>
+<li>
+<p>Variables defined at the top of the EasyConfig file:</p>
+<ul>
+<li>
+<p><code>local_ccpe_version</code>: This will be used as the value for <code>CCPE_VERSION</code> and
+    the directory used for the Lmod cache. Set to <code>24.11-raw</code> for this 
+    container.</p>
+</li>
+<li>
+<p><code>local_appl_lumi</code>: System subdirectory that will be used for <code>/appl/lumi</code>
+    in the container.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>The container that has been provided by LUST as a starting point, does
+    have some protection built in to prevent it being taken to other systems.
+    One element of that protection, is some checks of the <code>/etc/slurm/slurm.conf</code>
+    file. </p>
+<p>To be able to use the <code>%post</code> section during the "unpriveleged proot build"
+process, that file has to be present in the container. Therefore we copy that
+file in the <code>%files</code> phase, but remove it again in the <code>%post</code> phase as whe
+running the container, the whole Slurm configuration directory is bind mounted
+in the container.</p>
+</li>
+<li>
+<p>We inject the file <code>/.singularity.d/env/99-z-ccpe-init</code> which we use
+    to define additional environment variables in the container that can
+    then be used to execute commands.</p>
+<p>Currently used so that <code>eval $INITCCPE</code> does a full (re)initialization
+of Lmod so that it functions in the same way as on LUMI.</p>
+</li>
+<li>
+<p>As the container is already set up to support a runscript, we simply inject
+    a new one via <code>%files</code> which makes it easier to have a nice layout in the 
+    runscript and in the container definition file.</p>
+</li>
+<li>
+<p>Lmod cache strategy: User cache stored in a separate directory, 
+    <code>~/.cache/lmod/ccpe-%(version)s-%(versionsuffix)s</code>, by editing
+    <code>/opt/cray/pe/lmod/lmod/libexec/myGlobals.lua</code>.</p>
+</li>
+<li>
+<p>libfabric and CXI provider: Bind mount from the system.</p>
+<p>To find the correct directories and files to bind, execute the following commands:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>module<span class="w"> </span>--redirect<span class="w"> </span>show<span class="w"> </span>libfabric<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;&quot;PATH&quot;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">&#39;&quot;&#39;</span><span class="w"> </span><span class="s1">&#39;{ print $4 }&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;s|/bin||&#39;</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>module<span class="w"> </span>--loc<span class="w"> </span>--redirect<span class="w"> </span>show<span class="w"> </span>libfabric<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;s|\(.*libfabric.*\)/.*|\1|&#39;</span>
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a>ldd<span class="w"> </span><span class="k">$(</span>module<span class="w"> </span>--redirect<span class="w"> </span>show<span class="w"> </span>libfabric<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;&quot;LD_LIBRARY_PATH&quot;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">&#39;&quot;&#39;</span><span class="w"> </span><span class="s1">&#39;{ print $4 }&#39;</span><span class="k">)</span>/libfabric.so<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>libcxi<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $3}&#39;</span>
+</code></pre></div>
+</li>
+<li>
+<p>A bit inconsistent, but we copy <code>liblustreapi</code> and <code>liblnetconfig</code> from the system
+    to reduce the number of bind mounts, even though this may change as quickly as the libfabric libraries.</p>
+</li>
+<li>
+<p>ROCm: ROCm 6.2.4, either bind mounted from a SquashFS file or installed in the 
+    container via <code>zypper</code>.</p>
+</li>
+<li>
+<p>Slurm support is still provided as much as possible by binding files from the system
+    to ensure that the same version is used in the container as LUMI uses, as otherwise
+    we may expect conflicts.</p>
+<p>One thing is done during the build process though: We need to copy the <code>/etc/group</code> 
+and <code>/etc/passwd</code> files from the system into the container during the <code>%files</code> phase
+(editing those files in the <code>%post</code> phase does not work). </p>
+</li>
+<li>
+<p>We made a deliberate choice to not hard-code the bindings in the <code>ccpe-*</code>
+    scripts in case a user would want to add to the environment <code>SINGULARITY_BIND</code> variable,
+    and also deliberately did not hard-code the path to the container file
+    in those scripts as in this module, a user can safely delete the container
+    from the installation directory and use the copy in <code>/appl/local/containers/easybuild-sif-images</code> 
+    instead if they built the container starting from our images and in <code>partition/container</code>.</p>
+<p>The <code>ccpe-*</code> wrapper scripts are defined in the EasyConfig itself (multiline strings)
+and brought on the system in <code>postinstallcmds</code> via a trick with bash HERE documents.</p>
+</li>
+<li>
+<p>The sanity check is specific to the 24.11 containers and will need to be updated
+    for different versions of the programming environment.</p>
+</li>
+</ul>
+<h4 id="versions-2503-rocm-63-sp5-lumi">Versions 25.03-*-rocm-6.3-SP5-LUMI</h4>
+<p>These containers build upon the Cray SUSE 15 SP5 version of the container. They add both
+ROCm 6.3.4 and 6.2.4 to the container. The rationale is that the CPE in the container is
+really meant to be used with ROCm 6.3, but running with ROCm 6.3 may fail as the driver on
+LUMI is too old, so one can experiment with both versions or see if it is possible to 
+compile with ROCm 6.3 (which may happen even if another ROCm version is loaded anyway as 
+the CCE compiler now already includes some code from ROCm 6.3) while run with the older 
+version of the libraries.</p>
+<p>Two different versions are currently provided:</p>
+<ul>
+<li>
+<p><code>25.03-B-rocm-6.3-SP5-LUMI</code> bind mounts SquashFS file with ROCm 6.2.4 and 6.3.4 
+    to the container.
+    This keeps the size of the container small and makes it easier to adapt the container
+    to the needs of a specific project.</p>
+<p>The container build recipe only creates the <code>/opt/rocm-6.2.4</code>
+and <code>/opt/rocm-6.3.4</code> directories as mount points
+and as it is needed to successfully complete some other steps discussed below.</p>
+</li>
+<li>
+<p><code>25.03-C-rocm-6.3-SP5-LUMI</code> installs ROCm 6.2.4 and 6.3.4 from the AMD site using the SUSE <code>zypper</code> tool.
+    It is a slow approach with build times easily exceeding an hour and
+    a half. However, using <code>zypper</code> enables users to change the ROCm version themselves 
+    more easily, and also ensures that all OS dependencies are available in the proper version.</p>
+</li>
+</ul>
+<p>An alternative is to install the ROCm installation from a compressed tar file that LUST could
+provide, but though that may be a faster build process, it does not guarantee that all 
+OS dependencies are available in the proper version.</p>
+<p>Our advise is to start with the <code>-B-rocm</code> version and if there are issues that may come from
+library compatibility versions, switch to the <code>-C-rocm</code> versions. T</p>
+<p>Furthermore,</p>
+<ul>
+<li>
+<p>The <code>rocm</code>, <code>amd</code> and <code>amd-mixed</code> module files are copied from the system (in <code>%files</code>) and 
+    and then edited through <code>sed</code> in <code>%post</code> to change the version to 6.2.4 and 6.3.4.</p>
+</li>
+<li>
+<p>The <code>rocm*.pc</code> files in <code>/usr/lib64/pkgconfig</code> are copied from the system ((in <code>%files</code>) and 
+    and then edited through <code>sed</code> in <code>%post</code> to change the version to 6.2.4 and 6.3.4.</p>
+</li>
+<li>
+<p>Also in <code>%post</code>, a symbolic link for <code>/opt/rocm</code> is created pointing to <code>/opt/rocm-6.3.4</code> 
+    through <code>/etc/alternatives</code>.</p>
+</li>
+</ul>
+<p>Other elements in the build:</p>
+<ul>
+<li>
+<p>Variables defined at the top of the EasyConfig file:</p>
+<ul>
+<li>
+<p><code>local_ccpe_version</code>: This will be used as the value for <code>CCPE_VERSION</code> and
+    the directory used for the Lmod cache. Set to <code>24.11-raw</code> for this 
+    container.</p>
+</li>
+<li>
+<p><code>local_appl_lumi</code>: System subdirectory that will be used for <code>/appl/lumi</code>
+    in the container.</p>
+</li>
+<li>
+<p>ROCm-related variables:</p>
+<ul>
+<li>
+<p><code>local_rocm_version</code>: System ROCm version, currently <code>6.0.3</code></p>
+</li>
+<li>
+<p><code>local_c1_rocm_version</code>: Default ROCm version for the container, <code>6.3.4</code></p>
+</li>
+<li>
+<p><code>local_c2_rocm_version</code>: Backup ROCm version for the container, <code>6.2.4</code>.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>The file <code>/.singularity.d/env/99-z-ccpe-init</code> is used
+    to define additional environment variables in the container that can
+    then be used to execute commands. It is generated in the EasyConfig and
+    then injected in the container through the <code>%files</code> section of the definition
+    file.</p>
+<p>Currently used so that <code>eval $INITCCPE</code> does a full (re)initialization
+of Lmod so that it functions in the same way as on LUMI.</p>
+</li>
+<li>
+<p>The <code>/etc/bash/bashrc.local</code> file is replaced with one that just calls
+    <code>eval $INITCCPE</code>, and there is an empty placeholder for <code>/etc/profile.local</code>.</p>
+</li>
+<li>
+<p>As the container is already set up to support a runscript, we simply inject
+    a new one via <code>%files</code> which makes it easier to have a nice layout in the 
+    runscript and in the container definition file.</p>
+</li>
+<li>
+<p>Compared to the 24.11 container, several packages were missing so a lot more
+    needs to be added with <code>zypper</code>. This includes an editor, but more importantly,
+    only the C and POSIX locales were known which was not even enough to use 
+    <code>archspec</code> or install some other packages that give additional effects in
+    EasyBuild. The solution was to install <code>glibc-locale</code>.</p>
+</li>
+<li>
+<p>Lmod cache strategy: User cache stored in a separate directory, 
+    <code>~/.cache/lmod/ccpe-%(version)s-%(versionsuffix)s</code>, by editing
+    <code>/opt/cray/pe/lmod/lmod/libexec/myGlobals.lua</code>.</p>
+</li>
+<li>
+<p>libfabric and CXI provider: Bind mount from the system.</p>
+<p>To find the correct directories and files to bind, execute the following commands:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>module<span class="w"> </span>--redirect<span class="w"> </span>show<span class="w"> </span>libfabric<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;&quot;PATH&quot;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">&#39;&quot;&#39;</span><span class="w"> </span><span class="s1">&#39;{ print $4 }&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;s|/bin||&#39;</span>
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>module<span class="w"> </span>--loc<span class="w"> </span>--redirect<span class="w"> </span>show<span class="w"> </span>libfabric<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;s|\(.*libfabric.*\)/.*|\1|&#39;</span>
+<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>ldd<span class="w"> </span><span class="k">$(</span>module<span class="w"> </span>--redirect<span class="w"> </span>show<span class="w"> </span>libfabric<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;&quot;LD_LIBRARY_PATH&quot;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">&#39;&quot;&#39;</span><span class="w"> </span><span class="s1">&#39;{ print $4 }&#39;</span><span class="k">)</span>/libfabric.so<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>libcxi<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $3}&#39;</span>
+</code></pre></div>
+</li>
+<li>
+<p>A bit inconsistent, but we copy <code>liblustreapi</code> and <code>liblnetconfig</code> from the system
+    to reduce the number of bind mounts, even though this may change as quickly as the libfabric libraries.</p>
+</li>
+<li>
+<p>The 25.03 containers need the xpmem libraries and module from the system which
+    is done through bind mounts (could in principle replace with copying from the
+    system).</p>
+<p>The <code>xpmem</code> installation in the container is then still broken as the default is not 
+properly set in <code>/etc/alternatives</code> and as it is not added to the system shared library
+search path through a file in <code>/etc/ld.so.conf.d</code>, so these are also fixed in the
+container definition.</p>
+</li>
+<li>
+<p>There are issues with <code>cray-pals</code> on LUMI. Older versions are installed in <code>/opt/cray/pe</code>,
+    but for some reason, the version that came with 24.03 is actually installed in <code>/opt/cray</code>,
+    but there the modulefiles are not found.</p>
+<p>It is also missing in the container, yet used by some other libraries from the 
+PE.</p>
+<p>Rather than binding from the system as we do for <code>xpmem</code>, we chose to copy 
+the libraries to the container. We kept the installation in <code>/opt/cray/pals</code> as otherwise the 
+modulefiles would not be correct, but copied the modulefiles to the proper locations in
+<code>/opt/cray/pe</code> rather than trying to adapt the <code>MODULEPATH</code>.</p>
+<p>Rather than using the trick with the links in <code>/opt/cray/pe/lib64</code>, it gets its own
+file in <code>/etc/ld.so.conf.d</code> as is the case on LUMI (where the links also exist 
+though but point to an older version of the library).</p>
+<p>Moreover, libpals requires a newer version of libjansson then we get with <code>zypper</code>
+using the OpenSUSE repositories, so we copy it from the system and create the 
+necessary links.</p>
+</li>
+<li>
+<p>ROCm: Either bound from a SquashFS file, installed from tar files or installed
+    via <code>zypper</code>, depending on the container.</p>
+</li>
+<li>
+<p>Slurm support is still provided as much as possible by binding files from the system
+    to ensure that the same version is used in the container as LUMI uses, as otherwise
+    we may expect conflicts.</p>
+<p>One thing is done during the build process though: We need to copy the <code>/etc/group</code> 
+and <code>/etc/passwd</code> files from the system into the container during the <code>%files</code> phase
+(editing those files in the <code>%post</code> phase does not work). </p>
+</li>
+<li>
+<p>We made a deliberate choice to not hard-code the bindings in the <code>ccpe-*</code>
+    scripts in case a user would want to add to the environment <code>SINGULARITY_BIND</code> variable,
+    and also deliberately did not hard-code the path to the container file
+    in those scripts as in this module, a user can safely delete the container
+    from the installation directory and use the copy in <code>/appl/local/containers/easybuild-sif-images</code> 
+    instead if they built the container starting from our images and in <code>partition/container</code>.</p>
+<p>The <code>ccpe-*</code> wrapper scripts are defined in the EasyConfig itself (multiline strings)
+and brought on the system in <code>postinstallcmds</code> via a trick with bash HERE documents.</p>
+</li>
+<li>
+<p>The sanity check is specific to the 25.11 containers and will need to be updated
+    for different versions of the programming environment. We've tried to catch everything
+    which depends on the version of the PE in variables in the EasyConfig, defined 
+    just above the sanity check commands (currently only 1).</p>
+</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        
+
+
+
+
+<footer class="md-footer">
+
+  
+  
+
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+
+      
+    <div class="md-footer-copyright">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" 
+             style="border-width:0" 
+             src="https://i.creativecommons.org/l/by/4.0/80x15.png"
+        />
+      </a>
+      This work is licensed under a&nbsp;
+      <a rel="license" 
+         href="http://creativecommons.org/licenses/by/4.0/"
+      >
+        Creative Commons Attribution 4.0 International License
+      </a>
+    </div>
+
+      
+      
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://www.youtube.com/channel/UCb31KOJ6Wqu0sRpIRi_k8Mw" target="_blank" rel="noopener" title="LUMI on YouTube" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://www.linkedin.com/company/lumi-supercomputer" target="_blank" rel="noopener" title="LUMI on LinkedIn" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://twitter.com/LUMIhpc" target="_blank" rel="noopener" title="LUMI on Twitter" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"/></svg>
+    </a>
+  
+</div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "toc.follow", "search.suggest", "content.code.annotate", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

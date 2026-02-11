@@ -1,0 +1,2543 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for the LUMI software library">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>lumi-CPEtools - LUMI Software Library</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+  
+      
+
+    
+
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document.body.addEventListener("click", function(ev) {
+        if (ev.target instanceof HTMLElement) {
+          var el = ev.target.closest("a[href^=http]")
+          if (el)
+            ga("send", "event", "outbound", "click", el.href)
+        }
+      })
+    })
+  </script>
+
+    
+
+  
+  
+  
+    
+  
+
+  
+  
+
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="LUMI Software Library - lumi-CPEtools" />
+  <meta property="og:description" content="Documentation for the LUMI software library" />
+  <meta property="og:url" content="None" />
+  <meta property="og:image" content="assets/images/banner.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1080" />
+  <meta property="og:image:height" content="568" />
+
+  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@LUMIhpc" />
+  <meta name="twitter:creator" content="@LUMIhpc" />
+  <meta name="twitter:title" content="LUMI Software Library - lumi-CPEtools" />
+  <meta name="twitter:description" content="Documentation for the LUMI software library" />
+  <meta name="twitter:image" content="assets/images/banner.png" />
+
+  <style>
+    [data-md-color-primary="lumi"] {
+      --md-primary-fg-color: hsla(0, 0%, 100%, 1);
+      --md-primary-fg-color--light: hsla(0, 0%, 100%, 0.7);
+      --md-primary-fg-color--dark: hsla(0, 0%, 0%, 0.07);
+      --md-primary-bg-color: hsla(0, 0%, 0%, 0.87);
+      --md-primary-bg-color--light: hsla(0, 0%, 0%, 0.54);
+      --md-button-bg-color: hsla(207,100%,28%, 1);
+      --md-button-bg-color--light: hsla(207,100%,38%, 1);
+      --md-typeset-a-color: hsla(207,100%,28%, 1);
+    }
+    
+    [data-md-color-accent="lumi"] {
+      --md-accent-fg-color: hsla(0,0%,0%, 1);
+      --md-accent-fg-color--transparent: hsla(0,0%,0%, 0.1);
+      --md-accent-bg-color: hsla(0, 0%, 100%, 1);
+      --md-accent-bg-color--light: hsla(0, 0%, 100%, 0.7);
+    }
+  </style>
+
+  
+
+
+  
+  
+
+    <link
+      rel="stylesheet"
+      href="../../assets/stylesheets/extra-a8af0af3d0.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../assets/stylesheets/overrides-5193e6f6df.css"
+    />
+    <link
+      rel="stylesheet"
+      id="typekit-fonts-css"
+      href="https://use.typekit.net/nlo5lta.css?ver=5.5.3"
+      type="text/css" media="all"
+    />
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="lumi" data-md-color-accent="lumi">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lumi-cpetools" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="LUMI Software Library" class="md-header__button md-logo" aria-label="LUMI Software Library" data-md-component="logo">
+      
+  
+  <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 723 212" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="Layer-2" serif:id="Layer 2">
+        <g transform="matrix(1,0,0,1,0,175.883)">
+            <path d="M0,-140.304L0,0L102.89,0L102.89,-24.599L26.658,-24.599L26.658,-140.304L0,-140.304Z" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,257.262,35.5793)">
+            <path d="M0,140.304C-17.585,140.304 -32.083,135.347 -43.588,125.338C-55,115.423 -60.799,103.357 -60.799,89.14L-60.799,0L-34.328,0L-34.328,81.563C-34.328,92.413 -31.054,100.645 -24.319,105.976C-17.866,111.12 -9.728,113.74 0,113.74C9.728,113.74 17.865,111.12 24.319,105.976C31.054,100.645 34.328,92.413 34.328,81.563L34.328,0L60.799,0L60.799,89.14C60.799,103.357 55.093,115.329 43.588,125.338C32.083,135.347 17.585,140.304 0,140.304" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,550.374,119.668)">
+            <path d="M0,-27.874L-43.588,20.671L-87.176,-27.874L-87.176,56.215L-113.74,56.215L-113.74,-84.089L-105.695,-84.089L-43.588,-13.47L18.614,-84.089L26.658,-84.089L26.658,56.215L0.094,56.215L0,-27.874Z" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <rect x="695.604" y="35.486" width="26.658" height="140.397" style="fill:rgb(29,29,27);"/>
+        <g transform="matrix(-1,0,0,1,722.262,-203.194)">
+            <rect x="0" y="203.194" width="722.262" height="8.175" style="fill:rgb(29,29,27);"/>
+        </g>
+        <g transform="matrix(-1,0,0,1,722.262,203.194)">
+            <rect x="0" y="0" width="722.262" height="8.175" style="fill:rgb(29,29,27);"/>
+        </g>
+    </g>
+</svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LUMI Software Library
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              lumi-CPEtools
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#a" class="md-tabs__link">
+        
+  
+  
+    
+  
+  a
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#b" class="md-tabs__link">
+        
+  
+  
+    
+  
+  b
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#c" class="md-tabs__link">
+        
+  
+  
+    
+  
+  c
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#d" class="md-tabs__link">
+        
+  
+  
+    
+  
+  d
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#e" class="md-tabs__link">
+        
+  
+  
+    
+  
+  e
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#f" class="md-tabs__link">
+        
+  
+  
+    
+  
+  f
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#g" class="md-tabs__link">
+        
+  
+  
+    
+  
+  g
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#h" class="md-tabs__link">
+        
+  
+  
+    
+  
+  h
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#I/ICU" class="md-tabs__link">
+        
+  
+  
+    
+  
+  I/ICU
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#i" class="md-tabs__link">
+        
+  
+  
+    
+  
+  i
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#j" class="md-tabs__link">
+        
+  
+  
+    
+  
+  j
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#k" class="md-tabs__link">
+        
+  
+  
+    
+  
+  k
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#l" class="md-tabs__link">
+        
+  
+  
+    
+  
+  l
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#m" class="md-tabs__link">
+        
+  
+  
+    
+  
+  m
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#n" class="md-tabs__link">
+        
+  
+  
+    
+  
+  n
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#o" class="md-tabs__link">
+        
+  
+  
+    
+  
+  o
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#p" class="md-tabs__link">
+        
+  
+  
+    
+  
+  p
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#q" class="md-tabs__link">
+        
+  
+  
+    
+  
+  q
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#r" class="md-tabs__link">
+        
+  
+  
+    
+  
+  r
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#s" class="md-tabs__link">
+        
+  
+  
+    
+  
+  s
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#t" class="md-tabs__link">
+        
+  
+  
+    
+  
+  t
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#u" class="md-tabs__link">
+        
+  
+  
+    
+  
+  u
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#v" class="md-tabs__link">
+        
+  
+  
+    
+  
+  v
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#w" class="md-tabs__link">
+        
+  
+  
+    
+  
+  w
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#x" class="md-tabs__link">
+        
+  
+  
+    
+  
+  x
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#y" class="md-tabs__link">
+        
+  
+  
+    
+  
+  y
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#z" class="md-tabs__link">
+        
+  
+  
+    
+  
+  z
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../known_issues/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Issues
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../whats_new/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  New
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LUMI Software Library" class="md-nav__button md-logo" aria-label="LUMI Software Library" data-md-component="logo">
+      
+  
+  <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 723 212" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="Layer-2" serif:id="Layer 2">
+        <g transform="matrix(1,0,0,1,0,175.883)">
+            <path d="M0,-140.304L0,0L102.89,0L102.89,-24.599L26.658,-24.599L26.658,-140.304L0,-140.304Z" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,257.262,35.5793)">
+            <path d="M0,140.304C-17.585,140.304 -32.083,135.347 -43.588,125.338C-55,115.423 -60.799,103.357 -60.799,89.14L-60.799,0L-34.328,0L-34.328,81.563C-34.328,92.413 -31.054,100.645 -24.319,105.976C-17.866,111.12 -9.728,113.74 0,113.74C9.728,113.74 17.865,111.12 24.319,105.976C31.054,100.645 34.328,92.413 34.328,81.563L34.328,0L60.799,0L60.799,89.14C60.799,103.357 55.093,115.329 43.588,125.338C32.083,135.347 17.585,140.304 0,140.304" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,550.374,119.668)">
+            <path d="M0,-27.874L-43.588,20.671L-87.176,-27.874L-87.176,56.215L-113.74,56.215L-113.74,-84.089L-105.695,-84.089L-43.588,-13.47L18.614,-84.089L26.658,-84.089L26.658,56.215L0.094,56.215L0,-27.874Z" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <rect x="695.604" y="35.486" width="26.658" height="140.397" style="fill:rgb(29,29,27);"/>
+        <g transform="matrix(-1,0,0,1,722.262,-203.194)">
+            <rect x="0" y="203.194" width="722.262" height="8.175" style="fill:rgb(29,29,27);"/>
+        </g>
+        <g transform="matrix(-1,0,0,1,722.262,203.194)">
+            <rect x="0" y="0" width="722.262" height="8.175" style="fill:rgb(29,29,27);"/>
+        </g>
+    </g>
+</svg>
+
+    </a>
+    LUMI Software Library
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#a" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    a
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#b" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    b
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#c" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    c
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#d" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    d
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#e" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    e
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#f" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    f
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#g" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    g
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#h" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    h
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#I/ICU" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I/ICU
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#i" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    i
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#j" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    j
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#k" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#l" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    l
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#m" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    m
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#n" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    n
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#o" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    o
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#p" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    p
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#q" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    q
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#r" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    r
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#s" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    s
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#t" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    t
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#u" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    u
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#v" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#w" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    w
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#x" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    x
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#y" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    y
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#z" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    z
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../known_issues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Issues
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../whats_new/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#license-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        License information
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-documentation-central-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User documentation (central installation)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="User documentation (central installation)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getting-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting help
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#some-interactive-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Some interactive examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Some interactive examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gpu_check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gpu_check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hpcat-on-a-gpu-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hpcat on a GPU node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serial_check-omp_check-mpi_cehck-and-hybrid_check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        serial_check, omp_check, mpi_cehck and hybrid_check
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acknowledgements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acknowledgements
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-installed-modules-and-easyconfigs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-installed modules (and EasyConfigs)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-installable-modules-and-easyconfigs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User-installable modules (and EasyConfigs)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technical-documentation-central-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technical documentation (central installation)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Technical documentation (central installation)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#easybuild" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EasyBuild
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EasyBuild">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#version-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version 1.0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#version-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version 1.1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#version-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version 1.2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#version-12a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version 1.2a
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#version-12-cpe-hpcat-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version 1.2-cpe*-hpcat-0.9
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technical-documentation-user-easybuild-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technical documentation (user EasyBuild installation)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Technical documentation (user EasyBuild installation)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#easybuild_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EasyBuild
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EasyBuild">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#version-11-for-open-mpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version 1.1 for Open MPI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#archived-easyconfigs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Archived EasyConfigs
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+<p><a href="../../">[package list]</a></p>
+<h1 id="lumi-cpetools">lumi-CPEtools</h1>
+<p><span class='lumi-software-button-preinstalled-hover'><span class='lumi-software-button-preinstalled'></span></span><span class='lumi-software-button-userinstallable-hover'><span class='lumi-software-button-userinstallable'></span></span></p>
+<h2 id="license-information">License information</h2>
+<p>The lumi-CPEtools packages are developed by the LUMI User Support Team
+and licensed under the GNU General Public License version 3.0, a copy of
+which can be found in the
+<a href="https://github.com/Lumi-supercomputer/lumi-CPEtools/blob/main/LICENSE">LICENSE file in the source repository</a>.</p>
+<p>The <code>hpcat</code> tool included in the module is developed by HPE and licensed under an MIT-style
+license which can be found in the
+<a href="https://github.com/HewlettPackard/hpcat/blob/main/LICENSE">LICENSE file in the source repository</a>.</p>
+<p>After loading the module, both license files are available in their respective subdirectories 
+in <code>$EBROOTLUMIMINCPETOOLS/share/licenses</code>.</p>
+<h2 id="user-documentation-central-installation">User documentation (central installation)</h2>
+<h3 id="getting-help">Getting help</h3>
+<p>The tools in <code>lumi-CPETtools</code> are documented through manual pages that can be viewed on LUMI
+after loading the module. Start with <code>man lumi-CPEtools</code>.</p>
+<p>Commands provided:</p>
+<ul>
+<li>
+<p><code>xldd</code>: An ldd-like program to show which versions of Cray PE libraries are used by an executable.</p>
+</li>
+<li>
+<p><code>serial_check</code>: Serial program can print core and host allocation and affinity information.</p>
+</li>
+<li>
+<p><code>omp_check</code>: OpenMP program can print core and host allocation and affinity information.</p>
+</li>
+<li>
+<p><code>mpi_check</code>: MPI program can print core and host allocation and affinity information.  It is also suitable to test heterogeneous jobs.</p>
+</li>
+<li>
+<p><code>hybrid_check</code>: Hybrid MPI/OpenMP program can print core and host allocation and affinity information.  It is also suitable to test
+    heterogeneous jobs.  It encompasses the full functionality of serial_check, omp_check and mpi_check.</p>
+</li>
+<li>
+<p><code>gpu_check</code> (from version 1.1 on): A  hybrid MPI/OpenMP program that prints information about thread and GPU binding/mapping on Cray EX Bardpeak nodes as in
+    LUMI-G, based on the ORNL hello_jobstep program.  (AMD GPU nodes only)</p>
+</li>
+<li>
+<p><code>hpcat</code> (from version 1.2 on): Another HPC Affinity Tracker program. This program 
+    is <a href="https://github.com/HewlettPackard/hpcat">developed by HPE</a> and shows for 
+    each MPI rank the core(s) that will be used (and per thread if <code>OMP_NUM_THREADS</code>
+    is set), which GPU(s) are accessible to the task and which network adapter will be
+    used, indicating the NUMA domain for each so that one can easily check if the resource
+    mapping is ideal.</p>
+</li>
+</ul>
+<p>The various <code>*_check</code> programs are designed to test CPU and GPU binding in Slurm and 
+are the LUST recommended way to experiment with those bindings.</p>
+<h3 id="some-interactive-examples">Some interactive examples</h3>
+<p>The examples assume the appropriate software stack modules and <code>lumi-CPEtools</code> module
+are loaded. The examples show one version of modules, but can work with others too.
+You'll also need to add the appropriate <code>-A</code> flag to the <code>salloc</code> commands.</p>
+<h4 id="gpu_check"><code>gpu_check</code></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>salloc -N2 -pstandard-g -G 16 -t 10:00
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>module load LUMI/24.03 partition/G lumi-CPEtools/1.2-cpeGNU-24.03
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>srun -n16 -c7 bash -c &#39;ROCR_VISIBLE_DEVICES=$SLURM_LOCALID gpu_check -l&#39;
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>srun -n16 -c7 \
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    --cpu-bind=mask_cpu:0xfe000000000000,0xfe00000000000000,0xfe0000,0xfe000000,0xfe,0xfe00,0xfe00000000,0xfe0000000000 \
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    bash -c &#39;ROCR_VISIBLE_DEVICES=$SLURM_LOCALID gpu_check -l&#39;
+</code></pre></div>
+<p>Note that in the first <code>srun</code> command, the mapping of GPU binding is not optimal while 
+in the second <code>srunz</code> command it is.</p>
+<h4 id="hpcat-on-a-gpu-node"><code>hpcat</code> on a GPU node</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>salloc -N2 -pstandard-g -G 16 -t 10:00
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>module load LUMI/24.03 partition/G lumi-CPEtools/1.2-cpeGNU-24.03
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>srun -n16 -c7 bash -c &#39;ROCR_VISIBLE_DEVICES=$SLURM_LOCALID OMP_NUM_THREADS=7 hpcat&#39;
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>srun -n16 -c7 \
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    --cpu-bind=mask_cpu:0xfe000000000000,0xfe00000000000000,0xfe0000,0xfe000000,0xfe,0xfe00,0xfe00000000,0xfe0000000000 \
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    bash -c &#39;ROCR_VISIBLE_DEVICES=$SLURM_LOCALID OMP_NUM_THREADS=7 hpcat&#39;
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>srun -n16 -c7 \
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    --cpu-bind=mask_cpu:0xfe000000000000,0xfe00000000000000,0xfe0000,0xfe000000,0xfe,0xfe00,0xfe00000000,0xfe0000000000 \
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    bash -c &#39;ROCR_VISIBLE_DEVICES=$SLURM_LOCALID OMP_NUM_THREADS=7 OMP_PLACES=cores hpcat&#39;
+</code></pre></div>
+<p>Note that in the first <code>srun</code> command, the mapping of resources is not very good. GPUs 
+don't map to their closest chiplet, and the network adapters are also linked based 
+on the CPU NUMA domain. In the second case, the mapping is optimal, but except for the
+Cray compilers, the OpenMP threads can still move in the chiplet. In the last case, these 
+are also fixed with all compilers.</p>
+<h4 id="serial_check-omp_check-mpi_cehck-and-hybrid_check"><code>serial_check</code>, <code>omp_check</code>, <code>mpi_cehck</code> and <code>hybrid_check</code></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>salloc -N1 -pstandard -t 10:00
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>module load LUMI/24.03 partition/C lumi-CPEtools/1.2-cpeGNU-24.03
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>srun -n1 -c1 serial_check
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>srun -n1 -c4 omp_check
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>srun -n4 -c1 mpi_check
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>srun -n4 -c4 hybrid_check
+</code></pre></div>
+<p>One big difference between these tools and <code>hpcat</code> is that this tool shows on which 
+core a thread is running at the moment that this is measured, while <code>hpcat</code> actually 
+shows the affinity mask, i.e., all cores that can be used by that thread. <code>gpu_check</code>
+has the same limitation as <code>omp_check</code> etc.</p>
+<h3 id="acknowledgements">Acknowledgements</h3>
+<p>The code for <code>hybrid_check</code> and its offsprings <code>serial_check</code>, <code>omp_check</code> and <code>mpi_check</code> is inspired
+by the <a href="https://support.hpe.com/hpesc/public/docDisplay?docId=a00114008en_us&amp;docLocale=en_US&amp;page=Run_an_OpenMP_Application.html"><code>xthi</code> program used in the 4-day LUMI comprehensive courses</a>.
+The <code>hybrid_check</code> program has been used succesfully on other clusters also, also non-Cray 
+or non-HPE clusters.</p>
+<p>The <code>gpu_check</code> program (lumi-CPEtools 1.1 and later) builds upon the
+<a href="https://code.ornl.gov/olcf/hello_jobstep/-/tree/master"><code>hello_jobstep</code> code from ORNL</a>.
+The program is specifically for the HPE Cray EX Bard Peak nodes and will not work correctly
+without reworking on other AMD GPU systems or on NVIDIA GPU systems.</p>
+<p>The <code>lumi-CPEtools</code> code is developed by LUST in the 
+<a href="https://github.com/Lumi-supercomputer/lumi-CPEtools">lumi-CPEtools repository on the LUMI supercomputer GitHub</a>.</p>
+<p>The <code>hpcat</code> program (lumi-CPEtools 1.2 and later) is
+<a href="https://github.com/HewlettPackard/hpcat">developed by HPE</a> and provided
+unmodified.</p>
+<h2 id="pre-installed-modules-and-easyconfigs">Pre-installed modules (and EasyConfigs)</h2>
+<p>To access module help and find out for which stacks and partitions the module is
+installed, use <code>module spider lumi-CPEtools/&lt;version&gt;</code>.</p>
+<p>EasyConfig:</p>
+<ul>
+<li>
+<p><a href="lumi-CPEtools-1.0-cpeAMD-23.09/">lumi-CPEtools/1.0-cpeAMD-23.09 (EasyConfig: lumi-CPEtools-1.0-cpeAMD-23.09.eb)</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.0-cpeAOCC-23.09/">lumi-CPEtools/1.0-cpeAOCC-23.09 (EasyConfig: lumi-CPEtools-1.0-cpeAOCC-23.09.eb)</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.0-cpeCray-23.09/">lumi-CPEtools/1.0-cpeCray-23.09 (EasyConfig: lumi-CPEtools-1.0-cpeCray-23.09.eb)</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.0-cpeGNU-23.09/">lumi-CPEtools/1.0-cpeGNU-23.09 (EasyConfig: lumi-CPEtools-1.0-cpeGNU-23.09.eb)</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.0/">lumi-CPEtools/1.0 (EasyConfig: lumi-CPEtools-1.0.eb)</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.1-cpeAMD-23.09/">lumi-CPEtools/1.1-cpeAMD-23.09 (EasyConfig: lumi-CPEtools-1.1-cpeAMD-23.09.eb)</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.1-cpeAMD-24.03/">lumi-CPEtools/1.1-cpeAMD-24.03 (EasyConfig: lumi-CPEtools-1.1-cpeAMD-24.03.eb)</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.1-cpeAOCC-23.09/">lumi-CPEtools/1.1-cpeAOCC-23.09 (EasyConfig: lumi-CPEtools-1.1-cpeAOCC-23.09.eb)</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.1-cpeAOCC-24.03/">lumi-CPEtools/1.1-cpeAOCC-24.03 (EasyConfig: lumi-CPEtools-1.1-cpeAOCC-24.03.eb)</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.1-cpeCray-23.09/">lumi-CPEtools/1.1-cpeCray-23.09 (EasyConfig: lumi-CPEtools-1.1-cpeCray-23.09.eb)</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.1-cpeCray-24.03/">lumi-CPEtools/1.1-cpeCray-24.03 (EasyConfig: lumi-CPEtools-1.1-cpeCray-24.03.eb)</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.1-cpeGNU-23.09/">lumi-CPEtools/1.1-cpeGNU-23.09 (EasyConfig: lumi-CPEtools-1.1-cpeGNU-23.09.eb)</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.1-cpeGNU-24.03/">lumi-CPEtools/1.1-cpeGNU-24.03 (EasyConfig: lumi-CPEtools-1.1-cpeGNU-24.03.eb)</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.2-cpeAMD-24.03/">lumi-CPEtools/1.2-cpeAMD-24.03 (EasyConfig: lumi-CPEtools-1.2-cpeAMD-24.03.eb)</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.2-cpeAMD-25.03-hpcat-0.9/">lumi-CPEtools/1.2-cpeAMD-25.03-hpcat-0.9 (EasyConfig: lumi-CPEtools-1.2-cpeAMD-25.03-hpcat-0.9.eb)</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.2-cpeAOCC-24.03/">lumi-CPEtools/1.2-cpeAOCC-24.03 (EasyConfig: lumi-CPEtools-1.2-cpeAOCC-24.03.eb)</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.2-cpeAOCC-25.03-hpcat-0.9/">lumi-CPEtools/1.2-cpeAOCC-25.03-hpcat-0.9 (EasyConfig: lumi-CPEtools-1.2-cpeAOCC-25.03-hpcat-0.9.eb)</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.2-cpeCray-24.03/">lumi-CPEtools/1.2-cpeCray-24.03 (EasyConfig: lumi-CPEtools-1.2-cpeCray-24.03.eb)</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.2-cpeCray-25.03-hpcat-0.9/">lumi-CPEtools/1.2-cpeCray-25.03-hpcat-0.9 (EasyConfig: lumi-CPEtools-1.2-cpeCray-25.03-hpcat-0.9.eb)</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.2-cpeGNU-24.03/">lumi-CPEtools/1.2-cpeGNU-24.03 (EasyConfig: lumi-CPEtools-1.2-cpeGNU-24.03.eb)</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.2-cpeGNU-25.03-hpcat-0.9/">lumi-CPEtools/1.2-cpeGNU-25.03-hpcat-0.9 (EasyConfig: lumi-CPEtools-1.2-cpeGNU-25.03-hpcat-0.9.eb)</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.2a-cpeAMD-24.03/">lumi-CPEtools/1.2a-cpeAMD-24.03 (EasyConfig: lumi-CPEtools-1.2a-cpeAMD-24.03.eb)</a></p>
+</li>
+<li>
+<p><span class='lumi-software-inlinelabel-ccpe-hover'><span class='lumi-software-inlinelabel-ccpe'><a href="../../c/ccpe/">ccpe container only</a></span></span>  <a href="lumi-CPEtools-1.2a-cpeAMD-24.11/">lumi-CPEtools/1.2a-cpeAMD-24.11 (EasyConfig: lumi-CPEtools-1.2a-cpeAMD-24.11.eb)</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.2a-cpeAOCC-24.03/">lumi-CPEtools/1.2a-cpeAOCC-24.03 (EasyConfig: lumi-CPEtools-1.2a-cpeAOCC-24.03.eb)</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.2a-cpeCray-24.03/">lumi-CPEtools/1.2a-cpeCray-24.03 (EasyConfig: lumi-CPEtools-1.2a-cpeCray-24.03.eb)</a></p>
+</li>
+<li>
+<p><span class='lumi-software-inlinelabel-ccpe-hover'><span class='lumi-software-inlinelabel-ccpe'><a href="../../c/ccpe/">ccpe container only</a></span></span>  <a href="lumi-CPEtools-1.2a-cpeCray-24.11/">lumi-CPEtools/1.2a-cpeCray-24.11 (EasyConfig: lumi-CPEtools-1.2a-cpeCray-24.11.eb)</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.2a-cpeGNU-24.03/">lumi-CPEtools/1.2a-cpeGNU-24.03 (EasyConfig: lumi-CPEtools-1.2a-cpeGNU-24.03.eb)</a></p>
+</li>
+<li>
+<p><span class='lumi-software-inlinelabel-ccpe-hover'><span class='lumi-software-inlinelabel-ccpe'><a href="../../c/ccpe/">ccpe container only</a></span></span>  <a href="lumi-CPEtools-1.2a-cpeGNU-24.11/">lumi-CPEtools/1.2a-cpeGNU-24.11 (EasyConfig: lumi-CPEtools-1.2a-cpeGNU-24.11.eb)</a></p>
+</li>
+</ul>
+<h2 id="user-installable-modules-and-easyconfigs">User-installable modules (and EasyConfigs)</h2>
+<p>Install with the EasyBuild-user module:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>eb &lt;easyconfig&gt; -r
+</code></pre></div>
+To access module help after installation and get reminded for which stacks and partitions the module is
+installed, use <code>module spider lumi-CPEtools/&lt;version&gt;</code>.</p>
+<p>EasyConfig:</p>
+<ul>
+<li>
+<p><a href="lumi-CPEtools-1.1-cpeGNU-23.09-OpenMPI-4.1.6-noCrayWrappers/">EasyConfig lumi-CPEtools-1.1-cpeGNU-23.09-OpenMPI-4.1.6-noCrayWrappers.eb, will build lumi-CPEtools/1.1-cpeGNU-23.09-OpenMPI-4.1.6-noCrayWrappers</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.1-cpeGNU-23.09-OpenMPI-4.1.6/">EasyConfig lumi-CPEtools-1.1-cpeGNU-23.09-OpenMPI-4.1.6.eb, will build lumi-CPEtools/1.1-cpeGNU-23.09-OpenMPI-4.1.6</a></p>
+</li>
+</ul>
+<h2 id="technical-documentation-central-installation">Technical documentation (central installation)</h2>
+<p>lumi-CPEtools is developed by the LUST team.</p>
+<ul>
+<li>
+<p><a href="https://github.com/Lumi-supercomputer/lumi-CPEtools">lumi-CPEtools on GitHub</a></p>
+</li>
+<li>
+<p>The <a href="https://github.com/HewlettPackard/hpcat">hpcat utility from HPE</a> on GitHub</p>
+</li>
+</ul>
+<h3 id="easybuild">EasyBuild</h3>
+<p>The EasyConfig is our own development as this is also our own tool. We provide full
+versions for each Cray PE, and a restricted version using the S?YSTEM toolchain
+for the CrayEnv software stack.</p>
+<h4 id="version-10">Version 1.0</h4>
+<ul>
+<li>The EasyConfig is our own design.</li>
+</ul>
+<h4 id="version-11">Version 1.1</h4>
+<ul>
+<li>
+<p>The EasyConfig build upon the 1.0 one but with some important changes as there
+    is now a tool that should only be installed in partition/G. So there are now
+    makefile targets and additional variables for the Makefile.</p>
+</li>
+<li>
+<p>For the recompile of 23.09 with ROCm 6 we needed to make the same changes
+    as for 23.12, described below.</p>
+</li>
+<li>
+<p>The cpeAMD version required changes to compile in 23.12:</p>
+<ul>
+<li>
+<p>The <code>rocm</code> module now needs to be loaded explicitly to have acces to the
+    HIP runtime libraries and header files.</p>
+</li>
+<li>
+<p>Needed to unload the accellerator module as we do use OpenMP but do not want
+    to use OpenMP offload.</p>
+</li>
+<li>
+<p>There is a problem when linking with the AMD compilers of code that uses ROCm
+    libraries when <code>LIBRARY_PATH</code> is set.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>It looks like the compiler wrappers have changed in 24.03 as unloading the accelerator
+    target module in the cpeAMD version was no longer needed.</p>
+</li>
+</ul>
+<h4 id="version-12">Version 1.2</h4>
+<ul>
+<li>
+<p>Transformed the EasyConfig from version 1.1 to a Bundle to be able to add <code>hpcat</code> 
+    using its own installation procedure.</p>
+</li>
+<li>
+<p>Building <code>hpcat</code>: </p>
+<ul>
+<li>
+<p>LUMI lacks the <code>hwloc-devel</code> package so we simply copied the header files from another system
+    and download them from LUMI-O.</p>
+</li>
+<li>
+<p>The Makefile was modified to integrate better with EasyBuild and to work around a problem with
+    finding the <code>hwloc</code> library on LUMI. </p>
+<p>Rather than writing a new Makefile or a patch, we actually used a number of <code>sed</code> commands to edit
+the Makefile:</p>
+<ul>
+<li><code>mpicc</code> was replaced with <code>$(CC)</code> so that the wrappers are used instead.</li>
+<li><code>-O3</code> was replaced with <code>$(CFLAGS)</code> to pick up the options from EasyBuild</li>
+<li>'-fopenmp' is managed by the Makefile though and not by EasyBuild. On one hand because the
+    ultimate goal is to integrate with another packages that sometimes needs and sometimes does not
+    need the OpenMP flags, on the other hand to use <code>$(CFLAGS)</code> also for <code>hipcc</code>.</li>
+<li><code>-lhwloc</code> is replaced with <code>-Wl,/usr/lib64/libhwloc.so.15</code>. We had to do this through <code>-Wl</code> as
+    the <code>hipcc</code> driver thought this was a source file.</li>
+<li>As '-L.' is not needed, it is omitted.</li>
+</ul>
+</li>
+<li>
+<p>As there is no <code>make install</code>, we simply use the <code>MakeCp</code> EasyBlock, doing the edits to the Makefile in
+    <code>prebuiltopts</code>.</p>
+<p>Not that we copy the <code>libhip.so</code> file to the <code>lib</code> directory as that is the conventional 
+place to store shared objects, but it is not found there by <code>hpcat</code>, so we also create a
+symbolic link to it in the <code>bin</code> subidrecitory.</p>
+</li>
+<li>
+<p>Note that the accelerator target module should not be loaded when using the wrappers as the OpenMP offload
+    options cause a problem in one of the header files used.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="version-12a">Version 1.2a</h4>
+<ul>
+<li>
+<p>The version of lumi-CPEtools is the same, but there is a major upgrade to <code>hpcat</code> which now has several
+    changes (bumped from 0.4 to 0.8):</p>
+<ul>
+<li>
+<p>There is now a <code>configure</code> script that actually calls CMake. So we switched to a <code>ConfigureMake</code>
+    build process.</p>
+</li>
+<li>
+<p>The package now uses <code>hwloc</code> and <code>libfort</code> as submodules, but they do not appear 
+    in the standard GitHub download. Hence we derived the versions from the commits, download those
+    two packages separately and install in the correct directory before configuring 
+    and building <code>hpcat</code></p>
+</li>
+<li>
+<p>A symbolic link in the <code>bin</code> directory to <code>libhpcathip.so</code> is also no longer needed.</p>
+</li>
+<li>
+<p>No more edits are needed.</p>
+</li>
+<li>
+<p>The LICENSE file now needs to be copied via separate commands as we are no longer using <code>MakeCp</code>.</p>
+</li>
+<li>
+<p>For the 24.11 container, we needed to add a workaround as CMake for some reason failed to 
+    add the proper include dir for HIP files even though this seems specified in the CMakeLists.txt
+    file. This was later backported to 24.03 as recompilation after the system update of January 2026
+    was otherwise impossible.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="version-12-cpe-hpcat-09">Version 1.2-cpe*-hpcat-0.9</h4>
+<ul>
+<li>Direct port of the EasyConfig for 1.2a, but decided to make the version of hpcat explicit in the suffix.</li>
+</ul>
+<h2 id="technical-documentation-user-easybuild-installation">Technical documentation (user EasyBuild installation)</h2>
+<h3 id="easybuild_1">EasyBuild</h3>
+<h4 id="version-11-for-open-mpi">Version 1.1 for Open MPI</h4>
+<ul>
+<li>
+<p>The EasyConfigs are similar to those for the Cray MPICH versions, but</p>
+<ul>
+<li>
+<p>Compilers need to be set manually in <code>buildopts</code> to use the Open MPI
+    compiler wrappers.</p>
+</li>
+<li>
+<p>Before building some modules need to be unloaded again (which ones
+    depends on the specific <code>OpenMPI</code> module).</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="archived-easyconfigs">Archived EasyConfigs</h2>
+<p>The EasyConfigs below are additional easyconfigs that are not directly available
+on the system for installation. Users are advised to use the newer ones and these
+archived ones are unsupported. They are still provided as a source of information
+should you need this, e.g., to understand the configuration that was used for
+earlier work on the system.</p>
+<ul>
+<li>
+<p>Archived EasyConfigs from <a href="https://github.com/lumi-supercomputer/LUMI-SoftwareStack/blob/main/easybuild/easyconfigs/__archive__/l/lumi-CPEtools">LUMI-SoftwareStack</a> - previously centrally installed software</p>
+<ul>
+<li>
+<p><a href="lumi-CPEtools-1.0-cpeAMD-22.08/">EasyConfig lumi-CPEtools-1.0-cpeAMD-22.08.eb, with module lumi-CPEtools/1.0-cpeAMD-22.08</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.0-cpeAMD-22.12/">EasyConfig lumi-CPEtools-1.0-cpeAMD-22.12.eb, with module lumi-CPEtools/1.0-cpeAMD-22.12</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.0-cpeAOCC-21.12/">EasyConfig lumi-CPEtools-1.0-cpeAOCC-21.12.eb, with module lumi-CPEtools/1.0-cpeAOCC-21.12</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.0-cpeAOCC-22.06/">EasyConfig lumi-CPEtools-1.0-cpeAOCC-22.06.eb, with module lumi-CPEtools/1.0-cpeAOCC-22.06</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.0-cpeAOCC-22.08/">EasyConfig lumi-CPEtools-1.0-cpeAOCC-22.08.eb, with module lumi-CPEtools/1.0-cpeAOCC-22.08</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.0-cpeAOCC-22.12/">EasyConfig lumi-CPEtools-1.0-cpeAOCC-22.12.eb, with module lumi-CPEtools/1.0-cpeAOCC-22.12</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.0-cpeCray-21.08/">EasyConfig lumi-CPEtools-1.0-cpeCray-21.08.eb, with module lumi-CPEtools/1.0-cpeCray-21.08</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.0-cpeCray-21.12/">EasyConfig lumi-CPEtools-1.0-cpeCray-21.12.eb, with module lumi-CPEtools/1.0-cpeCray-21.12</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.0-cpeCray-22.06/">EasyConfig lumi-CPEtools-1.0-cpeCray-22.06.eb, with module lumi-CPEtools/1.0-cpeCray-22.06</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.0-cpeCray-22.08/">EasyConfig lumi-CPEtools-1.0-cpeCray-22.08.eb, with module lumi-CPEtools/1.0-cpeCray-22.08</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.0-cpeCray-22.12/">EasyConfig lumi-CPEtools-1.0-cpeCray-22.12.eb, with module lumi-CPEtools/1.0-cpeCray-22.12</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.0-cpeCray-23.03/">EasyConfig lumi-CPEtools-1.0-cpeCray-23.03.eb, with module lumi-CPEtools/1.0-cpeCray-23.03</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.0-cpeGNU-21.08/">EasyConfig lumi-CPEtools-1.0-cpeGNU-21.08.eb, with module lumi-CPEtools/1.0-cpeGNU-21.08</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.0-cpeGNU-21.12/">EasyConfig lumi-CPEtools-1.0-cpeGNU-21.12.eb, with module lumi-CPEtools/1.0-cpeGNU-21.12</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.0-cpeGNU-22.06/">EasyConfig lumi-CPEtools-1.0-cpeGNU-22.06.eb, with module lumi-CPEtools/1.0-cpeGNU-22.06</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.0-cpeGNU-22.08/">EasyConfig lumi-CPEtools-1.0-cpeGNU-22.08.eb, with module lumi-CPEtools/1.0-cpeGNU-22.08</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.0-cpeGNU-22.12/">EasyConfig lumi-CPEtools-1.0-cpeGNU-22.12.eb, with module lumi-CPEtools/1.0-cpeGNU-22.12</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.1-cpeAMD-22.12/">EasyConfig lumi-CPEtools-1.1-cpeAMD-22.12.eb, with module lumi-CPEtools/1.1-cpeAMD-22.12</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.1-cpeAMD-23.12/">EasyConfig lumi-CPEtools-1.1-cpeAMD-23.12.eb, with module lumi-CPEtools/1.1-cpeAMD-23.12</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.1-cpeAOCC-22.12/">EasyConfig lumi-CPEtools-1.1-cpeAOCC-22.12.eb, with module lumi-CPEtools/1.1-cpeAOCC-22.12</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.1-cpeAOCC-23.12/">EasyConfig lumi-CPEtools-1.1-cpeAOCC-23.12.eb, with module lumi-CPEtools/1.1-cpeAOCC-23.12</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.1-cpeCray-22.12/">EasyConfig lumi-CPEtools-1.1-cpeCray-22.12.eb, with module lumi-CPEtools/1.1-cpeCray-22.12</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.1-cpeCray-23.03/">EasyConfig lumi-CPEtools-1.1-cpeCray-23.03.eb, with module lumi-CPEtools/1.1-cpeCray-23.03</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.1-cpeCray-23.12/">EasyConfig lumi-CPEtools-1.1-cpeCray-23.12.eb, with module lumi-CPEtools/1.1-cpeCray-23.12</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.1-cpeGNU-22.12/">EasyConfig lumi-CPEtools-1.1-cpeGNU-22.12.eb, with module lumi-CPEtools/1.1-cpeGNU-22.12</a></p>
+</li>
+<li>
+<p><a href="lumi-CPEtools-1.1-cpeGNU-23.12/">EasyConfig lumi-CPEtools-1.1-cpeGNU-23.12.eb, with module lumi-CPEtools/1.1-cpeGNU-23.12</a></p>
+</li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        
+
+
+
+
+<footer class="md-footer">
+
+  
+  
+
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+
+      
+    <div class="md-footer-copyright">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" 
+             style="border-width:0" 
+             src="https://i.creativecommons.org/l/by/4.0/80x15.png"
+        />
+      </a>
+      This work is licensed under a&nbsp;
+      <a rel="license" 
+         href="http://creativecommons.org/licenses/by/4.0/"
+      >
+        Creative Commons Attribution 4.0 International License
+      </a>
+    </div>
+
+      
+      
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://www.youtube.com/channel/UCb31KOJ6Wqu0sRpIRi_k8Mw" target="_blank" rel="noopener" title="LUMI on YouTube" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://www.linkedin.com/company/lumi-supercomputer" target="_blank" rel="noopener" title="LUMI on LinkedIn" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://twitter.com/LUMIhpc" target="_blank" rel="noopener" title="LUMI on Twitter" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"/></svg>
+    </a>
+  
+</div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "toc.follow", "search.suggest", "content.code.annotate", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

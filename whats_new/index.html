@@ -1,0 +1,3910 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for the LUMI software library">
+      
+      
+      
+      
+        <link rel="prev" href="../known_issues/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>What's new in the LUMI software stack - LUMI Software Library</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+  
+      
+
+    
+
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document.body.addEventListener("click", function(ev) {
+        if (ev.target instanceof HTMLElement) {
+          var el = ev.target.closest("a[href^=http]")
+          if (el)
+            ga("send", "event", "outbound", "click", el.href)
+        }
+      })
+    })
+  </script>
+
+    
+
+  
+  
+  
+    
+  
+
+  
+  
+
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="LUMI Software Library - New" />
+  <meta property="og:description" content="Documentation for the LUMI software library" />
+  <meta property="og:url" content="None" />
+  <meta property="og:image" content="assets/images/banner.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1080" />
+  <meta property="og:image:height" content="568" />
+
+  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@LUMIhpc" />
+  <meta name="twitter:creator" content="@LUMIhpc" />
+  <meta name="twitter:title" content="LUMI Software Library - New" />
+  <meta name="twitter:description" content="Documentation for the LUMI software library" />
+  <meta name="twitter:image" content="assets/images/banner.png" />
+
+  <style>
+    [data-md-color-primary="lumi"] {
+      --md-primary-fg-color: hsla(0, 0%, 100%, 1);
+      --md-primary-fg-color--light: hsla(0, 0%, 100%, 0.7);
+      --md-primary-fg-color--dark: hsla(0, 0%, 0%, 0.07);
+      --md-primary-bg-color: hsla(0, 0%, 0%, 0.87);
+      --md-primary-bg-color--light: hsla(0, 0%, 0%, 0.54);
+      --md-button-bg-color: hsla(207,100%,28%, 1);
+      --md-button-bg-color--light: hsla(207,100%,38%, 1);
+      --md-typeset-a-color: hsla(207,100%,28%, 1);
+    }
+    
+    [data-md-color-accent="lumi"] {
+      --md-accent-fg-color: hsla(0,0%,0%, 1);
+      --md-accent-fg-color--transparent: hsla(0,0%,0%, 0.1);
+      --md-accent-bg-color: hsla(0, 0%, 100%, 1);
+      --md-accent-bg-color--light: hsla(0, 0%, 100%, 0.7);
+    }
+  </style>
+
+  
+
+
+  
+  
+
+    <link
+      rel="stylesheet"
+      href="../assets/stylesheets/extra-a8af0af3d0.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/stylesheets/overrides-5193e6f6df.css"
+    />
+    <link
+      rel="stylesheet"
+      id="typekit-fonts-css"
+      href="https://use.typekit.net/nlo5lta.css?ver=5.5.3"
+      type="text/css" media="all"
+    />
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="lumi" data-md-color-accent="lumi">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#whats-new-in-the-lumi-software-stack" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="LUMI Software Library" class="md-header__button md-logo" aria-label="LUMI Software Library" data-md-component="logo">
+      
+  
+  <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 723 212" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="Layer-2" serif:id="Layer 2">
+        <g transform="matrix(1,0,0,1,0,175.883)">
+            <path d="M0,-140.304L0,0L102.89,0L102.89,-24.599L26.658,-24.599L26.658,-140.304L0,-140.304Z" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,257.262,35.5793)">
+            <path d="M0,140.304C-17.585,140.304 -32.083,135.347 -43.588,125.338C-55,115.423 -60.799,103.357 -60.799,89.14L-60.799,0L-34.328,0L-34.328,81.563C-34.328,92.413 -31.054,100.645 -24.319,105.976C-17.866,111.12 -9.728,113.74 0,113.74C9.728,113.74 17.865,111.12 24.319,105.976C31.054,100.645 34.328,92.413 34.328,81.563L34.328,0L60.799,0L60.799,89.14C60.799,103.357 55.093,115.329 43.588,125.338C32.083,135.347 17.585,140.304 0,140.304" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,550.374,119.668)">
+            <path d="M0,-27.874L-43.588,20.671L-87.176,-27.874L-87.176,56.215L-113.74,56.215L-113.74,-84.089L-105.695,-84.089L-43.588,-13.47L18.614,-84.089L26.658,-84.089L26.658,56.215L0.094,56.215L0,-27.874Z" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <rect x="695.604" y="35.486" width="26.658" height="140.397" style="fill:rgb(29,29,27);"/>
+        <g transform="matrix(-1,0,0,1,722.262,-203.194)">
+            <rect x="0" y="203.194" width="722.262" height="8.175" style="fill:rgb(29,29,27);"/>
+        </g>
+        <g transform="matrix(-1,0,0,1,722.262,203.194)">
+            <rect x="0" y="0" width="722.262" height="8.175" style="fill:rgb(29,29,27);"/>
+        </g>
+    </g>
+</svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LUMI Software Library
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              What's new in the LUMI software stack
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html#a" class="md-tabs__link">
+        
+  
+  
+    
+  
+  a
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html#b" class="md-tabs__link">
+        
+  
+  
+    
+  
+  b
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html#c" class="md-tabs__link">
+        
+  
+  
+    
+  
+  c
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html#d" class="md-tabs__link">
+        
+  
+  
+    
+  
+  d
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html#e" class="md-tabs__link">
+        
+  
+  
+    
+  
+  e
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html#f" class="md-tabs__link">
+        
+  
+  
+    
+  
+  f
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html#g" class="md-tabs__link">
+        
+  
+  
+    
+  
+  g
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html#h" class="md-tabs__link">
+        
+  
+  
+    
+  
+  h
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html#I/ICU" class="md-tabs__link">
+        
+  
+  
+    
+  
+  I/ICU
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html#i" class="md-tabs__link">
+        
+  
+  
+    
+  
+  i
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html#j" class="md-tabs__link">
+        
+  
+  
+    
+  
+  j
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html#k" class="md-tabs__link">
+        
+  
+  
+    
+  
+  k
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html#l" class="md-tabs__link">
+        
+  
+  
+    
+  
+  l
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html#m" class="md-tabs__link">
+        
+  
+  
+    
+  
+  m
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html#n" class="md-tabs__link">
+        
+  
+  
+    
+  
+  n
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html#o" class="md-tabs__link">
+        
+  
+  
+    
+  
+  o
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html#p" class="md-tabs__link">
+        
+  
+  
+    
+  
+  p
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html#q" class="md-tabs__link">
+        
+  
+  
+    
+  
+  q
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html#r" class="md-tabs__link">
+        
+  
+  
+    
+  
+  r
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html#s" class="md-tabs__link">
+        
+  
+  
+    
+  
+  s
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html#t" class="md-tabs__link">
+        
+  
+  
+    
+  
+  t
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html#u" class="md-tabs__link">
+        
+  
+  
+    
+  
+  u
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html#v" class="md-tabs__link">
+        
+  
+  
+    
+  
+  v
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html#w" class="md-tabs__link">
+        
+  
+  
+    
+  
+  w
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html#x" class="md-tabs__link">
+        
+  
+  
+    
+  
+  x
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html#y" class="md-tabs__link">
+        
+  
+  
+    
+  
+  y
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html#z" class="md-tabs__link">
+        
+  
+  
+    
+  
+  z
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../known_issues/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Issues
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  New
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="LUMI Software Library" class="md-nav__button md-logo" aria-label="LUMI Software Library" data-md-component="logo">
+      
+  
+  <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 723 212" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="Layer-2" serif:id="Layer 2">
+        <g transform="matrix(1,0,0,1,0,175.883)">
+            <path d="M0,-140.304L0,0L102.89,0L102.89,-24.599L26.658,-24.599L26.658,-140.304L0,-140.304Z" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,257.262,35.5793)">
+            <path d="M0,140.304C-17.585,140.304 -32.083,135.347 -43.588,125.338C-55,115.423 -60.799,103.357 -60.799,89.14L-60.799,0L-34.328,0L-34.328,81.563C-34.328,92.413 -31.054,100.645 -24.319,105.976C-17.866,111.12 -9.728,113.74 0,113.74C9.728,113.74 17.865,111.12 24.319,105.976C31.054,100.645 34.328,92.413 34.328,81.563L34.328,0L60.799,0L60.799,89.14C60.799,103.357 55.093,115.329 43.588,125.338C32.083,135.347 17.585,140.304 0,140.304" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,550.374,119.668)">
+            <path d="M0,-27.874L-43.588,20.671L-87.176,-27.874L-87.176,56.215L-113.74,56.215L-113.74,-84.089L-105.695,-84.089L-43.588,-13.47L18.614,-84.089L26.658,-84.089L26.658,56.215L0.094,56.215L0,-27.874Z" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <rect x="695.604" y="35.486" width="26.658" height="140.397" style="fill:rgb(29,29,27);"/>
+        <g transform="matrix(-1,0,0,1,722.262,-203.194)">
+            <rect x="0" y="203.194" width="722.262" height="8.175" style="fill:rgb(29,29,27);"/>
+        </g>
+        <g transform="matrix(-1,0,0,1,722.262,203.194)">
+            <rect x="0" y="0" width="722.262" height="8.175" style="fill:rgb(29,29,27);"/>
+        </g>
+    </g>
+</svg>
+
+    </a>
+    LUMI Software Library
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html#a" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    a
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html#b" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    b
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html#c" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    c
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html#d" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    d
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html#e" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    e
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html#f" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    f
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html#g" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    g
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html#h" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    h
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html#I/ICU" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I/ICU
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html#i" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    i
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html#j" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    j
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html#k" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html#l" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    l
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html#m" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    m
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html#n" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    n
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html#o" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    o
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html#p" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    p
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html#q" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    q
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html#r" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    r
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html#s" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    s
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html#t" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    t
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html#u" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    u
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html#v" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html#w" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    w
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html#x" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    x
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html#y" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    y
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html#z" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    z
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../known_issues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Issues
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#release-20260211" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20260211
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20260202" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20260202
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20260130" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20260130
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20260123" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20260123
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20260121" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20260121
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20251212" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20251212
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20251203" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20251203
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20251130" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20251130
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20251117" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20251117
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250930" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250930
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250916" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250916
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250909" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250909
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250806" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250806
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250729" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250729
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250724" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250724
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-202560707" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 202560707
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250630" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250630
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250526" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250526
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250521" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250521
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250429" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250429
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250415" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250415
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250331" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250331
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250321" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250321
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250227" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250227
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250214" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250214
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250203" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250203
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250115" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250115
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20241129" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20241129
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20241112" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20241112
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20241024" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20241024
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20241004" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20241004
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20241002" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20241002
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240927" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240927
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240920" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240920
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240916" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240916
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240909" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240909
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240807" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240807
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240718" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240718
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240709" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240709
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240607" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240607
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240524" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240524
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240517" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240517
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240412" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240412
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240329" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240329
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240322" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240322
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240308" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240308
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240301" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240301
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240207" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240207
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240129" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240129
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240116" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240116
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240110" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240110
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20231215" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20231215
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20231208" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20231208
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20231121" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20231121
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20231116" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20231116
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#release-20260211" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20260211
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20260202" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20260202
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20260130" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20260130
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20260123" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20260123
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20260121" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20260121
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20251212" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20251212
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20251203" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20251203
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20251130" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20251130
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20251117" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20251117
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250930" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250930
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250916" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250916
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250909" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250909
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250806" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250806
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250729" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250729
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250724" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250724
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-202560707" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 202560707
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250630" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250630
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250526" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250526
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250521" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250521
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250429" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250429
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250415" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250415
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250331" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250331
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250321" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250321
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250227" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250227
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250214" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250214
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250203" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250203
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20250115" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20250115
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20241129" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20241129
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20241112" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20241112
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20241024" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20241024
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20241004" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20241004
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20241002" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20241002
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240927" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240927
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240920" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240920
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240916" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240916
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240909" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240909
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240807" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240807
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240718" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240718
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240709" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240709
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240607" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240607
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240524" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240524
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240517" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240517
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240412" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240412
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240329" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240329
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240322" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240322
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240308" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240308
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240301" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240301
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240207" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240207
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240129" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240129
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240116" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240116
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20240110" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20240110
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20231215" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20231215
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20231208" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20231208
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20231121" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20231121
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-20231116" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 20231116
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+<h1 id="whats-new-in-the-lumi-software-stack">What's new in the LUMI software stack</h1>
+<h2 id="release-20260211">Release 20260211</h2>
+<ul>
+<li>
+<p>Additional <a href="../m/METIS/">METIS</a> and <a href="../p/ParMETIS/">ParMETIS</a> modules with clearer
+    naming. They will replace the old naming in the next software stack.</p>
+</li>
+<li>
+<p>Additional <a href="../r/rocm/">ROCm&trade;</a> versions: </p>
+<ul>
+<li>
+<p>Version 6.2.4 as an alternative version for 25.03 as that version of the Cray Programming
+    Environment was really tested with ROCm 6.2 and as we have seen one user code where this
+    solved issues.</p>
+</li>
+<li>
+<p>Version 6.4.4 is available in CrayEnv and will be used in the 25.09 LUMI stack.</p>
+</li>
+<li>
+<p>Version 6.1.3 is available as a user-installable module and intended for some very 
+    specialised use with the 23.09 stack as it is the only version of ROCm&trade; compatible
+    with the current driver and based on LLVM 17, the version used by the Cray compilers
+    in 23.09.</p>
+</li>
+<li>
+<p>Version 7.0.3 is offered as a user-installable module. There are no compatible Cray 
+    Programming Libraries at the moment. There is no compatible MPI implementation on 
+    LUMI and RCCL is also broken. It is basically useful to experiment with a single
+    process and mostly on a single GPU.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Many additional user-installable EasyConfigs, including recipes for
+    <a href="../a/Amber/">Amber</a>, <a href="../c/CP2K/">CP2K</a> for GPU,
+    <a href="../g/GROMACS/">GROMACS 2026</a> including a new HIP version,
+    <a href="../h/hipfort/">hipfort</a>, <a href="../l/LAMMPS/">LAMMPS</a>,
+    <a href="../v/VASP/">VASP</a>, <a href="../w/WRF-SFIRE/">WRF-SFIRE</a>,
+    <a href="../w/WPS/">WPS</a> for use with WRF-SFIRE 
+    and some dependencies for VeloxChem.</p>
+</li>
+</ul>
+<h2 id="release-20260202">Release 20260202</h2>
+<ul>
+<li>
+<p>Fixes to <a href="../g/GROMACS/">GROMACS</a> recipes in 24.03 and new recipes for
+    CPU-only versions for 25.03.</p>
+<p>Versions form 23.09 have been archived as we expect MPI issues with most of them.</p>
+</li>
+<li>
+<p>Fix for EasyBuild 4.8.2 so that some old EasyConfigs may build again, without 
+    guarantee that they will also run properly.</p>
+</li>
+</ul>
+<h2 id="release-20260130">Release 20260130</h2>
+<ul>
+<li>
+<p><a href="../l/lumi-container-wrapper/">lumi-container-wrapper</a> is now also available
+    in 25.03.</p>
+</li>
+<li>
+<p>Fix to the <code>htop</code> command in the <a href="../s/systools/">systools</a> module</p>
+</li>
+<li>
+<p>Fix for an infinite loop in LMOD when loading a different version of the LUMI
+    stack with a toolchain loaded in another version of the stack.</p>
+</li>
+<li>
+<p>Various minor other fixes to user-installable packages.</p>
+</li>
+</ul>
+<h2 id="release-20260123">Release 20260123</h2>
+<ul>
+<li>
+<p>Official release of the 25.03 software stack. The LUMI Software Library should
+    now be a lot more consistent with what is on the system. A number of EasyBuild
+    recipes though isn't functioning anymore but have not yet been archived as we
+    are looking for solutions.</p>
+</li>
+<li>
+<p>Some additional warnings in modules about software that doesn't work anymore.</p>
+</li>
+<li>
+<p>EasyConfigs for several configurations of <a href="../s/Score-P/">Score-P</a> and
+    <a href="../s/Scalasca/">Scalasca</a>.</p>
+</li>
+<li>
+<p>EasyBuild recipes for modules for containers based on ROCm&trade; before 6.1
+    have been removed as these containers are not supported on the current
+    GPU driver.</p>
+</li>
+</ul>
+<h2 id="release-20260121">Release 20260121</h2>
+<ul>
+<li>First fixes for the modified ROCm version after the January 2026 system update
+    have been implemented.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Inconsistent state</p>
+<p><span style="color:DarkRed">
+The software available on the system may not completely correspond to what the
+LUMI Software Library claims. This is because after an update, the system is made
+available to users again as soon as the basic system software and programming
+environment are installed, but before all application software stacks can be 
+installed.
+</span></p>
+</div>
+<h2 id="release-20251212">Release 20251212</h2>
+<ul>
+<li>
+<p><a href="../v/VeloxChem/">VeloxChem</a> and dependencies</p>
+</li>
+<li>
+<p>Additional warnings about deprecated modules.</p>
+</li>
+<li>
+<p>A number of 24.11 EasyConfigs for the ccpe container now documented in the
+    LUMI Software Library.</p>
+</li>
+<li>
+<p>A number of 25.03 EasyConfigs for the ccpe container now documented in the
+    LUMI Software Library. </p>
+<p>This is at the same time a preview of the software stack that can be 
+expected after the January 2026 system update.</p>
+</li>
+</ul>
+<h2 id="release-20251203">Release 20251203</h2>
+<ul>
+<li>Update of the message-of-the-day and messages for the LUMI and cpe modules
+    indicating what is expected after the January 2026 system update.</li>
+</ul>
+<h2 id="release-20251130">Release 20251130</h2>
+<ul>
+<li>
+<p>Various minor documentation corrections, including one to 
+    one of the <a href="../p/PyTorch/">PyTorch</a> recipes which showed wrong
+    versions of some components.</p>
+</li>
+<li>
+<p>Preparations for rolling out EasyBuild 5 in future software stacks, including
+    switching to a patched MesonNinja EasyBlock in the EasyBuild module itself
+    rather than in the location for custom EasyBlocks.</p>
+</li>
+<li>
+<p>Improvements to the fortune text shown at login.</p>
+</li>
+</ul>
+<h2 id="release-20251117">Release 20251117</h2>
+<ul>
+<li>
+<p>Update to the <a href="a/Alphafold/index.md">Alphafold</a> license information as
+    version 2 had some restrictions that not every user may realise, but version 3
+    is unsupportable by LUST due to the license restrictions.</p>
+</li>
+<li>
+<p><a href="../q/QuantumESPRESSO/">QuantumESPRESSO 7.4.1</a> CPU-only</p>
+</li>
+<li>
+<p>A small fix for the <a href="../g/GROMACS/">GROMACS 2025.1</a> recipe.</p>
+</li>
+<li>
+<p>Recipes for <a href="../d/dlb/">dlb</a> and <a href="../e/Extrae/">Extrae</a>
+    contributed by the developers of those packages.</p>
+</li>
+<li>
+<p><a href="../s/Score-P/">Score-P 9.3</a>, contributed by the developers of the package.</p>
+</li>
+</ul>
+<h2 id="release-20250930">Release 20250930</h2>
+<ul>
+<li>
+<p><a href="../o/OpenFOAM/">OpenFOAM.com v2506</a> build recipe and clean-up of the 
+    recipes for OpenFOAM.org version 12 and 13, with builds of the main release
+    and latest patch version of each, deprecating the older EasyConfigs.</p>
+<p>The update also includes a fix for the <a href="../s/SZ/">SZ EasyConfigs</a> as
+the sources have recently been moved to a different repository.</p>
+</li>
+<li>
+<p><a href="../o/OpenMPI/">Open MPI 5 with ROCm support for SlingShot</a>. </p>
+<p>Note that is is an entirely experimental version offered for people with thorough
+knowledge of Open MPI 5. Cray MPICH remains our recommended MPI implementation
+and the one for which we do build software.</p>
+</li>
+<li>
+<p>A fix for an issue with one of the <a href="../c/Charm%2B%2B/">Charm++ EasyConfigs</a>
+    used in the <a href="../n/NAMD/">NAMD builds</a>.</p>
+</li>
+<li>
+<p>The <a href="../g/GROMACS/">GROMACS documentation</a> has been updated.</p>
+</li>
+</ul>
+<h2 id="release-20250916">Release 20250916</h2>
+<ul>
+<li>New Pytorch container based on <a href="../p/PyTorch/">PyTorch 2.7.1</a> with AITER.
+    The container is still a bit experimental and a step towards trying to get
+    newer versions of vLLM to work on LUMI.</li>
+<li>Two new recipes for <a href="../n/NAMD/">NAMD on GPU</a>: One more efficient but
+    limited to a single node, and one with MPI support.</li>
+<li>New <a href="../e/ELPA/">ELPA</a> recipe.</li>
+<li>Slight improvement to the documentation of <a href="../o/OpenMPI/">Open MPI</a>.</li>
+</ul>
+<h2 id="release-20250909">Release 20250909</h2>
+<ul>
+<li>
+<p>Documentation improvements  and Lustre support for MPI I/O for the 
+    <a href="../c/ccpe/">ccpe containers</a>.</p>
+<p>Lustre support requires re-installing the container module.
+Please re-install from within the 
+<code>/appl/local/containers/LUMI-EasyBuild-containers/easybuild/easyconfigs/c/ccpe</code>
+subdirectory to avoid accidentally re-installing an older version.</p>
+</li>
+<li>
+<p>New recipe for <a href="../o/OpenFOAM/">OpenFOAM 13</a></p>
+</li>
+</ul>
+<h2 id="release-20250806">Release 20250806</h2>
+<ul>
+<li>
+<p><a href="../v/VASP/">VASP 6.5.1</a> recipe (contributed by a user).</p>
+</li>
+<li>
+<p>Improvements to the <a href="../c/ccpe/">ccpe containers</a>: Better procedure to
+    run with the containers.</p>
+<p>Use of the <code>ccpe-srun</code> script requires re-installing the container module.
+Please re-install from within the 
+<code>/appl/local/containers/LUMI-EasyBuild-containers/easybuild/easyconfigs/c/ccpe</code>
+subdirectory to avoid accidentally re-installing an older version.</p>
+</li>
+</ul>
+<h2 id="release-20250729">Release 20250729</h2>
+<ul>
+<li>
+<p>Improved documentation for <a href="../l/lumi-container-wrapper/">lumi-container-wrapper</a>
+    clearly mentioning the license restrictions when using packages from the regular 
+    Anaconda repositories. Warnings have also been added to the modules.</p>
+</li>
+<li>
+<p>Improvements to the <a href="../c/ccpe/">ccpe containers</a>. Users of the <code>-B-</code> versions
+    will have had most of those improvements already, while users of the <code>-C-</code> versions
+    need to re-install. Please re-install from within the 
+    <code>/appl/local/containers/LUMI-EasyBuild-containers/easybuild/easyconfigs/c/ccpe</code>
+    subdirectory to avoid accidentally re-installing an older version.</p>
+</li>
+<li>
+<p>Two new <a href="../p/PyTorch/">PyTorch</a> containers, including one for PyTorch 2.7. 
+    There were also some improvements to the scripts provided for all PyTorch 2.6 and
+    2.7 containers to bring their behaviour closer to that of the CSC-provided
+    <code>pytorch</code> modules.</p>
+</li>
+<li>
+<p>Improved <a href="../j/jax/">JAX</a> containers. These containers now support some 
+    CSC-style scripts and have a pre-defined virtual environment with tools to pack
+    the Python installation in the virtual environment in a filesystem-friendly way
+    similar to the <a href="../p/PyTorch/">PyTorch</a> containers.</p>
+</li>
+</ul>
+<h2 id="release-20250724">Release 20250724</h2>
+<ul>
+<li>New version (0.4.2) of <a href="../l/lumi-container-wrapper/">lumi-container-wrapper</a>.</li>
+<li>Updated EasyConfigs for the <a href="../c/ccpe/">ccpe</a> containers. Re-installation is recommended, and 
+    please install from the directory <code>/appl/local/containers/LUMI-EasyBuild-containers/easybuild/easyconfigs/c/ccpe</code>
+    to ensure that EasyBuild does not use the older cached EasyConfig file. </li>
+<li>Version 9.2 of <a href="../s/Score-P/">Score-P</a>.</li>
+<li><a href="../c/Celerity/">Celerity</a>, a C++ library fro programming on clusters with accelerator nodes.</li>
+</ul>
+<h2 id="release-202560707">Release 202560707</h2>
+<ul>
+<li>New contributed EasyConfigs: <a href="../m/MicroHH/">MicroHH</a>, <a href="../w/WRF-SFIRE/">WRF-SFIRE</a> and
+    matching version of <a href="../w/WPS/">WPS</a>.</li>
+</ul>
+<h2 id="release-20250630">Release 20250630</h2>
+<ul>
+<li>
+<p>Update of the <a href="https://github.com/HewlettPackard/hpcat">HPE HPC Affinity Tracker tool (<code>hpcat</code>)</a>
+    in the <a href="../l/lumi-CPEtools/">lumi-CPEtools modules</a> modules for <code>LUMI/24.03</code>.</p>
+</li>
+<li>
+<p>Recipe for <a href="../g/GPAW/">GPAW 25.1.0</a> for LUMI-C built with <a href="../l/libvdwxc/">libvdwxc</a>.</p>
+</li>
+<li>
+<p><a href="../m/magma/">magma</a> and <a href="../c/CuPy/">CuPy</a> built with ROCm 6.2.2, for the developer
+    version of GPAW with ROCm GPU support (no EasyConfig for the developer version though).</p>
+</li>
+<li>
+<p>The <a href="../s/seacas-exodus/">SEACAS Exodus library</a> compiled with the GNU compilers.</p>
+</li>
+</ul>
+<h2 id="release-20250526">Release 20250526</h2>
+<ul>
+<li>
+<p>Containers with the Cray Programming Environment version 24.11 and 25.03: 
+    <a href="../c/ccpe/">ccpe</a>.</p>
+<p>Note that these containers are only meant for users who understand very well
+how the programming environment works and how environments and modules work
+on an HPC system. They are not meant for beginners. Features and support are 
+limited. 25.03 is also not fully functional on the GPU nodes as it requires
+ROCm&trade; 6.3 which is not supported by the current driver.</p>
+</li>
+<li>
+<p>The remark on the availability of GPU support in
+    <a href="../q/QuantumESPRESSO/">QuantumESPRESSO</a> has been updated in the 
+    documentation page.</p>
+</li>
+<li>
+<p>Corrected the name of a <a href="../t/TensorFlow/">TensorFlow</a> EasyConfig.</p>
+</li>
+<li>
+<p>Some bugfixes in the visibility of modules.</p>
+</li>
+</ul>
+<h2 id="release-20250521">Release 20250521</h2>
+<ul>
+<li>
+<p><a href="../s/Score-P/">Score-P 9.0</a> and a bugfix release of
+    <a href="../s/Scalasca/">Scalasca</a>.</p>
+</li>
+<li>
+<p>As <code>htop</code> was broken in <code>systools/24.03-1</code>, this module is replaced with
+    <a href="../s/systools/"><code>systools/24.03-2</code></a> which still contains <code>pbzip2</code></p>
+</li>
+<li>
+<p>Software stack for LUMI-D, provided in <code>partition/D</code>.
+    Some packages take a lot of time to compile. Yet because so many different
+    configurations are possible and full testing is not possible with the size
+    of LUST, they are offered as user-installable packages. Some base packages
+    are pre-installed though in a standard configuration that should fit most
+    work on LUMI.</p>
+<p>Visualisation packages include <a href="../p/ParaView/">ParaView</a>, 
+<a href="../v/VisIt/">VisIt</a> and the <a href="../v/VTK/">VTK libraries</a>.</p>
+<p>As we have no upstream support for most of these tools, they can only be offered
+"as-is" with no guarantee that we can solve all issues. Often one may be better
+served by containerised visualisation software, but there are cases where those cannot
+be used and we want to focus on those use cases. So these packages are not meant to
+be a replacement of the packages offered in the LUMI web interface.</p>
+</li>
+</ul>
+<h2 id="release-20250429">Release 20250429</h2>
+<ul>
+<li><a href="../v/Vampir/">Vampir</a> has been upgraded to version 10.6.1. 
+    The <a href="../v/VampirServer/">VampirServer</a> recipes will be ported on request.</li>
+<li>
+<p><a href="../s/systools/">systools</a> update to <code>systools/24.03-1</code>, which now
+    also includes <code>pbzip2</code>, a parallel implementation of bzip2 compression.</p>
+<p>Note that <code>pbzip2</code> is unmaintained software, so we cannot guarantee that we
+can keep offering this tool.</p>
+</li>
+<li>
+<p><a href="../g/GROMACS/">GROMACS 2024.3</a> with CP2K QM/MM support.</p>
+</li>
+</ul>
+<h2 id="release-20250415">Release 20250415</h2>
+<ul>
+<li>
+<p>Updated containers for <a href="../p/PyTorch/">PyTorch</a> and <a href="../j/jax/">jax</a>.</p>
+<p>The PyTorch 2.6 container modules now also provide wrappers similar to the CSC 
+modules.</p>
+</li>
+<li>
+<p><a href="../e/ESMF/">ESMF</a> with support for MPI and PIO</p>
+</li>
+<li><a href="../o/OpenFOAM/">OpenFOAM 12</a> with <a href="../p/ParMETIS/">ParMETIS</a></li>
+<li><a href="../f/fpocket/">fpocket</a></li>
+</ul>
+<h2 id="release-20250331">Release 20250331</h2>
+<ul>
+<li><a href="../g/GROMACS/">GROMACS 2025.1</a> EasyConfigs</li>
+<li><a href="../s/STRUMPACK/">STRUMNPACK 7.0.1</a> EasyConfig ported to 24.03  </li>
+<li><a href="../l/libxc/">libxc</a> packages come without a checksum for now 
+    as it appears those change over time 
+    (<a href="https://gitlab.com/libxc/libxc/-/issues/511">libxc GitLab issue #511</a>).</li>
+</ul>
+<h2 id="release-20250321">Release 20250321</h2>
+<ul>
+<li>The <a href="../p/PRoot/"><code>PRoot</code></a> module now provides the <code>proot</code> command for <code>partition/container</code> in
+    the LUMI software stacks. Its main use case is to enable the developement of EasyConfigs that modify
+    an existing container and install it together with a module file for bindings etc. in 
+    <code>partition/container</code>. This will, e.g., be used in upcoming recipes for containers with more recent
+    or experimental versions of the HPE Cray Programming Environment.</li>
+<li><a href="../k/Kokkos/">Kokkos</a> and <a href="../k/Kokkos-kernels/">Kokkos-kernels</a> for 
+    cpeGNU and cpeAMD.</li>
+<li>Modified build recipe for <a href="../p/PETSc/">PETSc</a>, now using an external build of Kokkos.</li>
+</ul>
+<h2 id="release-20250227">Release 20250227</h2>
+<ul>
+<li>Replaced PLUMED 2.9.2 with <a href="../p/PLUMED/#user-installable-modules-and-easyconfigs">PLUMED 2.9.3</a>,
+    with updated EasyConfigs for <a href="../g/GROMACS/#user-installable-modules-and-easyconfigs">GROMACS</a> and 
+    for one of the <a href="../c/CP2K/">CP2K</a> variants.</li>
+<li>A bugfix in one of the <a href="../p/PETSc/">PETSc</a> build recipes.</li>
+<li>Extra development version of <a href="../w/Wannier90/">Wannier90</a> as the released version 3.1.0 has some
+    <a href="https://github.com/wannier-developers/wannier90/issues/521">known issues with GCC 12/13</a>.</li>
+<li>Spack modules are no longer automatically included in the output
+    of module spider, to speed up the generation of the Lmod cache
+    and make the output of <code>module spider</code> less confusing.</li>
+</ul>
+<h2 id="release-20250214">Release 20250214</h2>
+<ul>
+<li>EasyConfig for <a href="../e/Elk/">Elk 10.3.12</a> contributed by Johan Hellsvik (KTH).</li>
+<li>EasyConfigs for <a href="../v/VASP/">VASP 6.5.0</a> and dependencies.</li>
+</ul>
+<h2 id="release-20250203">Release 20250203</h2>
+<ul>
+<li>User-installable <a href="../f/feh/">feh</a> image viewer, with dependencies
+    <a href="../i/Imlib2/">Imlib2</a> and <a href="../l/libexif/">libexif</a></li>
+<li>User-installable <a href="../s/singularity-AI-bindings/">singularity-AI-bindings</a>
+    module as used in the February 2025 AI training. Please check the documentation as this
+    module is meant for some very specific AI software containers and not for just any such
+    container!</li>
+<li>Update to the <a href="../v/VASP/#tuning-recommendations">VASP</a> documentation, documenting why the STOPCAR
+    <code>LABORT</code> option should not be used on LUMI and is not turned on in our build
+    recipes.</li>
+<li>Some improvements to the warnings given when loading containers with ROCm versions
+    other than the current system version.</li>
+</ul>
+<h2 id="release-20250115">Release 20250115</h2>
+<ul>
+<li>Inclusion of the <a href="https://github.com/HewlettPackard/hpcat">HPE HPC Affinity Tracker tool (<code>hpcat</code>)</a>
+    in the <a href="../l/lumi-CPEtools/">lumi-CPEtools modules</a> modules for <code>LUMI/24.03</code>.</li>
+<li>Updated EasyBuild container module recipes for
+    <a href="../j/jax/">jax</a>, <a href="../m/mpi4py/">mpi4py</a>, <a href="../p/PyTorch/">PyTorch</a>,
+    <a href="../r/rocm/">rocm</a> and <a href="../t/TensorFlow/">TensorFlow</a>.</li>
+<li>EasyConfig for <a href="../a/AdaptiveCpp/">AdaptiveCpp</a> 24.10.0 in <code>LUMI/24.03</code>.</li>
+<li>Corrections to some EasyConfigs for 
+    <a href="../c/CP2K/">CP2K</a>, <a href="../l/LAMMPS/">LAMMPS</a> and
+    <a href="../l/libxsmm/">libxsmm</a>.</li>
+</ul>
+<h2 id="release-20241129">Release 20241129</h2>
+<ul>
+<li>Removing the last update of <a href="../c/cotainr/"><code>cotainr</code></a> as it contains an annoying bug.</li>
+<li>Update of the <code>lumio-conf</code> tool in the <a href="../l/lumio/">lumio</a> module. Note that the name
+    of the endpoints in the rclone configuration file has changed to align with the names used
+    by the credential management web interface config files and those generated by the tools in
+    Open OnDemand.</li>
+<li><a href="../n/Neko/">Neko</a> for cpeGNU and cpeCray. There is a known issue with cpeGNU though.</li>
+<li><a href="../v/VASP/">VASP</a> for LUMI/24.03</li>
+<li><a href="../c/CP2K/">CP2K</a> for LUMI/24.03 fix. Re-install if you get suspicious results and 
+    make sure you do so from the directory with the EasyConfig 
+    (<code>/appl/lumi/LUMI-EasyBuild-contrib/easybuild/easyconfigs/c/CP2K</code>) and use the <code>-f</code>
+    flag to force re-installation.</li>
+</ul>
+<h2 id="release-20241112">Release 20241112</h2>
+<ul>
+<li>Updated version of <a href="../c/cotainr/"><code>cotainr</code></a> with some bug fixes and minor enhancements.
+    The <a href="https://cotainr.readthedocs.io/en/2024.10.0/">on-line documentation of cotainr</a>
+    has also been updated to reflect the changes on LUMI after the September 2024 maintenance
+    period.</li>
+<li>A correction to one of the <a href="../c/CP2K/">CP2K with PLUMED</a> recipes.</li>
+<li><a href="../g/GPAW/">GPAW</a> recipes for 24.03.</li>
+<li>Python support for <a href="../a/Amber/">Amber with AmberTools</a></li>
+</ul>
+<h2 id="release-20241024">Release 20241024</h2>
+<ul>
+<li>
+<p>Fix for <code>htop</code> on <code>LUMI/24.03</code> so that it is now in <a href="../s/systools/">systools/24.03</a>.</p>
+</li>
+<li>
+<p><a href="../c/cotainr/">cotainr</a> in <code>LUMI/24.03</code> to avoid user confusion as many users
+    expect to find the most recent cotainr in the most recent LUMI stack.</p>
+</li>
+<li>
+<p><a href="../h/hpcat/">hpcat</a> experimental tool to study bindings (Cray compiler only)</p>
+</li>
+<li>
+<p>Updated <a href="../s/singularity-bindings/">singularity-bindings</a></p>
+</li>
+<li>
+<p><a href="../e/ELPA/">ELPA</a> for cpeCray and ROCm 6 (some performance degradation observed)</p>
+</li>
+<li>
+<p>Fixes for double linking of LibSci in some <a href="../p/PETSc/">PETSc</a> EasyConfigs</p>
+</li>
+<li>
+<p><a href="../g/GROMACS/">GROMACS+PLUMED</a> for CPU with full Python support for Cray Python.</p>
+</li>
+</ul>
+<h2 id="release-20241004">Release 20241004</h2>
+<ul>
+<li>
+<p><a href="../r/rocm/">ROCm 6.2.2 in LUMI/24.03 partition/G</a>. Note that this module does
+    not work well with the CCE compilers prior to version 18 (still in beta and not on
+    the system) as the bytecode generated by LLVM 18 used in ROCm 6.2 causes errors
+    during linking.</p>
+</li>
+<li>
+<p>Update to <a href="../c/cotainr/">cotainr</a> in CrayEnv.</p>
+</li>
+<li>
+<p><a href="../s/STAR/">STAR rna sequencing</a> EasyBuild recipe.</p>
+</li>
+<li>
+<p>Fix for the visibility problems in the LUMI stack.</p>
+</li>
+</ul>
+<h2 id="release-20241002">Release 20241002</h2>
+<ul>
+<li>
+<p>Extra configuration for <a href="../s/Score-P/">Score-P</a>.</p>
+</li>
+<li>
+<p>Configurations of <a href="../g/GROMACS/">GROMACS</a> with <a href="../p/PLUMED/">PLUMED</a>.</p>
+</li>
+<li>
+<p>Deprecation warnings for old Spack modules.</p>
+</li>
+</ul>
+<h2 id="release-20240927">Release 20240927</h2>
+<ul>
+<li>
+<p>Modules to load the local CSC and quantum computing stacks (<code>Local-CSC</code> and <code>Local-quantum</code>)</p>
+</li>
+<li>
+<p>Framework to stop indexing the Spack modules and avoid indexing the modules from the local
+    stacks unless explicitly requested.</p>
+<p>Do <code>module help ModuleFullSpider/on</code> for more information. </p>
+</li>
+</ul>
+<h2 id="release-20240920">Release 20240920</h2>
+<ul>
+<li>
+<p><a href="../l/lumi-container-wrapper/">lumi-container-wrapper</a> updated with an openSUSE
+    LEAP 15.5 image and installed in CrayEnv, LUMI/23.12 and LUMI/24.03.</p>
+</li>
+<li>
+<p>Updated EasyConfigs for <a href="../r/R/">R</a> for LUMI/2024.03</p>
+</li>
+<li>
+<p><a href="../s/Score-P/">Score-P</a> for LUMI/2024.03, cpeAOCC version missing due to
+    instrumentation issues. </p>
+</li>
+</ul>
+<h2 id="release-20240916">Release 20240916</h2>
+<ul>
+<li>
+<p>See the <a href="https://lumi-supercomputer.github.io/LUMI-training-materials/User-Updates/Update-202409/">user update after the august-september 2024 maintenance</a>
+    for a more complete list of changes.</p>
+</li>
+<li>
+<p>New software stacks for the 23.12 and 24.03 versions are provided.</p>
+<ul>
+<li>
+<p><code>LUMI/24.03</code> is our preferred software stack and the only one we can fully support.
+    We already provide a lot of user-installable EasyConfigs for this stack.</p>
+</li>
+<li>
+<p><code>LUMI/23.12</code> is offered as-is. We do not intend to develop much software on top of it
+    as it will likely be rather short-lived and as we do not receive upstream support for 
+    this stack as it does not officially support ROCm 6.0. As most software versions are 
+    the same as in 23.09, it should be easy to update build recipes and give you some
+    bug fixes in the GNU and CCE compilers. The AMD compilers in both cpeAOCC and
+    cpeAMD though are much newer versions with all consequences this has...</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Several build recipes for <code>LUMI/23.09</code> have been revised to try to work around problems.
+    Note however that the preferred solution is to move to <code>LUMI/24.03</code>.</p>
+</li>
+<li>
+<p>Several old build recipes that we know do not work properly anymore, have been archived.</p>
+</li>
+</ul>
+<h2 id="release-20240909">Release 20240909</h2>
+<ul>
+<li>
+<p>Internal release only as the system was down much longer than expected due to 
+    a power delivery issue.</p>
+</li>
+<li>
+<p>The first fixes to be able to use old programming environments again, at
+    least to run on LUMI.</p>
+</li>
+<li>
+<p>See the <a href="https://lumi-supercomputer.github.io/LUMI-training-materials/User-Updates/Update-202409/">user update after the august-september 2024 maintenance</a>.</p>
+</li>
+</ul>
+<h2 id="release-20240807">Release 20240807</h2>
+<ul>
+<li>
+<p>A fix for problems with <a href="../b/buildtools-python/">buildtools-python</a>
+    in the version for Cray Python in LUMI/23.09.</p>
+</li>
+<li>
+<p>New package: <a href="../y/Yambo/">Yambo</a> (CPU-only)</p>
+</li>
+<li>
+<p><a href="../q/QuEST/">QuEST</a> for LUMI/23.09</p>
+</li>
+<li>
+<p>Warning for the upcoming system maintenance in the message-of-the-day.</p>
+</li>
+</ul>
+<h2 id="release-20240718">Release 20240718</h2>
+<ul>
+<li>
+<p><a href="../c/cotainr/"><code>cotainr</code></a> has been updated in <code>CrayEnv</code> to the latest
+    version with the images used during the AI course of May 2024, and has been
+    made available in <code>LUMI/23.09</code>.
+    The examples used in the AI course in Copenhagen should now work again
+    even without specifying a specific version of the <code>LUMI</code> stack though we 
+    do discourage that behaviour.</p>
+<p><code>cotainr</code> in the future will be available in <code>CrayEnv</code> as it really needs nothing
+from the <code>LUMI</code> stacks, and some versions will be available in some <code>LUMI</code> stacks.
+The latest version will usually be available in the latest <code>LUMI</code> stack, but as
+we only change the default version when that stack is sufficiently populated, the
+default version of the <code>LUMI</code> stack may not always contain the latest version of
+<code>cotainr</code> or any other software package.</p>
+</li>
+<li>
+<p><a href="../l/lumi-container-wrapper/"><code>lumi-container-wrapper</code></a> is now available in
+    <code>LUMI/23.09</code>.</p>
+</li>
+<li>
+<p>An EasyConfig for <a href="../g/GPAW/">GPAW on GPU</a>. This is currently not containerised
+    so only suitable to run on a moderate number of MPI ranks as otherwise starting GPAW
+    could put a very high stress on the file system.</p>
+</li>
+<li>
+<p>Some minor improvements to the <a href="../o/OpenFOAM/">OpenFOAM documentation</a>
+    after issues reported on other sides that turned out not to affect our EasyConfigs.</p>
+</li>
+</ul>
+<h2 id="release-20240709">Release 20240709</h2>
+<ul>
+<li><code>LUMI/23.09</code> is now the default version of the <code>LUMI</code> module.</li>
+<li>Some updated EasyConfigs for the containers for 
+    <a href="../p/PyTorch/">PyTorch</a> and <a href="../t/TensorFlow/">TensorFlow</a>.</li>
+<li>Updated EasyConfig for <a href="../s/Siesta/">Siesta</a></li>
+</ul>
+<h2 id="release-20240607">Release 20240607</h2>
+<ul>
+<li>EasyBuild-user module enhanced to enable running EasyBuild in a container to install
+    software outside of the container. This feature is mostly meant for LUST and some 
+    projects that get test versions of compilers.</li>
+<li>
+<p>Warnings when using <code>LUMI/22.08</code> and <code>LUMI/22.12</code> as their end-of-life is approaching
+    fast and they will not be supportable after the August 2024 system update.</p>
+<p>LUST will do its best to keep <code>LUMI/23.09</code> running after the update, but even there 
+recompilation may be required, or switching to newer compilers. However, helping users
+who are already on 23.09 will have a higher priority than helping those who postponed
+using the newer toolchain.</p>
+</li>
+<li>
+<p>Security fixes to the processing behind the LUMI Software Library and corrections to
+    the fortune messages shown at login.</p>
+</li>
+</ul>
+<h2 id="release-20240524">Release 20240524</h2>
+<ul>
+<li>Improved <a href="../l/lumi-tools/">lumi-tools</a> with bug fixes to <code>lumi-ldap-userinfo</code>
+    and <code>lumi-ldap-projectinfo</code> and the new <code>lumi-ldap-projectlist</code> command for LUST.</li>
+<li>Support for <a href="../s/Score-P/">Score-P</a> on LUMI-G with <code>cpeCray</code> and <code>cpeAMD</code>,
+    though with some restrictions mentioned in 
+    <a href="../s/Score-P/#user-documentation-user-installation">the documentation in the LUMI Software Library</a></li>
+<li><a href="../p/PyTorch/">PyTorch</a>: 
+    <a href="../p/PyTorch/#singularity-containers-with-modules-for-binding-and-extras">Additional containers</a>, 
+    including one with vLLM</li>
+</ul>
+<h2 id="release-20240517">Release 20240517</h2>
+<ul>
+<li><a href="../o/OpenFOAM/">OpenFOAM.org 10</a> EasyConfig for the GNU compilers in 23.09.</li>
+<li>Improved EasyConfig for <a href="../g/GROMACS/">GROMACS 2024.01 on GPU</a>,
+    using ROCm 5.4.6 which is a better choice on the LUMI AMD GPU driver at this
+    moment.</li>
+<li>JSC PerfTools <a href="../s/Score-P/">Score-P 8.4</a>, which also requires 
+    <a href="../s/Scalasca/">Scalasca 2.6.1</a>, 
+    <a href="../l/libbfd/">libbfd 2.42</a>,
+    <a href="../o/OTF2/">OTF2 3.0.3</a>,
+    <a href="../o/OPARI2/">OPARI2 2.0.8</a>,
+    <a href="../c/CubeLib/">CubeLib 4.8.2</a> and
+    <a href="../c/CubeWriter/">CubeWriter 4.8.2</a>.
+    Currently only LUMI-C is supported.</li>
+</ul>
+<h2 id="release-20240412">Release 20240412</h2>
+<ul>
+<li><a href="../s/singularity-bindings/">singularity-bindings</a> EasyConfig to be used while 23.09 is 
+    the system default version of the HPE Cray Programming Environment, and improved
+    documentation for this module.</li>
+<li><a href="../l/lumi-training-tools/">lumi-training-tools</a> EasyConfig to install software
+    used in the course notes and exercises of the Amsterdam course given by LUST in
+    May 2024. </li>
+</ul>
+<h2 id="release-20240329">Release 20240329</h2>
+<ul>
+<li>A new <a href="../p/PyTorch/">PyTorch container</a></li>
+<li>Much extended documentation for the <a href="../p/PyTorch/">PyTorch container</a>
+    and <a href="../r/rocm/">rocm container</a></li>
+<li>The <code>proot</code> command is now included in <a href="../s/systools/"><code>systools/23.09</code></a>
+    available in LUMI/23.09 and CrayEnv. This is useful for using so-called
+    "unprivileged <code>proot</code> builds" in SingularityCE.</li>
+</ul>
+<h2 id="release-20240322">Release 20240322</h2>
+<ul>
+<li><a href="../c/CP2K/">CP2K 2024.1</a> with GPU support for LUMI/23.09</li>
+<li>Improvement to a <a href="../p/PETSc/">PETSc</a> EasyConfig</li>
+<li><a href="../r/rocm/">ROCm container for 5.6.0</a></li>
+</ul>
+<h2 id="release-20240308">Release 20240308</h2>
+<ul>
+<li><code>rocm/5.4.6</code> module in <code>CrayEnv</code> and <code>LUMI/23.09 partition/G</code> as we notice too
+    much problems with <code>rocm/5.6.1</code> on the current driver version. ROCm 5.4.x is the last
+    supported ROCm version on the driver that we have, but that does not mean that 
+    5.4.x will always work correctly with the HPE Cray PE as that one is mostly tested
+    with ROCm 5.2 on the current OS version of LUMI and ROCm 5.5 on SUSE 15 SP5.</li>
+<li>EasyBuild module for <code>LUMI/23.09</code> now also loads 
+    <a href="../e/EasyBuild-tools/">EasyBuild-tools</a> with extra tools that might be needed 
+    for some EasyConfigs.</li>
+<li><a href="../j/jax/">JAX</a>: Containers made available through EasyBuild-generated modules</li>
+<li>Improved documentation for the <a href="../p/PyTorch/">PyTorch containers</a>, 
+    and initial steps to offer containers that support a Python virtual environment for 
+    adding packages out-of-the-box.</li>
+<li><a href="../q/QuantumESPRESSO/">Quantum ESPRESSO</a>,
+    <a href="../g/GROMACS/">GROMACS 2024.1</a> and
+    <a href="../n/NAMD/">NAMD 2.14</a>: EasyConfigs for <code>LUMI/23.09</code>.
+    An initial effort to compile <a href="../n/NAMD/">NAMD 3.0b6</a> with GPU support is also included.
+    Due to the beta nature of this package, problems are to be expected.</li>
+<li>New EasyConfig for a GPU-enabled <a href="../p/PETSc/">PETSc</a> with the Cray toolchain  </li>
+</ul>
+<h2 id="release-20240301">Release 20240301</h2>
+<ul>
+<li><a href="../v/VASP/">VASP</a>: VASP 6.4.2 for cpeGNU/23.09.</li>
+<li>Fixes for the binding issues in the <a href="../r/rocm/">rocm containers</a></li>
+<li>New documentation feature: We can now add some documentation to individual EasyConfigs
+    to make it more clear which EasyConfig offers what features. See, e.g., 
+    <a href="../p/PyTorch/">PyTorch</a>.</li>
+</ul>
+<h2 id="release-20240207">Release 20240207</h2>
+<ul>
+<li><a href="../s/SCOTCH/">SCOTCH 7</a> for cpeCray</li>
+<li>Updated documentation for <a href="../h/HyperQueue/">HyperQueue</a>, 
+    <a href="../g/GROMACS/">GROMACS</a>, <a href="../c/CP2K/">CP2K</a></li>
+<li>New <a href="../p/PyTorch/">PyTorch 2.2.0 container with flash-attention</a> 
+    and new snapshots of the other containers.</li>
+</ul>
+<h2 id="release-20240129">Release 20240129</h2>
+<ul>
+<li>New package: <a href="../m/magma/">Magma</a> for cpeGNU, cpeCray and cpeAMD.</li>
+<li>Updated EasyConfig for <a href="../o/OpenFOAM/">openFOAM</a></li>
+<li>ROCm 5.7.1 container, and re-generated versions of the other ROCm containers.</li>
+</ul>
+<h2 id="release-20240116">Release 20240116</h2>
+<ul>
+<li>New package: <a href="../d/DL_POLY_4/">DL_POLY_4</a>: dl-poly in a basic configuration</li>
+<li>New package: <a href="../q/QUDA/">QUDA</a></li>
+<li>Updates to <a href="../r/Rust/">Rust</a>, <a href="../h/HyperQueue/">HyperQueue</a>,
+    <a href="../p/PETSc/">PETSc</a>, <a href="../e/ELPA/">ELPA</a>.</li>
+</ul>
+<h2 id="release-20240110">Release 20240110</h2>
+<ul>
+<li>Improved search in the LUMI Software Library, though for performance reasons we've 
+    chosen not to search the EasyConfigs themselves too.</li>
+<li>Some software brought to 23.09, such as <a href="../r/R/">R</a>, 
+    <a href="../g/GDAL/">GDAL</a>, <a href="../g/GEOS/">GEOS</a> and dependencies</li>
+<li><a href="../k/KaHIP/">KaHIP</a></li>
+<li><a href="../a/AdaptiveCpp/">AdaptiveCpp</a></li>
+<li>
+<p><a href="../b/Boost/">Boost</a> for cpeCray/23.09.</p>
+<p>Note that a workaround was needed for Boost to avoid a linker problem. See the
+technical documentation on the <a href="../b/Boost/">Boost page</a> to find out what we
+did if you also run into link problems.</p>
+</li>
+</ul>
+<h2 id="release-20231215">Release 20231215</h2>
+<ul>
+<li><a href="../r/rocm/">rocm/5.6.1</a> and <a href="../a/amd/">amd/5.6.1</a> 
+    modules installed in <code>CrayEnv</code> and <code>LUMI/23.09 partition/G</code>.</li>
+<li>Updated user-installable recipes for Java, including <a href="../j/Java/">Java/21</a>.</li>
+<li>User-installable recipe for the <a href="../u/unicore-uftp/">UNICORE UFTP client</a>.</li>
+<li>User-installable recipe for the installation of <a href="../s/Siesta/">SIESTA (CPU version)</a></li>
+</ul>
+<h2 id="release-20231208">Release 20231208</h2>
+<ul>
+<li><a href="../g/GROMACS/">GROMACS</a> with <a href="../h/hipSYCL/">hipSYCL</a> and dependencies, including a version with heFFT.</li>
+<li><a href="../n/nvtop/">nvtop</a></li>
+<li>Extra user-installable version of <a href="../s/SCOTCH/">SCOTCH</a> (64-bit integers)</li>
+<li>Update of the <a href="../a/aws-ofi-rccl/">aws-ofi-rccl plugin</a></li>
+<li>Fix for <a href="../e/ELPA/">ELPA</a></li>
+<li>Improved <a href="../o/OpenMPI/">Open MPI</a> with <a href="../o/OSU-Micro-Benchmarks/">OSU micro-benchmarks</a>
+    as test code and user-installable adapted versions of <a href="../l/lumi-CPEtools/">lumi-CPEtools</a>
+    for checking task and thread distribution and pinning.</li>
+</ul>
+<h2 id="release-20231121">Release 20231121</h2>
+<ul>
+<li>Bug fixes for the module view</li>
+<li>More container recipes</li>
+</ul>
+<h2 id="release-20231116">Release 20231116</h2>
+<ul>
+<li>Initial release of the <code>LUMI/23.09</code> central software stack, including a first
+    selection of user-installable build recipes</li>
+<li>Initial support for creating modules that ease working with containers
+    provided on LUMI.</li>
+<li>New version of the <a href="../c/cotainr/">cotainr</a> module</li>
+<li>Bug fix for the <code>lumi-ldap-projectinfo</code> command.</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        
+
+
+
+
+<footer class="md-footer">
+
+  
+  
+    <div class="md-footer-nav">
+      <nav
+        class="md-footer-nav__inner md-grid"
+        aria-label="footer.title"
+      >
+
+        
+        
+          <a
+            href="../known_issues/"
+            class="md-footer-nav__link md-footer-nav__link--prev"
+            rel="prev"
+          >
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Issues
+              </div>
+            </div>
+          </a>
+        
+
+        
+        
+      </nav>
+    </div>
+  
+
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+
+      
+    <div class="md-footer-copyright">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" 
+             style="border-width:0" 
+             src="https://i.creativecommons.org/l/by/4.0/80x15.png"
+        />
+      </a>
+      This work is licensed under a&nbsp;
+      <a rel="license" 
+         href="http://creativecommons.org/licenses/by/4.0/"
+      >
+        Creative Commons Attribution 4.0 International License
+      </a>
+    </div>
+
+      
+      
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://www.youtube.com/channel/UCb31KOJ6Wqu0sRpIRi_k8Mw" target="_blank" rel="noopener" title="LUMI on YouTube" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://www.linkedin.com/company/lumi-supercomputer" target="_blank" rel="noopener" title="LUMI on LinkedIn" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://twitter.com/LUMIhpc" target="_blank" rel="noopener" title="LUMI on Twitter" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"/></svg>
+    </a>
+  
+</div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "toc.follow", "search.suggest", "content.code.annotate", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

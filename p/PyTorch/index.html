@@ -1,0 +1,3547 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for the LUMI software library">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>PyTorch - LUMI Software Library</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+  
+      
+
+    
+
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document.body.addEventListener("click", function(ev) {
+        if (ev.target instanceof HTMLElement) {
+          var el = ev.target.closest("a[href^=http]")
+          if (el)
+            ga("send", "event", "outbound", "click", el.href)
+        }
+      })
+    })
+  </script>
+
+    
+
+  
+  
+  
+    
+  
+
+  
+  
+
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="LUMI Software Library - PyTorch" />
+  <meta property="og:description" content="Documentation for the LUMI software library" />
+  <meta property="og:url" content="None" />
+  <meta property="og:image" content="assets/images/banner.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1080" />
+  <meta property="og:image:height" content="568" />
+
+  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@LUMIhpc" />
+  <meta name="twitter:creator" content="@LUMIhpc" />
+  <meta name="twitter:title" content="LUMI Software Library - PyTorch" />
+  <meta name="twitter:description" content="Documentation for the LUMI software library" />
+  <meta name="twitter:image" content="assets/images/banner.png" />
+
+  <style>
+    [data-md-color-primary="lumi"] {
+      --md-primary-fg-color: hsla(0, 0%, 100%, 1);
+      --md-primary-fg-color--light: hsla(0, 0%, 100%, 0.7);
+      --md-primary-fg-color--dark: hsla(0, 0%, 0%, 0.07);
+      --md-primary-bg-color: hsla(0, 0%, 0%, 0.87);
+      --md-primary-bg-color--light: hsla(0, 0%, 0%, 0.54);
+      --md-button-bg-color: hsla(207,100%,28%, 1);
+      --md-button-bg-color--light: hsla(207,100%,38%, 1);
+      --md-typeset-a-color: hsla(207,100%,28%, 1);
+    }
+    
+    [data-md-color-accent="lumi"] {
+      --md-accent-fg-color: hsla(0,0%,0%, 1);
+      --md-accent-fg-color--transparent: hsla(0,0%,0%, 0.1);
+      --md-accent-bg-color: hsla(0, 0%, 100%, 1);
+      --md-accent-bg-color--light: hsla(0, 0%, 100%, 0.7);
+    }
+  </style>
+
+  
+
+
+  
+  
+
+    <link
+      rel="stylesheet"
+      href="../../assets/stylesheets/extra-a8af0af3d0.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../assets/stylesheets/overrides-5193e6f6df.css"
+    />
+    <link
+      rel="stylesheet"
+      id="typekit-fonts-css"
+      href="https://use.typekit.net/nlo5lta.css?ver=5.5.3"
+      type="text/css" media="all"
+    />
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="lumi" data-md-color-accent="lumi">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pytorch" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="LUMI Software Library" class="md-header__button md-logo" aria-label="LUMI Software Library" data-md-component="logo">
+      
+  
+  <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 723 212" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="Layer-2" serif:id="Layer 2">
+        <g transform="matrix(1,0,0,1,0,175.883)">
+            <path d="M0,-140.304L0,0L102.89,0L102.89,-24.599L26.658,-24.599L26.658,-140.304L0,-140.304Z" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,257.262,35.5793)">
+            <path d="M0,140.304C-17.585,140.304 -32.083,135.347 -43.588,125.338C-55,115.423 -60.799,103.357 -60.799,89.14L-60.799,0L-34.328,0L-34.328,81.563C-34.328,92.413 -31.054,100.645 -24.319,105.976C-17.866,111.12 -9.728,113.74 0,113.74C9.728,113.74 17.865,111.12 24.319,105.976C31.054,100.645 34.328,92.413 34.328,81.563L34.328,0L60.799,0L60.799,89.14C60.799,103.357 55.093,115.329 43.588,125.338C32.083,135.347 17.585,140.304 0,140.304" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,550.374,119.668)">
+            <path d="M0,-27.874L-43.588,20.671L-87.176,-27.874L-87.176,56.215L-113.74,56.215L-113.74,-84.089L-105.695,-84.089L-43.588,-13.47L18.614,-84.089L26.658,-84.089L26.658,56.215L0.094,56.215L0,-27.874Z" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <rect x="695.604" y="35.486" width="26.658" height="140.397" style="fill:rgb(29,29,27);"/>
+        <g transform="matrix(-1,0,0,1,722.262,-203.194)">
+            <rect x="0" y="203.194" width="722.262" height="8.175" style="fill:rgb(29,29,27);"/>
+        </g>
+        <g transform="matrix(-1,0,0,1,722.262,203.194)">
+            <rect x="0" y="0" width="722.262" height="8.175" style="fill:rgb(29,29,27);"/>
+        </g>
+    </g>
+</svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LUMI Software Library
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              PyTorch
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#a" class="md-tabs__link">
+        
+  
+  
+    
+  
+  a
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#b" class="md-tabs__link">
+        
+  
+  
+    
+  
+  b
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#c" class="md-tabs__link">
+        
+  
+  
+    
+  
+  c
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#d" class="md-tabs__link">
+        
+  
+  
+    
+  
+  d
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#e" class="md-tabs__link">
+        
+  
+  
+    
+  
+  e
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#f" class="md-tabs__link">
+        
+  
+  
+    
+  
+  f
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#g" class="md-tabs__link">
+        
+  
+  
+    
+  
+  g
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#h" class="md-tabs__link">
+        
+  
+  
+    
+  
+  h
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#I/ICU" class="md-tabs__link">
+        
+  
+  
+    
+  
+  I/ICU
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#i" class="md-tabs__link">
+        
+  
+  
+    
+  
+  i
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#j" class="md-tabs__link">
+        
+  
+  
+    
+  
+  j
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#k" class="md-tabs__link">
+        
+  
+  
+    
+  
+  k
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#l" class="md-tabs__link">
+        
+  
+  
+    
+  
+  l
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#m" class="md-tabs__link">
+        
+  
+  
+    
+  
+  m
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#n" class="md-tabs__link">
+        
+  
+  
+    
+  
+  n
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#o" class="md-tabs__link">
+        
+  
+  
+    
+  
+  o
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#p" class="md-tabs__link">
+        
+  
+  
+    
+  
+  p
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#q" class="md-tabs__link">
+        
+  
+  
+    
+  
+  q
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#r" class="md-tabs__link">
+        
+  
+  
+    
+  
+  r
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#s" class="md-tabs__link">
+        
+  
+  
+    
+  
+  s
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#t" class="md-tabs__link">
+        
+  
+  
+    
+  
+  t
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#u" class="md-tabs__link">
+        
+  
+  
+    
+  
+  u
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#v" class="md-tabs__link">
+        
+  
+  
+    
+  
+  v
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#w" class="md-tabs__link">
+        
+  
+  
+    
+  
+  w
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#x" class="md-tabs__link">
+        
+  
+  
+    
+  
+  x
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#y" class="md-tabs__link">
+        
+  
+  
+    
+  
+  y
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html#z" class="md-tabs__link">
+        
+  
+  
+    
+  
+  z
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../known_issues/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Issues
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../whats_new/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  New
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LUMI Software Library" class="md-nav__button md-logo" aria-label="LUMI Software Library" data-md-component="logo">
+      
+  
+  <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 723 212" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="Layer-2" serif:id="Layer 2">
+        <g transform="matrix(1,0,0,1,0,175.883)">
+            <path d="M0,-140.304L0,0L102.89,0L102.89,-24.599L26.658,-24.599L26.658,-140.304L0,-140.304Z" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,257.262,35.5793)">
+            <path d="M0,140.304C-17.585,140.304 -32.083,135.347 -43.588,125.338C-55,115.423 -60.799,103.357 -60.799,89.14L-60.799,0L-34.328,0L-34.328,81.563C-34.328,92.413 -31.054,100.645 -24.319,105.976C-17.866,111.12 -9.728,113.74 0,113.74C9.728,113.74 17.865,111.12 24.319,105.976C31.054,100.645 34.328,92.413 34.328,81.563L34.328,0L60.799,0L60.799,89.14C60.799,103.357 55.093,115.329 43.588,125.338C32.083,135.347 17.585,140.304 0,140.304" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,550.374,119.668)">
+            <path d="M0,-27.874L-43.588,20.671L-87.176,-27.874L-87.176,56.215L-113.74,56.215L-113.74,-84.089L-105.695,-84.089L-43.588,-13.47L18.614,-84.089L26.658,-84.089L26.658,56.215L0.094,56.215L0,-27.874Z" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <rect x="695.604" y="35.486" width="26.658" height="140.397" style="fill:rgb(29,29,27);"/>
+        <g transform="matrix(-1,0,0,1,722.262,-203.194)">
+            <rect x="0" y="203.194" width="722.262" height="8.175" style="fill:rgb(29,29,27);"/>
+        </g>
+        <g transform="matrix(-1,0,0,1,722.262,203.194)">
+            <rect x="0" y="0" width="722.262" height="8.175" style="fill:rgb(29,29,27);"/>
+        </g>
+    </g>
+</svg>
+
+    </a>
+    LUMI Software Library
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#a" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    a
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#b" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    b
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#c" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    c
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#d" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    d
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#e" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    e
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#f" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    f
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#g" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    g
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#h" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    h
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#I/ICU" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I/ICU
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#i" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    i
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#j" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    j
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#k" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#l" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    l
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#m" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    m
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#n" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    n
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#o" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    o
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#p" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    p
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#q" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    q
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#r" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    r
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#s" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    s
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#t" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    t
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#u" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    u
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#v" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#w" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    w
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#x" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    x
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#y" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    y
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html#z" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    z
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../known_issues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Issues
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../whats_new/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#license-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        License information
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-documentation-user-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User documentation (user installation)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-documentation-singularity-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User documentation (singularity container)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="User documentation (singularity container)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-and-wrapper-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module and wrapper scripts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples-with-the-wrapper-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples with the wrapper scripts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples with the wrapper scripts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-the-python-packages-in-the-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List the Python packages in the container
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#executing-python-code-in-the-container-single-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executing Python code in the container (single task)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distributed-learning-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distributed learning example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation-with-easybuild" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation with EasyBuild
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extending-the-containers-with-virtual-environment-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extending the containers with virtual environment support
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extending the containers with virtual environment support">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manual-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual procedure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automation-of-the-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automation of the procedure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-packages-that-need-to-be-compiled" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing packages that need to be compiled
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternative-direct-access-without-the-easybuild-generated-pytorch-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternative: Direct access (without the EasyBuild-generated PyTorch module)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Alternative: Direct access (without the EasyBuild-generated PyTorch module)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getting-the-container-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting the container image
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-distributed-learning-without-the-wrappers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Distributed learning without the wrappers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#links" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Links
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#singularity-containers-with-modules-for-binding-and-extras" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Singularity containers with modules for binding and extras
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technical-documentation-user-easybuild-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technical documentation (user EasyBuild installation)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Technical documentation (user EasyBuild installation)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#easybuild" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EasyBuild
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EasyBuild">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#version-1121-archived" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version 1.12.1 (archived)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technical-documentation-singularity-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technical documentation (singularity container)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Technical documentation (singularity container)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-check-whats-in-the-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to check what's in the container?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#easybuild_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EasyBuild
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EasyBuild">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#changes-made-for-the-20250404-and-later-pytorch-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changes made for the 20250404 and later PyTorch containers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#archived-easyconfigs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Archived EasyConfigs
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+<p><a href="../../">[package list]</a></p>
+<h1 id="pytorch">PyTorch</h1>
+<p><span class='lumi-software-button-container-hover'><span class='lumi-software-button-container'></span></span></p>
+<h2 id="license-information">License information</h2>
+<p>The PyTorch license can be found in the
+<a href="https://github.com/pytorch/pytorch/blob/master/LICENSE">LICENSE file in the PyTorch GitHub</a>.</p>
+<p>Note however that in order to use PyTorch you will also be using several other packages that
+have different licenses.</p>
+<h2 id="user-documentation-user-installation">User documentation (user installation)</h2>
+<p>We used to provide an EasyBuild recipe to install PyTorch on top of 
+Cray Python. However, as Python packages tend to put a heavy strain
+on the file system, installing Python packages in a container is the
+preferred way. It also takes away the strain of trying to get PyTorch
+talk to a proper version of the 
+<a href="https://github.com/ROCmSoftwarePlatform/aws-ofi-rccl">AWS OFI RCCL plugin</a> which is needed for
+proper communication on the Slingshot 11 interconnect of LUMI.</p>
+<p>We now provide prebuilt singularity containers
+with EasyBuild-generated module around them that eases work with those
+containers. The use is documented in the next section, 
+<a href="./#user-documentation-singularity-container">"User documentation (singularity container)"</a>
+while the user-installable EasyBuild recipes for each container can
+be found in the 
+<a href="./#singularity-containers-with-modules-for-binding-and-extras">"Singularity containers with modules for binding and extras" section</a>.</p>
+<h2 id="user-documentation-singularity-container">User documentation (singularity container)</h2>
+<p>The containers that are provided by the LUMI User Support Team can be used in
+two possible ways:</p>
+<ul>
+<li>
+<p><a href="./#module-and-wrapper-scripts">Through modules and wrapper scripts generated via EasyBuild</a></p>
+</li>
+<li>
+<p><a href="./#alternative-direct-access-without-the-easybuild-generated-pytorch-module">Directly, with you taking care of all bindings and all necessary environment
+    variables.</a></p>
+<p>These instructions will likely also work for the 
+<a href="../../r/rocm/#using-the-images-as-base-image-for-cotainr">containers built on top of the ROCm containers with cotainr</a>.</p>
+</li>
+</ul>
+<p>Containers with PyTorch provided in local software stacks (e.g., the CSC software stack)
+may be build differently with different wrapper scripts so instructions on this page
+may not apply to those.</p>
+<p>For more information on AI on LUMI, you can also check the <a href="https://github.com/Lumi-supercomputer/LUMI-AI-Guide">LUMI AI Guide</a>.</p>
+<h3 id="module-and-wrapper-scripts">Module and wrapper scripts</h3>
+<p>The PyTorch container is developed by AMD specifically for LUMI and contains the
+necessary parts to run PyTorch on LUMI, including the plugin needed for RCCL when
+doing distributed AI, and a suitable version of ROCm for the version of PyTorch.
+The apex, torchvision, torchdata, torchtext and torchaudio packages are also included.</p>
+<p>The EasyBuild installation with the EasyConfigs mentioned below will do three or four things:</p>
+<ol>
+<li>
+<p>It will copy the container to your own EasyBuild software installation space. 
+    We realise containers can be big, but it ensures that you have complete control 
+    over when a container is removed.</p>
+<p>We will remove a container from the system when it is not sufficiently functional
+anymore, but the container may still work for you. E.g., after an upgrade of the 
+network drivers on LUMI, the RCCL plugin for the LUMI Slingshot interconnect may be broken,
+but if you run on only one node PyTorch may still work for you.</p>
+<p>If you prefer to use the centrally provided container, you can remove your copy 
+after loading of the module with <code>rm $SIF</code> followed by reloading the module. This
+is at your own risk however. </p>
+</li>
+<li>
+<p>It will create a module file. 
+    When loading the module, a number of environment variables will
+    be set to help you use the module and to make it easy to swap the module with a
+    different version in your job scripts.</p>
+<ul>
+<li>
+<p><code>SIF</code> and <code>SIFPYTORCH</code> both contain the name and full path of the singularity
+    container file.</p>
+</li>
+<li>
+<p><code>SINGULARITY_BIND</code> will mount all necessary directories from the system,
+    including everything that is needed to access the project, scratch and flash
+    file systems.</p>
+</li>
+<li>
+<p><code>RUNSCRIPTS</code> and <code>RUNSCRIPTSPYTORCH</code> contain the full path of the directory
+    containing some sample run scripts that can be used to run software in the 
+    container, or as inspiration for your own variants.</p>
+</li>
+</ul>
+<p>Container modules installed after March 9, 2024 also define 
+<code>SINGULARITYENV_PREPEND_PATH</code> in a way that ensures that the <code>/runscripts</code> 
+subdirectory in the container will be in the search path in the container.</p>
+<p>The containers with support for a virtual environment (from 20240315 on) define
+a few other <code>SINGULARITYENV_*</code> environment variables that inject environment variables
+in the container that are equivalent to those created by the activate scripts for the
+Conda environment and the Python virtual environment.</p>
+</li>
+<li>
+<p>It creates 3 scripts in the $RUNSCRIPTS directory:</p>
+<ul>
+<li>
+<p><code>conda-python-simple</code>: This initialises Python in the container and then calls Python
+    with the arguments of <code>conda-python-simple</code>. It can be used, e.g., to run commands
+    through Python that utilise a single task but all GPUs.</p>
+</li>
+<li>
+<p><code>conda-python-distributed</code>: Model script that initialises Python in the container
+    and also creates the environment to run a distributed PyTorch session. 
+    At the end, it will call Python with the arguments of the <code>conda-python-distributed</code>
+    command.</p>
+</li>
+<li>
+<p><code>get-master</code>: A helper command for <code>conda-python-distributed</code>.</p>
+</li>
+</ul>
+<p>These scripts are available in the container in the <code>/runscripts</code> subdirectory but can
+also be reached with their full path name, and can be inspected outside the container
+in the <code>$RUNSCRIPTS</code> subdirectory.</p>
+<p>Those scripts don't cover all use cases for PyTorch on LUMI, but can be used as a source of
+inspiration for your own scripts.</p>
+</li>
+<li>
+<p>For the containers with support for virtual environments (from 20240315 on),
+    it also creates a number of commands intended to be used outside the container:</p>
+<ul>
+<li>
+<p><code>start-shell</code>: To start a bash shell in the container. Arguments can be used
+    to, e.g., tell it to start a command. Without arguments, the conda and Python 
+    virtual environments will be initialised, but this is not the case as soon as
+    arguments are used. It takes the command line arguments that bash can also take.</p>
+</li>
+<li>
+<p><code>make-squashfs</code>: Make the user-software.squashfs file that would then be mounted
+    in the container after reloading the module. This will enhance performance if
+    the extra installation in user-software contains a lot of files.</p>
+</li>
+<li>
+<p><code>unmake-squashfs</code>: Unpack the user-software.squashfs file into the user-software
+    subdirectory of $CONTAINERROOT to enable installing additional packages.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>From the PyTorch 2.6.0 modules onwards, it also creates wrapper scripts for the
+    <code>python</code>and <code>pip</code> commands (including the commands with major and major.minor Python
+    version in their name), and a number of other commands including <code>accelerate</code>, 
+    <code>huggingface-cli</code>, <code>ray</code> and <code>torchrun</code>. These wrappers should work in the same 
+    way as those in the CSC local software stacks as documented in the <a href="https://docs.csc.fi/apps/pytorch/">CSC PyTorch documentation</a>
+    and the <a href="https://docs.csc.fi/support/tutorials/ml-guide/">CSC machine learning guide</a>.
+    These wrappers still support the other features of this module, and in particular the way
+    extra packages in a virtual environment can be managed to reduce the load on the 
+    file system. The <code>list-packages</code> script is also supported (since late July 2025).</p>
+<p>Note though that there is one important difference with the way the CSC scripts 
+work: Our module works with a predefined virtual environment which is in a different
+place in the file system in the container and outside the container, but can also 
+be squashed into a SquashFS file to avoid killing the file system when running a 
+big virtual environment. Moreover, that environment is also automatically activated
+when loading the module. So creating another virtual environment may conflict. If this
+would be a real issue, contace LUMI support and we may look for a custom solution
+(e.g., by telling you how to install separate modules for each virtual environment).</p>
+</li>
+</ol>
+<p>The container uses a miniconda environment in which Python and its packages are installed.
+That environment needs to be activated in the container when running. </p>
+<ol>
+<li>
+<p>For the PyTorch 2.6 containers, the activation is done by singularity startup
+    procedure and users don't need to do anything.</p>
+</li>
+<li>
+<p>For older containers from the 20240315 versions onwards, the EasyBuild module basically
+    does all the important work for the Conda initialisation by injecting the necessary PATH
+    changes and environment variables in the container. However, when using the containers
+    without the EasyBuild module, one has to initialise the conda environment explicitly
+    by executing the commands in the environment variable WITH_CONDA.</p>
+</li>
+<li>
+<p>In even older containers, users have to explicitly activate the conda environment
+    by executing the commands in the environment variable WITH_CONDA.</p>
+</li>
+</ol>
+<p>From the 20240315 version onwards, EasyBuild will also activate the Python virtual
+environment <code>pytorch</code>. Inside the container, the virtual environment is available in
+<code>/user-software/venv</code> while outside the container the files can be found in 
+<code>$CONTAINERROOT/user-software/venv</code> (if this directory has not been removed after creating
+a SquashFS file from it for better file system performance). You can also use the 
+<code>/user-software</code> subdirectory in the container to install other software through other methods.
+In these containers it is also very easy to check which Python packages are installed 
+with</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>singularity exec $SIF pip list
+</code></pre></div>
+<p>or if the <code>start-shell</code> script is available (which is the case for most of these containers),</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>start-shell -c &#39;pip list&#39;
+</code></pre></div>
+<p>Note that when using the PyTorch containers through the modules provided by the EasyConfigs
+on this page, one should <strong>not</strong> use the <a href="../../s/singularity-AI-bindings/"><code>singularity-AI-bindings</code></a>
+module, as the functionality of that module is already included in the <code>PyTorch</code> container 
+modules discussed on this page (and may even be more fine-tuned to the specific container).</p>
+<h3 id="examples-with-the-wrapper-scripts">Examples with the wrapper scripts</h3>
+<p>Note: In the examples below you may need to replace the <code>standard-g</code> queue with a <a href="https://docs.lumi-supercomputer.eu/runjobs/scheduled-jobs/partitions/#slurm-partitions-allocatable-by-node">different
+slurm partition allocatable per node</a>
+if your user category has no access to <code>standard-g</code>. </p>
+<h4 id="list-the-python-packages-in-the-container">List the Python packages in the container</h4>
+<h5 id="containers-from-pytorch-26-on">Containers from PyTorch 2.6 on</h5>
+<p>It is not needed to start a singularity shell 
+or explicitly call <code>singularity exec</code>, as</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module load PyTorch/2.7.0-rocm-6.2.4-python-3.12-singularity-20250527
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>pip list
+</code></pre></div>
+<p>can be executed directly from a system bash shell as long as the PyTorch module is loaded
+thanks to a wrapper script that takes care of starting <code>pip</code> in the container.
+However, the approach below still works.</p>
+<h5 id="other-containers-from-20240315-on">Other containers from 20240315 on</h5>
+<p>For the containers from version 20240315 on, the <code>$WITH_CONDA</code> is not needed.
+In an interactive session, you still need to load the module and go into the container:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>module load LUMI PyTorch/2.3.1-rocm-6.0.3-python-3.12-singularity-20240923
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>start-shell
+</code></pre></div>
+<p>(where we use the wrapper script <code>start-shell</code>, equivalent to <code>singularity shell $SIF</code>)
+but once in the container, at the <code>Singularity&gt;</code> prompt, all that is needed is</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>pip list
+</code></pre></div>
+<p>Without an interactive session in the container, all that is now needed is</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>module load LUMI PyTorch/2.3.1-rocm-6.0.3-python-3.12-singularity-20240923
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>singularity exec $SIF pip list
+</code></pre></div>
+<p>as the <code>pip</code> command is in the search path set up by the container and the 
+container module.</p>
+<h5 id="containers-up-to-and-including-the-20240209-ones">Containers up to and including the 20240209 ones</h5>
+<p>For the containers up to the 20240209 ones, this example also illustrates how the
+<code>WITH_CONDA</code> environment variable should be used.
+The example can be run in an interactive session and works even on the login nodes.</p>
+<p>In these containers, the Python packages
+can be listed using the following steps: First execute, e.g., </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>module load LUMI PyTorch/2.2.0-rocm-5.6.1-python-3.10-singularity-20240209
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>singularity shell $SIF
+</code></pre></div>
+<p>which takes you in the container, and then in the container, at the <code>Singularity&gt;</code> 
+prompt:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>$WITH_CONDA
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>pip list
+</code></pre></div>
+<p>The same can be done without opening an interactive session in the container with</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>module load LUMI PyTorch/2.2.0-rocm-5.6.1-python-3.10-singularity-20240209
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>singularity exec $SIF bash -c &#39;$WITH_CONDA ; pip list&#39;
+</code></pre></div>
+<p>Notice the use of single quotes as with double quotes, <code>$WITH_CONDA</code> would be expanded
+by the shell before executing the singularity command, and at that time <code>WITH_CONDA</code> is
+not yet defined. To use the container it also doesn't matter which version of the 
+LUMI module is loaded, and in fact, loading CrayEnv would work as well.</p>
+<h4 id="executing-python-code-in-the-container-single-task">Executing Python code in the container (single task)</h4>
+<p>As an example, we'll import the <code>torch</code> package and request the number of GPUs 
+it sees.</p>
+<h5 id="containers-for-pytorch-260-and-later">Containers for PyTorch 2.6.0 and later</h5>
+<p>For these containers, one can still use the <code>conda-python-simple</code> wrapper script presented 
+below for the older containers, but another option is to use
+the <code>python</code> wrapper script provided by the container module so it is not needed
+to call <code>singularity exec</code> explicitly:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>salloc -N1 -pstandard-g -t 10:00
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>module load LUMI PyTorch/2.7.0-rocm-6.2.4-python-3.12-singularity-20250527
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>srun -N1 -n1 --gpus 8 python \
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    -c &#39;import torch; print(&quot;I have this many devices:&quot;, torch.cuda.device_count())&#39;
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>exit
+</code></pre></div>
+<p>This command will start Python and run PyTorch on a single CPU core with access to
+all 8 GPUs.</p>
+<h5 id="containers-from-20240315-on">Containers from 20240315 on</h5>
+<p>As the Conda environment and Python virtual environment are properly initialised by the
+module, the <code>/runscripts/conda-python-simple</code> script provided in older modules can be used
+(it is kept for now for compatibility reasons) but it is easier to directly execute
+the <code>python</code> command in the container.</p>
+<p>The following commands will work just as well:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>salloc -N1 -pstandard-g -t 10:00
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>module load LUMI PyTorch/2.3.1-rocm-6.0.3-python-3.12-singularity-20240923
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>srun -N1 -n1 --gpus 8 singularity exec $SIF python \
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    -c &#39;import torch; print(&quot;I have this many devices:&quot;, torch.cuda.device_count())&#39;
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>exit
+</code></pre></div>
+<h5 id="containers-up-to-and-including-the-20240209-ones_1">Containers up to and including the 20240209 ones</h5>
+<p>The wrapper script <code>conda-python-single</code> which can be found in the <code>/runscripts</code> directory
+in the container, takes care of initialising the Conda environment and then passes its
+arguments to the <code>python</code> command. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>salloc -N1 -pstandard-g -t 10:00
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>module load LUMI PyTorch/2.2.0-rocm-5.6.1-python-3.10-singularity-20240209
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>srun -N1 -n1 --gpus 8 singularity exec $SIF conda-python-simple \
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    -c &#39;import torch; print(&quot;I have this many devices:&quot;, torch.cuda.device_count())&#39;
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>exit
+</code></pre></div>
+<details class="note">
+<summary>Container modules installed before March 9, 2024</summary>
+<p>In these versions of the container module, <code>conda-python-simple</code> is not yet in
+the search path for executables, and you need to modify the job script to use
+<code>/runscripts/conda-python-simple</code> instead.</p>
+</details>
+<h4 id="distributed-learning-example">Distributed learning example</h4>
+<p>The communication between LUMI's GPUs during training with PyTorch is done via 
+<a href="https://github.com/ROCmSoftwarePlatform/rccl">RCCL</a>, which is a library of  collective 
+communication routines for AMD GPUs. RCCL works out of the box on LUMI, however, 
+a special plugin is required so it can take advantage of the Slingshot 11 interconnect. 
+That's the <a href="https://github.com/ROCmSoftwarePlatform/aws-ofi-rccl"><code>aws-ofi-rccl</code></a> plugin, 
+which is a library that can be used as a back-end for RCCL to interact with the interconnect 
+via libfabric. The plugin is already built in the containers that we provide here.</p>
+<p>A proper distributed learning run does require setting some environment variables.
+You can find out more by checking the scripts in <code>$EBROOTPYTORCH/runscripts</code> (after
+installing and loading the module), and in particular the 
+<code>conda-python-distributed</code> script and the <code>get-master</code> script used by the former.
+Together these scripts make job scripts a lot easier.</p>
+<p>An example job script using the <a href="https://github.com/Lumi-supercomputer/lumi-reframe-tests/tree/main/checks/containers/ML_containers/src/pytorch/mnist">mnist example</a>
+(itself based on an example by Google) is:</p>
+<!--
+Old locations of the data:
+
+wget http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz
+wget http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz
+wget http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz
+wget http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz
+
+-->
+
+<ol>
+<li>
+<p>The mnist example needs some data files. We can get them in the job script
+    but also simply install them now, avoiding repeated downloads when using the script multiple times
+    (in the example with wrappers it was in the job script to have a one file example).
+    First create a directory for your work on this example and go into that directory.
+    In that directory we'll create a subdirectory <code>mnist</code> with some files. The first run of 
+    the jobscript will download even more files.
+    Assuming you are working on the login nodes where the <code>wget</code> program is already available,</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>mkdir<span class="w"> </span>mnist<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nb">pushd</span><span class="w"> </span>mnist
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>wget<span class="w"> </span>https://raw.githubusercontent.com/Lumi-supercomputer/lumi-reframe-tests/98327968ff300ed0181d5d14b5dd49cdf1d7b743/checks/containers/ML_containers/src/pytorch/mnist/mnist_DDP.py
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>sed<span class="w"> </span>-i<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;s|download=True|download=False|&#39;</span><span class="w"> </span>mnist_DDP.py
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>model<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>model
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>wget<span class="w"> </span>https://github.com/Lumi-supercomputer/lumi-reframe-tests/raw/98327968ff300ed0181d5d14b5dd49cdf1d7b743/checks/containers/ML_containers/src/pytorch/mnist/model/model_gpu.dat
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="nb">cd</span><span class="w"> </span>..
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>data/MNIST/raw
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="nb">pushd</span><span class="w"> </span>data/MNIST/raw
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>wget<span class="w"> </span>https://github.com/golbin/TensorFlow-MNIST/raw/refs/heads/master/mnist/data/train-images-idx3-ubyte.gz
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>wget<span class="w"> </span>https://github.com/golbin/TensorFlow-MNIST/raw/refs/heads/master/mnist/data/train-labels-idx1-ubyte.gz
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>wget<span class="w"> </span>https://github.com/golbin/TensorFlow-MNIST/raw/refs/heads/master/mnist/data/t10k-images-idx3-ubyte.gz
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>wget<span class="w"> </span>https://github.com/golbin/TensorFlow-MNIST/raw/refs/heads/master/mnist/data/t10k-labels-idx1-ubyte.gz<span class="w">    </span>
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>gunzip<span class="w"> </span>-k<span class="w"> </span>*.gz
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="nb">popd</span>
+<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>
+<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a><span class="k">for</span><span class="w"> </span>number<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">31</span><span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>data<span class="w"> </span>data<span class="nv">$number</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+<a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>
+<a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a><span class="nb">popd</span>
+</code></pre></div>
+<p>will fetch the two files we need to start.</p>
+</li>
+<li>
+<p>We can now create the jobscript <code>mnist.slurm</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="ch">#!/bin/bash -e</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="c1">#SBATCH --nodes=4</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="c1">#SBATCH --gpus-per-node=8</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="c1">#SBATCH --tasks-per-node=8</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="c1">#SBATCH --cpus-per-task=7</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="c1">#SBATCH --output=&quot;output_%x_%j.txt&quot;</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="c1">#SBATCH --partition=standard-g</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="c1">#SBATCH --mem=480G</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="c1">#SBATCH --time=00:10:00</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="c1">#SBATCH --account=project_&lt;your_project_id&gt;</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>module<span class="w"> </span>load<span class="w"> </span>LUMI<span class="w">  </span><span class="c1"># Which version doesn&#39;t matter, it is only to get the container.</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>module<span class="w"> </span>load<span class="w"> </span>PyTorch/2.7.0-rocm-6.2.4-python-3.12-singularity-20250527
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="c1"># Optional: Inject the environment variables for NCCL debugging into the container.   </span>
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="c1"># This will produce a lot of debug output!     </span>
+<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="nb">export</span><span class="w"> </span><span class="nv">NCCL_DEBUG</span><span class="o">=</span>INFO
+<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="nb">export</span><span class="w"> </span><span class="nv">NCCL_DEBUG_SUBSYS</span><span class="o">=</span>INIT,COLL
+<a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a>
+<a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="nv">c</span><span class="o">=</span>fe
+<a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a><span class="nv">MYMASKS</span><span class="o">=</span><span class="s2">&quot;0x</span><span class="si">${</span><span class="nv">c</span><span class="si">}</span><span class="s2">000000000000,0x</span><span class="si">${</span><span class="nv">c</span><span class="si">}</span><span class="s2">00000000000000,0x</span><span class="si">${</span><span class="nv">c</span><span class="si">}</span><span class="s2">0000,0x</span><span class="si">${</span><span class="nv">c</span><span class="si">}</span><span class="s2">000000,0x</span><span class="si">${</span><span class="nv">c</span><span class="si">}</span><span class="s2">,0x</span><span class="si">${</span><span class="nv">c</span><span class="si">}</span><span class="s2">00,0x</span><span class="si">${</span><span class="nv">c</span><span class="si">}</span><span class="s2">00000000,0x</span><span class="si">${</span><span class="nv">c</span><span class="si">}</span><span class="s2">0000000000&quot;</span>
+<a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a>
+<a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span class="nb">cd</span><span class="w"> </span>mnist
+<a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a>srun<span class="w"> </span>--cpu-bind<span class="o">=</span>mask_cpu:<span class="nv">$MYMASKS</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a><span class="w">  </span>singularity<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="nv">$SIFPYTORCH</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a><span class="w">    </span>conda-python-distributed<span class="w"> </span>-u<span class="w"> </span>mnist_DDP.py<span class="w"> </span>--gpu<span class="w"> </span>--modelpath<span class="w"> </span>model
+</code></pre></div>
+<details class="note">
+<summary>Container modules installed before March 9, 2024</summary>
+<p>In these versions of the container module, <code>conda-python-distributed</code> is not yet in
+the search path for executables, and you need to modify the job script to use
+<code>/runscripts/conda-python-distributed</code> instead.</p>
+</details>
+<p>We use a CPU mask to ensure a proper mapping of CPU chiplets onto GPU chiplets. The GPUs are used in
+the regular ordering, so we reorder the CPU cores for each task so that the first task on a node
+gets the cores most closely to GPU 0, etc. </p>
+<p>The jobscript also shows how environment variables to enable debugging of the RCCL communication can be
+set outside the container. This is really as if they are set in the container.</p>
+<p>If those variables would in some way already be defined in the container (which is not the case), you could still
+overwrite the value set in the container by prepending the name of the variable with <code>SINGULARITYENV_</code>. </p>
+</li>
+</ol>
+<details class="note">
+<summary>Inside the <code>conda-python-distributed</code> script (if you need to modify things)</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="ch">#!/bin/bash -e</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="c1"># Make sure GPUs are up</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$SLURM_LOCALID</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span>rocm-smi
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="k">fi</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>sleep<span class="w"> </span><span class="m">2</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="c1"># MIOPEN needs some initialisation for the cache as the default location</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="c1"># does not work on LUMI as Lustre does not provide the necessary features.</span>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MIOPEN_USER_DB_PATH</span><span class="o">=</span><span class="s2">&quot;/tmp/</span><span class="k">$(</span>whoami<span class="k">)</span><span class="s2">-miopen-cache-</span><span class="nv">$SLURM_NODEID</span><span class="s2">&quot;</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MIOPEN_CUSTOM_CACHE_DIR</span><span class="o">=</span><span class="nv">$MIOPEN_USER_DB_PATH</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$SLURM_LOCALID</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a><span class="w">    </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$MIOPEN_USER_DB_PATH</span>
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$MIOPEN_USER_DB_PATH</span>
+<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="k">fi</span>
+<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>sleep<span class="w"> </span><span class="m">2</span>
+<a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>
+<a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a><span class="c1"># Set interfaces to be used by RCCL.</span>
+<a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a><span class="c1"># This is needed as otherwise RCCL tries to use a network interface it has</span>
+<a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a><span class="c1"># no access to on LUMI.</span>
+<a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a><span class="nb">export</span><span class="w"> </span><span class="nv">NCCL_SOCKET_IFNAME</span><span class="o">=</span>hsn0,hsn1,hsn2,hsn3
+<a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a><span class="nb">export</span><span class="w"> </span><span class="nv">NCCL_NET_GDR_LEVEL</span><span class="o">=</span><span class="m">3</span>
+<a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a>
+<a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a><span class="c1"># Set ROCR_VISIBLE_DEVICES so that each task uses the proper GPU</span>
+<a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ROCR_VISIBLE_DEVICES</span><span class="o">=</span><span class="nv">$SLURM_LOCALID</span>
+<a id="__codelineno-14-28" name="__codelineno-14-28" href="#__codelineno-14-28"></a>
+<a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a><span class="c1"># Report affinity to check</span>
+<a id="__codelineno-14-30" name="__codelineno-14-30" href="#__codelineno-14-30"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Rank </span><span class="nv">$SLURM_PROCID</span><span class="s2"> --&gt; </span><span class="k">$(</span>taskset<span class="w"> </span>-p<span class="w"> </span><span class="nv">$$</span><span class="k">)</span><span class="s2">; GPU </span><span class="nv">$ROCR_VISIBLE_DEVICES</span><span class="s2">&quot;</span>
+<a id="__codelineno-14-31" name="__codelineno-14-31" href="#__codelineno-14-31"></a>
+<a id="__codelineno-14-32" name="__codelineno-14-32" href="#__codelineno-14-32"></a><span class="c1"># The usual PyTorch initialisations (also needed on NVIDIA)</span>
+<a id="__codelineno-14-33" name="__codelineno-14-33" href="#__codelineno-14-33"></a><span class="c1"># Note that since we fix the port ID it is not possible to run, e.g., two</span>
+<a id="__codelineno-14-34" name="__codelineno-14-34" href="#__codelineno-14-34"></a><span class="c1"># instances via this script using half a node each.</span>
+<a id="__codelineno-14-35" name="__codelineno-14-35" href="#__codelineno-14-35"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MASTER_ADDR</span><span class="o">=</span><span class="k">$(</span>/runscripts/get-master<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SLURM_NODELIST</span><span class="s2">&quot;</span><span class="k">)</span>
+<a id="__codelineno-14-36" name="__codelineno-14-36" href="#__codelineno-14-36"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MASTER_PORT</span><span class="o">=</span><span class="m">29500</span>
+<a id="__codelineno-14-37" name="__codelineno-14-37" href="#__codelineno-14-37"></a><span class="nb">export</span><span class="w"> </span><span class="nv">WORLD_SIZE</span><span class="o">=</span><span class="nv">$SLURM_NPROCS</span>
+<a id="__codelineno-14-38" name="__codelineno-14-38" href="#__codelineno-14-38"></a><span class="nb">export</span><span class="w"> </span><span class="nv">RANK</span><span class="o">=</span><span class="nv">$SLURM_PROCID</span>
+<a id="__codelineno-14-39" name="__codelineno-14-39" href="#__codelineno-14-39"></a>
+<a id="__codelineno-14-40" name="__codelineno-14-40" href="#__codelineno-14-40"></a><span class="c1"># Run application</span>
+<a id="__codelineno-14-41" name="__codelineno-14-41" href="#__codelineno-14-41"></a>python<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>The script sets a number of environment variables. Some are fairly standard when using PyTorch
+on an HPC cluster while others are specific for the LUMI interconnect and architecture or the 
+AMD ROCm environment.</p>
+<p>The <code>MIOPEN_</code> environment variables are needed to make 
+<a href="https://rocm.docs.amd.com/projects/MIOpen/en/latest/">MIOpen</a> create its caches on <code>/tmp</code>
+as doing this on Lustre fails because of file locking issues:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MIOPEN_USER_DB_PATH</span><span class="o">=</span><span class="s2">&quot;/tmp/</span><span class="k">$(</span>whoami<span class="k">)</span><span class="s2">-miopen-cache-</span><span class="nv">$SLURM_NODEID</span><span class="s2">&quot;</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MIOPEN_CUSTOM_CACHE_DIR</span><span class="o">=</span><span class="nv">$MIOPEN_USER_DB_PATH</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$SLURM_LOCALID</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">    </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$MIOPEN_USER_DB_PATH</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$MIOPEN_USER_DB_PATH</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="k">fi</span>
+</code></pre></div>
+<p>It is also essential to tell RCCL, the communication library, which network adapters to use. 
+These environment variables start with <code>NCCL_</code> because ROCm tries to keep things as similar as
+possible to NCCL in the NVIDIA ecosystem:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>export NCCL_SOCKET_IFNAME=hsn0,hsn1,hsn2,hsn3
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>export NCCL_NET_GDR_LEVEL=3
+</code></pre></div>
+<p>Without this RCCL may try to use a network adapter meant for system management rather than
+inter-node communications!</p>
+<p>We also set <code>ROCR_VISIBLE_DEVICES</code> to ensure that each task uses the proper GPU.</p>
+<p>Furthermore some environment variables are needed by PyTorch itself that are also needed on
+NVIDIA systems.</p>
+<p>PyTorch needs to find the master for communication which is done through</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MASTER_ADDR</span><span class="o">=</span><span class="k">$(</span>/runscripts/get-master<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SLURM_NODELIST</span><span class="s2">&quot;</span><span class="k">)</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MASTER_PORT</span><span class="o">=</span><span class="m">29500</span>
+</code></pre></div>
+<p>The <code>get-master</code> script that is used here is a Python script to determine the master node 
+for communication and also already provided in the <code>/runscripts</code> subdirectory in the 
+container (or <code>$RUNSCRIPTS</code> outside the container).</p>
+<p><strong>As we fix the port number here, the <code>conda-python-distributed</code> script that we provide, 
+has to run on exclusive nodes.
+Running, e.g., 2 4-GPU jobs on the same node with this command will not work as there will be
+a conflict for the TCP port for communication on the master as <code>MASTER_PORT</code> is hard-coded in 
+this version of the script.</strong></p>
+</details>
+<h3 id="installation-with-easybuild">Installation with EasyBuild</h3>
+<p>To install the container with EasyBuild, follow the instructions in the
+<a href="https://docs.lumi-supercomputer.eu/software/installing/easybuild/">EasyBuild section of the LUMI documentation, section "Software"</a>,
+and use the dummy partition <code>container</code>, e.g.:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>module load LUMI partition/container EasyBuild-user
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>eb PyTorch-2.6.0-rocm-6.2.4-python-3.12-singularity-20250404.eb
+</code></pre></div>
+<p>To use the container after installation, the <code>EasyBuild-user</code> module is not needed nor
+is the <code>container</code> partition. The module will be available in all versions of the LUMI stack
+and in <a href="https://docs.lumi-supercomputer.eu/runjobs/lumi_env/softwarestacks/#crayenv">the <code>CrayEnv</code> stack</a>
+(provided the environment variable <code>EBU_USER_PREFIX</code> points to the right location).</p>
+<p>After loading the module, the docker definition file used when building the container
+is available in the <code>$EBROOTPYTORCH/share/docker-defs</code> subdirectory (but not for all
+versions). As it requires some
+licensed components from LUMI and some other files that are not included, it currently
+cannot be used to reconstruct the container and extend its definition.</p>
+<h3 id="extending-the-containers-with-virtual-environment-support">Extending the containers with virtual environment support</h3>
+<p><strong>This text is for containers from 20240315 on. Other containers can be extended with virtual
+environments also but you'll have to do a lot more work by hand that is now done by the module,
+or adapt the EasyConfig for those based on what is in the more recent EasyConfigs.</strong></p>
+<!--
+TODO: The general idea will apply to several of the AMD containers (also, e.g., the jax and TensorFlow containers)
+so the general principles really need to be discussed in the main LUMI docs.
+-->
+
+<h4 id="manual-procedure">Manual procedure</h4>
+<p>Let's demonstrate how the module can be extended by using <code>pip</code> to install packages in the virtual
+environment. We'll demonstrate using the <code>PyTorch/2.7.0-rocm-6.2.4-python-3.12-singularity-20250527</code>
+module where we assume that you have already installed this module:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>module<span class="w"> </span>load<span class="w"> </span>CrayEnv
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>module<span class="w"> </span>load<span class="w"> </span>PyTorch/2.7.0-rocm-6.2.4-python-3.12-singularity-20250527
+</code></pre></div>
+<p>Let's check a directory outside the container:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>ls<span class="w"> </span>-l<span class="w"> </span><span class="nv">$CONTAINERROOT</span>/user-software/venv/pytorch
+</code></pre></div>
+<p>which produces something along the lines of</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>drwxrwsr-x 2 username project_46XYYYYYY 4096 Mar 25 17:15 bin
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>drwxrwsr-x 2 username project_46XYYYYYY 4096 Mar 25 17:14 include
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>drwxrwsr-x 3 username project_46XYYYYYY 4096 Mar 25 17:14 lib
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>lrwxrwxrwx 1 username project_46XYYYYYY    3 Mar 25 17:14 lib64 -&gt; lib
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>-rw-rw-r-- 1 username project_46XYYYYYY   94 Mar 25 17:15 pyvenv.cfg
+</code></pre></div>
+<p>The output is typical for a freshly initialised Python virtual environment.</p>
+<p>We can now enter the container:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>singularity<span class="w"> </span>shell<span class="w"> </span><span class="nv">$SIF</span>
+</code></pre></div>
+<p>At the singularity prompt, try</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>ls<span class="w"> </span>-l<span class="w"> </span>/user-software/venv/pytorch
+</code></pre></div>
+<p>and notice that we have the same output as with the previous <code>ls</code> command that we executed outside
+the container. So the <code>$CONTAINERROOT/user-software</code> subdirectory is available in the container
+as <code>/user-software</code>.</p>
+<p>Executing</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>which<span class="w"> </span>python
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>which<span class="w"> </span>python3
+</code></pre></div>
+<p>which return the lines</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>/user-software/venv/pytorch/bin/python
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>/user-software/venv/pytorch/bin/python3
+</code></pre></div>
+<p>also shows that the virtual environment is already activated and that we get the <code>python</code> wrapper script
+from the virtual environment and not the system <code>python3</code> (there is a <code>python3</code> executable in <code>/usr/bin</code>)
+or the Conda <code>python</code> in <code>/opt/miniconda3/envs/pytorch/bin</code>.</p>
+<p>Let us install the <code>torch-hd</code> package using <code>pip</code>. For PyTorch versions prior to 2.6.0, you have to
+do this in a singularity shell as started above, but from PyTorch 2.6.0 on, additional wrapper scripts
+are provided so that you can also install additional packages with <code>pip</code> from a shell on the system.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>pip<span class="w"> </span>install<span class="w"> </span>torch-hd
+</code></pre></div>
+<p>To check if the package is present and can be loaded, try</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>python<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;import torchhd ; print( torchhd.__version__ )&#39;</span>
+</code></pre></div>
+<p>and notice that it does print the version number of <code>torch-hd</code>, so the package was
+successfully loaded.</p>
+<p>If you are in the container, you can now execute </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>ls<span class="w"> </span>/user-software/venv/pytorch/lib/python3.12/site-packages/
+</code></pre></div>
+<p>and you'll get output similar to</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>pip                   torchhd
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>pip-24.3.1.dist-info  torch_hd-5.8.4.dist-info
+</code></pre></div>
+<p>which confirms that the <code>torch-hd</code> package is indeed installed in the virtual environment.</p>
+<p>In a shell outside the container, one can check:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>ls<span class="w"> </span><span class="nv">$CONTAINERROOT</span>/user-software/venv/pytorch/lib/python3.12/site-packages/
+</code></pre></div>
+<p>and we get the same output as with the previous <code>ls</code> command. I.e., the installation file of the package
+is indeed saved outside the container.</p>
+<p>Now there is one remaining problem. Try (outside the container)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>lfs<span class="w"> </span>find<span class="w"> </span><span class="nv">$CONTAINERROOT</span>/user-software<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</code></pre></div>
+<p>where <code>lfs find</code> is a version of the <code>find</code> command with some restrictions, but one that is a lot more
+friendly to the Lustre metadata servers. The output suggests that there are over 1300 files and directories
+in the <code>user-software</code> subdirectory. The Lustre filesystem doesn't like working with lots of small files
+and Python can sometimes open a lot of those files in a short amount of time. </p>
+<p>The module also provides a solution for this: The content of <code>$CONTAINERROOT/user-software</code> can be packed
+in a single SquashFS file <code>$CONTAINERROOT/user-software.squashfs</code> and after reloading the <code>PyTorch</code> module that
+is being used, that file will be mounted in the container and provide <code>/user-software</code>. This may improve
+performance of Python in the container and is certainly appreciated by your fellow LUMI users.
+To this end, the module provides the <code>make-squashfs</code> script. Try</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>make-squashfs
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>ls<span class="w"> </span><span class="nv">$CONTAINERROOT</span>
+</code></pre></div>
+<p>The second command outputs something along the lines of</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>bin
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>easybuild
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>lumi-pytorch-rocm-6.2.4-python-3.12-pytorch-v2.6.0-dockerhash-36e16fb5b67b.sif
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>runscripts
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>user-software
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>user-software.squashfs
+</code></pre></div>
+<p>so we see that there is now indeed a file <code>user-software.squashfs</code> in that subdirectory.
+We do not automatically delete the <code>user-software</code> subdirectory, but you can delete it safely using</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>rm -rf $CONTAINERROOT/user-software
+</code></pre></div>
+<p>as it can be reconstructed (except for the file dates) from the SquashFS file using the script
+<code>unmake-squashfs</code> which is also provided by the module.</p>
+<p>Reload the module to let the changes take effect and go again in the container:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>module<span class="w"> </span>load<span class="w"> </span>PyTorch/2.7.0-rocm-6.2.4-python-3.12-singularity-20250527
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>singularity<span class="w"> </span>shell<span class="w"> </span><span class="nv">$SIF</span>
+</code></pre></div>
+<p>Now try</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Test&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/user-software/test.txt
+</code></pre></div>
+<p>and notice that we can no longer write in <code>/user-software</code>.</p>
+<p>Installing further packages with <code>pip</code> would not fail, but they would not be installed where you expect and instead
+would be installed in your home directory. The <code>pip</code> command would warn with</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>Defaulting to user installation because normal site-packages is not writeable
+</code></pre></div>
+<p>Try, e.g.,</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>pip<span class="w"> </span>install<span class="w"> </span>torch-pme<span class="o">==</span><span class="m">0</span>.3.0
+</code></pre></div>
+<p>and notice that the package (likely) landed in <code>~/.local/lib/python3.12/site-packages</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>ls ~/.local/lib/python3.12/site-packages
+</code></pre></div>
+<p>will among other subdirectories contain the subdirectory <code>lightning</code> and this is 
+not entirely what we want.</p>
+<p>Yet it is still possible to install additional packages by first unsquashing the <code>user-software.squashfs</code> file
+with </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>unmake-squashfs
+</code></pre></div>
+<p>(assuming that you had removed the <code>$CONTAINERROOT/user-software</code> subdirectory before),
+then deleting the SquashFS file:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>rm<span class="w"> </span><span class="nv">$CONTAINERROOT</span>/user-software.squashfs
+</code></pre></div>
+<p>and reload the module. Make sure though that you first remove the packages that were accidentally installed
+in <code>~/.local</code>.</p>
+<p>One big warning is needed here though: <strong>If you do a complete re-install of the module with EasyBuild,
+everything in the installation directory is erased, including your own installation. So just to make sure,
+you may want to keep a copy of the <code>user-software.squashfs</code> file elsewhere.</strong></p>
+<h4 id="automation-of-the-procedure">Automation of the procedure</h4>
+<p><strong>Try this procedure preferably from a directory that doesn't contain too many files or subdirectories
+as that may slow down EasyBuild considerably.</strong></p>
+<p>In some cases it is possible to adapt the EasyConfig file to also install the additional Python packages
+that are not yet included in the container. This is demonstrated in the 
+<code>PyTorch-2.3.1-rocm-6.0.3-python-3.12-singularity-exampleVenv-20240923.eb</code> example EasyConfig file
+which is available on LUMI. First load EasyBuild to install containers, e.g.,</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>module<span class="w"> </span>load<span class="w"> </span>LUMI<span class="w"> </span>partition/container<span class="w"> </span>EasyBuild-user
+</code></pre></div>
+<p>and then we can use EasyBuild to copy the recipe to our current directory:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>eb<span class="w"> </span>--copy-ec<span class="w"> </span>PyTorch-2.3.1-rocm-6.0.3-python-3.12-singularity-exampleVenv-20240923.eb<span class="w"> </span>.
+</code></pre></div>
+<p>You can now inspect the <code>.eb</code> file with your favourite editor. This file basically defines a lot
+of Python variables that EasyBuild uses, but is also a small program so we can even define and use
+extra variables that EasyBuild does not know. The magic happens in two blocks.</p>
+<p>First,</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="n">local_pip_requirements</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="s2">torchmetrics</span>
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="s2">pytorch-lightning</span>
+<a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a>
+<a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a><span class="s2">&quot;&quot;&quot;</span>
+</code></pre></div>
+<!-- TODO: Is that empty line really needed? -->
+<p>(with an empty line at the end) defines the content that we will put in a <code>requirements.txt</code> file to 
+tell <code>pip</code> which packages we want to install.</p>
+<p>The second part of the magic happens in some lines in the <code>postinstallcmds</code> block, a list of commands
+that EasyBuild will execute after the default installation procedure (which only copies the container
+<code>.sif</code> file to its location). Four lines in particular perform the magic:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>    <span class="sa">f</span><span class="s1">&#39;cat &gt;%(installdir)s/user-software/venv/requirements.txt &lt;&lt;EOF </span><span class="si">{</span><span class="n">local_pip_requirements</span><span class="si">}</span><span class="s1">EOF&#39;</span><span class="p">,</span>
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a>    <span class="sa">f</span><span class="s1">&#39;singularity exec --bind </span><span class="si">{</span><span class="n">local_singularity_bind</span><span class="si">}</span><span class="s1"> --bind %(installdir)s/user-software:/user-software %(installdir)s/</span><span class="si">{</span><span class="n">local_sif</span><span class="si">}</span><span class="s1"> bash -c </span><span class="se">\&#39;</span><span class="s1">source /runscripts/init-conda-venv ; cd /user-software/venv ; pip install -r requirements.txt</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="p">,</span>
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a>    <span class="s1">&#39;</span><span class="si">%(installdir)s</span><span class="s1">/bin/make-squashfs&#39;</span><span class="p">,</span>
+<a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a>    <span class="s1">&#39;/bin/rm -rf </span><span class="si">%(installdir)s</span><span class="s1">/user-software&#39;</span><span class="p">,</span>
+</code></pre></div>
+<p>The first line creates the <code>requirements.txt</code> file from the <code>local_pip_requirements</code> variable that we have
+created. The way to do this is a bit awkward by creating a shell command from it, but it works in most cases.
+The second line then calls <code>pip install</code> in the singularity container. At this point there is no module yet
+so we need to do all bindings by hand and use variables that are known to EasyBuild. 
+The third line then creates the <code>user-software.squashfs</code> file and the last line deletes the <code>user-software</code>
+subdirectory. These four lines are generic as the package list is defined via the 
+<code>local_pip_requirements</code> environment variable.</p>
+<h4 id="installing-packages-that-need-to-be-compiled">Installing packages that need to be compiled</h4>
+<p>Some packages need to be compiled on the system, even when installing via <code>pip</code>. </p>
+<p>The problem one may run into is that it may seem that there is no <code>gcc</code> or <code>g++</code> in the container,
+while the default behaviour of packages installed with <code>pip</code> that need compilation, may be to 
+go looking for either <code>gcc</code>, etc., or some Conda-installed compiler such as 
+<code>x86_64-conda-linux-gnu-gcc</code>, etc. </p>
+<p>Now in SUSE Linux, as used by the containers for optimal compatibility with Linux, <code>gcc</code> would
+be a very old compiler, basically version 7.5, as enterprise Linux distributions tend to stay
+with the version they were released with until the next major upgrade. Yet SUSE does support 
+newer versions of the compilers also, but they then include the major version in their name, e.g.,
+<code>gcc-12</code>, <code>g++-12</code>, etc. And one of these versions may be installed in the container, as some of
+the software in most of the AI containers is compiled during the build phase of the compiler
+to better adapt them to LUMI. </p>
+<p>The Conda-installed compilers, are available in most, if not all containers.</p>
+<p>Usually it is possible to tell the <code>pip install</code> process to tell which compiler to use by
+setting environment variables, e.g., <code>CC</code> for the C compiler and <code>CXX</code> for the C++ compiler.</p>
+<p>E.g., let's try to install the <a href="https://pypi.org/project/torch-scatter/"><code>torch-scatter</code></a> in
+the <code>PyTorch/2.7.0-rocm-6.2.4-python-3.12-singularity-20250527</code> module (assuming that one is installed
+already and loaded).
+With this module, it is not needed to first start a shell in the container to do the installation,
+but it is still possible to first do a <code>start-shell</code> (and this is needed with prior versions).
+The <code>torch-scatter</code> package needs the C++ compiler, so the trick to install this package, is to use</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="nv">CXX</span><span class="o">=</span>g++-12<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>torch-scatter
+</code></pre></div>
+<p>To check if the package is indeed installed (though this is not always enough to guarantee a 
+correct installation), run</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>python<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;import torch_scatter ; print( torch_scatter.__version__ )&#39;</span>
+</code></pre></div>
+<h3 id="alternative-direct-access-without-the-easybuild-generated-pytorch-module">Alternative: Direct access (without the EasyBuild-generated PyTorch module)</h3>
+<h4 id="getting-the-container-image">Getting the container image</h4>
+<p>The PyTorch containers are available in the following subdirectories of <code>/appl/local/containers</code>:</p>
+<ul>
+<li>
+<p><code>/appl/local/containers/sif-images</code>: Symbolic link to the latest version of the container
+    with the given mix of components/packages mentioned in the filename.
+    Other packages in the container may vary over time and change without notice.</p>
+</li>
+<li>
+<p><code>/appl/local/containers/tested-containers</code>: Tested containers provided as a Singulartiy <code>.sif</code> file
+    and a docker-generated tarball. Containers in this directory are removed quickly when a new version
+    becomes available.</p>
+</li>
+<li>
+<p><code>/appl/local/containers/easybuild-sif-images</code>: Singularity <code>.sif</code> images used with the EasyConfigs
+    that we provide. They tend to be available for a longer time than in the other two subdirectories.</p>
+</li>
+</ul>
+<p>If you depend on a particular version of a container, we recommend that you copy the container to
+your own file space (e.g., in <code>/project</code>,) as there is no guarantee the specific version will remain
+available centrally on the system for as long as you want.</p>
+<p>When using the containers without the modules, you will have to take care of the bindings as some
+system files are needed for, e.g., RCCL. The recommended mininmal bindings are:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>-B /var/spool/slurmd,/opt/cray/,/usr/lib64/libcxi.so.1
+</code></pre></div>
+<p>and the bindings you need to access the files you want to use from <code>/scratch</code>, <code>/flash</code> and/or <code>/project</code>: </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>-B /pfs,/scratch,/projappl,/project,/flash,/appl
+</code></pre></div>
+<p>Note that the list recommended bindings may change after a system update or between containers. E.g.,
+the containers provided since early 2025 already contain their own <code>libcxi.so.1</code> but the container
+is configured in such a way that binding the one from the system will do no harm. Some containers
+in the past also required binding <code>/usr/lib64/libjansson.so.4</code> but there is now a version in the
+newer containers, and overwriting that version may in fact create incompatibilities with other 
+software in the container.</p>
+<p>If you want to quickly check what Python packages are available in the containers in those directories,
+you don't need all the bind points and a quick</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>singularity exec &lt;path-to-sif-file&gt; bash -c &#39;$WITH_CONDA ; pip list&#39;
+</code></pre></div>
+<p>will do. Note the single quotes though as we don't want the <code>$WITH_CONDA</code> to be expanded outside 
+the container (and of course replace <code>&lt;path-to-sif-file&gt;</code> with the actual path to and name of 
+the SIF file you want to check.)</p>
+<p>Alternatively, you can also build your <a href="../../r/rocm/#using-the-images-as-base-image-for-cotainr">own container image on top of the
+ROCm containers that we provide with cotainr</a>.</p>
+<p>If you use PyTorch containers from other sources, take into account that</p>
+<ul>
+<li>
+<p>They need to explicitly use ROCm-enabled versions of the packages. NVIDIA packages
+    will not work.</p>
+</li>
+<li>
+<p>The RCCL implementation provided in the container will likely not work well with the
+    communication network and the 
+    <a href="../../a/aws-ofi-rccl/">AWS RCCL plugin for OFI</a> plugin will still need to be 
+    installed in a way that the libfabric library on LUMI is used.</p>
+</li>
+<li>
+<p>Similarly the <code>mpi4py</code> package (if included) may not be compatible with the interconnect
+    on LUMI, also resulting in poor performance or failure. For AI packages, things will
+    often still be OK as MPI is often only used during the initialisation after which 
+    communication is done through RCCL. 
+    You may want to make sure that an
+    MPI implementation that is ABI-compatible with Cray MPICH is used so that you can then try
+    to overwrite it with Cray MPICH.</p>
+</li>
+</ul>
+<p>The LUMI User Support Team tries to support the containers that it provides as good as possible,
+but we are not the PyTorch support team and have limited resources. In no way is it the task of
+the LUST to support any possible container from any possible source. See also our page
+<a href="https://docs.lumi-supercomputer.eu/software/policy/">"Software Install Policy</a>
+in the main LUMI documentation.</p>
+<h4 id="example-distributed-learning-without-the-wrappers">Example: Distributed learning without the wrappers</h4>
+<p>For easy comparison, we use the same
+<a href="https://github.com/Lumi-supercomputer/lumi-reframe-tests/tree/main/checks/containers/ML_containers/src/pytorch/mnist">mnist example</a>
+already used in the <a href="./#distributed-learning-example">"Distributed learning example" with the wrapper scripts</a>.
+The text is written in such a way though that it can be read without first reading that section.</p>
+<ol>
+<li>
+<p>First one needs to create the script <code>get-master.py</code> that will be used to determine the
+    master node for communication:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">argparse</span>
+<a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_parser</span><span class="p">():</span>
+<a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a>    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Extract master node name from Slurm node list&quot;</span><span class="p">,</span>
+<a id="__codelineno-51-4" name="__codelineno-51-4" href="#__codelineno-51-4"></a>            <span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentDefaultsHelpFormatter</span><span class="p">)</span>
+<a id="__codelineno-51-5" name="__codelineno-51-5" href="#__codelineno-51-5"></a>    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;nodelist&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Slurm nodelist&quot;</span><span class="p">)</span>
+<a id="__codelineno-51-6" name="__codelineno-51-6" href="#__codelineno-51-6"></a>    <span class="k">return</span> <span class="n">parser</span>
+<a id="__codelineno-51-7" name="__codelineno-51-7" href="#__codelineno-51-7"></a>
+<a id="__codelineno-51-8" name="__codelineno-51-8" href="#__codelineno-51-8"></a>
+<a id="__codelineno-51-9" name="__codelineno-51-9" href="#__codelineno-51-9"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<a id="__codelineno-51-10" name="__codelineno-51-10" href="#__codelineno-51-10"></a>    <span class="n">parser</span> <span class="o">=</span> <span class="n">get_parser</span><span class="p">()</span>
+<a id="__codelineno-51-11" name="__codelineno-51-11" href="#__codelineno-51-11"></a>    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+<a id="__codelineno-51-12" name="__codelineno-51-12" href="#__codelineno-51-12"></a>
+<a id="__codelineno-51-13" name="__codelineno-51-13" href="#__codelineno-51-13"></a>    <span class="n">first_nodelist</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">nodelist</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-51-14" name="__codelineno-51-14" href="#__codelineno-51-14"></a>
+<a id="__codelineno-51-15" name="__codelineno-51-15" href="#__codelineno-51-15"></a>    <span class="k">if</span> <span class="s1">&#39;[&#39;</span> <span class="ow">in</span> <span class="n">first_nodelist</span><span class="p">:</span>
+<a id="__codelineno-51-16" name="__codelineno-51-16" href="#__codelineno-51-16"></a>        <span class="n">a</span> <span class="o">=</span> <span class="n">first_nodelist</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;[&#39;</span><span class="p">)</span>
+<a id="__codelineno-51-17" name="__codelineno-51-17" href="#__codelineno-51-17"></a>        <span class="n">first_node</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-51-18" name="__codelineno-51-18" href="#__codelineno-51-18"></a>
+<a id="__codelineno-51-19" name="__codelineno-51-19" href="#__codelineno-51-19"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-51-20" name="__codelineno-51-20" href="#__codelineno-51-20"></a>        <span class="n">first_node</span> <span class="o">=</span> <span class="n">first_nodelist</span>
+<a id="__codelineno-51-21" name="__codelineno-51-21" href="#__codelineno-51-21"></a>
+<a id="__codelineno-51-22" name="__codelineno-51-22" href="#__codelineno-51-22"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">first_node</span><span class="p">)</span>
+</code></pre></div>
+</li>
+<li>
+<p>Next we need another script that will run in the container to set up a number of
+    environment variables that are needed to run PyTorch successfully on LUMI and at
+    the end, call Python to run our example. Let's store the following script as
+    <code>run-pytorch.sh</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="ch">#!/bin/bash -e</span>
+<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a>
+<a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a><span class="c1"># Make sure GPUs are up</span>
+<a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$SLURM_LOCALID</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-52-5" name="__codelineno-52-5" href="#__codelineno-52-5"></a><span class="w">    </span>rocm-smi
+<a id="__codelineno-52-6" name="__codelineno-52-6" href="#__codelineno-52-6"></a><span class="k">fi</span>
+<a id="__codelineno-52-7" name="__codelineno-52-7" href="#__codelineno-52-7"></a>sleep<span class="w"> </span><span class="m">2</span>
+<a id="__codelineno-52-8" name="__codelineno-52-8" href="#__codelineno-52-8"></a>
+<a id="__codelineno-52-9" name="__codelineno-52-9" href="#__codelineno-52-9"></a><span class="c1"># !Remove this if using an image extended with cotainr or a container from elsewhere.!</span>
+<a id="__codelineno-52-10" name="__codelineno-52-10" href="#__codelineno-52-10"></a><span class="c1"># Start conda environment inside the container</span>
+<a id="__codelineno-52-11" name="__codelineno-52-11" href="#__codelineno-52-11"></a><span class="nv">$WITH_CONDA</span>
+<a id="__codelineno-52-12" name="__codelineno-52-12" href="#__codelineno-52-12"></a>
+<a id="__codelineno-52-13" name="__codelineno-52-13" href="#__codelineno-52-13"></a><span class="c1"># MIOPEN needs some initialisation for the cache as the default location</span>
+<a id="__codelineno-52-14" name="__codelineno-52-14" href="#__codelineno-52-14"></a><span class="c1"># does not work on LUMI as Lustre does not provide the necessary features.</span>
+<a id="__codelineno-52-15" name="__codelineno-52-15" href="#__codelineno-52-15"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MIOPEN_USER_DB_PATH</span><span class="o">=</span><span class="s2">&quot;/tmp/</span><span class="k">$(</span>whoami<span class="k">)</span><span class="s2">-miopen-cache-</span><span class="nv">$SLURM_NODEID</span><span class="s2">&quot;</span>
+<a id="__codelineno-52-16" name="__codelineno-52-16" href="#__codelineno-52-16"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MIOPEN_CUSTOM_CACHE_DIR</span><span class="o">=</span><span class="nv">$MIOPEN_USER_DB_PATH</span>
+<a id="__codelineno-52-17" name="__codelineno-52-17" href="#__codelineno-52-17"></a>
+<a id="__codelineno-52-18" name="__codelineno-52-18" href="#__codelineno-52-18"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$SLURM_LOCALID</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-52-19" name="__codelineno-52-19" href="#__codelineno-52-19"></a><span class="w">    </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$MIOPEN_USER_DB_PATH</span>
+<a id="__codelineno-52-20" name="__codelineno-52-20" href="#__codelineno-52-20"></a><span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$MIOPEN_USER_DB_PATH</span>
+<a id="__codelineno-52-21" name="__codelineno-52-21" href="#__codelineno-52-21"></a><span class="k">fi</span>
+<a id="__codelineno-52-22" name="__codelineno-52-22" href="#__codelineno-52-22"></a>sleep<span class="w"> </span><span class="m">2</span>
+<a id="__codelineno-52-23" name="__codelineno-52-23" href="#__codelineno-52-23"></a>
+<a id="__codelineno-52-24" name="__codelineno-52-24" href="#__codelineno-52-24"></a><span class="c1"># Optional! Set NCCL debug output to check correct use of aws-ofi-rccl (these are very verbose)</span>
+<a id="__codelineno-52-25" name="__codelineno-52-25" href="#__codelineno-52-25"></a><span class="nb">export</span><span class="w"> </span><span class="nv">NCCL_DEBUG</span><span class="o">=</span>INFO
+<a id="__codelineno-52-26" name="__codelineno-52-26" href="#__codelineno-52-26"></a><span class="nb">export</span><span class="w"> </span><span class="nv">NCCL_DEBUG_SUBSYS</span><span class="o">=</span>INIT,COLL
+<a id="__codelineno-52-27" name="__codelineno-52-27" href="#__codelineno-52-27"></a>
+<a id="__codelineno-52-28" name="__codelineno-52-28" href="#__codelineno-52-28"></a><span class="c1"># Set interfaces to be used by RCCL.</span>
+<a id="__codelineno-52-29" name="__codelineno-52-29" href="#__codelineno-52-29"></a><span class="c1"># This is needed as otherwise RCCL tries to use a network interface it has</span>
+<a id="__codelineno-52-30" name="__codelineno-52-30" href="#__codelineno-52-30"></a><span class="c1"># no access to on LUMI.</span>
+<a id="__codelineno-52-31" name="__codelineno-52-31" href="#__codelineno-52-31"></a><span class="nb">export</span><span class="w"> </span><span class="nv">NCCL_SOCKET_IFNAME</span><span class="o">=</span>hsn0,hsn1,hsn2,hsn3
+<a id="__codelineno-52-32" name="__codelineno-52-32" href="#__codelineno-52-32"></a><span class="nb">export</span><span class="w"> </span><span class="nv">NCCL_NET_GDR_LEVEL</span><span class="o">=</span><span class="m">3</span>
+<a id="__codelineno-52-33" name="__codelineno-52-33" href="#__codelineno-52-33"></a>
+<a id="__codelineno-52-34" name="__codelineno-52-34" href="#__codelineno-52-34"></a><span class="c1"># Set ROCR_VISIBLE_DEVICES so that each task uses the proper GPU</span>
+<a id="__codelineno-52-35" name="__codelineno-52-35" href="#__codelineno-52-35"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ROCR_VISIBLE_DEVICES</span><span class="o">=</span><span class="nv">$SLURM_LOCALID</span>
+<a id="__codelineno-52-36" name="__codelineno-52-36" href="#__codelineno-52-36"></a>
+<a id="__codelineno-52-37" name="__codelineno-52-37" href="#__codelineno-52-37"></a><span class="c1"># Report affinity to check</span>
+<a id="__codelineno-52-38" name="__codelineno-52-38" href="#__codelineno-52-38"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Rank </span><span class="nv">$SLURM_PROCID</span><span class="s2"> --&gt; </span><span class="k">$(</span>taskset<span class="w"> </span>-p<span class="w"> </span><span class="nv">$$</span><span class="k">)</span><span class="s2">; GPU </span><span class="nv">$ROCR_VISIBLE_DEVICES</span><span class="s2">&quot;</span>
+<a id="__codelineno-52-39" name="__codelineno-52-39" href="#__codelineno-52-39"></a>
+<a id="__codelineno-52-40" name="__codelineno-52-40" href="#__codelineno-52-40"></a><span class="c1"># The usual PyTorch initialisations (also needed on NVIDIA)</span>
+<a id="__codelineno-52-41" name="__codelineno-52-41" href="#__codelineno-52-41"></a><span class="c1"># Note that since we fix the port ID it is not possible to run, e.g., two</span>
+<a id="__codelineno-52-42" name="__codelineno-52-42" href="#__codelineno-52-42"></a><span class="c1"># instances via this script using half a node each.</span>
+<a id="__codelineno-52-43" name="__codelineno-52-43" href="#__codelineno-52-43"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MASTER_ADDR</span><span class="o">=</span><span class="k">$(</span>python<span class="w"> </span>/workdir/get-master.py<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SLURM_NODELIST</span><span class="s2">&quot;</span><span class="k">)</span>
+<a id="__codelineno-52-44" name="__codelineno-52-44" href="#__codelineno-52-44"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MASTER_PORT</span><span class="o">=</span><span class="m">29500</span>
+<a id="__codelineno-52-45" name="__codelineno-52-45" href="#__codelineno-52-45"></a><span class="nb">export</span><span class="w"> </span><span class="nv">WORLD_SIZE</span><span class="o">=</span><span class="nv">$SLURM_NPROCS</span>
+<a id="__codelineno-52-46" name="__codelineno-52-46" href="#__codelineno-52-46"></a><span class="nb">export</span><span class="w"> </span><span class="nv">RANK</span><span class="o">=</span><span class="nv">$SLURM_PROCID</span>
+<a id="__codelineno-52-47" name="__codelineno-52-47" href="#__codelineno-52-47"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ROCR_VISIBLE_DEVICES</span><span class="o">=</span><span class="nv">$SLURM_LOCALID</span>
+<a id="__codelineno-52-48" name="__codelineno-52-48" href="#__codelineno-52-48"></a>
+<a id="__codelineno-52-49" name="__codelineno-52-49" href="#__codelineno-52-49"></a><span class="c1"># Run app</span>
+<a id="__codelineno-52-50" name="__codelineno-52-50" href="#__codelineno-52-50"></a><span class="nb">cd</span><span class="w"> </span>/workdir/mnist
+<a id="__codelineno-52-51" name="__codelineno-52-51" href="#__codelineno-52-51"></a>python<span class="w"> </span>-u<span class="w"> </span>mnist_DDP.py<span class="w"> </span>--gpu<span class="w"> </span>--modelpath<span class="w"> </span>model
+</code></pre></div>
+<details class="note">
+<summary>What's going on in this script? (click to expand)</summary>
+<p>The script sets a number of environment variables. Some are fairly standard when using PyTorch
+on an HPC cluster while others are specific for the LUMI interconnect and architecture or the 
+AMD ROCm environment.</p>
+<p>At the start we just print some information about the GPU. We do this only ones on each node
+on the process which is why we test on <code>$SLURM_LOCALID</code>, which is a numbering starting from 0
+on each node of the job:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$SLURM_LOCALID</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a><span class="w">    </span>rocm-smi
+<a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a><span class="k">fi</span>
+<a id="__codelineno-53-4" name="__codelineno-53-4" href="#__codelineno-53-4"></a>sleep<span class="w"> </span><span class="m">2</span>
+</code></pre></div>
+<p>The container uses a Conda environment internally. So to make the right version of Python
+and its packages availabe, we need to activate the environment. The precise command to
+activate the environment is stored in <code>$WITH_CONDA</code> and we can just call it by specifying
+the variable as a bash command.</p>
+<p>The <code>MIOPEN_</code> environment variables are needed to make 
+<a href="https://rocm.docs.amd.com/projects/MIOpen/en/latest/">MIOpen</a> create its caches on <code>/tmp</code>
+as doing this on Lustre fails because of file locking issues:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MIOPEN_USER_DB_PATH</span><span class="o">=</span><span class="s2">&quot;/tmp/</span><span class="k">$(</span>whoami<span class="k">)</span><span class="s2">-miopen-cache-</span><span class="nv">$SLURM_NODEID</span><span class="s2">&quot;</span>
+<a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MIOPEN_CUSTOM_CACHE_DIR</span><span class="o">=</span><span class="nv">$MIOPEN_USER_DB_PATH</span>
+<a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a>
+<a id="__codelineno-54-4" name="__codelineno-54-4" href="#__codelineno-54-4"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$SLURM_LOCALID</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-54-5" name="__codelineno-54-5" href="#__codelineno-54-5"></a><span class="w">    </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$MIOPEN_USER_DB_PATH</span>
+<a id="__codelineno-54-6" name="__codelineno-54-6" href="#__codelineno-54-6"></a><span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$MIOPEN_USER_DB_PATH</span>
+<a id="__codelineno-54-7" name="__codelineno-54-7" href="#__codelineno-54-7"></a><span class="k">fi</span>
+</code></pre></div>
+<p>It is also essential to tell RCCL, the communication library, which network adapters to use. 
+These environment variables start with <code>NCCL_</code> because ROCm tries to keep things as similar as
+possible to NCCL in the NVIDIA ecosystem:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>export NCCL_SOCKET_IFNAME=hsn0,hsn1,hsn2,hsn3
+<a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a>export NCCL_NET_GDR_LEVEL=3
+</code></pre></div>
+<p>Without this RCCL may try to use a network adapter meant for system management rather than
+inter-node communications!</p>
+<p>We also set <code>ROCR_VISIBLE_DEVICES</code> to ensure that each task uses the proper GPU.
+This is again based on the local task ID of each Slurm task.</p>
+<p>Furthermore some environment variables are needed by PyTorch itself that are also needed on
+NVIDIA systems.</p>
+<p>PyTorch needs to find the master for communication which is done through the
+<code>get-master.py</code> script that we created before:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MASTER_ADDR</span><span class="o">=</span><span class="k">$(</span>python<span class="w"> </span>get-master.py<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SLURM_NODELIST</span><span class="s2">&quot;</span><span class="k">)</span>
+<a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MASTER_PORT</span><span class="o">=</span><span class="m">29500</span>
+</code></pre></div>
+<p><strong>As we fix the port number here, the <code>conda-python-distributed</code> script that we provide, 
+has to run on exclusive nodes.
+Running, e.g., 2 4-GPU jobs on the same node with this command will not work as there will be
+a conflict for the TCP port for communication on the master as <code>MASTER_PORT</code> is hard-coded in 
+this version of the script.</strong></p>
+</details>
+<p>Make sure the <code>run-pytorch.sh</code> script is executable:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>chmod<span class="w"> </span>ug+x<span class="w"> </span>run-pytorch.sh
+</code></pre></div>
+</li>
+<li>
+<p>The mnist example also needs some data files. We can get them in the job script (as we did before)
+    but also simply install them now, avoiding repeated downloads when using the script multiple times
+    (in the example with wrappers it was in the job script to have a one file example).
+    Assuming you do this on the login nodes where the <code>wget</code> program is already available,</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>mkdir<span class="w"> </span>mnist<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nb">pushd</span><span class="w"> </span>mnist
+<a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a>wget<span class="w"> </span>https://raw.githubusercontent.com/Lumi-supercomputer/lumi-reframe-tests/98327968ff300ed0181d5d14b5dd49cdf1d7b743/checks/containers/ML_containers/src/pytorch/mnist/mnist_DDP.py
+<a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a>sed<span class="w"> </span>-i<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;s|download=True|download=False|&#39;</span><span class="w"> </span>mnist_DDP.py
+<a id="__codelineno-58-4" name="__codelineno-58-4" href="#__codelineno-58-4"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>model<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>model
+<a id="__codelineno-58-5" name="__codelineno-58-5" href="#__codelineno-58-5"></a>wget<span class="w"> </span>https://github.com/Lumi-supercomputer/lumi-reframe-tests/raw/98327968ff300ed0181d5d14b5dd49cdf1d7b743/checks/containers/ML_containers/src/pytorch/mnist/model/model_gpu.dat
+<a id="__codelineno-58-6" name="__codelineno-58-6" href="#__codelineno-58-6"></a><span class="nb">cd</span><span class="w"> </span>..
+<a id="__codelineno-58-7" name="__codelineno-58-7" href="#__codelineno-58-7"></a>
+<a id="__codelineno-58-8" name="__codelineno-58-8" href="#__codelineno-58-8"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>data/MNIST/raw
+<a id="__codelineno-58-9" name="__codelineno-58-9" href="#__codelineno-58-9"></a><span class="nb">pushd</span><span class="w"> </span>data/MNIST/raw
+<a id="__codelineno-58-10" name="__codelineno-58-10" href="#__codelineno-58-10"></a>wget<span class="w"> </span>https://github.com/golbin/TensorFlow-MNIST/raw/refs/heads/master/mnist/data/train-images-idx3-ubyte.gz
+<a id="__codelineno-58-11" name="__codelineno-58-11" href="#__codelineno-58-11"></a>wget<span class="w"> </span>https://github.com/golbin/TensorFlow-MNIST/raw/refs/heads/master/mnist/data/train-labels-idx1-ubyte.gz
+<a id="__codelineno-58-12" name="__codelineno-58-12" href="#__codelineno-58-12"></a>wget<span class="w"> </span>https://github.com/golbin/TensorFlow-MNIST/raw/refs/heads/master/mnist/data/t10k-images-idx3-ubyte.gz
+<a id="__codelineno-58-13" name="__codelineno-58-13" href="#__codelineno-58-13"></a>wget<span class="w"> </span>https://github.com/golbin/TensorFlow-MNIST/raw/refs/heads/master/mnist/data/t10k-labels-idx1-ubyte.gz<span class="w">    </span>
+<a id="__codelineno-58-14" name="__codelineno-58-14" href="#__codelineno-58-14"></a>gunzip<span class="w"> </span>-k<span class="w"> </span>*.gz
+<a id="__codelineno-58-15" name="__codelineno-58-15" href="#__codelineno-58-15"></a><span class="nb">popd</span>
+<a id="__codelineno-58-16" name="__codelineno-58-16" href="#__codelineno-58-16"></a>
+<a id="__codelineno-58-17" name="__codelineno-58-17" href="#__codelineno-58-17"></a><span class="k">for</span><span class="w"> </span>number<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">31</span><span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>data<span class="w"> </span>data<span class="nv">$number</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+<a id="__codelineno-58-18" name="__codelineno-58-18" href="#__codelineno-58-18"></a>
+<a id="__codelineno-58-19" name="__codelineno-58-19" href="#__codelineno-58-19"></a><span class="nb">popd</span>
+</code></pre></div>
+</li>
+<li>
+<p>Finaly we can create our jobscript, e.g. <code>mnist.slurm</code>, which we will launch from the directory
+    that also contains the <code>mnist</code> subdirectory and <code>get-master.py</code> and <code>run-pythorch.sh</code> scripts and the
+    container image.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="ch">#!/bin/bash -e</span>
+<a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a><span class="c1">#SBATCH --nodes=4</span>
+<a id="__codelineno-59-3" name="__codelineno-59-3" href="#__codelineno-59-3"></a><span class="c1">#SBATCH --gpus-per-node=8</span>
+<a id="__codelineno-59-4" name="__codelineno-59-4" href="#__codelineno-59-4"></a><span class="c1">#SBATCH --tasks-per-node=8</span>
+<a id="__codelineno-59-5" name="__codelineno-59-5" href="#__codelineno-59-5"></a><span class="c1">#SBATCH --cpus-per-task=7</span>
+<a id="__codelineno-59-6" name="__codelineno-59-6" href="#__codelineno-59-6"></a><span class="c1">#SBATCH --output=&quot;output_%x_%j.txt&quot;</span>
+<a id="__codelineno-59-7" name="__codelineno-59-7" href="#__codelineno-59-7"></a><span class="c1">#SBATCH --partition=standard-g</span>
+<a id="__codelineno-59-8" name="__codelineno-59-8" href="#__codelineno-59-8"></a><span class="c1">#SBATCH --mem=480G</span>
+<a id="__codelineno-59-9" name="__codelineno-59-9" href="#__codelineno-59-9"></a><span class="c1">#SBATCH --time=00:10:00</span>
+<a id="__codelineno-59-10" name="__codelineno-59-10" href="#__codelineno-59-10"></a><span class="c1">#SBATCH --account=project_&lt;your_project_id&gt;</span>
+<a id="__codelineno-59-11" name="__codelineno-59-11" href="#__codelineno-59-11"></a>
+<a id="__codelineno-59-12" name="__codelineno-59-12" href="#__codelineno-59-12"></a><span class="nv">CONTAINER</span><span class="o">=</span>/appl/local/containers/easybuild-sif-images/lumi-pytorch-rocm-6.0.3-python-3.12-pytorch-v2.3.1-dockerhash-2c1c14cafd28.sif
+<a id="__codelineno-59-13" name="__codelineno-59-13" href="#__codelineno-59-13"></a>
+<a id="__codelineno-59-14" name="__codelineno-59-14" href="#__codelineno-59-14"></a><span class="nv">c</span><span class="o">=</span>fe
+<a id="__codelineno-59-15" name="__codelineno-59-15" href="#__codelineno-59-15"></a><span class="nv">MYMASKS</span><span class="o">=</span><span class="s2">&quot;0x</span><span class="si">${</span><span class="nv">c</span><span class="si">}</span><span class="s2">000000000000,0x</span><span class="si">${</span><span class="nv">c</span><span class="si">}</span><span class="s2">00000000000000,0x</span><span class="si">${</span><span class="nv">c</span><span class="si">}</span><span class="s2">0000,0x</span><span class="si">${</span><span class="nv">c</span><span class="si">}</span><span class="s2">000000,0x</span><span class="si">${</span><span class="nv">c</span><span class="si">}</span><span class="s2">,0x</span><span class="si">${</span><span class="nv">c</span><span class="si">}</span><span class="s2">00,0x</span><span class="si">${</span><span class="nv">c</span><span class="si">}</span><span class="s2">00000000,0x</span><span class="si">${</span><span class="nv">c</span><span class="si">}</span><span class="s2">0000000000&quot;</span>
+<a id="__codelineno-59-16" name="__codelineno-59-16" href="#__codelineno-59-16"></a>
+<a id="__codelineno-59-17" name="__codelineno-59-17" href="#__codelineno-59-17"></a>srun<span class="w"> </span>--cpu-bind<span class="o">=</span>mask_cpu:<span class="nv">$MYMASKS</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-59-18" name="__codelineno-59-18" href="#__codelineno-59-18"></a>singularity<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-59-19" name="__codelineno-59-19" href="#__codelineno-59-19"></a><span class="w">    </span>-B<span class="w"> </span>/var/spool/slurmd<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-59-20" name="__codelineno-59-20" href="#__codelineno-59-20"></a><span class="w">    </span>-B<span class="w"> </span>/opt/cray<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-59-21" name="__codelineno-59-21" href="#__codelineno-59-21"></a><span class="w">    </span>-B<span class="w"> </span>/usr/lib64/libcxi.so.1<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-59-22" name="__codelineno-59-22" href="#__codelineno-59-22"></a><span class="w">    </span>-B<span class="w"> </span><span class="nv">$PWD</span>:/workdir<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-59-23" name="__codelineno-59-23" href="#__codelineno-59-23"></a><span class="w">    </span><span class="nv">$CONTAINER</span><span class="w"> </span>/workdir/run-pytorch.sh
+</code></pre></div>
+<p>(if you get mpi4py-related error messages in some of the older containers you may have to add <code>-B /usr/lib64/libjansson.so.4</code> also.)</p>
+</li>
+</ol>
+<h3 id="links">Links</h3>
+<ul>
+<li>
+<p><a href="https://lumi-supercomputer.github.io/AI-latest">Latest edition of the "Moving your AI training jobs to LUMI" workshop</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Lumi-supercomputer/LUMI-AI-Guide">LUMI AI Guide</a></p>
+</li>
+</ul>
+<h2 id="singularity-containers-with-modules-for-binding-and-extras">Singularity containers with modules for binding and extras</h2>
+<p>Install with the EasyBuild-user module in <code>partition/container</code>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a>module load LUMI partition/container EasyBuild-user
+<a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a>eb &lt;easyconfig&gt;
+</code></pre></div>
+The module will be available in all versions of the LUMI stack and in the CrayEnv stack.</p>
+<p>To access module help after installation use <code>module spider PyTorch/&lt;version&gt;</code>.</p>
+<p>EasyConfig:</p>
+<ul>
+<li>
+<p><a href="PyTorch-2.2.2-rocm-5.7.3-python-3.12-singularity-20240923/">EasyConfig PyTorch-2.2.2-rocm-5.7.3-python-3.12-singularity-20240923.eb, will provide PyTorch/2.2.2-rocm-5.7.3-python-3.12-singularity-20240923</a></p>
+<p>Contains PyTorch 2.2.2 with torchaudio 2.2.2, torchdata 0.7.1, torchtext 0.17.2+cpu,
+torchvision 0.17.2 GPU version, DeepSpeed 0.14.0,  flash-attention 2.6.3 and transformers 4.41.2,
+on Python 3.12 and ROCm 5.7.3.
+The container also fully assists the procedure to add extra packages in a Python virtual environment.</p>
+<p>This version works with $WITH_CONDA, $WITH_VENV and $WITH_CONDA_VENV for initialisation of the 
+conda / Python venv / or both environments respectively.</p>
+</li>
+<li>
+<p><a href="PyTorch-2.3.0-rocm-6.2.0-python-3.10-singularity-20241007/">EasyConfig PyTorch-2.3.0-rocm-6.2.0-python-3.10-singularity-20241007.eb, will provide PyTorch/2.3.0-rocm-6.2.0-python-3.10-singularity-20241007</a></p>
+<p>Contains PyTorch 2.3.0 with torchdata 0.7.1+cpu, torchtext 0.18.0+cpu,
+torchvision 0.18.0 GPU version, DeepSpeed 0.14.0,  flash-attention 2.6.3 and transformers 4.41.2, 
+on Python 3.10 and ROCm 6.2.0.
+The container also fully assists the procedure to add extra packages in a Python virtual environment.</p>
+<p>This version works with $WITH_CONDA, $WITH_VENV and $WITH_CONDA_VENV for initialisation of the 
+conda / Python venv / or both environments respectively.</p>
+</li>
+<li>
+<p><a href="PyTorch-2.3.1-rocm-6.0.3-python-3.12-singularity-20240923/">EasyConfig PyTorch-2.3.1-rocm-6.0.3-python-3.12-singularity-20240923.eb, will provide PyTorch/2.3.1-rocm-6.0.3-python-3.12-singularity-20240923</a></p>
+<p>Contains PyTorch 2.3.1 with torchaudio 2.3.1, torchdata 0.7.1, torchtext 0.18.0+cpu,
+torchvision 0.18.1 GPU version, DeepSpeed 0.14.0,  flash-attention 2.6.3 and transformers 4.41.2,
+on Python 3.12 and ROCm 6.0.3. mpi4py 3.1.6 interfacing to Cray MPICH is also included.
+The container also fully assists the procedure to add extra packages in a Python virtual environment.</p>
+<p>This version works with $WITH_CONDA, $WITH_VENV and $WITH_CONDA_VENV for initialisation of the 
+conda / Python venv / or both environments respectively.</p>
+</li>
+<li>
+<p><a href="PyTorch-2.3.1-rocm-6.0.3-python-3.12-singularity-exampleVenv-20240923/">EasyConfig PyTorch-2.3.1-rocm-6.0.3-python-3.12-singularity-exampleVenv-20240923.eb, will provide PyTorch/2.3.1-rocm-6.0.3-python-3.12-singularity-exampleVenv-20240923</a></p>
+<p>Contains PyTorch 2.3.1 with torchaudio 2.3.1, torchdata 0.7.1, torchtext 0.18.0+cpu,
+torchvision 0.18.1 GPU version, DeepSpeed 0.14.0,  flash-attention 2.6.3 and transformers 4.41.2,
+on Python 3.12 and ROCm 6.0.3. mpi4py 3.1.6 interfacing to Cray MPICH is also included.
+The container also fully assists the procedure to add extra packages in a Python virtual environment.</p>
+<p>This version works with $WITH_CONDA, $WITH_VENV and $WITH_CONDA_VENV for initialisation of the 
+conda / Python venv / or both environments respectively.</p>
+</li>
+<li>
+<p><a href="PyTorch-2.4.1-rocm-6.1.3-python-3.12-singularity-20241007/">EasyConfig PyTorch-2.4.1-rocm-6.1.3-python-3.12-singularity-20241007.eb, will provide PyTorch/2.4.1-rocm-6.1.3-python-3.12-singularity-20241007</a></p>
+<p>Contains PyTorch 2.4.1 with torchaudio 2.4.1, torchdata 0.8.0+cpu, torchtext 0.18.0+cpu,
+torchvision 0.19.1 GPU version, DeepSpeed 0.15.1,  flash-attention 2.6.3, transformers 4.45.1 and
+xformers 0.0.28+f37fb3d7.d20241001, on Python 3.12 and ROCm 6.1.3.
+mpi4py 3.1.6 interfacing to Cray MPICH is also included.
+The container also fully assists the procedure to add extra packages in a Python virtual environment.</p>
+<p>This version works with $WITH_CONDA, $WITH_VENV and $WITH_CONDA_VENV for initialisation of the 
+conda / Python venv / or both environments respectively.</p>
+</li>
+<li>
+<p><a href="PyTorch-2.4.1-rocm-6.1.3-python-3.12-singularity-20241125/">EasyConfig PyTorch-2.4.1-rocm-6.1.3-python-3.12-singularity-20241125.eb, will provide PyTorch/2.4.1-rocm-6.1.3-python-3.12-singularity-20241125</a></p>
+<p>Contains PyTorch 2.4.1 with torchaudio 2.4.1, torchdata 0.8.0+cpu, torchtext 0.18.0+cpu,
+torchvision 0.19.1 GPU version, DeepSpeed 0.15.1,  flash-attention 2.6.3, transformers 4.46.3 and
+xformers 0.0.28+f37fb3d7.d20241001, on Python 3.12 and ROCm 6.1.3.
+mpi4py 3.1.6 interfacing to Cray MPICH is also included.
+The container also fully assists the procedure to add extra packages in a Python virtual environment.</p>
+<p>This version works with $WITH_CONDA, $WITH_VENV and $WITH_CONDA_VENV for initialisation of the 
+conda / Python venv / or both environments respectively.</p>
+</li>
+<li>
+<p><a href="PyTorch-2.5.1-rocm-6.2.3-python-3.12-singularity-20241125/">EasyConfig PyTorch-2.5.1-rocm-6.2.3-python-3.12-singularity-20241125.eb, will provide PyTorch/2.5.1-rocm-6.2.3-python-3.12-singularity-20241125</a></p>
+<p>Contains PyTorch 2.5.1 with torchaudio 2.5.1, torchdata 0.9.0+cpu, torchtext 0.18.0+cpu,
+torchvision 0.20.1 GPU version, DeepSpeed 0.15.1,  flash-attention 2.6.3, transformers 4.46.3,
+xformers 0.0.28+06b548c0.d20241106 and vllm 0.6.3.post2+rocm624, on Python 3.12 and ROCm 6.2.3.
+mpi4py 3.1.6 interfacing to Cray MPICH is also included.
+The container also fully assists the procedure to add extra packages in a Python virtual environment.</p>
+<p>This version works with $WITH_CONDA, $WITH_VENV and $WITH_CONDA_VENV for initialisation of the 
+conda / Python venv / or both environments respectively.</p>
+</li>
+<li>
+<p><a href="PyTorch-2.6.0-rocm-6.2.4-python-3.12-singularity-20250326/">EasyConfig PyTorch-2.6.0-rocm-6.2.4-python-3.12-singularity-20250326.eb, will provide PyTorch/2.6.0-rocm-6.2.4-python-3.12-singularity-20250326</a></p>
+<p>Contains PyTorch 2.6.0 with torchaudio 2.6.0, torchdata 0.9.0+cpu, torchtext 0.18.0+cpu,
+torchvision 0.21.0 GPU version, DeepSpeed 0.15.1,  flash-attention 2.7.3, transformers 4.50.1,
+xformers 0.0.30+a0a401e4.d20250322 and vllm 0.7.2.post2+rocm624, on Python 3.12 and ROCm 6.2.4.
+mpi4py 3.1.6 interfacing to Cray MPICH is also included.
+The container also fully assists the procedure to add extra packages in a Python virtual environment.</p>
+<p>This version also includes a pre-set virtual environment, but the module together with the 
+container to all the initialisations, so $WITH_CONDA, $WITH_VENV, etc., are not needed.</p>
+</li>
+<li>
+<p><a href="PyTorch-2.6.0-rocm-6.2.4-python-3.12-singularity-20250404/">EasyConfig PyTorch-2.6.0-rocm-6.2.4-python-3.12-singularity-20250404.eb, will provide PyTorch/2.6.0-rocm-6.2.4-python-3.12-singularity-20250404</a></p>
+<p>Contains PyTorch 2.6.0 with torchaudio 2.6.0, torchdata 0.9.0+cpu, torchtext 0.18.0+cpu,
+torchvision 0.21.0 GPU version, DeepSpeed 0.15.1,  flash-attention 2.7.3, transformers 4.50.1,
+xformers 0.0.30+a0a401e4.d20250322 and vllm 0.7.2.post2+rocm624, on Python 3.12 and ROCm 6.2.4.
+The container also fully assists the procedure to add extra packages in a Python virtual environment.</p>
+<p>This version also includes a pre-set virtual environment, but the module together with the 
+container to all the initialisations, so $WITH_CONDA, $WITH_VENV, etc., are not needed.</p>
+</li>
+<li>
+<p><a href="PyTorch-2.6.0-rocm-6.2.4-python-3.12-singularity-20250410/">EasyConfig PyTorch-2.6.0-rocm-6.2.4-python-3.12-singularity-20250410.eb, will provide PyTorch/2.6.0-rocm-6.2.4-python-3.12-singularity-20250410</a></p>
+<p>Contains PyTorch 2.6.0 with torchaudio 2.6.0, torchdata 0.9.0+cpu, torchtext 0.18.0+cpu,
+torchvision 0.21.0 GPU version, DeepSpeed 0.15.1,  flash-attention 2.7.3, transformers 4.51.1,
+xformers 0.0.30+ffe48087.d20250410 and vllm 0.7.2+rocm624, on Python 3.12 and ROCm 6.2.4.
+The container also fully assists the procedure to add extra packages in a Python virtual environment.</p>
+<p>This version also includes a pre-set virtual environment, but the module together with the 
+container to all the initialisations, so $WITH_CONDA, $WITH_VENV, etc., are not needed.</p>
+</li>
+<li>
+<p><a href="PyTorch-2.7.0-rocm-6.2.4-python-3.12-singularity-20250527/">EasyConfig PyTorch-2.7.0-rocm-6.2.4-python-3.12-singularity-20250527.eb, will provide PyTorch/2.7.0-rocm-6.2.4-python-3.12-singularity-20250527</a></p>
+<p>Contains PyTorch 2.7.0 with torchaudio 2.7.0, torchdata 0.10.0, torchtext 0.18.0+cpu,
+torchvision 0.22.0 GPU version, DeepSpeed 0.16.8,  flash-attention 2.7.3, transformers 4.52.3,
+xformers 0.0.31+39addc86.d20250526 and vllm 0.8.5+rocm624, on Python 3.12 and ROCm 6.2.4.
+The container also fully assists the procedure to add extra packages in a Python virtual environment.</p>
+<p>This version also includes a pre-set virtual environment, but the module together with the 
+container to all the initialisations, so $WITH_CONDA, $WITH_VENV, etc., are not needed.</p>
+</li>
+<li>
+<p><a href="PyTorch-2.7.1-rocm-6.2.4-python-3.12-singularity-20250827/">EasyConfig PyTorch-2.7.1-rocm-6.2.4-python-3.12-singularity-20250827.eb, will provide PyTorch/2.7.1-rocm-6.2.4-python-3.12-singularity-20250827</a></p>
+<p>Contains PyTorch 2.7.1 with torchaudio 2.7.1, torchdata 0.10.0, torchtext 0.18.0+cpu,
+torchvision 0.22.1 GPU version, DeepSpeed 0.17.4,  flash-attention 2.7.3, transformers 4.55.3,
+xformers 0.0.32+09d42ac5.d20250822 and vllm 0.10.1+rocm624, on Python 3.12 and ROCm 6.2.4.
+It also contains a fix for an issue with AITER (AI Tensor Engine for ROCm) present in some earlier containers.
+The container also fully assists the procedure to add extra packages in a Python virtual environment.</p>
+<p>This version also includes a pre-set virtual environment, but the module together with the 
+container to all the initialisations, so $WITH_CONDA, $WITH_VENV, etc., are not needed.</p>
+<p>Please check the help information of the module for additional <em>essential</em> information.</p>
+</li>
+<li>
+<p><a href="PyTorch-20240801-rocm-6.2.0-python-3.12-vllm-c7a3a47-singularity-20241007/">EasyConfig PyTorch-20240801-rocm-6.2.0-python-3.12-vllm-c7a3a47-singularity-20241007.eb, will provide PyTorch/20240801-rocm-6.2.0-python-3.12-vllm-c7a3a47-singularity-20241007</a></p>
+<p>Contains PyTorch 2.5.0a0+gitf0da167 with torchvision 0.20.0a0+61bd547, vllm 0.4.3+rocm624, flash-attention 2.5.9.post1 and
+transformers 4.44.2, on Python 3.12 and ROCm 6.2.0.
+The container also fully assists the procedure to add extra packages in a Python virtual environment.</p>
+<p>This version works with $WITH_CONDA, $WITH_VENV and $WITH_CONDA_VENV for initialisation of the 
+conda / Python venv / or both environments respectively.</p>
+</li>
+<li>
+<p><a href="PyTorch-20240918-rocm-6.2.1-python-3.12-vllm-4075b35-singularity-20241007/">EasyConfig PyTorch-20240918-rocm-6.2.1-python-3.12-vllm-4075b35-singularity-20241007.eb, will provide PyTorch/20240918-rocm-6.2.1-python-3.12-vllm-4075b35-singularity-20241007</a></p>
+<p>Contains 2.6.0.dev20240918+rocm6.2 with torchvision 0.20.0.dev20240918+rocm6.2, vllm 0.6.3.dev3+g4075b35b.d20241004.rocm624, flash-attention 2.6.3 and
+transformers 4.44.2, on Python 3.12 and ROCm 6.2.0.
+The container also fully assists the procedure to add extra packages in a Python virtual environment.</p>
+<p>This version works with $WITH_CONDA, $WITH_VENV and $WITH_CONDA_VENV for initialisation of the 
+conda / Python venv / or both environments respectively.</p>
+</li>
+</ul>
+<h2 id="technical-documentation-user-easybuild-installation">Technical documentation (user EasyBuild installation)</h2>
+<ul>
+<li>
+<p><a href="https://pytorch.org/">PyTorch web site</a></p>
+</li>
+<li>
+<p><a href="https://pypi.org/project/torch/">torch - PyTorch on PyPi</a></p>
+</li>
+<li>
+<p><a href="https://github.com/pytorch/pytorch">PyTorch on GitHub</a></p>
+<ul>
+<li><a href="https://github.com/pytorch/pytorch/releases">GitHub releases</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="easybuild">EasyBuild</h3>
+<ul>
+<li>
+<p><a href="https://github.com/easybuilders/easybuild-easyconfigs/tree/develop/easybuild/easyconfigs/p/PyTorch">PyTorch in the EasyBuilders repository</a></p>
+</li>
+<li>
+<p><a href="https://github.com/eth-cscs/production/tree/master/easybuild/easyconfigs/p/PyTorch">PyTorch in the CSCS repository</a></p>
+</li>
+</ul>
+<h4 id="version-1121-archived">Version 1.12.1 (archived)</h4>
+<ul>
+<li>
+<p>The EasyConfig is a LUST development and based on wheels rather than compiling
+    ourselves due to the difficulties of compiling PyTorch correctly. We do however
+    use a version of the RCCL library installed through EasyBuild, with the 
+    aws-ofi-rccl plugin which is needed to get good performance on LUMI.</p>
+</li>
+<li>
+<p>A different version of NumPy was needed as in the Cray Python module that is 
+    used. It is also installed from a wheel hence is not using the Cray Scientific
+    Libraries for BLAS support.</p>
+</li>
+</ul>
+<h2 id="technical-documentation-singularity-container">Technical documentation (singularity container)</h2>
+<h3 id="how-to-check-whats-in-the-container">How to check what's in the container?</h3>
+<ul>
+<li>
+<p>The Python, PyTorch and ROCm versions are included in the version of the module.</p>
+</li>
+<li>
+<p>To find the version of Python packages,</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>singularity exec $SIF bash -c &#39;$WITH_CONDA ; pip list&#39;
+</code></pre></div>
+<p>after loading the module. This can even be done on the login nodes.
+It will return information about all Python packages.</p>
+</li>
+<li>
+<p>Deepspeed: </p>
+<ul>
+<li>
+<p>Leaves a script 'deepspeed' in <code>/opt/miniconda3/envs/pytorch/bin</code></p>
+</li>
+<li>
+<p>Leaves packages in <code>/opt/miniconda3/envs/pytorch/lib/python3.10/site-packages/deepspeed</code></p>
+</li>
+<li>
+<p>Finding the version:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a>singularity exec $SIF bash -c &#39;$WITH_CONDA ; pip list | grep deepspeed&#39;
+</code></pre></div>
+<p>or the clumsy way without <code>pip</code>: </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a>singularity exec $SIF bash -c \
+<a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a>  &#39;grep &quot;version=&quot; /opt/miniconda3/envs/pytorch/lib/python3.10/site-packages/deepspeed/git_version_info_installed.py&#39;
+</code></pre></div>
+<p>(Test can be done after loading the module on a login node.)</p>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="https://github.com/Dao-AILab/flash-attention">flash-attention</a>
+    and its fork, <a href="https://github.com/ROCm/flash-attention">the ROCm port</a></p>
+<ul>
+<li>
+<p>Leaves a <code>flash_attn</code> and corresponding <code>flash_attn-&lt;version&gt;.dit-info</code> subdirectory 
+    in <code>/opt/miniconda3/envs/pytorch/lib/python3.10/site-packages</code>.</p>
+</li>
+<li>
+<p>To find the version:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a>singularity exec $SIF bash -c &#39;$WITH_CONDA ; pip list | grep flash-attn&#39;
+</code></pre></div>
+<p>or the clumsy way without `pip:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a>singularity exec $SIF bash -c \
+<a id="__codelineno-65-2" name="__codelineno-65-2" href="#__codelineno-65-2"></a>  &#39;grep &quot;__version__&quot; /opt/miniconda3/envs/pytorch/lib/python3.10/site-packages/flash_attn/__init__.py&#39;
+</code></pre></div>
+<p>(Test can be done after loading the module on a login node.)</p>
+</li>
+</ul>
+<p>To run a benchmark:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a>srun -N 1 -n 1 \
+<a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a>  --cpu-bind=mask_cpu:0xfe000000000000,0xfe00000000000000,0xfe0000,0xfe000000,0xfe,0xfe00,0xfe00000000,0xfe0000000000 \
+<a id="__codelineno-66-3" name="__codelineno-66-3" href="#__codelineno-66-3"></a>  --gpus 8 \
+<a id="__codelineno-66-4" name="__codelineno-66-4" href="#__codelineno-66-4"></a>  singularity exec $SIF /runscripts/conda-python-simple \
+<a id="__codelineno-66-5" name="__codelineno-66-5" href="#__codelineno-66-5"></a>  -u /opt/wheels/flash_attn-benchmarks/benchmark_flash_attention.py
+</code></pre></div>
+</li>
+<li>
+<p>xformers:</p>
+<ul>
+<li>
+<p>Leaves a <code>xformers</code> and corresponding <code>xformers-&lt;version&gt;.disti-info</code> subdirectory  <br />
+    in <code>/opt/miniconda3/envs/pytorch/lib/python3.10/site-packages</code>.</p>
+</li>
+<li>
+<p>To find the version:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a>singularity exec $SIF bash -c &#39;$WITH_CONDA ; pip list | grep xformers&#39;
+</code></pre></div>
+<p>or the clumsy way without <code>pip</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a>singularity exec $SIF bash -c \
+<a id="__codelineno-68-2" name="__codelineno-68-2" href="#__codelineno-68-2"></a>  &#39;grep &quot;__version__&quot; /opt/miniconda3/envs/pytorch/lib/python3.10/site-packages/xformers/version.py&#39;
+</code></pre></div>
+<p>(Test can be done after loading the module on a login node.)</p>
+</li>
+<li>
+<p>Checking the features of <code>xformers</code>: </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a>singularity exec $SIF bash -c &#39;$WITH_CONDA ; python -m xformers.info&#39;
+</code></pre></div>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="easybuild_1">EasyBuild</h3>
+<p>Incomplete!</p>
+<h4 id="changes-made-for-the-20250404-and-later-pytorch-containers">Changes made for the 20250404 and later PyTorch containers</h4>
+<p>Some of those changes were likely overdue!</p>
+<ul>
+<li>
+<p>All variables to initilise the conda environment correctly are already set in the 
+    container, so the module does no longer do so.</p>
+</li>
+<li>
+<p>There is a libjansson.so in the container, so the module does no longer bind 
+    <code>/usr/lib64/libjansson.so.4</code>. This may turn out to be an issue though as the 
+    libjansson.so in the container is an older version than the one on LUMI, so we
+    may need to overwrite it with a bind mount.</p>
+<p>NOTE: This probably doesn't matter as the library that links to it is recompiled
+and in the container?</p>
+</li>
+<li>
+<p>In late July 2025 the <code>list-packages</code> script used by CSC was also added to the
+    container, even though it is basically just a <code>pip list</code> and could even be implemented
+    using the <code>pip</code> wrapper script.</p>
+</li>
+<li>
+<p>At the same time we also added python and pip wrapper scripts and wrapper scripts 
+    to some commands in the container similar to those in the corresponding CSC modules.</p>
+<p>There is a difference however when virtual environments are used. With the CSC modules,
+the <code>python</code> wrapper script can also be used to create a virtual environment. This 
+will not work with the wrapper scripts in these modules, as the virtual environment
+is already built into the module so that it can be squashed into a SquashFS file 
+that is friendlier to the Lustre file system than a regular virtual environment.</p>
+</li>
+<li>
+<p>Binding libfabric and the cxi provider is no longer needed as the containers contain
+    their own libfabric and cxi provide that should offer better stability with RCCL
+    than the version on the system.</p>
+</li>
+</ul>
+<h2 id="archived-easyconfigs">Archived EasyConfigs</h2>
+<p>The EasyConfigs below are additional easyconfigs that are not directly available
+on the system for installation. Users are advised to use the newer ones and these
+archived ones are unsupported. They are still provided as a source of information
+should you need this, e.g., to understand the configuration that was used for
+earlier work on the system.</p>
+<ul>
+<li>
+<p>Archived EasyConfigs from <a href="https://github.com/lumi-supercomputer/LUMI-EasyBuild-contrib/blob/main/easybuild/easyconfigs/__archive__/p/PyTorch">LUMI-EasyBuild-contrib</a> - previously user-installable software</p>
+<ul>
+<li><a href="PyTorch-1.12.1-cpeGNU-22.08/">EasyConfig PyTorch-1.12.1-cpeGNU-22.08.eb, with module PyTorch/1.12.1-cpeGNU-22.08</a></li>
+</ul>
+</li>
+<li>
+<p>Archived EasyConfigs from <a href="https://github.com/lumi-supercomputer/LUMI-EasyBuild-containers/blob/main/easybuild/easyconfigs/__archive__/p/PyTorch">LUMI-EasyBuild-containers</a> - previously available singularity containerised software</p>
+<ul>
+<li>
+<p><a href="PyTorch-2.0.1-rocm-5.5.1-python-3.10-debugsymbols-singularity-20231110/">EasyConfig PyTorch-2.0.1-rocm-5.5.1-python-3.10-debugsymbols-singularity-20231110.eb, with module PyTorch/2.0.1-rocm-5.5.1-python-3.10-debugsymbols-singularity-20231110</a>
+ (with <a href="PyTorch-2.0.1-rocm-5.5.1-python-3.10-debugsymbols-singularity-20231110-docker/">docker definition</a>)</p>
+<p>Contains PyTorch 2.0.1 with torchaudio 2.0.2+31de77d, torchdata 0.6.1+e1feeb2, torchtext 0.15.2a0+4571036
+and torchvision 0.15.2a0+fa99a53 GPU version, on Python 3.10 and ROCm 5.5.1.</p>
+</li>
+<li>
+<p><a href="PyTorch-2.0.1-rocm-5.5.1-python-3.10-debugsymbols-singularity-20240207/">EasyConfig PyTorch-2.0.1-rocm-5.5.1-python-3.10-debugsymbols-singularity-20240207.eb, with module PyTorch/2.0.1-rocm-5.5.1-python-3.10-debugsymbols-singularity-20240207</a></p>
+<p>Contains PyTorch 2.0.1 with torchaudio 2.0.2+31de77d, torchdata 0.6.1+e1feeb2, torchtext 0.15.2a0+4571036
+and torchvision 0.15.2a0+fa99a53 GPU version, on Python 3.10 and ROCm 5.5.1.</p>
+</li>
+<li>
+<p><a href="PyTorch-2.0.1-rocm-5.5.1-python-3.10-singularity-20231110/">EasyConfig PyTorch-2.0.1-rocm-5.5.1-python-3.10-singularity-20231110.eb, with module PyTorch/2.0.1-rocm-5.5.1-python-3.10-singularity-20231110</a>
+ (with <a href="PyTorch-2.0.1-rocm-5.5.1-python-3.10-singularity-20231110-docker/">docker definition</a>)</p>
+<p>Contains PyTorch 2.0.1 with torchaudio 2.0.2+31de77d, torchdata 0.6.1+e1feeb2, torchtext 0.15.2a0+4571036
+and torchvision 0.15.2a0+fa99a53 GPU version, on Python 3.10 and ROCm 5.5.1.</p>
+</li>
+<li>
+<p><a href="PyTorch-2.0.1-rocm-5.5.1-python-3.10-singularity-20240207/">EasyConfig PyTorch-2.0.1-rocm-5.5.1-python-3.10-singularity-20240207.eb, with module PyTorch/2.0.1-rocm-5.5.1-python-3.10-singularity-20240207</a></p>
+<p>Contains PyTorch 2.0.1 with torchaudio 2.0.2+31de77d, torchdata 0.6.1+e1feeb2, torchtext 0.15.2a0+4571036
+and torchvision 0.16.0+a90e584 GPU version, on Python 3.10 and ROCm 5.5.1.</p>
+</li>
+<li>
+<p><a href="PyTorch-2.1.0-rocm-5.6.1-python-3.10-singularity-20231123/">EasyConfig PyTorch-2.1.0-rocm-5.6.1-python-3.10-singularity-20231123.eb, with module PyTorch/2.1.0-rocm-5.6.1-python-3.10-singularity-20231123</a></p>
+<p>Contains PyTorch 2.1.0 with torchaudio 2.1.0+420d9ac, torchdata 0.6.1+e1feeb2, torchtext 0.15.2a0+4571036,
+torchvision 0.16.0+a90e584 GPU version, on Python 3.10 and ROCm 5.6.1.</p>
+</li>
+<li>
+<p><a href="PyTorch-2.1.0-rocm-5.6.1-python-3.10-singularity-20240207/">EasyConfig PyTorch-2.1.0-rocm-5.6.1-python-3.10-singularity-20240207.eb, with module PyTorch/2.1.0-rocm-5.6.1-python-3.10-singularity-20240207</a></p>
+<p>Contains PyTorch 2.1.0 with torchaudio 2.1.0+420d9ac, torchdata 0.6.1+e1feeb2, torchtext 0.15.2a0+4571036,
+torchvision 0.16.0+a90e584 GPU version and DeepSpeed 0.12.3, on Python 3.10 and ROCm 5.6.1.</p>
+</li>
+<li>
+<p><a href="PyTorch-2.2.0-rocm-5.6.1-python-3.10-singularity-20240208/">EasyConfig PyTorch-2.2.0-rocm-5.6.1-python-3.10-singularity-20240208.eb, with module PyTorch/2.2.0-rocm-5.6.1-python-3.10-singularity-20240208</a></p>
+<p>Contains PyTorch 2.2.0 with torchaudio 2.2.0, torchdata 0.7.1+cpu, torchtext 0.17.0+cpu,
+torchvision 0.17.0 GPU version and DeepSpeed 0.12.3,  on Python 3.10 and ROCm 5.6.1.</p>
+</li>
+<li>
+<p><a href="PyTorch-2.2.0-rocm-5.6.1-python-3.10-singularity-20240209/">EasyConfig PyTorch-2.2.0-rocm-5.6.1-python-3.10-singularity-20240209.eb, with module PyTorch/2.2.0-rocm-5.6.1-python-3.10-singularity-20240209</a></p>
+<p>Contains PyTorch 2.2.0 with torchaudio 2.2.0, torchdata 0.7.1+cpu, torchtext 0.17.0+cpu,
+torchvision 0.17.0 GPU version and, DeepSpeed 0.12.3, flash-attention 2.0.4 and
+xformers 0.0.25+8dd471d.d20240209, on Python 3.10 and ROCm 5.6.1.</p>
+</li>
+<li>
+<p><a href="PyTorch-2.2.0-rocm-5.6.1-python-3.10-singularity-20240315/">EasyConfig PyTorch-2.2.0-rocm-5.6.1-python-3.10-singularity-20240315.eb, with module PyTorch/2.2.0-rocm-5.6.1-python-3.10-singularity-20240315</a></p>
+<p>Contains PyTorch 2.2.0 with torchaudio 2.2.0, torchdata 0.7.1+cpu, torchtext 0.17.0+cpu,
+torchvision 0.17.0 GPU version, DeepSpeed 0.12.3,  flash-attention 2.0.4 and
+xformers 0.0.25+8dd471d.d20240209, on Python 3.10 and ROCm 5.6.1.
+The container also fully assists the procedure to add extra packages in a Python virtual environment.</p>
+<p>This version works with $WITH_CONDA, $WITH_VENV and $WITH_CONDA_VENV for initialisation of the 
+conda / Python venv / or both environments respectively.</p>
+</li>
+<li>
+<p><a href="PyTorch-2.2.0-rocm-5.6.1-python-3.10-singularity-exampleVenv-20240315/">EasyConfig PyTorch-2.2.0-rocm-5.6.1-python-3.10-singularity-exampleVenv-20240315.eb, with module PyTorch/2.2.0-rocm-5.6.1-python-3.10-singularity-exampleVenv-20240315</a></p>
+<p>Contains PyTorch 2.2.0 with torchaudio 2.2.0, torchdata 0.7.1+cpu, torchtext 0.17.0+cpu,
+torchvision 0.17.0 GPU version, DeepSpeed 0.12.3,  flash-attention 2.0.4 and
+xformers 0.0.25+8dd471d.d20240209, on Python 3.10 and ROCm 5.6.1.
+The container also fully assists the procedure to add extra packages in a Python virtual environment.</p>
+<p>As an example of how installation in the virtual environment can be automated through EasyBuild,
+torchmetrics and pytorch-lightning are installed in the virtual environment.</p>
+<p>This version works with $WITH_CONDA, $WITH_VENV and $WITH_CONDA_VENV for initialisation of the 
+conda / Python venv / or both environments respectively.</p>
+<p>This environment is experimental and only meant as an example of what can be done, but may
+not be fully functional for everybody. Most users should use the non-exampleVenv versions.</p>
+</li>
+<li>
+<p><a href="PyTorch-2.2.2-rocm-5.6.1-python-3.10-singularity-20240404/">EasyConfig PyTorch-2.2.2-rocm-5.6.1-python-3.10-singularity-20240404.eb, with module PyTorch/2.2.2-rocm-5.6.1-python-3.10-singularity-20240404</a></p>
+<p>Contains PyTorch 2.2.2 with torchaudio 2.2.2, torchdata 0.7.1+cpu, torchtext 0.17.2+cpu,
+torchvision 0.17.2 GPU version, DeepSpeed 0.14.0,  flash-attention 2.0.4 and
+xformers 0.0.26+82368ac.d20240403, on Python 3.10 and ROCm 5.6.1.
+The container also fully assists the procedure to add extra packages in a Python virtual environment.</p>
+<p>This version works with $WITH_CONDA, $WITH_VENV and $WITH_CONDA_VENV for initialisation of the 
+conda env, Python venv or both environments respectively.</p>
+</li>
+<li>
+<p><a href="PyTorch-2.2.2-rocm-5.6.1-python-3.10-singularity-20240617/">EasyConfig PyTorch-2.2.2-rocm-5.6.1-python-3.10-singularity-20240617.eb, with module PyTorch/2.2.2-rocm-5.6.1-python-3.10-singularity-20240617</a></p>
+<p>Contains PyTorch 2.2.2 with torchaudio 2.2.2, torchdata 0.7.1, torchtext 0.17.2+cpu,
+torchvision 0.17.2 GPU version, DeepSpeed 0.14.0,  flash-attention 2.0.4 and
+xformers 0.0.26+82368ac.d20240403, on Python 3.10 and ROCm 5.6.1.
+The container also fully assists the procedure to add extra packages in a Python virtual environment.</p>
+<p>This version works with $WITH_CONDA, $WITH_VENV and $WITH_CONDA_VENV for initialisation of the 
+conda env, Python venv or both environments respectively.</p>
+</li>
+<li>
+<p><a href="PyTorch-2.2.2-rocm-5.6.1-python-3.10-vllm-0.4.0.post1-singularity-20240404/">EasyConfig PyTorch-2.2.2-rocm-5.6.1-python-3.10-vllm-0.4.0.post1-singularity-20240404.eb, with module PyTorch/2.2.2-rocm-5.6.1-python-3.10-vllm-0.4.0.post1-singularity-20240404</a></p>
+<p>Contains PyTorch 2.2.2 with torchaudio 2.2.2, torchdata 0.7.1+cpu, torchtext 0.17.2+cpu,
+torchvision 0.17.2 GPU version, torchmetrics 1.3.2, DeepSpeed 0.12.3,  flash-attention 2.0.4, transformers 4.39.3,
+xformers 0.0.25+8dd471d.d20240209, and vllm 0.4.0.post1, on Python 3.10 and ROCm 5.6.1.
+The container also fully assists the procedure to add extra packages in a Python virtual environment.</p>
+<p>This version works with $WITH_CONDA, $WITH_VENV and $WITH_CONDA_VENV for initialisation of the 
+conda env, Python venv or both environments respectively.</p>
+<p>If you experience problems with this container, it may be better to move to a more recent one
+(see the date encoded as yyyymmdd at the end of the filename).</p>
+</li>
+<li>
+<p><a href="PyTorch-2.2.2-rocm-5.6.1-python-3.10-vllm-0.4.0.post1-singularity-20240617/">EasyConfig PyTorch-2.2.2-rocm-5.6.1-python-3.10-vllm-0.4.0.post1-singularity-20240617.eb, with module PyTorch/2.2.2-rocm-5.6.1-python-3.10-vllm-0.4.0.post1-singularity-20240617</a></p>
+<p>Contains PyTorch 2.2.2 with torchaudio 2.2.2, torchdata 0.7.1, torchtext 0.17.2+cpu,
+torchvision 0.17.2 GPU version, DeepSpeed 0.12.3,  flash-attention 2.0.4, 
+xformers 0.0.26+82368ac.d20240403, and vllm 0.4.0.post1, on Python 3.10 and ROCm 5.6.1.
+The container also fully assists the procedure to add extra packages in a Python virtual environment.</p>
+<p>This version works with $WITH_CONDA, $WITH_VENV and $WITH_CONDA_VENV for initialisation of the 
+conda env, Python venv or both environments respectively.</p>
+</li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        
+
+
+
+
+<footer class="md-footer">
+
+  
+  
+
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+
+      
+    <div class="md-footer-copyright">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" 
+             style="border-width:0" 
+             src="https://i.creativecommons.org/l/by/4.0/80x15.png"
+        />
+      </a>
+      This work is licensed under a&nbsp;
+      <a rel="license" 
+         href="http://creativecommons.org/licenses/by/4.0/"
+      >
+        Creative Commons Attribution 4.0 International License
+      </a>
+    </div>
+
+      
+      
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://www.youtube.com/channel/UCb31KOJ6Wqu0sRpIRi_k8Mw" target="_blank" rel="noopener" title="LUMI on YouTube" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://www.linkedin.com/company/lumi-supercomputer" target="_blank" rel="noopener" title="LUMI on LinkedIn" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://twitter.com/LUMIhpc" target="_blank" rel="noopener" title="LUMI on Twitter" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"/></svg>
+    </a>
+  
+</div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "toc.follow", "search.suggest", "content.code.annotate", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
