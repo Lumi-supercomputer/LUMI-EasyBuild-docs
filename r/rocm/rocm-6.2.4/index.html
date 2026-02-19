@@ -1,0 +1,2207 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for the LUMI software library">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>rocm/6.2.4 (rocm-6.2.4.eb) - rocm - LUMI Software Library</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+  
+      
+
+    
+
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document.body.addEventListener("click", function(ev) {
+        if (ev.target instanceof HTMLElement) {
+          var el = ev.target.closest("a[href^=http]")
+          if (el)
+            ga("send", "event", "outbound", "click", el.href)
+        }
+      })
+    })
+  </script>
+
+    
+
+  
+  
+  
+    
+  
+
+  
+  
+
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="LUMI Software Library - rocm/6.2.4 (rocm-6.2.4.eb) - rocm" />
+  <meta property="og:description" content="Documentation for the LUMI software library" />
+  <meta property="og:url" content="None" />
+  <meta property="og:image" content="assets/images/banner.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1080" />
+  <meta property="og:image:height" content="568" />
+
+  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@LUMIhpc" />
+  <meta name="twitter:creator" content="@LUMIhpc" />
+  <meta name="twitter:title" content="LUMI Software Library - rocm/6.2.4 (rocm-6.2.4.eb) - rocm" />
+  <meta name="twitter:description" content="Documentation for the LUMI software library" />
+  <meta name="twitter:image" content="assets/images/banner.png" />
+
+  <style>
+    [data-md-color-primary="lumi"] {
+      --md-primary-fg-color: hsla(0, 0%, 100%, 1);
+      --md-primary-fg-color--light: hsla(0, 0%, 100%, 0.7);
+      --md-primary-fg-color--dark: hsla(0, 0%, 0%, 0.07);
+      --md-primary-bg-color: hsla(0, 0%, 0%, 0.87);
+      --md-primary-bg-color--light: hsla(0, 0%, 0%, 0.54);
+      --md-button-bg-color: hsla(207,100%,28%, 1);
+      --md-button-bg-color--light: hsla(207,100%,38%, 1);
+      --md-typeset-a-color: hsla(207,100%,28%, 1);
+    }
+    
+    [data-md-color-accent="lumi"] {
+      --md-accent-fg-color: hsla(0,0%,0%, 1);
+      --md-accent-fg-color--transparent: hsla(0,0%,0%, 0.1);
+      --md-accent-bg-color: hsla(0, 0%, 100%, 1);
+      --md-accent-bg-color--light: hsla(0, 0%, 100%, 0.7);
+    }
+  </style>
+
+  
+
+
+  
+  
+
+    <link
+      rel="stylesheet"
+      href="../../../assets/stylesheets/extra-a8af0af3d0.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../../assets/stylesheets/overrides-5193e6f6df.css"
+    />
+    <link
+      rel="stylesheet"
+      id="typekit-fonts-css"
+      href="https://use.typekit.net/nlo5lta.css?ver=5.5.3"
+      type="text/css" media="all"
+    />
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="lumi" data-md-color-accent="lumi">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rocm624-rocm-624eb" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="LUMI Software Library" class="md-header__button md-logo" aria-label="LUMI Software Library" data-md-component="logo">
+      
+  
+  <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 723 212" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="Layer-2" serif:id="Layer 2">
+        <g transform="matrix(1,0,0,1,0,175.883)">
+            <path d="M0,-140.304L0,0L102.89,0L102.89,-24.599L26.658,-24.599L26.658,-140.304L0,-140.304Z" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,257.262,35.5793)">
+            <path d="M0,140.304C-17.585,140.304 -32.083,135.347 -43.588,125.338C-55,115.423 -60.799,103.357 -60.799,89.14L-60.799,0L-34.328,0L-34.328,81.563C-34.328,92.413 -31.054,100.645 -24.319,105.976C-17.866,111.12 -9.728,113.74 0,113.74C9.728,113.74 17.865,111.12 24.319,105.976C31.054,100.645 34.328,92.413 34.328,81.563L34.328,0L60.799,0L60.799,89.14C60.799,103.357 55.093,115.329 43.588,125.338C32.083,135.347 17.585,140.304 0,140.304" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,550.374,119.668)">
+            <path d="M0,-27.874L-43.588,20.671L-87.176,-27.874L-87.176,56.215L-113.74,56.215L-113.74,-84.089L-105.695,-84.089L-43.588,-13.47L18.614,-84.089L26.658,-84.089L26.658,56.215L0.094,56.215L0,-27.874Z" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <rect x="695.604" y="35.486" width="26.658" height="140.397" style="fill:rgb(29,29,27);"/>
+        <g transform="matrix(-1,0,0,1,722.262,-203.194)">
+            <rect x="0" y="203.194" width="722.262" height="8.175" style="fill:rgb(29,29,27);"/>
+        </g>
+        <g transform="matrix(-1,0,0,1,722.262,203.194)">
+            <rect x="0" y="0" width="722.262" height="8.175" style="fill:rgb(29,29,27);"/>
+        </g>
+    </g>
+</svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LUMI Software Library
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              rocm/6.2.4 (rocm-6.2.4.eb) - rocm
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html#a" class="md-tabs__link">
+        
+  
+  
+    
+  
+  a
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html#b" class="md-tabs__link">
+        
+  
+  
+    
+  
+  b
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html#c" class="md-tabs__link">
+        
+  
+  
+    
+  
+  c
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html#d" class="md-tabs__link">
+        
+  
+  
+    
+  
+  d
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html#e" class="md-tabs__link">
+        
+  
+  
+    
+  
+  e
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html#f" class="md-tabs__link">
+        
+  
+  
+    
+  
+  f
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html#g" class="md-tabs__link">
+        
+  
+  
+    
+  
+  g
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html#h" class="md-tabs__link">
+        
+  
+  
+    
+  
+  h
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html#I/ICU" class="md-tabs__link">
+        
+  
+  
+    
+  
+  I/ICU
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html#i" class="md-tabs__link">
+        
+  
+  
+    
+  
+  i
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html#j" class="md-tabs__link">
+        
+  
+  
+    
+  
+  j
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html#k" class="md-tabs__link">
+        
+  
+  
+    
+  
+  k
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html#l" class="md-tabs__link">
+        
+  
+  
+    
+  
+  l
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html#m" class="md-tabs__link">
+        
+  
+  
+    
+  
+  m
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html#n" class="md-tabs__link">
+        
+  
+  
+    
+  
+  n
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html#o" class="md-tabs__link">
+        
+  
+  
+    
+  
+  o
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html#p" class="md-tabs__link">
+        
+  
+  
+    
+  
+  p
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html#q" class="md-tabs__link">
+        
+  
+  
+    
+  
+  q
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html#r" class="md-tabs__link">
+        
+  
+  
+    
+  
+  r
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html#s" class="md-tabs__link">
+        
+  
+  
+    
+  
+  s
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html#t" class="md-tabs__link">
+        
+  
+  
+    
+  
+  t
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html#u" class="md-tabs__link">
+        
+  
+  
+    
+  
+  u
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html#v" class="md-tabs__link">
+        
+  
+  
+    
+  
+  v
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html#w" class="md-tabs__link">
+        
+  
+  
+    
+  
+  w
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html#x" class="md-tabs__link">
+        
+  
+  
+    
+  
+  x
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html#y" class="md-tabs__link">
+        
+  
+  
+    
+  
+  y
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html#z" class="md-tabs__link">
+        
+  
+  
+    
+  
+  z
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../known_issues/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Issues
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../whats_new/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  New
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="LUMI Software Library" class="md-nav__button md-logo" aria-label="LUMI Software Library" data-md-component="logo">
+      
+  
+  <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 723 212" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="Layer-2" serif:id="Layer 2">
+        <g transform="matrix(1,0,0,1,0,175.883)">
+            <path d="M0,-140.304L0,0L102.89,0L102.89,-24.599L26.658,-24.599L26.658,-140.304L0,-140.304Z" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,257.262,35.5793)">
+            <path d="M0,140.304C-17.585,140.304 -32.083,135.347 -43.588,125.338C-55,115.423 -60.799,103.357 -60.799,89.14L-60.799,0L-34.328,0L-34.328,81.563C-34.328,92.413 -31.054,100.645 -24.319,105.976C-17.866,111.12 -9.728,113.74 0,113.74C9.728,113.74 17.865,111.12 24.319,105.976C31.054,100.645 34.328,92.413 34.328,81.563L34.328,0L60.799,0L60.799,89.14C60.799,103.357 55.093,115.329 43.588,125.338C32.083,135.347 17.585,140.304 0,140.304" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,550.374,119.668)">
+            <path d="M0,-27.874L-43.588,20.671L-87.176,-27.874L-87.176,56.215L-113.74,56.215L-113.74,-84.089L-105.695,-84.089L-43.588,-13.47L18.614,-84.089L26.658,-84.089L26.658,56.215L0.094,56.215L0,-27.874Z" style="fill:rgb(29,29,27);fill-rule:nonzero;"/>
+        </g>
+        <rect x="695.604" y="35.486" width="26.658" height="140.397" style="fill:rgb(29,29,27);"/>
+        <g transform="matrix(-1,0,0,1,722.262,-203.194)">
+            <rect x="0" y="203.194" width="722.262" height="8.175" style="fill:rgb(29,29,27);"/>
+        </g>
+        <g transform="matrix(-1,0,0,1,722.262,203.194)">
+            <rect x="0" y="0" width="722.262" height="8.175" style="fill:rgb(29,29,27);"/>
+        </g>
+    </g>
+</svg>
+
+    </a>
+    LUMI Software Library
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html#a" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    a
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html#b" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    b
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html#c" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    c
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html#d" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    d
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html#e" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    e
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html#f" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    f
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html#g" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    g
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html#h" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    h
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html#I/ICU" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I/ICU
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html#i" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    i
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html#j" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    j
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html#k" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html#l" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    l
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html#m" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    m
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html#n" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    n
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html#o" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    o
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html#p" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    p
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html#q" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    q
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html#r" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    r
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html#s" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    s
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html#t" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    t
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html#u" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    u
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html#v" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html#w" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    w
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html#x" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    x
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html#y" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    y
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html#z" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    z
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../known_issues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Issues
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../whats_new/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+<p><a href="../">[rocm]</a> <a href="../../../">[package list]</a></p>
+<h1 id="rocm624-rocm-624eb">rocm/6.2.4 (rocm-6.2.4.eb)</h1>
+<p>To access module help and find out for which stacks and partitions the module is
+installed, use <code>module spider rocm/6.2.4</code>.</p>
+<p>EasyConfig:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">#DOC This version may be useful as an upgrade in 24.03 or a downgrade of the</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1">#DOC default ROCm in 25.03, and is known to solve some rare issues when using</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1">#DOC the Cray compilers in 25.03.</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">easyblock</span> <span class="o">=</span> <span class="s1">&#39;EB_rocmrpms&#39;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;rocm&#39;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;6.2.4&#39;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">homepage</span> <span class="o">=</span> <span class="s1">&#39;https://www.amd.com/en/developer/resources/rocm-hub.html&#39;</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">whatis</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="s2">&quot;Description: AMD ROCm is the first open-source software development platform for &quot;</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="s2">&quot;HPC/Hyperscale-class GPU computing&quot;</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="p">]</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="s2">AMD ROCm is the first open-source software development platform for</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="s2">HPC/Hyperscale-class GPU computing. AMD ROCm brings the UNIX philosophy of</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="s2">choice, minimalism and modular software development to GPU computing.</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="s2">AMD ROCm is the first open-source software development platform for</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="s2">HPC/Hyperscale-class GPU computing. AMD ROCm brings the UNIX philosophy of</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="s2">choice, minimalism and modular software development to GPU computing.</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="s2">ROCm provides the tools required for the development of code using HIP, OpenCL</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="s2">and OpenMP programming models including tools for profiling and debugging.</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="s2">This is an experimental module provided for the convenience of the users.</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="s2">This is ROCm installed in a way it is not meant to be installed so we cannot</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="s2">offer any guarantee that this module will work properly with HPE Cray PE modules</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="s2">nor can we offer any support. Some parts are almost certain to be broken, at</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="s2">least in a way that can lead to reduced performance, as ROCm tends to contain</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="s2">hidden hard-coded links to the regular installation directories. As the inner</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="s2">workings of the HPE Cray PE are not public and as the PE (at least the versions</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="s2">up to 23.09 on the system) has even never been tested with this version of ROCm</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="s2">by HPE there is absolutely no guarantee that this module will play nice with,</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="s2">e.g., Cray MPICH.</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="n">docurls</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="s1">&#39;Web-based documentation on https://rocm.docs.amd.com/en/docs-</span><span class="si">%(version)s</span><span class="s1">/&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>    <span class="s1">&#39;PDF documentation in $EBROOTROCM/share/doc/rocgdb&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>    <span class="s1">&#39;PDF documentation in $EBROOTROCM/share/doc/roctracer&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>    <span class="s1">&#39;PDF documentation in $EBROOTROCM/share/doc/rocm_smi&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>    <span class="s1">&#39;PDF documentation in $EBROOTROCM/share/doc/amd-dbgapi&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="p">]</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="n">toolchain</span> <span class="o">=</span> <span class="n">SYSTEM</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="p">;</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="n">local_lumi_stack_version</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;LUMI_STACK_VERSION&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;24.03&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="n">builddependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="c1"># For patchelf</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    <span class="p">(</span><span class="s1">&#39;buildtools&#39;</span><span class="p">,</span>  <span class="n">local_lumi_stack_version</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="p">]</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="n">index_url</span> <span class="o">=</span> <span class="s1">&#39;https://repo.radeon.com/rocm/zyp/</span><span class="si">%(version)s</span><span class="s1">/main/&#39;</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="n">gpu_archs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;gfx90a&#39;</span><span class="p">]</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="c1"># Exclude MIVisionX and rocAL because of the OpenCV dependency</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="c1"># Exclude rocDecode because of the libva dependency</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="n">exclude_packages</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>  <span class="s1">&#39;mivisionx&#39;</span><span class="p">,</span> 
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>  <span class="s1">&#39;mivisionx-asan&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>  <span class="s1">&#39;mivisionx-debuginfo&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>  <span class="s1">&#39;mivisionx-devel&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>  <span class="s1">&#39;rocal&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>  <span class="s1">&#39;rocal-devel&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>  <span class="s1">&#39;rocal-test&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>  <span class="s1">&#39;rocdecode&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>  <span class="s1">&#39;rocdecode-devel&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>  <span class="s1">&#39;rocdecode-test&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>  <span class="s1">&#39;rocm-khronos-cts&#39;</span><span class="p">,</span> 
+<a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>  <span class="s1">&#39;rocm-khronos-cts-debuginfo&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>  <span class="s1">&#39;hipcc-nvidia-debuginfo&#39;</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a><span class="p">]</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>
+<a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a><span class="n">exclude_asan</span><span class="o">=</span><span class="kc">False</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a><span class="n">exclude_debug</span><span class="o">=</span><span class="kc">False</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>
+<a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>
+<a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a><span class="n">component_checksums</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>    <span class="s1">&#39;amd-smi-lib&#39;</span>                                   <span class="p">:</span>  <span class="s1">&#39;3885b7965e2abf58e89ce62fdd1964c03cab38e1c1f85204c0a3232f8da11fc4&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>    <span class="s1">&#39;amd-smi-lib-asan&#39;</span>                              <span class="p">:</span>  <span class="s1">&#39;22b7fe1026dbce422feb351a030903c0ac722328327350e14a3c1a2d8640ea87&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>    <span class="s1">&#39;amd-smi-lib-asan-debuginfo&#39;</span>                    <span class="p">:</span>  <span class="s1">&#39;5e4b9461b7e3dcd5311b9d7b8e5520f8a8e29277ec8fc5e1b345ec51a1741917&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>    <span class="s1">&#39;amd-smi-lib-debuginfo&#39;</span>                         <span class="p">:</span>  <span class="s1">&#39;d2eb6ec376c673778617305d7f4552ee06676eec95b206a34f027ab20826510b&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>    <span class="s1">&#39;comgr&#39;</span>                                         <span class="p">:</span>  <span class="s1">&#39;d886e9da62a91690eff94a3ea2ec77acb326a811f3b0897de3db087f4173ec7f&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>    <span class="s1">&#39;comgr-asan&#39;</span>                                    <span class="p">:</span>  <span class="s1">&#39;d5d4eccef2640ece4ce5f882e078f33e3bcd88b990619092874d31c7a83f7185&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>    <span class="s1">&#39;comgr-asan-debuginfo&#39;</span>                          <span class="p">:</span>  <span class="s1">&#39;45c7a5227ef03af1172b61234a775adf6b45350b2ef71084a644c8421caf7e41&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>    <span class="s1">&#39;comgr-debuginfo&#39;</span>                               <span class="p">:</span>  <span class="s1">&#39;46ce8c27211f9daaf6e0cd1487810ec5dda02cc0cad47cc671112f4d80149f9a&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>    <span class="s1">&#39;composablekernel-ckprofiler_gfx90&#39;</span>             <span class="p">:</span>  <span class="s1">&#39;ae0fb1fbdf24dafa99093cd360e6f4e551cd7ffb353dc9426daaf4ba632563bf&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>    <span class="s1">&#39;composablekernel-devel&#39;</span>                        <span class="p">:</span>  <span class="s1">&#39;9b1709e714fa216072482644c96de6020953192aae24fe2759ebeda7b3041a4d&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>    <span class="s1">&#39;half&#39;</span>                                          <span class="p">:</span>  <span class="s1">&#39;7000d94fa04843bb051b4132bc0cbfdaa8611124b6073e26e6aa42bb6e6c63f4&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>    <span class="s1">&#39;hip-devel&#39;</span>                                     <span class="p">:</span>  <span class="s1">&#39;9c86ce811cef9ad40d291dd4ec9427a5d0f03f221badc0935cabe6aaa5dad9eb&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>    <span class="s1">&#39;hip-doc&#39;</span>                                       <span class="p">:</span>  <span class="s1">&#39;d3e5b7e71d2663945ae6b5dafc8c02950c9c771b6a4d1611cbc57e34346dea3f&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>    <span class="s1">&#39;hip-runtime-amd&#39;</span>                               <span class="p">:</span>  <span class="s1">&#39;2df744a630d9bc698f6436f6c1fd50baacb667cb70198288601cdc4a64760712&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>    <span class="s1">&#39;hip-runtime-amd-asan&#39;</span>                          <span class="p">:</span>  <span class="s1">&#39;ec8bd933acd16140efc5c770bfcd35d94dd15892310a03206c5bc1a0ead2f599&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>    <span class="s1">&#39;hip-runtime-amd-asan-debuginfo&#39;</span>                <span class="p">:</span>  <span class="s1">&#39;ead01ced3554edc53c4251834a1b1627ce3ca4354daffc007378a48cea27fff0&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>    <span class="s1">&#39;hip-runtime-amd-debuginfo&#39;</span>                     <span class="p">:</span>  <span class="s1">&#39;8c2730ad8cc68e4f53220b79ee32ad2a2f59fd2d990c7962b05ce11a844d5c7e&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>    <span class="s1">&#39;hip-samples&#39;</span>                                   <span class="p">:</span>  <span class="s1">&#39;906e94ff18125a68c3600126df8c840d15e82feb94259109ee29b85ea2af2166&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a>    <span class="s1">&#39;hipblas&#39;</span>                                       <span class="p">:</span>  <span class="s1">&#39;781d1fef474dd67d61883e63ad3b8798251fa62c602d4a8e415e431b60fb94a3&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a>    <span class="s1">&#39;hipblas-asan&#39;</span>                                  <span class="p">:</span>  <span class="s1">&#39;4f9322a3a659c9490080c06ee684cbf3b451021794cc2a830c61954134ee85c6&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a>    <span class="s1">&#39;hipblas-debuginfo&#39;</span>                             <span class="p">:</span>  <span class="s1">&#39;7ffaaa0975d03a4c9e4bffbe1edfacb27c561cf15616f929810292e7116ae60f&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a>    <span class="s1">&#39;hipblas-devel&#39;</span>                                 <span class="p">:</span>  <span class="s1">&#39;71de06c5b562a9c5074669b4354cb908f79cf4fb1b5068479d0c40e6d6f425c9&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a>    <span class="s1">&#39;hipblaslt&#39;</span>                                     <span class="p">:</span>  <span class="s1">&#39;73487721e638d67c2a5623b519fdf88ee4fd6eea7f9b6eb5166e91817593a026&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a>    <span class="s1">&#39;hipblaslt-asan&#39;</span>                                <span class="p">:</span>  <span class="s1">&#39;435d2e3ef15660851370dca7a5dccc43ce956b572c76f8ba63272b5a792d9647&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a>    <span class="s1">&#39;hipblaslt-devel&#39;</span>                               <span class="p">:</span>  <span class="s1">&#39;fbe1a42f7c6df893115d3f54a647b765bded03ad2edfde9b36f2fa6e9c6255bd&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a>    <span class="s1">&#39;hipcc&#39;</span>                                         <span class="p">:</span>  <span class="s1">&#39;52d229f5ce1531d88c5e071843aa0fef04529701cfa2a6e7c6e23769a41610ab&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a>    <span class="s1">&#39;hipcc-debuginfo&#39;</span>                               <span class="p">:</span>  <span class="s1">&#39;8174979d2e726199ffdc3ec8b93a2878b1c652c18640a798a7b696d06ca6e886&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a>    <span class="s1">&#39;hipcub-devel&#39;</span>                                  <span class="p">:</span>  <span class="s1">&#39;70af9a877567005e4a9a3d36f729d66c023e4e85257aa0ea76ea0990a1983394&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a>    <span class="s1">&#39;hipfft&#39;</span>                                        <span class="p">:</span>  <span class="s1">&#39;49b46c7bc8f2a2f2d18a6cf6d180866c0431f0b6e852166a146b484f3177ee90&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-114" name="__codelineno-0-114" href="#__codelineno-0-114"></a>    <span class="s1">&#39;hipfft-asan&#39;</span>                                   <span class="p">:</span>  <span class="s1">&#39;698dc053c2feb00e8e950755754f32efe2b127c8d2c06d7766ab38f3e290abd4&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-115" name="__codelineno-0-115" href="#__codelineno-0-115"></a>    <span class="s1">&#39;hipfft-debuginfo&#39;</span>                              <span class="p">:</span>  <span class="s1">&#39;5c33676174e69d1639c172cb40375c2076baaf6f743a90569aa94da4e0ead607&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-116" name="__codelineno-0-116" href="#__codelineno-0-116"></a>    <span class="s1">&#39;hipfft-devel&#39;</span>                                  <span class="p">:</span>  <span class="s1">&#39;260d8407856aa557d80641c8d7720a7a2ba10c7c3e73333b584388255b8b6890&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-117" name="__codelineno-0-117" href="#__codelineno-0-117"></a>    <span class="s1">&#39;hipfort-devel&#39;</span>                                 <span class="p">:</span>  <span class="s1">&#39;fc9494dbe2a5d3986e4f5f23121f58851eaef075a438668985189b6e77a28535&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-118" name="__codelineno-0-118" href="#__codelineno-0-118"></a>    <span class="s1">&#39;hipify-clang&#39;</span>                                  <span class="p">:</span>  <span class="s1">&#39;652954a1d748f6f2988adca3274ec3630ffa7bce3fbdefd5894909fb7bf19dc9&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-119" name="__codelineno-0-119" href="#__codelineno-0-119"></a>    <span class="s1">&#39;hiprand&#39;</span>                                       <span class="p">:</span>  <span class="s1">&#39;6b817af0e52c2c781e5e2cccb07018f030eddc36b86c6d90c3e43688927a2444&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-120" name="__codelineno-0-120" href="#__codelineno-0-120"></a>    <span class="s1">&#39;hiprand-asan&#39;</span>                                  <span class="p">:</span>  <span class="s1">&#39;5460ba7f9e1ba313379ddbde3c41a01fbcc29d90a4d2aa4818de7c6dd232e055&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-121" name="__codelineno-0-121" href="#__codelineno-0-121"></a>    <span class="s1">&#39;hiprand-debuginfo&#39;</span>                             <span class="p">:</span>  <span class="s1">&#39;f19444e0fa415f5a1bd0f0029bfa453f5528bb76b89fa4ed7132edb6144bf150&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-122" name="__codelineno-0-122" href="#__codelineno-0-122"></a>    <span class="s1">&#39;hiprand-devel&#39;</span>                                 <span class="p">:</span>  <span class="s1">&#39;928c39547848c3ebd51b7f2fadb532c32c3ef052ed2ba810eaa76ab0a8c3d4c5&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-123" name="__codelineno-0-123" href="#__codelineno-0-123"></a>    <span class="s1">&#39;hipsolver&#39;</span>                                     <span class="p">:</span>  <span class="s1">&#39;f0c234989d8013423e81623cec800d3ca6357b1f0c60a1f9ecad2b4537d22d09&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-124" name="__codelineno-0-124" href="#__codelineno-0-124"></a>    <span class="s1">&#39;hipsolver-asan&#39;</span>                                <span class="p">:</span>  <span class="s1">&#39;04a981fd31618363440d76e24d83cae9492f2b05adb58bb8bf4464a14c681a79&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-125" name="__codelineno-0-125" href="#__codelineno-0-125"></a>    <span class="s1">&#39;hipsolver-debuginfo&#39;</span>                           <span class="p">:</span>  <span class="s1">&#39;eb93187b6d44535aeaaeac4a6d074bd8e2c7efc0939775ff0b1c47d159e4bce4&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-126" name="__codelineno-0-126" href="#__codelineno-0-126"></a>    <span class="s1">&#39;hipsolver-devel&#39;</span>                               <span class="p">:</span>  <span class="s1">&#39;e6ad15927489c53f905dbe52f68039842aae90939c5c412fcb3bcd8dbc3783c6&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-127" name="__codelineno-0-127" href="#__codelineno-0-127"></a>    <span class="s1">&#39;hipsparse&#39;</span>                                     <span class="p">:</span>  <span class="s1">&#39;451e0a8a69dc9fb83a5042c88a27bf7f439be25de1ab65262db54ffe84c56098&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-128" name="__codelineno-0-128" href="#__codelineno-0-128"></a>    <span class="s1">&#39;hipsparse-asan&#39;</span>                                <span class="p">:</span>  <span class="s1">&#39;360b012fa950d0f3969128fd930339151f4c8b93d9f34fe7567570bd6a5f592f&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-129" name="__codelineno-0-129" href="#__codelineno-0-129"></a>    <span class="s1">&#39;hipsparse-debuginfo&#39;</span>                           <span class="p">:</span>  <span class="s1">&#39;cbd3403c4f9f82c12bcfafadcc38ced073e599edbe69ce520a12ea5185dab795&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-130" name="__codelineno-0-130" href="#__codelineno-0-130"></a>    <span class="s1">&#39;hipsparse-devel&#39;</span>                               <span class="p">:</span>  <span class="s1">&#39;ad07319bcb2e74025929a1677a601229809d97c1870d83f0bff9c235c110d948&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-131" name="__codelineno-0-131" href="#__codelineno-0-131"></a>    <span class="s1">&#39;hipsparselt&#39;</span>                                   <span class="p">:</span>  <span class="s1">&#39;c2b526c1b606fd08efe7f533751bcd0e72edc54f8e9ba38fe61dc5e9140ec29b&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-132" name="__codelineno-0-132" href="#__codelineno-0-132"></a>    <span class="s1">&#39;hipsparselt-asan&#39;</span>                              <span class="p">:</span>  <span class="s1">&#39;82741fb3ba79b7ea0a9e9f69a943e5559c4e0659d0de52ff515c43985bfc2f62&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-133" name="__codelineno-0-133" href="#__codelineno-0-133"></a>    <span class="s1">&#39;hipsparselt-devel&#39;</span>                             <span class="p">:</span>  <span class="s1">&#39;3f44001e57713d77254fe256b7b0a32998669fa143769e69926d1d3f408b2147&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-134" name="__codelineno-0-134" href="#__codelineno-0-134"></a>    <span class="s1">&#39;hiptensor&#39;</span>                                     <span class="p">:</span>  <span class="s1">&#39;f0cbb6537bf714c4f367e6f51b5b45d5a889f82744e8c7ab6cacd8fd6b86bca1&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-135" name="__codelineno-0-135" href="#__codelineno-0-135"></a>    <span class="s1">&#39;hiptensor-asan&#39;</span>                                <span class="p">:</span>  <span class="s1">&#39;7decfd8976e03f9c6aa8b908a6240fb363f08e57e316538372abee642ca68331&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-136" name="__codelineno-0-136" href="#__codelineno-0-136"></a>    <span class="s1">&#39;hiptensor-devel&#39;</span>                               <span class="p">:</span>  <span class="s1">&#39;add64efd21729eccf3a649b544b18eaa197018797eac3f387e52c02629519acc&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-137" name="__codelineno-0-137" href="#__codelineno-0-137"></a>    <span class="s1">&#39;hsa-amd-aqlprofile&#39;</span>                            <span class="p">:</span>  <span class="s1">&#39;7109118f0edce2f85e5554330ce6f6c6519d45558d8912940c9f7ee9c01fc4dd&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-138" name="__codelineno-0-138" href="#__codelineno-0-138"></a>    <span class="s1">&#39;hsa-amd-aqlprofile-asan&#39;</span>                       <span class="p">:</span>  <span class="s1">&#39;b7adc9c5acc09230cbebcd9ffa55f790f2f9cb5ca822ee108d64d8ae0cba654c&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-139" name="__codelineno-0-139" href="#__codelineno-0-139"></a>    <span class="s1">&#39;hsa-rocr&#39;</span>                                      <span class="p">:</span>  <span class="s1">&#39;68af28da1b19b639ddf83a1225475d6df5d8a9033d435b14fcdd6c0c6de34a87&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-140" name="__codelineno-0-140" href="#__codelineno-0-140"></a>    <span class="s1">&#39;hsa-rocr-asan&#39;</span>                                 <span class="p">:</span>  <span class="s1">&#39;8c79c527d37280657ac3c883d18a6be0e83a809c3e109c1eb3149d5b44651202&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-141" name="__codelineno-0-141" href="#__codelineno-0-141"></a>    <span class="s1">&#39;hsa-rocr-asan-debuginfo&#39;</span>                       <span class="p">:</span>  <span class="s1">&#39;d6b25c1fd9d450f04c85c27abd75f45ee9dbba7fc7dbe279e66c66cef55f1318&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-142" name="__codelineno-0-142" href="#__codelineno-0-142"></a>    <span class="s1">&#39;hsa-rocr-debuginfo&#39;</span>                            <span class="p">:</span>  <span class="s1">&#39;ea624679627288ac11bc765f76de1b38cb1185a44e2458f1138288a330604cfd&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-143" name="__codelineno-0-143" href="#__codelineno-0-143"></a>    <span class="s1">&#39;hsa-rocr-devel&#39;</span>                                <span class="p">:</span>  <span class="s1">&#39;d2662a96d7f2a42c7dfa1cc88a430d64890a6c51983821533146bb2893dfa7f6&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-144" name="__codelineno-0-144" href="#__codelineno-0-144"></a>    <span class="s1">&#39;hsakmt-roct-asan&#39;</span>                              <span class="p">:</span>  <span class="s1">&#39;8f9e0d1ea8d9bd894872b9dad0079337b41611cdfc593be7816425cf782d4707&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-145" name="__codelineno-0-145" href="#__codelineno-0-145"></a>    <span class="s1">&#39;hsakmt-roct-devel&#39;</span>                             <span class="p">:</span>  <span class="s1">&#39;7712ddd7f867ddbb399349a6ee938bea3b799ce51691df35443e5dee1aa93bcd&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-146" name="__codelineno-0-146" href="#__codelineno-0-146"></a>    <span class="s1">&#39;migraphx&#39;</span>                                      <span class="p">:</span>  <span class="s1">&#39;7f690f1f980232f31ea5c285de61d0ad01f3ef6e730052f6aaa51c8899cccbcd&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-147" name="__codelineno-0-147" href="#__codelineno-0-147"></a>    <span class="s1">&#39;migraphx-asan&#39;</span>                                 <span class="p">:</span>  <span class="s1">&#39;dc61a3a5ab83cd00009092db1ddf88f1935d2cac707b4ae6f9a35a2b500075e9&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-148" name="__codelineno-0-148" href="#__codelineno-0-148"></a>    <span class="s1">&#39;migraphx-debuginfo&#39;</span>                            <span class="p">:</span>  <span class="s1">&#39;e6ba76082938f0ae921ae87d53862779b221bf494253b7f2be1f2ce2267558ce&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-149" name="__codelineno-0-149" href="#__codelineno-0-149"></a>    <span class="s1">&#39;migraphx-devel&#39;</span>                                <span class="p">:</span>  <span class="s1">&#39;05cb7467f3bcd1625b81cdabe28caca69e341aafd02ead140c74351542a8fb76&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-150" name="__codelineno-0-150" href="#__codelineno-0-150"></a>    <span class="s1">&#39;miopen-hip&#39;</span>                                    <span class="p">:</span>  <span class="s1">&#39;78c8108470184947d488d98d0578341175c7734addee409bdbbf4c97a892dc6e&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-151" name="__codelineno-0-151" href="#__codelineno-0-151"></a>    <span class="s1">&#39;miopen-hip-asan&#39;</span>                               <span class="p">:</span>  <span class="s1">&#39;40a567a7b97734cc30a982e966c5e7395c27b5416692219cb57ad6be9754b96f&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-152" name="__codelineno-0-152" href="#__codelineno-0-152"></a>    <span class="s1">&#39;miopen-hip-client&#39;</span>                             <span class="p">:</span>  <span class="s1">&#39;cbe680aa8a8f4d73748e67b42202bc20488e40279179b65563a162331710bebf&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-153" name="__codelineno-0-153" href="#__codelineno-0-153"></a>    <span class="s1">&#39;miopen-hip-devel&#39;</span>                              <span class="p">:</span>  <span class="s1">&#39;dacda3c38ff55e98d416fce5bd8bf1fe056422021e25e0610e8e6b0b6afc3529&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-154" name="__codelineno-0-154" href="#__codelineno-0-154"></a>    <span class="s1">&#39;miopen-hip-gfx90akdb&#39;</span>                          <span class="p">:</span>  <span class="s1">&#39;f242a8e3f7b67f75acebc7cd3e7dea512796cccd037f6a85bd6c1dfd810d98d1&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-155" name="__codelineno-0-155" href="#__codelineno-0-155"></a>    <span class="s1">&#39;mivisionx&#39;</span>                                     <span class="p">:</span>  <span class="s1">&#39;f9e39efbd1d89a7714fe0c9fcae117a7e9a321992274fb2c7d720b0b3b5b3bb4&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-156" name="__codelineno-0-156" href="#__codelineno-0-156"></a>    <span class="s1">&#39;mivisionx-asan&#39;</span>                                <span class="p">:</span>  <span class="s1">&#39;325a020077cb817fb59fe152b78894f78402d4fc1ebc5fe639f1b82c219ce8f6&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-157" name="__codelineno-0-157" href="#__codelineno-0-157"></a>    <span class="s1">&#39;mivisionx-debuginfo&#39;</span>                           <span class="p">:</span>  <span class="s1">&#39;e2d5d0f9f02cd9ddbecf8995440c36a233f6f10c670061ba7d749227eed62be9&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-158" name="__codelineno-0-158" href="#__codelineno-0-158"></a>    <span class="s1">&#39;mivisionx-devel&#39;</span>                               <span class="p">:</span>  <span class="s1">&#39;6cd99d7f2cd81c105353636fff537f1ceb7170bec4e56f33eaa9effddbc66ba0&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-159" name="__codelineno-0-159" href="#__codelineno-0-159"></a>    <span class="s1">&#39;omniperf&#39;</span>                                      <span class="p">:</span>  <span class="s1">&#39;4056b9265b128b301b2d6bd8e53ff6d7db78c447c727cee1c6c1a12f143c11cb&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-160" name="__codelineno-0-160" href="#__codelineno-0-160"></a>    <span class="s1">&#39;omnitrace&#39;</span>                                     <span class="p">:</span>  <span class="s1">&#39;e0e7c29f2bdcd666d6a9b29827f5460c1527242b7123db0c6d52ff06764365c1&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-161" name="__codelineno-0-161" href="#__codelineno-0-161"></a>    <span class="s1">&#39;omnitrace-debuginfo&#39;</span>                           <span class="p">:</span>  <span class="s1">&#39;adf61cdc86a908cdef276cfbed5d2f771d3d33a6f33ea172dfcd83c3bbee3517&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-162" name="__codelineno-0-162" href="#__codelineno-0-162"></a>    <span class="s1">&#39;openmp-extras-asan&#39;</span>                            <span class="p">:</span>  <span class="s1">&#39;8869dcf7af183c611d92bd585ca4684d1c17c966f6384496db04753169a3ef2f&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-163" name="__codelineno-0-163" href="#__codelineno-0-163"></a>    <span class="s1">&#39;openmp-extras-devel&#39;</span>                           <span class="p">:</span>  <span class="s1">&#39;5bfd4396a6ee6e8bafa0ff106ad4652f4ba68d950cc4eaefcbcbe06b3ed4daec&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-164" name="__codelineno-0-164" href="#__codelineno-0-164"></a>    <span class="s1">&#39;openmp-extras-runtime&#39;</span>                         <span class="p">:</span>  <span class="s1">&#39;8ef1d72e965019f7878fddb27b131ef4dcd7d47c99fabbdf9250145e72f8b976&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-165" name="__codelineno-0-165" href="#__codelineno-0-165"></a>    <span class="s1">&#39;rccl&#39;</span>                                          <span class="p">:</span>  <span class="s1">&#39;41bf00d7ecd0dd8d9b8d32ffff863196baf6e12305214a094175fc2809c5766a&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-166" name="__codelineno-0-166" href="#__codelineno-0-166"></a>    <span class="s1">&#39;rccl-asan&#39;</span>                                     <span class="p">:</span>  <span class="s1">&#39;699f08e16dd9480125840ebbf148705fc9b062be2da4d3701e7e8bb4f7dd0020&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-167" name="__codelineno-0-167" href="#__codelineno-0-167"></a>    <span class="s1">&#39;rccl-debuginfo&#39;</span>                                <span class="p">:</span>  <span class="s1">&#39;a84ffb1914aa9a5c2027c21f4bbcf0df9933ecd1fb2826fb3fb17597e7495cea&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-168" name="__codelineno-0-168" href="#__codelineno-0-168"></a>    <span class="s1">&#39;rccl-devel&#39;</span>                                    <span class="p">:</span>  <span class="s1">&#39;06af8c942f25194137d468853bce2bc0c0ef6d43a2a216a1f58151e79822cc66&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-169" name="__codelineno-0-169" href="#__codelineno-0-169"></a>    <span class="s1">&#39;rccl-unittests&#39;</span>                                <span class="p">:</span>  <span class="s1">&#39;45e40c924399c5141eafc3058722d27afe9961912469c979e7edfcb0f48e2cb1&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-170" name="__codelineno-0-170" href="#__codelineno-0-170"></a>    <span class="s1">&#39;rccl-unittests-debuginfo&#39;</span>                      <span class="p">:</span>  <span class="s1">&#39;b7082dc3632e86f9f46e1006e868da13adcf6b8bbd9a3033586c2ca94b34d2d4&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-171" name="__codelineno-0-171" href="#__codelineno-0-171"></a>    <span class="s1">&#39;rdc&#39;</span>                                           <span class="p">:</span>  <span class="s1">&#39;49d49ea63aa374b3e2e4a65ec4f2d352da56698a3d43e858dee30fb44030182c&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-172" name="__codelineno-0-172" href="#__codelineno-0-172"></a>    <span class="s1">&#39;rocal&#39;</span>                                         <span class="p">:</span>  <span class="s1">&#39;a01e51aa8ebea031106c64dcea8890848a9dd8d86b577d3c37061852823814c0&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-173" name="__codelineno-0-173" href="#__codelineno-0-173"></a>    <span class="s1">&#39;rocal-devel&#39;</span>                                   <span class="p">:</span>  <span class="s1">&#39;539eb9fe43031647eead6497509f0eaf65df2723e2c7202633010bbf55133323&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-174" name="__codelineno-0-174" href="#__codelineno-0-174"></a>    <span class="s1">&#39;rocal-test&#39;</span>                                    <span class="p">:</span>  <span class="s1">&#39;1122e018c125455ab7c6e39fe18d0a1143b8de492e67598e3102b46e722988af&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-175" name="__codelineno-0-175" href="#__codelineno-0-175"></a>    <span class="s1">&#39;rocalution&#39;</span>                                    <span class="p">:</span>  <span class="s1">&#39;7bb165a79ab92139eeca15864622dffb0537f7f994f225b0acc2a78257540f01&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-176" name="__codelineno-0-176" href="#__codelineno-0-176"></a>    <span class="s1">&#39;rocalution-asan&#39;</span>                               <span class="p">:</span>  <span class="s1">&#39;1ef04667f0e54f90d39751885e6238b3331a7318b01bbb9a004628d68bd64258&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-177" name="__codelineno-0-177" href="#__codelineno-0-177"></a>    <span class="s1">&#39;rocalution-debuginfo&#39;</span>                          <span class="p">:</span>  <span class="s1">&#39;de96c72fb0a6e368f1bca135a14ce6d9acb239e55a84e5579ef2bb13c386e8b8&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-178" name="__codelineno-0-178" href="#__codelineno-0-178"></a>    <span class="s1">&#39;rocalution-devel&#39;</span>                              <span class="p">:</span>  <span class="s1">&#39;eddd51f410483a3c319378363fbe810c7e65131f0b9f57d9dfdd526aa9460ddb&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-179" name="__codelineno-0-179" href="#__codelineno-0-179"></a>    <span class="s1">&#39;rocblas&#39;</span>                                       <span class="p">:</span>  <span class="s1">&#39;9853d4d36aec2f86e517589a76930db5abc0748432dd1892993b02f4c244cc0a&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-180" name="__codelineno-0-180" href="#__codelineno-0-180"></a>    <span class="s1">&#39;rocblas-asan&#39;</span>                                  <span class="p">:</span>  <span class="s1">&#39;87bb06e29bd8e7c995661d436d5f8146b14d40c9312b360d3448138bb70138a7&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-181" name="__codelineno-0-181" href="#__codelineno-0-181"></a>    <span class="s1">&#39;rocblas-devel&#39;</span>                                 <span class="p">:</span>  <span class="s1">&#39;bd46e324b2e8d453d226a88f3886f6b0359f2e4485e81ed87bfc4c86172878f3&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-182" name="__codelineno-0-182" href="#__codelineno-0-182"></a>    <span class="s1">&#39;rocdecode&#39;</span>                                     <span class="p">:</span>  <span class="s1">&#39;e12ebbc2e95de8356027cbf25ef9921584427ce3130ffb92319cde4c46efcd11&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-183" name="__codelineno-0-183" href="#__codelineno-0-183"></a>    <span class="s1">&#39;rocdecode-devel&#39;</span>                               <span class="p">:</span>  <span class="s1">&#39;5d0638462ded61101f797ae0be8b2f6e81cd18713eb01bd331a8d4736e3d2dd1&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-184" name="__codelineno-0-184" href="#__codelineno-0-184"></a>    <span class="s1">&#39;rocdecode-test&#39;</span>                                <span class="p">:</span>  <span class="s1">&#39;1d3a4df26ad46f3e2707b1b9a2f56f8cbe5ed04aa2d88a9d07a904bcaca78c43&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-185" name="__codelineno-0-185" href="#__codelineno-0-185"></a>    <span class="s1">&#39;rocfft&#39;</span>                                        <span class="p">:</span>  <span class="s1">&#39;2a95455d86b7a82b7e71653c1b8bbdd0b1f7e7766fb2eeebc77752a7650c276e&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-186" name="__codelineno-0-186" href="#__codelineno-0-186"></a>    <span class="s1">&#39;rocfft-asan&#39;</span>                                   <span class="p">:</span>  <span class="s1">&#39;5f67cf2bfb4b0142cb85c2141106ba2224271a97958ca39298db3ee37492902b&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-187" name="__codelineno-0-187" href="#__codelineno-0-187"></a>    <span class="s1">&#39;rocfft-debuginfo&#39;</span>                              <span class="p">:</span>  <span class="s1">&#39;a6dded131161b7fb55e64a84d0a1c084ece904a6e0f5652f667b10b2884a95f3&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-188" name="__codelineno-0-188" href="#__codelineno-0-188"></a>    <span class="s1">&#39;rocfft-devel&#39;</span>                                  <span class="p">:</span>  <span class="s1">&#39;a9694b23ab205395913090ec93c6d94833321f2564afa72d8434ce1298921972&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-189" name="__codelineno-0-189" href="#__codelineno-0-189"></a>    <span class="s1">&#39;rocm&#39;</span>                                          <span class="p">:</span>  <span class="s1">&#39;30ec4f832ddf081ca70f9c2323ce9aef3998507977ebaaf95e3aec0cf219bb33&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-190" name="__codelineno-0-190" href="#__codelineno-0-190"></a>    <span class="s1">&#39;rocm-asan&#39;</span>                                     <span class="p">:</span>  <span class="s1">&#39;145f59e92bafab189e66df10a6764d9a2ca35d7763346a11d204c0e89ce4a5e3&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-191" name="__codelineno-0-191" href="#__codelineno-0-191"></a>    <span class="s1">&#39;rocm-bandwidth-test&#39;</span>                           <span class="p">:</span>  <span class="s1">&#39;d7a93b335694266724cf967bdb1ca4ba6b7139e2e87deb109ced0ff922fb8bc3&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-192" name="__codelineno-0-192" href="#__codelineno-0-192"></a>    <span class="s1">&#39;rocm-cmake&#39;</span>                                    <span class="p">:</span>  <span class="s1">&#39;d2ba8061cc231a784ed9c003f17ab806bb505d58c9f80bc161b270290be1c582&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-193" name="__codelineno-0-193" href="#__codelineno-0-193"></a>    <span class="s1">&#39;rocm-core&#39;</span>                                     <span class="p">:</span>  <span class="s1">&#39;57fe629d4b8ea2462e0644cea8f745dc860aa3d435f043189b2fa0a3858cb194&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-194" name="__codelineno-0-194" href="#__codelineno-0-194"></a>    <span class="s1">&#39;rocm-core-asan&#39;</span>                                <span class="p">:</span>  <span class="s1">&#39;960206f5640e48b97bd397eb2029e9312d7ed1db6609bf76cfde76f022a1817b&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-195" name="__codelineno-0-195" href="#__codelineno-0-195"></a>    <span class="s1">&#39;rocm-dbgapi&#39;</span>                                   <span class="p">:</span>  <span class="s1">&#39;3ee58ddd46a30f608157564fcad67979ae394827613037258a943c59c3bbb380&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-196" name="__codelineno-0-196" href="#__codelineno-0-196"></a>    <span class="s1">&#39;rocm-dbgapi-asan&#39;</span>                              <span class="p">:</span>  <span class="s1">&#39;1069da86d00228dea093d6840607ce15d1eec83d5c3cf333c091b3efd7e2f5e7&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-197" name="__codelineno-0-197" href="#__codelineno-0-197"></a>    <span class="s1">&#39;rocm-dbgapi-asan-debuginfo&#39;</span>                    <span class="p">:</span>  <span class="s1">&#39;d4420548d8db47011799529290d2924fa6545db1ded8ba8c8ecde18cf8a40554&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-198" name="__codelineno-0-198" href="#__codelineno-0-198"></a>    <span class="s1">&#39;rocm-dbgapi-debuginfo&#39;</span>                         <span class="p">:</span>  <span class="s1">&#39;cdf4af9a314c36cd6ed947ad00bc72a899bcb99d55f2fbdfa5c8522012b08083&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-199" name="__codelineno-0-199" href="#__codelineno-0-199"></a>    <span class="s1">&#39;rocm-debug-agent&#39;</span>                              <span class="p">:</span>  <span class="s1">&#39;ad8b63755e79f22a7258b9e691510dee105c8e9d55fa9b1f7ecdd1e89513b864&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-200" name="__codelineno-0-200" href="#__codelineno-0-200"></a>    <span class="s1">&#39;rocm-debug-agent-asan&#39;</span>                         <span class="p">:</span>  <span class="s1">&#39;412c20ebae546ff0979b3aaa592e2e4ceb2c4d8709cea78cabc918cc1429cfe0&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-201" name="__codelineno-0-201" href="#__codelineno-0-201"></a>    <span class="s1">&#39;rocm-debug-agent-asan-debuginfo&#39;</span>               <span class="p">:</span>  <span class="s1">&#39;3703e44bb8ca633b913348d5fb89afb6db1aec16e61ceb9dd90d801243a0a2ee&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-202" name="__codelineno-0-202" href="#__codelineno-0-202"></a>    <span class="s1">&#39;rocm-debug-agent-debuginfo&#39;</span>                    <span class="p">:</span>  <span class="s1">&#39;f6857615215a4fd5d4283999fe213e442282b7244f10ba331d7ab49e8c55c101&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-203" name="__codelineno-0-203" href="#__codelineno-0-203"></a>    <span class="s1">&#39;rocm-dev&#39;</span>                                      <span class="p">:</span>  <span class="s1">&#39;dafefd0d9e9b679c97c917a1dd7c533b8c9431f6ae2365565cb06a588ea2023d&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-204" name="__codelineno-0-204" href="#__codelineno-0-204"></a>    <span class="s1">&#39;rocm-dev-asan&#39;</span>                                 <span class="p">:</span>  <span class="s1">&#39;d6994cf02606585dfc39fd3ecc42a0bce3770c77a6eadb42154f045dca71b7a9&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-205" name="__codelineno-0-205" href="#__codelineno-0-205"></a>    <span class="s1">&#39;rocm-developer-tools&#39;</span>                          <span class="p">:</span>  <span class="s1">&#39;b2833f316b3e5123f0c981af8ee0d0c8eccd5f5f9dd8539289624fc5b9dfe5fb&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-206" name="__codelineno-0-206" href="#__codelineno-0-206"></a>    <span class="s1">&#39;rocm-developer-tools-asan&#39;</span>                     <span class="p">:</span>  <span class="s1">&#39;d54fc0c9cd73fbd95e6887e6b243277b8d6c19fa79c353babaea392ccd1c185c&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-207" name="__codelineno-0-207" href="#__codelineno-0-207"></a>    <span class="s1">&#39;rocm-device-libs&#39;</span>                              <span class="p">:</span>  <span class="s1">&#39;154e29950ab962a91facd3fb9bdf23fe300faf229384dd19b90d4d2d95191b88&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-208" name="__codelineno-0-208" href="#__codelineno-0-208"></a>    <span class="s1">&#39;rocm-gdb&#39;</span>                                      <span class="p">:</span>  <span class="s1">&#39;86df6d9d96df30ee9c14aab18fc216dac89915c80e5c264052a406287ab6551e&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-209" name="__codelineno-0-209" href="#__codelineno-0-209"></a>    <span class="s1">&#39;rocm-hip-libraries&#39;</span>                            <span class="p">:</span>  <span class="s1">&#39;d97281ff502256c5b13654dc6bb83f5812e02e51fc48ed10e2107c545e2bf27d&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-210" name="__codelineno-0-210" href="#__codelineno-0-210"></a>    <span class="s1">&#39;rocm-hip-libraries-asan&#39;</span>                       <span class="p">:</span>  <span class="s1">&#39;0bd5a1823aed1e06462dcbe77cc9f9073c79fb878a80ade1dd93c51c96704c3d&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-211" name="__codelineno-0-211" href="#__codelineno-0-211"></a>    <span class="s1">&#39;rocm-hip-runtime&#39;</span>                              <span class="p">:</span>  <span class="s1">&#39;4c2028b4e7bf4948fbf6032148d25e84f65b031460a4117a9a6af2dd5accd4a2&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-212" name="__codelineno-0-212" href="#__codelineno-0-212"></a>    <span class="s1">&#39;rocm-hip-runtime-asan&#39;</span>                         <span class="p">:</span>  <span class="s1">&#39;ba712985ffba02910320933c92a4f52df9b609ae9baffab7e705a7ed907e9dbb&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-213" name="__codelineno-0-213" href="#__codelineno-0-213"></a>    <span class="s1">&#39;rocm-hip-runtime-devel&#39;</span>                        <span class="p">:</span>  <span class="s1">&#39;d7841b8ac85579fc814ecb62a66f29f2da2639de8f4f27b6574062e5cf574469&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-214" name="__codelineno-0-214" href="#__codelineno-0-214"></a>    <span class="s1">&#39;rocm-hip-sdk&#39;</span>                                  <span class="p">:</span>  <span class="s1">&#39;04d850c4183375b938cfb86c394e5de88a05d92c3f6f020967a958bc1e897788&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-215" name="__codelineno-0-215" href="#__codelineno-0-215"></a>    <span class="s1">&#39;rocm-khronos-cts&#39;</span>                              <span class="p">:</span>  <span class="s1">&#39;ccd198c3bdd86cf5895a3be65eba8b6b12f6c247389897208c65bb7c56663592&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-216" name="__codelineno-0-216" href="#__codelineno-0-216"></a>    <span class="s1">&#39;rocm-khronos-cts-debuginfo&#39;</span>                    <span class="p">:</span>  <span class="s1">&#39;5f54aa2a2becc4371bc369b768a42ef73f1c6ddd8fe5614fb0672d2de8ffb598&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-217" name="__codelineno-0-217" href="#__codelineno-0-217"></a>    <span class="s1">&#39;rocm-language-runtime&#39;</span>                         <span class="p">:</span>  <span class="s1">&#39;cc921c07ec434670966427d22e1e4bb257e354b790e445402b82617c26adb263&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-218" name="__codelineno-0-218" href="#__codelineno-0-218"></a>    <span class="s1">&#39;rocm-language-runtime-asan&#39;</span>                    <span class="p">:</span>  <span class="s1">&#39;7f710a365bed7f9047f3595ada5e7c566cb021c51abcf53708fe129582e16c59&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-219" name="__codelineno-0-219" href="#__codelineno-0-219"></a>    <span class="s1">&#39;rocm-libs&#39;</span>                                     <span class="p">:</span>  <span class="s1">&#39;ec438db668654d81850f633f602425f2bed595f18298f40a9e7a91b6db139cbc&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-220" name="__codelineno-0-220" href="#__codelineno-0-220"></a>    <span class="s1">&#39;rocm-llvm&#39;</span>                                     <span class="p">:</span>  <span class="s1">&#39;cda59b3fadb6911b00994112a40a18d383e7f50fdb8d3bada555cfe3bd2b482a&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-221" name="__codelineno-0-221" href="#__codelineno-0-221"></a>    <span class="s1">&#39;rocm-llvm-devel&#39;</span>                               <span class="p">:</span>  <span class="s1">&#39;51b9f86658c8096ad6cf1dd35592f82b7a772aca1d3595cc776b335b0bd16875&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-222" name="__codelineno-0-222" href="#__codelineno-0-222"></a>    <span class="s1">&#39;rocm-llvm-docs&#39;</span>                                <span class="p">:</span>  <span class="s1">&#39;e9ca2daf10f102c410ba27434c780170594b9e600a62856e289e5f5d4a96b67f&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-223" name="__codelineno-0-223" href="#__codelineno-0-223"></a>    <span class="s1">&#39;rocm-ml-libraries&#39;</span>                             <span class="p">:</span>  <span class="s1">&#39;63319af5f80053f8f475e3473b43ce54116304e53dfcfdc6f2fd288164c61ace&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-224" name="__codelineno-0-224" href="#__codelineno-0-224"></a>    <span class="s1">&#39;rocm-ml-libraries-asan&#39;</span>                        <span class="p">:</span>  <span class="s1">&#39;3d96d780f2a01069593f528ff590ad4aef659c653119ad1372e06ec8acb44f1a&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-225" name="__codelineno-0-225" href="#__codelineno-0-225"></a>    <span class="s1">&#39;rocm-ml-sdk&#39;</span>                                   <span class="p">:</span>  <span class="s1">&#39;484e84b767cd737c99955e5878bfffb1b20c693d8ba445bf9a4d38c1741650fd&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-226" name="__codelineno-0-226" href="#__codelineno-0-226"></a>    <span class="s1">&#39;rocm-ml-sdk-asan&#39;</span>                              <span class="p">:</span>  <span class="s1">&#39;f85a366946cbc935097d6da6d17f737621179dc9eaafc55b8e08a35bd22f0d0c&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-227" name="__codelineno-0-227" href="#__codelineno-0-227"></a>    <span class="s1">&#39;rocm-ocltst&#39;</span>                                   <span class="p">:</span>  <span class="s1">&#39;8197f5b7c5d83cf3ae3086abb250efbb4ab2e69037346bf46cb41cd8ecdcd7c3&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-228" name="__codelineno-0-228" href="#__codelineno-0-228"></a>    <span class="s1">&#39;rocm-ocltst-debuginfo&#39;</span>                         <span class="p">:</span>  <span class="s1">&#39;c3fcfe428d0b99868d3e871cc933ecfec2fc03df27cc230f139ea6a99f5dc26c&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-229" name="__codelineno-0-229" href="#__codelineno-0-229"></a>    <span class="s1">&#39;rocm-opencl&#39;</span>                                   <span class="p">:</span>  <span class="s1">&#39;7af8fa0bb8481aec93c7016619ae2967eb88e5336dbb09cb1de0f0597e3674db&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-230" name="__codelineno-0-230" href="#__codelineno-0-230"></a>    <span class="s1">&#39;rocm-opencl-asan&#39;</span>                              <span class="p">:</span>  <span class="s1">&#39;ca7c05899309c9849fedd42760f44613d88e00ac1efb4bb992af7a94abefeea5&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-231" name="__codelineno-0-231" href="#__codelineno-0-231"></a>    <span class="s1">&#39;rocm-opencl-asan-debuginfo&#39;</span>                    <span class="p">:</span>  <span class="s1">&#39;818dc218d94bf9be08373ac544a3b57122fded05d63ed84214c194b0ba302b50&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-232" name="__codelineno-0-232" href="#__codelineno-0-232"></a>    <span class="s1">&#39;rocm-opencl-debuginfo&#39;</span>                         <span class="p">:</span>  <span class="s1">&#39;3592c496ca81cf9fa2acef1a3c58f228dfcd4132748a84a5f45f6f3718c7f2f9&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-233" name="__codelineno-0-233" href="#__codelineno-0-233"></a>    <span class="s1">&#39;rocm-opencl-devel&#39;</span>                             <span class="p">:</span>  <span class="s1">&#39;7c762f9f1b9460f6597d8e4855743bc37172e6612323253b637b0caaacbc90a8&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-234" name="__codelineno-0-234" href="#__codelineno-0-234"></a>    <span class="s1">&#39;rocm-opencl-icd-loader&#39;</span>                        <span class="p">:</span>  <span class="s1">&#39;86d91a6a9feb456359c5e6891046928ce14c2e0989ee8a7efca6b06fe19cbbfd&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-235" name="__codelineno-0-235" href="#__codelineno-0-235"></a>    <span class="s1">&#39;rocm-opencl-icd-loader-debuginfo&#39;</span>              <span class="p">:</span>  <span class="s1">&#39;1d0b79678b6b6cc051243b5961cee5e76bbf7f2a06cea84047841b76f4e8611c&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-236" name="__codelineno-0-236" href="#__codelineno-0-236"></a>    <span class="s1">&#39;rocm-opencl-runtime&#39;</span>                           <span class="p">:</span>  <span class="s1">&#39;2bc00083eb6d5019bad1fa2198c36e5b412de5a5f371ea6308152cc17d1eaeb3&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-237" name="__codelineno-0-237" href="#__codelineno-0-237"></a>    <span class="s1">&#39;rocm-opencl-runtime-asan&#39;</span>                      <span class="p">:</span>  <span class="s1">&#39;5353747f6b29149ee046c3bf24ac2815a821f6ba32f4259fc3d358f385ea265b&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-238" name="__codelineno-0-238" href="#__codelineno-0-238"></a>    <span class="s1">&#39;rocm-opencl-sdk&#39;</span>                               <span class="p">:</span>  <span class="s1">&#39;a406a16ceff74ffbafd1512a88120fd94eebbee9bf1017f055423d367580d8ec&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-239" name="__codelineno-0-239" href="#__codelineno-0-239"></a>    <span class="s1">&#39;rocm-openmp-sdk&#39;</span>                               <span class="p">:</span>  <span class="s1">&#39;7131267debed350f7b47e229695a80617bd3b50743e8a94bf7d8853c5c2c8f1b&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-240" name="__codelineno-0-240" href="#__codelineno-0-240"></a>    <span class="s1">&#39;rocm-smi-lib&#39;</span>                                  <span class="p">:</span>  <span class="s1">&#39;a2187bbb0509b9e9a1aac18857e47817187156df1f4533838416f1dddd7437ed&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-241" name="__codelineno-0-241" href="#__codelineno-0-241"></a>    <span class="s1">&#39;rocm-smi-lib-asan&#39;</span>                             <span class="p">:</span>  <span class="s1">&#39;b24b1c74b33a88d052259820fa98be5cc1811ca909a38586c67042bcd90b4f3d&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-242" name="__codelineno-0-242" href="#__codelineno-0-242"></a>    <span class="s1">&#39;rocm-smi-lib-asan-debuginfo&#39;</span>                   <span class="p">:</span>  <span class="s1">&#39;8406baeb9900e6bb44e31f4a25130b8a18db06698cd98d551946c46ad1eb2080&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-243" name="__codelineno-0-243" href="#__codelineno-0-243"></a>    <span class="s1">&#39;rocm-smi-lib-debuginfo&#39;</span>                        <span class="p">:</span>  <span class="s1">&#39;ac6d24555208ffe7ecf63b3d6a08d7d06ab82358c01dc42c9a09968ec2bc2cf9&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-244" name="__codelineno-0-244" href="#__codelineno-0-244"></a>    <span class="s1">&#39;rocm-utils&#39;</span>                                    <span class="p">:</span>  <span class="s1">&#39;993e07678706bb0fcbbc0c60ed42285e5523bc6805e1f2cc6991e6c16cca1f7a&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-245" name="__codelineno-0-245" href="#__codelineno-0-245"></a>    <span class="s1">&#39;rocm-validation-suite&#39;</span>                         <span class="p">:</span>  <span class="s1">&#39;ff612e3f3888835b8c8865f27a4d56473228df4ff2b338f803343814a07774b0&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-246" name="__codelineno-0-246" href="#__codelineno-0-246"></a>    <span class="s1">&#39;rocminfo&#39;</span>                                      <span class="p">:</span>  <span class="s1">&#39;78518c397745d44188305fc747374d02a2ea6d0ebda64b70a7b93dd224c034ab&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-247" name="__codelineno-0-247" href="#__codelineno-0-247"></a>    <span class="s1">&#39;rocminfo-debuginfo&#39;</span>                            <span class="p">:</span>  <span class="s1">&#39;6c0cba205ac9fd48c9d93642244d218bb4265ae99aaf17fd5618c130596ea7c6&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-248" name="__codelineno-0-248" href="#__codelineno-0-248"></a>    <span class="s1">&#39;rocprim-devel&#39;</span>                                 <span class="p">:</span>  <span class="s1">&#39;157695b340e9031bd9c59054d9099ce51164514f47e1fa1a7297998a39773dbd&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-249" name="__codelineno-0-249" href="#__codelineno-0-249"></a>    <span class="s1">&#39;rocprofiler&#39;</span>                                   <span class="p">:</span>  <span class="s1">&#39;292bc39d90efebcf563649c9ca71b6347dde01f803edd6c5183c30556e70bcee&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-250" name="__codelineno-0-250" href="#__codelineno-0-250"></a>    <span class="s1">&#39;rocprofiler-asan&#39;</span>                              <span class="p">:</span>  <span class="s1">&#39;6f8d558aa0752834e225ae5b9d30f85fff2741acaa81ad696b88490f4338356f&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-251" name="__codelineno-0-251" href="#__codelineno-0-251"></a>    <span class="s1">&#39;rocprofiler-asan-debuginfo&#39;</span>                    <span class="p">:</span>  <span class="s1">&#39;fc7c598601b53a9a3ad5c39cb12581a436fe7ee3f6754a554a501a65f72830d6&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-252" name="__codelineno-0-252" href="#__codelineno-0-252"></a>    <span class="s1">&#39;rocprofiler-debuginfo&#39;</span>                         <span class="p">:</span>  <span class="s1">&#39;6c4329677b8b09b6070401ca155170a4271d21161d609b3cbdee222bfaa2cb19&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-253" name="__codelineno-0-253" href="#__codelineno-0-253"></a>    <span class="s1">&#39;rocprofiler-devel&#39;</span>                             <span class="p">:</span>  <span class="s1">&#39;5446d672c3ee1f18c43a91f3ffae932d864a49c23ed5043f07ffd7a457803450&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-254" name="__codelineno-0-254" href="#__codelineno-0-254"></a>    <span class="s1">&#39;rocprofiler-docs&#39;</span>                              <span class="p">:</span>  <span class="s1">&#39;6d5fb6b0b24949bd3637e0c875d69e40ba9650d2255dfec2e744a93d5ea031e1&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-255" name="__codelineno-0-255" href="#__codelineno-0-255"></a>    <span class="s1">&#39;rocprofiler-plugins&#39;</span>                           <span class="p">:</span>  <span class="s1">&#39;38f325f90077ea9228d30b37a475019b630ce9596a52aa5665060bc050bd23e8&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-256" name="__codelineno-0-256" href="#__codelineno-0-256"></a>    <span class="s1">&#39;rocprofiler-plugins-debuginfo&#39;</span>                 <span class="p">:</span>  <span class="s1">&#39;6d916c6467a3f040c1d9f8a66b7591f0d7963631bdebc5960a2967f2c0a17c64&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-257" name="__codelineno-0-257" href="#__codelineno-0-257"></a>    <span class="s1">&#39;rocprofiler-register&#39;</span>                          <span class="p">:</span>  <span class="s1">&#39;b8be6c55e97ee0f341c8685c2852c52dfcf0a748cfaebda0874878bb32ff3a4f&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-258" name="__codelineno-0-258" href="#__codelineno-0-258"></a>    <span class="s1">&#39;rocprofiler-sdk&#39;</span>                               <span class="p">:</span>  <span class="s1">&#39;df015bf40a154cba13c4cea43bcb9940ed5f9e1debaafa1d431f9dd090770cdc&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-259" name="__codelineno-0-259" href="#__codelineno-0-259"></a>    <span class="s1">&#39;rocprofiler-sdk-debuginfo&#39;</span>                     <span class="p">:</span>  <span class="s1">&#39;6fbb07f74c22fd0affe722a87b92fa525e840ee5901ad590110816f724e9d0a3&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-260" name="__codelineno-0-260" href="#__codelineno-0-260"></a>    <span class="s1">&#39;rocprofiler-sdk-roctx&#39;</span>                         <span class="p">:</span>  <span class="s1">&#39;6b9bdb46eda2332ead11a957e898b9752c6aab803a596b00e85f271866c940de&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-261" name="__codelineno-0-261" href="#__codelineno-0-261"></a>    <span class="s1">&#39;rocprofiler-sdk-roctx-debuginfo&#39;</span>               <span class="p">:</span>  <span class="s1">&#39;f2f2d30d3f2b9742f7a6444a8e5f631b170959fa3636340bc85cffb2ccc41f3d&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-262" name="__codelineno-0-262" href="#__codelineno-0-262"></a>    <span class="s1">&#39;rocrand&#39;</span>                                       <span class="p">:</span>  <span class="s1">&#39;2e243c9752c1573bb08056c96371a82e0d9e0641d2a928d22600840680d0a45a&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-263" name="__codelineno-0-263" href="#__codelineno-0-263"></a>    <span class="s1">&#39;rocrand-asan&#39;</span>                                  <span class="p">:</span>  <span class="s1">&#39;cd3126c4cadc73e7a71fe3d29b1cdc8044e2f9c77bc64a931f30627aa46aab50&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-264" name="__codelineno-0-264" href="#__codelineno-0-264"></a>    <span class="s1">&#39;rocrand-debuginfo&#39;</span>                             <span class="p">:</span>  <span class="s1">&#39;379c5ed8454539825041e2f55db014e0fd9d213a9db320f6a888d2b1af1dcd5c&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-265" name="__codelineno-0-265" href="#__codelineno-0-265"></a>    <span class="s1">&#39;rocrand-devel&#39;</span>                                 <span class="p">:</span>  <span class="s1">&#39;598598c5a3e0976795ea31fee649267d8e43bc9d4cc7207d0bc2d4999cec71ae&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-266" name="__codelineno-0-266" href="#__codelineno-0-266"></a>    <span class="s1">&#39;rocsolver&#39;</span>                                     <span class="p">:</span>  <span class="s1">&#39;a74ddef6b4983517a0d53e12cf6d8a757781419398bae1aad3ee00034e541c36&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-267" name="__codelineno-0-267" href="#__codelineno-0-267"></a>    <span class="s1">&#39;rocsolver-asan&#39;</span>                                <span class="p">:</span>  <span class="s1">&#39;84f47c6519b68a1f2521065b1f1f6f3f6f87e958cd4b190bd896cea4cc4051bf&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-268" name="__codelineno-0-268" href="#__codelineno-0-268"></a>    <span class="s1">&#39;rocsolver-debuginfo&#39;</span>                           <span class="p">:</span>  <span class="s1">&#39;4edba0b58dd66480fd7dd8c08a17fa33ab07ddd2a3594f99a42a714613b0f43d&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-269" name="__codelineno-0-269" href="#__codelineno-0-269"></a>    <span class="s1">&#39;rocsolver-devel&#39;</span>                               <span class="p">:</span>  <span class="s1">&#39;dda539014dc6934155413bcc49aee7fc32355ce3234f84a6210a1ca0163d481b&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-270" name="__codelineno-0-270" href="#__codelineno-0-270"></a>    <span class="s1">&#39;rocsparse&#39;</span>                                     <span class="p">:</span>  <span class="s1">&#39;b079d8308a3d212b2067865d5d3f2f3b5a56765d0e656d3948c8e01049e1e21a&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-271" name="__codelineno-0-271" href="#__codelineno-0-271"></a>    <span class="s1">&#39;rocsparse-asan&#39;</span>                                <span class="p">:</span>  <span class="s1">&#39;6b50d9153b82eedefc1f6b522c72c53d9a3ceab3484e5fd0920414d3e28f226c&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-272" name="__codelineno-0-272" href="#__codelineno-0-272"></a>    <span class="s1">&#39;rocsparse-debuginfo&#39;</span>                           <span class="p">:</span>  <span class="s1">&#39;8ddfd39dc1aecb8a084f487f1f5ef8e1c8c485738a669b3d89b150107f8e3cdf&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-273" name="__codelineno-0-273" href="#__codelineno-0-273"></a>    <span class="s1">&#39;rocsparse-devel&#39;</span>                               <span class="p">:</span>  <span class="s1">&#39;9b02c93d639675541f98ad321d15f3d26c08a2003f959b3ea4d0d139531b4cf6&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-274" name="__codelineno-0-274" href="#__codelineno-0-274"></a>    <span class="s1">&#39;rocthrust-devel&#39;</span>                               <span class="p">:</span>  <span class="s1">&#39;a85c0257c36e299540e086df5c8165ab01634d8df4e0e1ffad50a00e7d1f80a7&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-275" name="__codelineno-0-275" href="#__codelineno-0-275"></a>    <span class="s1">&#39;roctracer&#39;</span>                                     <span class="p">:</span>  <span class="s1">&#39;2fa621e16d9924506bd5a3e0be99d55610fe61d5489025f74c16858ed2e428f6&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-276" name="__codelineno-0-276" href="#__codelineno-0-276"></a>    <span class="s1">&#39;roctracer-asan&#39;</span>                                <span class="p">:</span>  <span class="s1">&#39;0ead3a0aff6724965cc968556e0fdaa89400f898016d291fbfe3bbab634f237d&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-277" name="__codelineno-0-277" href="#__codelineno-0-277"></a>    <span class="s1">&#39;roctracer-asan-debuginfo&#39;</span>                      <span class="p">:</span>  <span class="s1">&#39;3dd9921cd0a995a137bba890c321026b186f163fd80cb5bad6a2fbf88f02d896&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-278" name="__codelineno-0-278" href="#__codelineno-0-278"></a>    <span class="s1">&#39;roctracer-debuginfo&#39;</span>                           <span class="p">:</span>  <span class="s1">&#39;c71c732d2db08e3d98c7265ac8ce7c78427f6f218daea2f602bb6ed3fc42ffef&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-279" name="__codelineno-0-279" href="#__codelineno-0-279"></a>    <span class="s1">&#39;roctracer-devel&#39;</span>                               <span class="p">:</span>  <span class="s1">&#39;84f7a5e5c6343c15bf8440f81084d19a57e727082133c5f93bf2de3b6221c193&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-280" name="__codelineno-0-280" href="#__codelineno-0-280"></a>    <span class="s1">&#39;rocwmma-devel&#39;</span>                                 <span class="p">:</span>  <span class="s1">&#39;5cccbac695756f6239535fe38f75076eac44d1113ecc8e7bdc280b465026ff7e&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-281" name="__codelineno-0-281" href="#__codelineno-0-281"></a>    <span class="s1">&#39;rpp&#39;</span>                                           <span class="p">:</span>  <span class="s1">&#39;63b9a3eb2bf3165df854ea5252c49344e5e5e85be307200124b79497292adc65&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-282" name="__codelineno-0-282" href="#__codelineno-0-282"></a>    <span class="s1">&#39;rpp-asan&#39;</span>                                      <span class="p">:</span>  <span class="s1">&#39;d7187c4ac425002778dca6cb2798cbfb4cf1be70ba1ad30803745a641682d1d0&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-283" name="__codelineno-0-283" href="#__codelineno-0-283"></a>    <span class="s1">&#39;rpp-debuginfo&#39;</span>                                 <span class="p">:</span>  <span class="s1">&#39;aabf99a14df572e912749e4ea4432eb4e20b05f9b511f651e58a527db392ca8e&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-284" name="__codelineno-0-284" href="#__codelineno-0-284"></a>    <span class="s1">&#39;rpp-devel&#39;</span>                                     <span class="p">:</span>  <span class="s1">&#39;7ea2627c5e05aa1bdd3aafd6860abd0663b7703a944156f8b47ae351ec521839&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-285" name="__codelineno-0-285" href="#__codelineno-0-285"></a>    <span class="s1">&#39;rpp-test&#39;</span>                                      <span class="p">:</span>  <span class="s1">&#39;eae5c2894829b9ae4d6f399b07a9cc8373eb7d886f45eb6ba12dc824b4bab9dd&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-286" name="__codelineno-0-286" href="#__codelineno-0-286"></a><span class="p">}</span>
+<a id="__codelineno-0-287" name="__codelineno-0-287" href="#__codelineno-0-287"></a>
+<a id="__codelineno-0-288" name="__codelineno-0-288" href="#__codelineno-0-288"></a><span class="n">postinstall_script</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-289" name="__codelineno-0-289" href="#__codelineno-0-289"></a><span class="s2">echo &quot;gfx90a&quot; &gt; </span><span class="si">%(installdir)s</span><span class="s2">/bin/target.lst</span>
+<a id="__codelineno-0-290" name="__codelineno-0-290" href="#__codelineno-0-290"></a>
+<a id="__codelineno-0-291" name="__codelineno-0-291" href="#__codelineno-0-291"></a><span class="s2">pushd </span><span class="si">%(installdir)s</span><span class="s2">/lib</span>
+<a id="__codelineno-0-292" name="__codelineno-0-292" href="#__codelineno-0-292"></a>
+<a id="__codelineno-0-293" name="__codelineno-0-293" href="#__codelineno-0-293"></a><span class="s2">find . -maxdepth 1 -type f -name &quot;*.so*&quot; -exec sh -c &#39;</span>
+<a id="__codelineno-0-294" name="__codelineno-0-294" href="#__codelineno-0-294"></a><span class="s2">  if file $0 | grep -q &quot;dynamically&quot;; then</span>
+<a id="__codelineno-0-295" name="__codelineno-0-295" href="#__codelineno-0-295"></a><span class="s2">    patchelf --force-rpath --set-rpath &quot;\$ORIGIN:\$ORIGIN/llvm/lib&quot; $0</span>
+<a id="__codelineno-0-296" name="__codelineno-0-296" href="#__codelineno-0-296"></a><span class="s2">  fi&#39; </span><span class="si">{}</span><span class="s2"> \;</span>
+<a id="__codelineno-0-297" name="__codelineno-0-297" href="#__codelineno-0-297"></a>
+<a id="__codelineno-0-298" name="__codelineno-0-298" href="#__codelineno-0-298"></a><span class="s2">for subdir in roctracer omnitrace migraphx; do</span>
+<a id="__codelineno-0-299" name="__codelineno-0-299" href="#__codelineno-0-299"></a><span class="s2">  pushd $subdir</span>
+<a id="__codelineno-0-300" name="__codelineno-0-300" href="#__codelineno-0-300"></a><span class="s2">  find . -maxdepth 1 -type f -name &quot;*.so*&quot; -exec sh -c &#39;</span>
+<a id="__codelineno-0-301" name="__codelineno-0-301" href="#__codelineno-0-301"></a><span class="s2">    if file $0 | grep -q &quot;dynamically&quot;; then</span>
+<a id="__codelineno-0-302" name="__codelineno-0-302" href="#__codelineno-0-302"></a><span class="s2">      patchelf --force-rpath --set-rpath &quot;\$ORIGIN:\$ORIGIN/../:\$ORIGIN/../llvm/lib&quot; $0</span>
+<a id="__codelineno-0-303" name="__codelineno-0-303" href="#__codelineno-0-303"></a><span class="s2">    fi&#39; </span><span class="si">{}</span><span class="s2"> \;</span>
+<a id="__codelineno-0-304" name="__codelineno-0-304" href="#__codelineno-0-304"></a><span class="s2">  popd</span>
+<a id="__codelineno-0-305" name="__codelineno-0-305" href="#__codelineno-0-305"></a><span class="s2">done</span>
+<a id="__codelineno-0-306" name="__codelineno-0-306" href="#__codelineno-0-306"></a>
+<a id="__codelineno-0-307" name="__codelineno-0-307" href="#__codelineno-0-307"></a><span class="s2">for lib in &quot;*migraphx*.so*&quot;; do</span>
+<a id="__codelineno-0-308" name="__codelineno-0-308" href="#__codelineno-0-308"></a><span class="s2">  if file $lib | grep -q &quot;dynamically&quot;; then</span>
+<a id="__codelineno-0-309" name="__codelineno-0-309" href="#__codelineno-0-309"></a><span class="s2">    patchelf --force-rpath --set-rpath &quot;\$ORIGIN:\$ORIGIN/llvm/lib:\$ORIGIN/migraphx/lib&quot; $lib</span>
+<a id="__codelineno-0-310" name="__codelineno-0-310" href="#__codelineno-0-310"></a><span class="s2">  fi</span>
+<a id="__codelineno-0-311" name="__codelineno-0-311" href="#__codelineno-0-311"></a><span class="s2">done</span>
+<a id="__codelineno-0-312" name="__codelineno-0-312" href="#__codelineno-0-312"></a>
+<a id="__codelineno-0-313" name="__codelineno-0-313" href="#__codelineno-0-313"></a><span class="s2">for lib in &quot;*omnitrace*.so*&quot;; do</span>
+<a id="__codelineno-0-314" name="__codelineno-0-314" href="#__codelineno-0-314"></a><span class="s2">  if file $lib | grep -q &quot;dynamically&quot;; then</span>
+<a id="__codelineno-0-315" name="__codelineno-0-315" href="#__codelineno-0-315"></a><span class="s2">    patchelf --force-rpath --set-rpath &quot;\$ORIGIN:\$ORIGIN/llvm/lib:\$ORIGIN/omnitrace&quot; $lib</span>
+<a id="__codelineno-0-316" name="__codelineno-0-316" href="#__codelineno-0-316"></a><span class="s2">  fi</span>
+<a id="__codelineno-0-317" name="__codelineno-0-317" href="#__codelineno-0-317"></a><span class="s2">done</span>
+<a id="__codelineno-0-318" name="__codelineno-0-318" href="#__codelineno-0-318"></a>
+<a id="__codelineno-0-319" name="__codelineno-0-319" href="#__codelineno-0-319"></a><span class="s2">for compiler in clang++ clang-cpp clang; do</span>
+<a id="__codelineno-0-320" name="__codelineno-0-320" href="#__codelineno-0-320"></a><span class="s2">  echo &quot;-Wl,-rpath=$PWD&quot; &gt;&gt; ./llvm/bin/$compiler.cfg</span>
+<a id="__codelineno-0-321" name="__codelineno-0-321" href="#__codelineno-0-321"></a><span class="s2">  echo &quot;-Wl,-rpath=$PWD/llvm/lib&quot; &gt;&gt; ./llvm/bin/$compiler.cfg</span>
+<a id="__codelineno-0-322" name="__codelineno-0-322" href="#__codelineno-0-322"></a><span class="s2">done</span>
+<a id="__codelineno-0-323" name="__codelineno-0-323" href="#__codelineno-0-323"></a>
+<a id="__codelineno-0-324" name="__codelineno-0-324" href="#__codelineno-0-324"></a><span class="s2">sed -i &quot;s/enable-new-dtags/disable-new-dtags/&quot; ./llvm/bin/rocm.cfg</span>
+<a id="__codelineno-0-325" name="__codelineno-0-325" href="#__codelineno-0-325"></a>
+<a id="__codelineno-0-326" name="__codelineno-0-326" href="#__codelineno-0-326"></a><span class="s2">popd</span>
+<a id="__codelineno-0-327" name="__codelineno-0-327" href="#__codelineno-0-327"></a>
+<a id="__codelineno-0-328" name="__codelineno-0-328" href="#__codelineno-0-328"></a><span class="s2">omniperfdir=</span><span class="si">%(installdir)s</span><span class="s2">/libexec/omniperf</span>
+<a id="__codelineno-0-329" name="__codelineno-0-329" href="#__codelineno-0-329"></a><span class="s2">mkdir -p $omniperfdir/deps</span>
+<a id="__codelineno-0-330" name="__codelineno-0-330" href="#__codelineno-0-330"></a>
+<a id="__codelineno-0-331" name="__codelineno-0-331" href="#__codelineno-0-331"></a><span class="s2">sed -i &#39;34i sys.path.insert(0, f&quot;&#39;$omniperfdir&#39;/deps/lib/python3.</span><span class="si">{sys.version_info[1]}</span><span class="s2">/site-packages&quot;)&#39; $omniperfdir/omniperf</span>
+<a id="__codelineno-0-332" name="__codelineno-0-332" href="#__codelineno-0-332"></a>
+<a id="__codelineno-0-333" name="__codelineno-0-333" href="#__codelineno-0-333"></a><span class="s2">unset PYTHONPATH</span>
+<a id="__codelineno-0-334" name="__codelineno-0-334" href="#__codelineno-0-334"></a>
+<a id="__codelineno-0-335" name="__codelineno-0-335" href="#__codelineno-0-335"></a><span class="s2">for pythonmod in $(module --terse av cray-python 2&gt;&amp;1 | grep ^cray-python); do</span>
+<a id="__codelineno-0-336" name="__codelineno-0-336" href="#__codelineno-0-336"></a><span class="s2">  module load $pythonmod</span>
+<a id="__codelineno-0-337" name="__codelineno-0-337" href="#__codelineno-0-337"></a><span class="s2">  python_minmaj=$(python -c &#39;import sys; print(f&quot;</span><span class="si">{sys.version_info[0]}</span><span class="s2">.</span><span class="si">{sys.version_info[1]}</span><span class="s2">&quot;)&#39;)</span>
+<a id="__codelineno-0-338" name="__codelineno-0-338" href="#__codelineno-0-338"></a>
+<a id="__codelineno-0-339" name="__codelineno-0-339" href="#__codelineno-0-339"></a><span class="s2">  if [[ ! -d $omniperfdir/deps/lib/python$python_minmaj ]]; then</span>
+<a id="__codelineno-0-340" name="__codelineno-0-340" href="#__codelineno-0-340"></a><span class="s2">    pip install --ignore-installed --no-cache-dir --prefix=$omniperfdir/deps -r $omniperfdir/requirements.txt</span>
+<a id="__codelineno-0-341" name="__codelineno-0-341" href="#__codelineno-0-341"></a><span class="s2">  fi</span>
+<a id="__codelineno-0-342" name="__codelineno-0-342" href="#__codelineno-0-342"></a><span class="s2">done</span>
+<a id="__codelineno-0-343" name="__codelineno-0-343" href="#__codelineno-0-343"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-344" name="__codelineno-0-344" href="#__codelineno-0-344"></a>
+<a id="__codelineno-0-345" name="__codelineno-0-345" href="#__codelineno-0-345"></a><span class="n">pkg_config</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-346" name="__codelineno-0-346" href="#__codelineno-0-346"></a><span class="s2">Name: rocm-</span><span class="si">%(version)s</span>
+<a id="__codelineno-0-347" name="__codelineno-0-347" href="#__codelineno-0-347"></a><span class="s2">Version: </span><span class="si">%(version)s</span>
+<a id="__codelineno-0-348" name="__codelineno-0-348" href="#__codelineno-0-348"></a><span class="s2">Description: ROCm Toolkit</span>
+<a id="__codelineno-0-349" name="__codelineno-0-349" href="#__codelineno-0-349"></a>
+<a id="__codelineno-0-350" name="__codelineno-0-350" href="#__codelineno-0-350"></a><span class="s2">rocm_prefix=</span><span class="si">%(installdir)s</span>
+<a id="__codelineno-0-351" name="__codelineno-0-351" href="#__codelineno-0-351"></a><span class="s2">includedir=$</span><span class="si">{rocm_prefix}</span><span class="s2">/include</span>
+<a id="__codelineno-0-352" name="__codelineno-0-352" href="#__codelineno-0-352"></a><span class="s2">libdir=$</span><span class="si">{rocm_prefix}</span><span class="s2">/lib</span>
+<a id="__codelineno-0-353" name="__codelineno-0-353" href="#__codelineno-0-353"></a>
+<a id="__codelineno-0-354" name="__codelineno-0-354" href="#__codelineno-0-354"></a><span class="s2">profiler_includedir=$</span><span class="si">{rocm_prefix}</span><span class="s2">/include/rocprofiler</span>
+<a id="__codelineno-0-355" name="__codelineno-0-355" href="#__codelineno-0-355"></a><span class="s2">profiler_libdir=$</span><span class="si">{rocm_prefix}</span><span class="s2">/lib/rocprofiler</span>
+<a id="__codelineno-0-356" name="__codelineno-0-356" href="#__codelineno-0-356"></a>
+<a id="__codelineno-0-357" name="__codelineno-0-357" href="#__codelineno-0-357"></a><span class="s2">tracer_includedir=$</span><span class="si">{rocm_prefix}</span><span class="s2">/include/roctracer</span>
+<a id="__codelineno-0-358" name="__codelineno-0-358" href="#__codelineno-0-358"></a><span class="s2">tracer_libdir=$</span><span class="si">{rocm_prefix}</span><span class="s2">/lib/roctracer</span>
+<a id="__codelineno-0-359" name="__codelineno-0-359" href="#__codelineno-0-359"></a>
+<a id="__codelineno-0-360" name="__codelineno-0-360" href="#__codelineno-0-360"></a><span class="s2">Cflags: -I$</span><span class="si">{includedir}</span><span class="s2"> -I$</span><span class="si">{profiler_includedir}</span><span class="s2"> -I$</span><span class="si">{tracer_includedir}</span><span class="s2"> -D__HIP_PLATFORM_AMD__</span>
+<a id="__codelineno-0-361" name="__codelineno-0-361" href="#__codelineno-0-361"></a><span class="s2">Libs: -L$</span><span class="si">{libdir}</span><span class="s2"> -L$</span><span class="si">{profiler_libdir}</span><span class="s2"> -L$</span><span class="si">{tracer_libdir}</span><span class="s2"> -lamdhip64</span>
+<a id="__codelineno-0-362" name="__codelineno-0-362" href="#__codelineno-0-362"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-363" name="__codelineno-0-363" href="#__codelineno-0-363"></a>
+<a id="__codelineno-0-364" name="__codelineno-0-364" href="#__codelineno-0-364"></a><span class="n">modextravars</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-365" name="__codelineno-0-365" href="#__codelineno-0-365"></a>  <span class="s1">&#39;CRAY_ROCM_VERSION&#39;</span>         <span class="p">:</span> <span class="s1">&#39;</span><span class="si">%(version)s</span><span class="s1">&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-366" name="__codelineno-0-366" href="#__codelineno-0-366"></a>  <span class="s1">&#39;CRAY_ROCM_DIR&#39;</span>             <span class="p">:</span> <span class="s1">&#39;</span><span class="si">%(installdir)s</span><span class="s1">&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-367" name="__codelineno-0-367" href="#__codelineno-0-367"></a>  <span class="s1">&#39;CRAY_ROCM_PREFIX&#39;</span>          <span class="p">:</span> <span class="s1">&#39;</span><span class="si">%(installdir)s</span><span class="s1">&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-368" name="__codelineno-0-368" href="#__codelineno-0-368"></a>  <span class="s1">&#39;CRAY_AMD_COMPILER_PREFIX&#39;</span>  <span class="p">:</span> <span class="s1">&#39;</span><span class="si">%(installdir)s</span><span class="s1">&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-369" name="__codelineno-0-369" href="#__codelineno-0-369"></a>  <span class="s1">&#39;CRAY_AMD_COMPILER_VERSION&#39;</span> <span class="p">:</span> <span class="s1">&#39;</span><span class="si">%(version)s</span><span class="s1">&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-370" name="__codelineno-0-370" href="#__codelineno-0-370"></a><span class="p">}</span>
+<a id="__codelineno-0-371" name="__codelineno-0-371" href="#__codelineno-0-371"></a>
+<a id="__codelineno-0-372" name="__codelineno-0-372" href="#__codelineno-0-372"></a><span class="n">modluafooter</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-373" name="__codelineno-0-373" href="#__codelineno-0-373"></a><span class="s2">append_path(&quot;PE_PRODUCT_LIST&quot;, &quot;CRAY_ROCM&quot;)</span>
+<a id="__codelineno-0-374" name="__codelineno-0-374" href="#__codelineno-0-374"></a><span class="s2">prepend_path(&quot;PE_PKGCONFIG_LIBS&quot;, &quot;rocm-</span><span class="si">%(version_major_minor)s</span><span class="s2">&quot;)</span>
+<a id="__codelineno-0-375" name="__codelineno-0-375" href="#__codelineno-0-375"></a><span class="s2">if mode() == &quot;load&quot; then</span>
+<a id="__codelineno-0-376" name="__codelineno-0-376" href="#__codelineno-0-376"></a><span class="s2">    LmodMessage( &#39;</span><span class="se">\\</span><span class="s2">nWarning For advanced users: This module comes with the asan and debug libraries installed.</span><span class="se">\\</span><span class="s2">n&#39; ..</span>
+<a id="__codelineno-0-377" name="__codelineno-0-377" href="#__codelineno-0-377"></a><span class="s2">                 &#39;However, to make sure that in the runtime the libraries are correctly loaded from this module</span><span class="se">\\</span><span class="s2">n&#39; ..</span>
+<a id="__codelineno-0-378" name="__codelineno-0-378" href="#__codelineno-0-378"></a><span class="s2">                 &#39;and not from /opt/rocm, we have hardcoded the correct paths in the module libraries and executables.</span><span class="se">\\</span><span class="s2">n&#39; ..</span>
+<a id="__codelineno-0-379" name="__codelineno-0-379" href="#__codelineno-0-379"></a><span class="s2">                 &#39;If you need to use the asan or debug versions of the libraries you will have to LD_PRELOAD</span><span class="se">\\</span><span class="s2">n&#39; ..</span>
+<a id="__codelineno-0-380" name="__codelineno-0-380" href="#__codelineno-0-380"></a><span class="s2">                 &#39;them instead of just prepending LD_LIBRARY_PATH.</span><span class="se">\\</span><span class="s2">n&#39; )</span>
+<a id="__codelineno-0-381" name="__codelineno-0-381" href="#__codelineno-0-381"></a><span class="s2">end</span>
+<a id="__codelineno-0-382" name="__codelineno-0-382" href="#__codelineno-0-382"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-383" name="__codelineno-0-383" href="#__codelineno-0-383"></a>
+<a id="__codelineno-0-384" name="__codelineno-0-384" href="#__codelineno-0-384"></a><span class="n">moduleclass</span> <span class="o">=</span> <span class="s1">&#39;devel&#39;</span>
+</code></pre></div>
+<p><a href="../">[rocm]</a> <a href="../../../">[package list]</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        
+
+
+
+
+<footer class="md-footer">
+
+  
+  
+
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+
+      
+    <div class="md-footer-copyright">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        <img alt="Creative Commons License" 
+             style="border-width:0" 
+             src="https://i.creativecommons.org/l/by/4.0/80x15.png"
+        />
+      </a>
+      This work is licensed under a&nbsp;
+      <a rel="license" 
+         href="http://creativecommons.org/licenses/by/4.0/"
+      >
+        Creative Commons Attribution 4.0 International License
+      </a>
+    </div>
+
+      
+      
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://www.youtube.com/channel/UCb31KOJ6Wqu0sRpIRi_k8Mw" target="_blank" rel="noopener" title="LUMI on YouTube" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://www.linkedin.com/company/lumi-supercomputer" target="_blank" rel="noopener" title="LUMI on LinkedIn" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://twitter.com/LUMIhpc" target="_blank" rel="noopener" title="LUMI on Twitter" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"/></svg>
+    </a>
+  
+</div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "toc.follow", "search.suggest", "content.code.annotate", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
