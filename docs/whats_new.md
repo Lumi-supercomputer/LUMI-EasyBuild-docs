@@ -8,6 +8,25 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20260219
+
+-   Updated version of [cotainr](c/cotainr/index.md) in `LUMI/24.03` and `CrayEnv`.
+    A version for 25.03 is forthcoming, but we are waiting for a container with a
+    newer ROCm(tm) version that better aligns with the system ROCm(tm).
+
+-   Fix support for Cray Fortran in CMake in [buildtools](b/buildtools/index.md).
+
+-   Improvements to the documentation for [ROCm(tm)](r/rocm/index.md) and
+    [PyTorch](p/PyTorch/index.md), also linking to the 
+    [documentation of the LUMI AI factory](https://docs.lumi-supercomputer.eu/laif/software/ai-environment/).
+
+-   New contributed EasyConfig for [MicroHH](m/MicroHH/index.md).
+
+-   Some [fixes for permission issues with the ROCm EasyConfigs](r/rocm/index.md).
+
+-   Clean-up of deprecated modules.
+
+
 ## Release 20260211
 
 -   Additional [METIS](m/METIS/index.md) and [ParMETIS](p/ParMETIS/index.md) modules with clearer
