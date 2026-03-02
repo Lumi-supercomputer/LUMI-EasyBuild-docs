@@ -10,6 +10,10 @@ hide:
 
 ## Release 20260303
 
+-   [cotainr](c/cortainr/index.md) in LUMI/25.03 with new base images for ROCm
+    containers. The `lumi-g` image is now based on the Ubuntu AI containers
+    from the LUMI AI factory.
+
 -   [NAMD](n/NAMD/index.md) needed new checksums and a change to the HIP patch.
     The 23.09 and 24.03 versions have been archived as there are various issues
     with those.
