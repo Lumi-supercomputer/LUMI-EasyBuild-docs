@@ -8,6 +8,34 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20260303
+
+-   [NAMD](n/NAMD/index.md) needed new checksums and a change to the HIP patch.
+    The 23.09 and 24.03 versions have been archived as there are various issues
+    with those.
+
+-   New version of [dlb](d/dlb/index.md) for LUMI-G in 25.03.
+
+-   EasyConfig as an example of how to do a development version of 
+    [OpenFOAM](o/OpenFOAM/index.md). This is unsupported though as we don't
+    support alpha, beta or development versions of software. These are meant
+    for people who can debug and hence also install such software themselves.
+
+-   A new EasyConfig for [ABINIT](a/ABINIT/index.md), contributed by the developers.
+
+-   A new CPU version of [QuantumESPRESSO](q/QuantumESPRESSO/index.md) for 25.03.
+
+-   A new version of [Siesta](s/Siesta/index.md) for GPU in 25.03.
+
+-   [GPAW 25.7.0](g/GPAW/index.md) for CPU and GPU in 25.03.
+
+-   Some configurations of the [TAU profiler](t/TAU/index.md).
+
+-   Some performance issues fixed with [CP2K](c/CP2K/index.md) for GPU in 25.03.
+    This will require re-installing if you already installed the package. Before
+    doing so, first remove `$EBU_USER_PREFIX/ebfiles_repo/LUMI-25.03/LUMI-G/CP2K`. 
+
+
 ## Release 20260219
 
 -   Updated version of [cotainr](c/cotainr/index.md) in `LUMI/24.03` and `CrayEnv`.
