@@ -8,7 +8,37 @@ hide:
 
 # What's new in the LUMI software stack
 
-## Release 20260303
+## Release 20260305
+
+-   Many base packages for LUMI/25.09. This is a somewhat experimental stack.
+    It is the first stack to use Cray MPICH 9, which is currently based on the
+    MPICH 4.1 codebase and hence a big upgrade over Cray MPICH 8.1 which was
+    still based on MPICH 3.4a. The stack also uses its own ROCm(tm) module 
+    rather than using the default system version as ROCm(tm,) 6.4 is the best
+    match with CCE 20.
+
+    As a result of this, users should be very much aware that the default for 
+    the HPC Cray programming environment, is to run applications with a default
+    set of libraries, which are those of version 25.03 of the programming 
+    environment. Therefore, even though at compile time you would be using 
+    Cray MPICH 9.0, at run-time you'd be using Cray MPICH 8.1 and this can lead
+    to issues as your application may expect functionality that is not present
+    at run-time. The solution is to adapt `LD_LIBRARY_PATH` and there are different
+    ways to do that, explained in [a slide of the CPE lecture in the intro 
+    course](https://lumi-supercomputer.github.io/LUMI-training-materials/2day-20251020/102-CPE/#warning-1-you-do-not-always-get-what-you-expect).
+    Please check these materials carefully before using LUMI/25.09. The easiest
+    way to run in a proper environment is likely to simply load the
+    `lumi-CrayPath` module after loading all other modules, and to reload it
+    after every change to the modules.
+
+    There are also already a few user-installable packages for LUMI/25.09, mainly
+    some configurations of [GROMACS](g/GROMACS/index.md) and 
+    [ADIOS](a/ADIOS/index.md) and its dependencies.
+
+    LUMI/25.09 is meant for experienced users who understand how the HPE Cray 
+    Programming Environment works and for those cases where upgrading to
+    LUMI/25.09 solves issues in 25.03. Other users are recommended to use
+    LUMI/25.03.
 
 -   [cotainr](c/cortainr/index.md) in LUMI/25.03 with new base images for ROCm
     containers. The `lumi-g` image is now based on the Ubuntu AI containers
