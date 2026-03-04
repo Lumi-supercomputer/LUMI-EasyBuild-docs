@@ -33,14 +33,14 @@ hide:
 
     There are also already a few user-installable packages for LUMI/25.09, mainly
     some configurations of [GROMACS](g/GROMACS/index.md) and 
-    [ADIOS](a/ADIOS/index.md) and its dependencies.
+    [ADIOS2](a/ADIOS2/index.md) and its dependencies.
 
     LUMI/25.09 is meant for experienced users who understand how the HPE Cray 
     Programming Environment works and for those cases where upgrading to
     LUMI/25.09 solves issues in 25.03. Other users are recommended to use
     LUMI/25.03.
 
--   [cotainr](c/cortainr/index.md) in LUMI/25.03 with new base images for ROCm
+-   [cotainr](c/cotainr/index.md) in LUMI/25.03 with new base images for ROCm
     containers. The `lumi-g` image is now based on the Ubuntu AI containers
     from the LUMI AI factory.
 
@@ -67,7 +67,11 @@ hide:
 
 -   Some performance issues fixed with [CP2K](c/CP2K/index.md) for GPU in 25.03.
     This will require re-installing if you already installed the package. Before
-    doing so, first remove `$EBU_USER_PREFIX/ebfiles_repo/LUMI-25.03/LUMI-G/CP2K`. 
+    doing so, first remove `$EBU_USER_PREFIX/ebfiles_repo/LUMI-25.03/LUMI-G/CP2K`.
+
+-   [VeloxChem](v/VeloxChem/index.md) for LUMI/25.03.
+
+-   An update to the [QUDA](q/QUDA/index.md) package for LUMI/25.03.
 
 
 ## Release 20260219
