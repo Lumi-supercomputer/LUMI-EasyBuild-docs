@@ -10,8 +10,12 @@ hide:
 
 ## Release 20260311
 
--   This is just a very minor release with a new message-of-the-day warning
-    for the new Terms of Use for LUMI.
+-   A new message-of-the-day warning for the new Terms of Use for LUMI.
+
+-   [`rocm/6.3.4-extras` module](r/rocm/index.md) that can replace the
+    `rocm/6.3.4` module on the system but provides the new ROCm(tm)
+    compute and systems profilers and debug and address sanitizer
+    libraries.
 
 
 ## Release 20260305
