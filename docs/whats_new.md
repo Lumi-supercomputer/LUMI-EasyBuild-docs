@@ -8,6 +8,12 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20260311
+
+-   This is just a very minor release with a new message-of-the-day warning
+    for the new Terms of Use for LUMI.
+
+
 ## Release 20260305
 
 -   Many base packages for LUMI/25.09. This is a somewhat experimental stack.
