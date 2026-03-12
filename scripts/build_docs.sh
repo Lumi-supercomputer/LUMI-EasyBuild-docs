@@ -15,7 +15,7 @@ repodir=$PWD
 repo=${PWD##*/}
 
 # Versions for which the "ccpe container only" label should be used
-ccpeonly=('24.11' '25.09')  # Don't use comma's!
+ccpeonly=('24.11' '26.03')  # Don't use comma's!
 
 gendoc='docs-generated'
 userinfo='USER.md'
@@ -191,6 +191,7 @@ add_easyconfig_docs () {
 
 }
 
+
 ####################################################################################################
 #
 # Create a markdown document for an EasyConfig.
@@ -240,6 +241,7 @@ easyconfig_to_md () {
     # with a newline would cause trouble.
 
 }
+
 
 ####################################################################################################
 #
@@ -382,8 +384,17 @@ do
 	>&2 echo "Processing $package_dir..." 
 
 	# Extract the first letter and the name of the package.
-	package=${package_dir##[0-9a-z]/}   # Name of the package.
-	group=${package_dir%%/$package}     # A single letter or number, the first subdirectory in which the package subdirectory resides
+	package=${package_dir##[0-9A-Za-z]/} # Name of the package.
+	group=${package_dir%%/$package}      # A single letter or number, the first subdirectory in which the package subdirectory resides
+    if [[ "$group" != "${group,,}" ]]
+    then
+        # We've had case issues due to working on case insentive filesystems.
+        # Simply converting to lowercase if the regular EasyConfigs and those in __archive__
+        # have their directory in a different case, so we just fail and the repositories
+        # have to be corrected.
+        >&2 echo -e "\nDetected a case issue for package ${package} in ${package_dir}.\n"
+        exit 1
+    fi
 	
 	>&2 echo "Identified group $group, package $package"
 
