@@ -8,6 +8,12 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20260312
+
+-   Some fixes in the LUMI Software Library that didn't make it in the
+    previous release.
+
+
 ## Release 20260311
 
 -   A new message-of-the-day warning for the new Terms of Use for LUMI.
