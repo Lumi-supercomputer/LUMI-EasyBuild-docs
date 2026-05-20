@@ -8,6 +8,14 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20260520
+
+-   Fixes to [rocm/6.3.4-extras](r/rocm/index.md) and [rocm/6.4.4](r/rocm/index.md)
+    so that the ROCm(tm) profiles should work.
+-   [lumio-ext-tools/1.0.0 module](l/lumio-ext-tools/index.md) has been removed as it
+    has a security issue.
+
+
 ## Release 20260505
 
 -   Security fix of `rclone` via new [lumio-ext-tools/1.1.0](l/lumio-ext-tools/index.md)
