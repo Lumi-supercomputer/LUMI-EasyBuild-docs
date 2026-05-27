@@ -8,6 +8,20 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20260527
+
+-   New version of [lumi-tools](l/lumi-tools/index.md) with additional information shown
+    in various tools. The output of `lumi-workspaces` has a totally different layout, but
+    the old version is still available as the `lumi-workspaces-classic` command.
+
+-   Updated [`lumio` module](l/lumio/index.md) with a bug fix for `lumio-conf`.
+    Users who configured their `rclone` setup with `lumio-conf` should regenerate
+    their `rclone.conf` file.
+
+-   Additions to the [rocm/6.3.4-extras](r/rocm/index.md) and [rocm/6.4.4](r/rocm/index.md)
+    documentation with more instructions on how to use the modules.
+
+
 ## Release 20260520
 
 -   Fixes to [rocm/6.3.4-extras](r/rocm/index.md) and [rocm/6.4.4](r/rocm/index.md)
