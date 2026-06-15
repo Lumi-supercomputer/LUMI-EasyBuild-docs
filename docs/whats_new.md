@@ -8,6 +8,27 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20260616
+
+-   New spack modules based on a recent Spack release, with config files for CPU and
+    GPU installations, making use of CPE components but without pre-installed software. 
+    The idea is to make optimal use of [Spack environments](https://spack-tutorial.readthedocs.io/en/latest/tutorial_environments.html).
+
+-   Development version of the AMD Flang compiler based on the new generation Flang in the module
+    [AMD-flang-experimental/23.2.1-cray-mpich-8.1.33](a/AMD-flang-experimental/index.md). 
+    Do [read this page before using](a/AMD-flang-experimental/index.md).
+
+-   Update to the [lumi-tools module](l/lumi-tools/index.md) with some improvements to 
+    tools that are only for LUST members, but also with two new tools: 
+    `pushover` to send notification to the [pushover service](https://pushover.net/)
+    and `pushslack` to send notifications to [Slack](https://slack.com/).
+    These can be used, e.g., in job scripts to receive a notification when a job starts
+    as e-mail notification are not provided on LUMI.
+    See the manual pages for these commands and the 
+    [page in the LUMI software library](l/lumi-tools/index.md)
+    for further information.
+
+
 ## Release 20260527
 
 -   New version of [lumi-tools](l/lumi-tools/index.md) with additional information shown
