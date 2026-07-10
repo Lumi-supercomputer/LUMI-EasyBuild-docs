@@ -8,6 +8,15 @@ hide:
 
 # What's new in the LUMI software stack
 
+-   [Score-P 10.0](s/Score-P/index.md)
+
+-   A build recipe for [Yambo with SLEPc](y/Yambo/index.md)
+
+-   Fix an output issue in [WPS](w/WPS/index.md)
+
+-   Update of some of the [ROCm modules documentation](r/rocm/index.md)
+
+
 ## Release 20260616
 
 -   New spack modules based on a recent Spack release, with config files for CPU and
