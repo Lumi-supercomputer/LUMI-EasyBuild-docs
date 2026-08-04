@@ -8,6 +8,34 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20260804
+
+-   A correction to some of the ROCm(tm) modules to improve integration with the Cray
+    compiler wrappers.
+
+-   A user-installable [ccpe container module for 26.03](c/ccpe/index.md) to start
+    experimenting with the ROCm(tm) 7.0-based version of the HPE Cray Programming
+    Environment. After installing the container module, you will already find a
+    partial software stack for 26.03. The GNU and Cray compilers can be used, 
+    and so can the ROCm(tm) 7.0 C/C++/hip compilers. There are still issues with
+    the ROCm(tm) Fortran compiler.
+
+    The container is mostly aimed at developers who want to check if their code
+    will still compile after the next LUMI system update. It can also be used
+    to already test applications. Note though that performance after the update 
+    will be different as the update will bring a newer ROCm(tm) driver also.
+
+    Contributed packages for the container also already include 
+    [GROMACS with hip or Sycl](g/GROMACS/index.md).
+
+-   Update of [Amber](a/Amber/index.md).
+
+-   New contributed packages for 25.03: [URANOS](u/URANOS/index.md) and 
+    [iPIC3D](i/iPIC3D/index.md).
+
+
+## Release 20260710
+
 -   [Score-P 10.0](s/Score-P/index.md)
 
 -   A build recipe for [Yambo with SLEPc](y/Yambo/index.md)
