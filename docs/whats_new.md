@@ -8,6 +8,23 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20260824
+
+-   [VASP 6.6.0 with GPU support](v/VASP/index.md) though without any optional component.
+
+-   [OpenMM via lumi-container-wrapper](o/OpenMM/index.md) as a customisable alternative for
+    the CSC `openmm` modules.
+
+-   Extensions to the [`ccpe/26.03` container](c/ccpe/index.md) - Re-installation recommended:
+
+    -   `cpeAOCC` in `partition/L` and `partition/G`.
+
+    -   An effort to get the `ftn` Fortran compiler wrapper working with `cpeAMD` by replacing
+        the Fortran compiler in the `rocm/7.0.3` module with classic Flang.
+
+
+## Release 20260804
+
 -   [Score-P 10.0](s/Score-P/index.md)
 
 -   A build recipe for [Yambo with SLEPc](y/Yambo/index.md)
