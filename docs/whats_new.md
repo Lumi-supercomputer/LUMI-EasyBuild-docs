@@ -8,6 +8,26 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20260916
+
+-   New version with bug fixes of [lumi-container-wrapper](l/lumi-container-wrapper/index.md).
+
+-   [QuantumESPRESSO GPU version](q/QuantumESPRESSO/index.md). This is currently a rather
+    bare-bones version and performance is not yet optimal either. The latter will improve
+    significantly ones ROCm(tm) 7 is fully supported on the system.
+
+-   Version of [seff](s/seff/index.md) compatible with the version of Slurm after the
+    2 September 2026 mandatory system update.
+
+-   Other updates: [OpenFOAM dev version](o/OpenFOAM/index.md) and
+    [dlb](d/dlb/index.md).
+
+-   New package: [carm-roofline](c/carm-roofline/index.md).
+
+-   Additional software packages for the 26.03 container environment and a slightly updated
+    EasyConfig for [ccpe/26.03-noRocm-SP7-LUMI](c/ccpe/index.md).
+
+
 ## Release 20260824
 
 -   [VASP 6.6.0 with GPU support](v/VASP/index.md) though without any optional component.
