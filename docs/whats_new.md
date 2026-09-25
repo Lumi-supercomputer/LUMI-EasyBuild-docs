@@ -8,6 +8,21 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20260925
+
+-   New pre-installed package in 25.03 and later: 
+    [libzip](l/libzip/index.md).
+
+-   New or updated user-installable packages: [FFmpeg 9.0.1](f/FFmpeg/index.md)
+    and [VASP 6.6.1](v/VASP/index.md).
+
+    **The VASP developers report a serious issue with VASP 6.6.0, so please switch
+    to VASP 6.6.1 as soon as possible if you're using 6.6.0.**
+
+-   Improvements to 26.03 user-installable packages: Switched from the no longer 
+    maintained [Szip](s/Szip/index.md) libraries to [libaec](l/libaec/index.md).
+
+
 ## Release 20260916
 
 -   New version with bug fixes of [lumi-container-wrapper](l/lumi-container-wrapper/index.md).
