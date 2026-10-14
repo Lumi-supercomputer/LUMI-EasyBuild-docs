@@ -8,6 +8,31 @@ hide:
 
 # What's new in the LUMI software stack
 
+
+## Release 20261014
+
+-   Stronger recommendation to use the LAIF containers for [PyTorch](p/PyTorch/index.md).
+
+-   New packages: [FDS - Fire Dynamics Simulator](f/FDS/index.md).
+
+-   Updated packages:
+
+    -   [AWS OFI plugin for the 26.03 ccpe container](a/aws-ofi-nccl/index.md).
+
+    -   [AdaptiveCpp](a/AdaptiveCpp/index.md)
+
+    -   [CuPy](c/CuPy/index.md)
+
+    -   [ELPA](e/ELPA/index.md) and [PETSc](p/PETSc/index.md) and various dependencies with the Cray compilers,
+        the latter triggered by a porting project using the Cray Fortran compiler.
+
+    -   [magma](m/magma/index.md)
+
+    -   [RSPt](r/RSPt/index.md)
+
+-   Archived the buggy [VASP 6.6.0 version](v/VASP/index.md).
+
+
 ## Release 20260925
 
 -   New pre-installed package in 25.03 and later: 
