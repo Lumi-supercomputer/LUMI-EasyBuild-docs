@@ -8,6 +8,15 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 201611XX
+
+-   Users of [carm-roofline](c/carm-roofline/index.md) who installed before October 23, 2026
+    should re-install the package as it pulled in a dependency with a security vulnerability. 
+
+-   Users of [VisIt](v/VisIt/index.md) should also consider re-installing once the Cray
+    Python modules are fixed.
+
+
 ## Release 20261028
 
 -   Warnings about security fixes or the lack thereof in some containers.
