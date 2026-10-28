@@ -8,6 +8,12 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20261028
+
+-   Warnings about security fixes or the lack thereof in some containers.
+
+-   [EasyBuild/5.4.1](e/EasyBuild/index.md)  in 26.03 with fixed version of certifi.
+
 
 ## Release 20261014
 
