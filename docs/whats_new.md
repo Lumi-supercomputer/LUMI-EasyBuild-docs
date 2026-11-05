@@ -8,7 +8,7 @@ hide:
 
 # What's new in the LUMI software stack
 
-## Release 201611XX
+## Release 20161105
 
 -   Users of [carm-roofline](c/carm-roofline/index.md) who installed before October 23, 2026
     should re-install the package as it pulled in a dependency with a security vulnerability. 
@@ -16,10 +16,17 @@ hide:
 -   Users of [VisIt](v/VisIt/index.md) should also consider re-installing once the Cray
     Python modules are fixed.
 
+-   Some minor corrections to the documentation: [libxc](l/libxc/index.md),
+    [LAMMPS](l/LAMMPS/index.md).
+
+-   Correction to the [course EasyConfigs](e/eb-tutorial/index.md).
+
 
 ## Release 20261028
 
--   Warnings about security fixes or the lack thereof in some containers.
+-   Security warnings for the old [PyTorch](p/PyTorch/index.md),
+    [jax](j/jax/index.md), [TensorFlow](t/TensorFlow/index.md) and
+    [mpi4py](m/mpi4py/index.md) containers.
 
 -   [EasyBuild/5.4.1](e/EasyBuild/index.md)  in 26.03 with fixed version of certifi.
 
