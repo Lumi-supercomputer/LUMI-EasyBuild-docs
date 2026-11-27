@@ -8,6 +8,61 @@ hide:
 
 # What's new in the LUMI software stack
 
+## Release 20261127
+
+-   The `craype-accel-none` module is now available as a way to unload any
+    `craype-accel` module without having to know which one is loaded and 
+    without the side-effects of using `craype-accel-host` when using the 
+    Cray compiler.
+
+-   Hugepages have been disabled for now due to an unpatched security vulnerability.
+    Loading the modules will show a warning.
+
+    Hugepages have been disabled in the EasyConfigs of
+    [PLUMED](p/PLUMED/index.md) and [GROMACS](g/GROMACS/index.md)
+    that used them, but no recompilation should be needed as they were only 
+    enabled at runtime when one of the `craype-hugepages*` modules is loaded,
+    and these had to be loaded manually.
+
+-   New package: [Umpire](u/Umpire/index.md).
+
+-   [Hypre](h/Hypre/index.md) is now available with ROCm(tm) support, and there is a 
+    version of [PETSc](p/PETSc/index.md) using this solver.
+
+-   Update of [carm-roofline](c/carm-roofline/index.md).
+
+-   System update previews:
+
+    -   [ccpe/26.03-noRocm-SP7-LUMI container](c/ccpe/index.md): Contains a preview of the
+        26.03 toolchains that will be used on LUMI after the upgrade, based on ROCm(tm) 7.0.3.
+    
+        User-installable from [ccpe-26.03-noRocm-SP7-LUMI.eb](c/ccpe/ccpe-26.03-noRocm-SP7-LUMI.md)
+        and may need to be re-installed as the container evolves.
+
+        The container has changed a little for this release of the LUMI Software Stack and
+        rebuilding is encouraged.
+
+    -   [ccpe/26.03-rocm-7.2.4-SP7-LUMI container](c/ccpe/index.md): Less mature but closer to
+        what we expect the system to be like after the system update. Contains a preview of the
+        26.03 toolchains based on ROCm(tm) 7.0.3 and over time we will build up 26.04 toolchains
+        that actually use mostly the same compilers and libraries as 26.03 (and basically the 
+        26.03 Cray Programming Environment), but with ROCm(tm) 7.2.4. Not all functionality is
+        supported in this version. In particular, the ROCm(tm) flang compiler cannot be used
+        as it is not compatible with the Fortran modules of Cray MPICH and not supported by
+        Cray LibSci (and other libraries with Fortran interfaces).
+
+        User-installable from [ccpe-26.03-rocm-7.2.4-SP7-LUMI.eb](c/ccpe/ccpe-26.03-rocm-7.2.4-SP7-LUMI.md)
+        but with a higher chance that it will need re-installation to 
+        maintain full functionality.
+
+    -   We have made the switch to AOCC 5.2.0 (from 5.1.0) in 26.03, and from EasyBuild 5.4.1 to 
+        EasyBuild 5.4.2.
+    
+    -   Switch to a security fixed version of [Brotli](b/Brotli/index.md). If you are already using
+        Brotli from 26.03, you will need to change to the 1.2.1 modules and may have to rebuild 
+        modules that load the former 1.2.0 module.
+
+
 ## Release 20161105
 
 -   Users of [carm-roofline](c/carm-roofline/index.md) who installed before October 23, 2026
